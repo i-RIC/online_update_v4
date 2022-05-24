@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition
+	xmlns="www.iric.net/SolverDefinition/1.0"
+	name="cap" caption="Culvert Analysis Program" version="2021.0.0" copyright="USGS"
+	release="2022.04.08"
+	homepage="http://water.usgs.gov/software/CAP/"
+	executable="CAP.exe"
+	iterationtype="time"
+	gridtype="nogrid"
+>
+	<CalculationCondition>
+		<Tab name="project_info" caption="Project Info">
+			<HBoxLayout>
+				<VBoxLayout>
+					<GroupBox caption="Stream and Flood">
+						<Item name="id" caption="ID">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="streamName" caption="Stream">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="location" caption="Location">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="street_road" caption="Stream/Road">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="flood_date" caption="Flood Date">
+							<Definition valueType="string"/>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Authorship">
+						<Item name="computed_by" caption="Computed By">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="checked_by" caption="Checked By">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="reviewed_by" caption="Reviewed By">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="remarks" caption="Remarks">
+							<Definition valueType="string" multiline="true"/>
+						</Item>
+					</GroupBox>
+				</VBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<GroupBox caption="Unit Conversion (Input / Output)">
+						<Item name="units" caption="Units (SICODE)">
+							<Definition valueType="integer" option="true" default="0">
+								<Enumerations>
+									<Enumeration value="0" caption="English / English"/>
+									<Enumeration value="2" caption="English / SI"/>
+									<Enumeration value="3" caption="SI / English"/>
+									<Enumeration value="1" caption="SI / SI"/>
+								</Enumerations>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Survey Information">
+						<Item name="flagged_by" caption="Flagged By">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="flagging_date" caption="Flagging Date">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="surveyed_by" caption="Surveyed By">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="survey_date" caption="Survey Date">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="instrument_type" caption="Instrument Type">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="model" caption="Model">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="serial_num" caption="Serial Number">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="horizontal_datum" caption="Horizontal Datum">
+							<Definition valueType="string"/>
+						</Item>
+						<Item name="vertical_datum" caption="Vertical Datum">
+							<Definition valueType="string"/>
+						</Item>
+					</GroupBox>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+
+		<Tab name="shape" caption="Shape">
+			<HBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<Image src="shape_types.png">
+						<SubImage src="shape_box.png">
+							<Condition type="isEqual" target="shape_type" value="1"/>
+						</SubImage>
+						<SubImage src="shape_circular.png">
+							<Condition type="isEqual" target="shape_type" value="2"/>
+						</SubImage>
+						<SubImage src="shape_elliptical.png">
+							<Condition type="isEqual" target="shape_type" value="3"/>
+						</SubImage>
+						<SubImage src="shape_pipearch.png">
+							<Condition type="isEqual" target="shape_type" value="4"/>
+						</SubImage>
+						<SubImage src="shape_nonstandard.png">
+							<Condition type="isEqual" target="shape_type" value="5"/>
+						</SubImage>
+					</Image>
+				</VBoxLayout>
+				<VBoxLayout>
+					<GroupBox caption="Shape (ICODE)">
+						<Item name="shape_type" caption="Shape (ICODE)">
+							<Definition valueType="integer" option="true" default="0">
+								<Enumerations>
+									<Enumeration value="0" caption="Select shape"/>
+									<Enumeration value="1" caption="Box (I=1)"/>
+									<Enumeration value="2" caption="Circular (I=2)"/>
+									<Enumeration value="3" caption="Elliptical (I=2)"/>
+									<Enumeration value="4" caption="Pipe Arch (I=3)"/>
+									<Enumeration value="5" caption="Non-standard (I=4)"/>
+								</Enumerations>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Size">
+						<Item name="rise" caption="Rise [inches] (RISE)">
+							<SubCaption caption="Rise [centimeters] (RISE)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="or">
+									<Condition type="isEqual" target="shape_type" value="1"/>
+									<Condition type="isEqual" target="shape_type" value="3"/>
+									<Condition type="isEqual" target="shape_type" value="4"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="span" caption="Span [inches] (SPAN)">
+							<SubCaption caption="Span [centimeters] (SPAN)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="or">
+									<Condition type="isEqual" target="shape_type" value="1"/>
+									<Condition type="isEqual" target="shape_type" value="3"/>
+									<Condition type="isEqual" target="shape_type" value="4"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="diameter" caption="Diameter [inches] (RISE, SPAN)">
+							<SubCaption caption="Diameter [centimeters] (RISE, SPAN)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="isEqual" target="shape_type" value="2"/>
+							</Definition>
+						</Item>
+						<Item name="rbottom" caption="R&lt;sub&gt;bottom&lt;/sub&gt; [inches] (BOTRAD) ‒ Optional">
+							<!-- SI and J!=[3] -->
+							<SubCaption caption="R&lt;sub&gt;bottom&lt;/sub&gt; [centimeters] (BOTRAD) ‒ Optional">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<!-- English and J=[3] -->
+							<SubCaption caption="R&lt;sub&gt;bottom&lt;/sub&gt; [inches] (BOTRAD) ‒ Entry recommended if RISE ≤ 103 inches">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="0"/>
+										<Condition type="isEqual" target="units" value="2"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="3"/>
+								</Condition>
+							</SubCaption>
+							<!-- SI and J=[3] -->
+							<SubCaption caption="R&lt;sub&gt;bottom&lt;/sub&gt; [centimeters] (BOTRAD) ‒ Entry recommended if RISE ≤ 103 inches">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="1"/>
+										<Condition type="isEqual" target="units" value="3"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="3"/>
+								</Condition>
+							</SubCaption>
+							<!-- English and J=[7] -->
+							<SubCaption caption="R&lt;sub&gt;bottom&lt;/sub&gt; [inches] (BOTRAD) ‒ Entry of measured value recommended">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="0"/>
+										<Condition type="isEqual" target="units" value="2"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="7"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="isEqual" target="shape_type" value="4"/>
+							</Definition>
+						</Item>
+						<Item name="rtop" caption="R&lt;sub&gt;top&lt;/sub&gt; [inches] (TOPRAD) ‒ Optional">
+							<SubCaption caption="R&lt;sub&gt;top&lt;/sub&gt; [centimeters] (TOPRAD) ‒ Optional">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="isEqual" target="shape_type" value="4"/>
+							</Definition>
+						</Item>
+						<!-- R-corner -->
+						<!-- English and J=[1,2,4,7] -->
+						<Item name="rcorner" caption="R&lt;sub&gt;corner&lt;/sub&gt; [inches] (CORRAD) ‒ Entry of measured value recommended">
+							<!-- SI and J=[1,2,4,7] -->
+							<SubCaption caption="R&lt;sub&gt;corner&lt;/sub&gt; [centimeters] (CORRAD) ‒ Entry of measured value recommended">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<!-- English and J=[3] (≝ doesn't display well in iric) -->
+							<SubCaption caption="R&lt;sub&gt;corner&lt;/sub&gt; [inches] (CORRAD)">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="0"/>
+										<Condition type="isEqual" target="units" value="2"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="3"/>
+								</Condition>
+							</SubCaption>
+							<!-- SI and J=[3] (≝ doesn't display well in iric) -->
+							<SubCaption caption="R&lt;sub&gt;corner&lt;/sub&gt; [centimeters] (CORRAD) = 31.75 inches">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="1"/>
+										<Condition type="isEqual" target="units" value="3"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="3"/>
+								</Condition>
+							</SubCaption>
+							<!-- English and J=[5] -->
+							<SubCaption caption="R&lt;sub&gt;corner&lt;/sub&gt; [inches] (CORRAD)">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="0"/>
+										<Condition type="isEqual" target="units" value="2"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="5"/>
+								</Condition>
+							</SubCaption>
+							<!-- SI and J=[5] -->
+							<SubCaption caption="R&lt;sub&gt;corner&lt;/sub&gt; [centimeters] (CORRAD) = 31 inches">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="1"/>
+										<Condition type="isEqual" target="units" value="3"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="5"/>
+								</Condition>
+							</SubCaption>
+							<!-- English and J=[6] -->
+							<SubCaption caption="R&lt;sub&gt;corner&lt;/sub&gt; [inches] (CORRAD)">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="0"/>
+										<Condition type="isEqual" target="units" value="2"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="6"/>
+								</Condition>
+							</SubCaption>
+							<!-- SI and J=[6] -->
+							<SubCaption caption="R&lt;sub&gt;corner&lt;/sub&gt; [centimeters] (CORRAD) = 47 inches">
+								<Condition type="and">
+									<Condition type="or">
+										<Condition type="isEqual" target="units" value="1"/>
+										<Condition type="isEqual" target="units" value="3"/>
+									</Condition>
+									<Condition type="isEqual" target="material" value="6"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Dependency>
+									<Condition type="and">
+										<Condition type="isEqual" target="shape_type" value="4"/>
+										<Condition type="or">
+											<Condition type="isEqual" target="material" value="1"/>
+											<Condition type="isEqual" target="material" value="2"/>
+											<Condition type="isEqual" target="material" value="4"/>
+											<Condition type="isEqual" target="material" value="7"/>
+										</Condition>
+									</Condition>
+									<Action type="enable" />
+								</Dependency>
+								<!--Pipe Arch (I=3) and Material (J=3) -->
+								<Dependency>
+									<Condition type="and">
+										<Condition type="isEqual" target="shape_type" value="4"/>
+										<Condition type="isEqual" target="material" value="3"/>
+									</Condition>
+									<Action type="setValue" value="31.75" />
+								</Dependency>
+								<!--Pipe Arch (I=3) and Material (J=5) -->
+								<Dependency>
+									<Condition type="and">
+										<Condition type="isEqual" target="shape_type" value="4"/>
+										<Condition type="isEqual" target="material" value="5"/>
+									</Condition>
+									<Action type="setValue" value="31" />
+								</Dependency>
+								<!--Pipe Arch (I=3) and Material (J=6) -->
+								<Dependency>
+									<Condition type="and">
+										<Condition type="isEqual" target="shape_type" value="4"/>
+										<Condition type="isEqual" target="material" value="6"/>
+									</Condition>
+									<Action type="setValue" value="47" />
+								</Dependency>
+							</Definition>
+						</Item>
+						<Item name="coords" caption="Coordinates [feet] (SCUL, GCUL)">
+							<SubCaption caption="Coordinates [meters] (SCUL, GCUL)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition conditionType="functional" noSort="true">
+								<Parameter caption="X" valueType="real"/>
+								<Value caption="Y" valueType="real"/>
+								<Condition type="isEqual" target="shape_type" value="5"/>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Other">
+						<VBoxLayout>
+							<GridLayout>
+								<!-- No. of Barrels (NBBL) -->
+								<Label caption="No. of Barrels (NBBL)" row="0" col="0">
+								</Label>
+								<Item name="num_barrels" row="0" col="1">
+									<Definition valueType="integer" default="1">
+										<Condition type="isEqual" target="shape_type" value="1"/>
+									</Definition>
+								</Item>
+								<!--Material (ICODE) -->
+								<Label caption="Material (ICODE)" row="1" col="0">
+								</Label>
+								<Item name="material" row="1" col="1">
+									<Definition valueType="integer" option="true" default="1">
+										<Enumerations>
+											<Enumeration value="1" caption="Concrete Pipe (J=1)"/>
+											<Enumeration value="2" caption="Corrugated metal or other pipe (not concrete) (J=2)"/>
+											<Enumeration value="3" caption="(CMSPPA) Aluminum pipe arch with CORRAD = 31.75 inches (J=3)"/>
+											<Enumeration value="4" caption="(CMSPPA) Corrugated steel pipe arch with CORRAD ≤ 18 inches (J=4)"/>
+											<Enumeration value="5" caption="(CMSPPA) Corrugated steel pipe arch with CORRAD = 31 inches (J=5)"/>
+											<Enumeration value="6" caption="(CMSPPA) Corrugated steel pipe arch with CORRAD = 47 inches (J=6)"/>
+											<Enumeration value="7" caption="(CMPA) Non-plate corrugated steel pipe arch (J=7)"/>
+											<SubEnumerations>
+												<Enumeration value="1" caption="Concrete Pipe (J=1)"/>
+												<Enumeration value="2" caption="Corrugated metal or other pipe (not concrete) (J=2)"/>
+												<Condition type="or">
+													<Condition type="isEqual" target="shape_type" value="2"/>
+													<Condition type="isEqual" target="shape_type" value="3"/>
+												</Condition>
+											</SubEnumerations>
+											<SubEnumerations>
+												<Enumeration value="1" caption="Concrete Pipe (J=1)"/>
+												<Enumeration value="3" caption="(CMSPPA) Aluminum pipe arch with CORRAD = 31.75 inches (J=3)"/>
+												<Enumeration value="4" caption="(CMSPPA) Corrugated steel pipe arch with CORRAD ≤ 18 inches (J=4)"/>
+												<Enumeration value="5" caption="(CMSPPA) Corrugated steel pipe arch with CORRAD = 31 inches (J=5)"/>
+												<Enumeration value="6" caption="(CMSPPA) Corrugated steel pipe arch with CORRAD = 47 inches (J=6)"/>
+												<Enumeration value="7" caption="(CMPA) Non-plate corrugated steel pipe arch (J=7)"/>
+												<Condition type="isEqual" target="shape_type" value="4"/>
+											</SubEnumerations>
+										</Enumerations>
+										<Condition type="or">
+											<Condition type="isEqual" target="shape_type" value="2"/>
+											<Condition type="isEqual" target="shape_type" value="3"/>
+											<Condition type="isEqual" target="shape_type" value="4"/>
+										</Condition>
+									</Definition>
+								</Item>
+							</GridLayout>
+							<Label caption="">
+								<SubCaption caption="Metal pipe arches must be identified as either corrugated metal (aluminum or steel) structural plate pipe arches &lt;br&gt;
+								(CMSPPA) or non-plate corrugated metal pipe arches (CMPA). The Culvert Identification Field Guide (available at &lt;br&gt;
+								&lt;a href='https://connect.ncdot.gov/resources/hydro/Pages/Guidelines-Drainage-Studies.aspx'&gt;https://connect.ncdot.gov/resources/hydro/Pages/Guidelines-Drainage-Studies.aspx&lt;/a&gt;; North Carolina Department of &lt;br&gt;
+								Transportation, 2021) provides helpful identification guidance. &lt;br&gt;
+								&lt;br&gt;
+								Material codes 1 to 6 are consistent with those defined in the USGS CAP User’s Guide (WRIR 98-4166, 1998); &lt;br&gt;
+								material code 7 is added for analysis of CMPA pipes. Refer to the file “CAP_2021_version_notes.txt” (available at &lt;br&gt;
+								&lt;a href='https://water.usgs.gov/software/CAP/'&gt;https://water.usgs.gov/software/CAP/&lt;/a&gt;), which provides detailed guidance for at-site measurements and analysis of &lt;br&gt;
+								standard pipe-arch culverts. &lt;br&gt;
+								&lt;br&gt;
+								CAP computations for pipe-arch culverts with measured dimensions (rise and span) outside the range of standard &lt;br&gt;
+								dimensions for the selected culvert type are flagged with an output warning – such nonstandard culverts &lt;u&gt;should not&lt;/u&gt; &lt;br&gt;
+								be analyzed using the Pipe Arch Shape option (I=3). Instead, pipe-arch culverts with nonstandard rise/span &lt;br&gt;
+								dimensions should be analyzed using the Non-standard Shape option (I=4), which requires measuring and entering &lt;br&gt;
+								the culvert geometry as x-y point coordinates (Note that &lt;u&gt;any&lt;/u&gt; pipe-arch culvert can be analyzed using the Non- &lt;br&gt;
+								standard Shape option, if desired.)">
+									<Condition type="isEqual" target="shape_type" value="4"/>
+								</SubCaption>
+								<SubCaption caption="The inlet type and observed inlet geometric characteristics or the discharge-coefficient adjustments must be specified&lt;br&gt;
+								in the *CC or *C3 and *C5 records. See the CAP User's Guide (WRIR 98-4166, 1998) for more information.">
+									<Condition type="or">
+										<Condition type="isEqual" target="shape_type" value="2"/>
+										<Condition type="isEqual" target="shape_type" value="3"/>
+									</Condition>
+								</SubCaption>
+							</Label>
+						</VBoxLayout>
+					</GroupBox>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+
+		<Tab name="alignment" caption="Alignment">
+			<HBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<Image src="alignment_types.png">
+						<SubImage src="alignment_unskewed.png">
+							<Condition type="isEqual" target="ali_type" value="1"/>
+						</SubImage>
+						<SubImage src="alignment_skewed.png">
+							<Condition type="isEqual" target="ali_type" value="2"/>
+						</SubImage>
+						<SubImage src="alignment_mitered.png">
+							<Condition type="isEqual" target="ali_type" value="3"/>
+						</SubImage>
+					</Image>
+					<Image src="alignment_ncul.png"/>
+				</VBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<GroupBox caption="Type">
+						<Item name="ali_type" caption="Type">
+							<Definition valueType="integer" option="true" default="0">
+								<Enumerations>
+									<Enumeration value="0" caption="Select type"/>
+									<Enumeration value="1" caption="No skew"/>
+									<Enumeration value="2" caption="Skewed road to flow"/>
+									<Enumeration value="3" caption="Mitered culvert"/>
+								</Enumerations>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="SRD">
+						<Item name="srd_culvert" caption="SRD&lt;sub&gt;culvert&lt;/sub&gt; [feet]">
+							<SubCaption caption="SRD&lt;sub&gt;culvert&lt;/sub&gt; [meters]">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="or">
+									<Condition type="isEqual" target="ali_type" value="1"/>
+									<Condition type="isEqual" target="ali_type" value="2"/>
+									<Condition type="isEqual" target="ali_type" value="3"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="srd_approach" caption="SRD&lt;sub&gt;approach&lt;/sub&gt; [feet]">
+							<SubCaption caption="SRD&lt;sub&gt;approach&lt;/sub&gt; [meters]">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="or">
+									<Condition type="isEqual" target="ali_type" value="1"/>
+									<Condition type="isEqual" target="ali_type" value="2"/>
+									<Condition type="isEqual" target="ali_type" value="3"/>
+								</Condition>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Size">
+						<VBoxLayout>
+							<Label caption="Manual override of CVLENG for Mitered culvert is &lt;br&gt;done by selecting &quot;No Skew&quot; for Type."/>
+							<GridLayout>
+								<Label caption="L&lt;sub&gt;cul&lt;/sub&gt; [feet] (CVLENG)" row="0" col="0">
+									<SubCaption caption="L&lt;sub&gt;cul&lt;/sub&gt; [meters] (CVLENG)">
+										<Condition type="or">
+											<Condition type="isEqual" target="units" value="1"/>
+											<Condition type="isEqual" target="units" value="3"/>
+										</Condition>
+									</SubCaption>
+								</Label>
+								<Item name="l_cul" row="0" col="1">
+									<Definition valueType="real" default="0">
+										<Condition type="or">
+											<Condition type="isEqual" target="ali_type" value="1"/>
+											<Condition type="isEqual" target="ali_type" value="2"/>
+										</Condition>
+									</Definition>
+								</Item>
+
+								<Label caption="L&lt;sub&gt;cul1&lt;/sub&gt; [feet] (CVLENG)" row="1" col="0">
+									<SubCaption caption="L&lt;sub&gt;cul1&lt;/sub&gt; [meters] (CVLENG)">
+										<Condition type="or">
+											<Condition type="isEqual" target="units" value="1"/>
+											<Condition type="isEqual" target="units" value="3"/>
+										</Condition>
+									</SubCaption>
+								</Label>
+								<Item name="l_cul1" row="1" col="1">
+									<Definition valueType="real" default="0">
+										<Condition type="isEqual" target="ali_type" value="3"/>
+									</Definition>
+								</Item>
+
+								<Label caption="L&lt;sub&gt;cul2&lt;/sub&gt; [feet] (CVLENG)" row="2" col="0">
+									<SubCaption caption="L&lt;sub&gt;cul2&lt;/sub&gt; [meters] (CVLENG)">
+										<Condition type="or">
+											<Condition type="isEqual" target="units" value="1"/>
+											<Condition type="isEqual" target="units" value="3"/>
+										</Condition>
+									</SubCaption>
+								</Label>
+								<Item name="l_cul2" row="2" col="1">
+									<Definition valueType="real" default="0">
+										<Condition type="isEqual" target="ali_type" value="3"/>
+									</Definition>
+								</Item>
+
+								<Label caption="L&lt;sub&gt;cul3&lt;/sub&gt; [feet] (CVLENG)" row="3" col="0">
+									<SubCaption caption="L&lt;sub&gt;cul3&lt;/sub&gt; [meters] (CVLENG)">
+										<Condition type="or">
+											<Condition type="isEqual" target="units" value="1"/>
+											<Condition type="isEqual" target="units" value="3"/>
+										</Condition>
+									</SubCaption>
+								</Label>
+								<Item name="l_cul3" row="3" col="1">
+									<Definition valueType="real" default="0">
+										<Condition type="isEqual" target="ali_type" value="3"/>
+									</Definition>
+								</Item>
+
+								<Label caption="Headwater Depth [inches] (d&lt;sub&gt;2&lt;/sub&gt;)" row="4" col="0">
+									<SubCaption caption="Headwater Depth [centimeters] (d&lt;sub&gt;2&lt;/sub&gt;)">
+										<Condition type="or">
+											<Condition type="isEqual" target="units" value="1"/>
+											<Condition type="isEqual" target="units" value="3"/>
+										</Condition>
+									</SubCaption>
+								</Label>
+								<Item name="hw_d" row="4" col="1">
+									<Definition valueType="real" default="0">
+										<Condition type="isEqual" target="ali_type" value="3"/>
+									</Definition>
+								</Item>
+
+							</GridLayout>
+						</VBoxLayout>
+					</GroupBox>
+					<GroupBox caption="Other">
+						<Item name="us_invert" caption="U/S Invert [feet] (USINV)">
+							<SubCaption caption="U/S Invert [meters] (USINV)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="or">
+									<Condition type="isEqual" target="ali_type" value="1"/>
+									<Condition type="isEqual" target="ali_type" value="2"/>
+									<Condition type="isEqual" target="ali_type" value="3"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="ds_invert" caption="D/S Invert [feet] (DSINV)">
+							<SubCaption caption="D/S Invert [meters] (DSINV)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="or">
+									<Condition type="isEqual" target="ali_type" value="1"/>
+									<Condition type="isEqual" target="ali_type" value="2"/>
+									<Condition type="isEqual" target="ali_type" value="3"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="n_cul" caption="n&lt;sub&gt;cul&lt;/sub&gt; (n in *CN)">
+							<Definition valueType="real" default="0">
+								<Condition type="or">
+									<Condition type="isEqual" target="ali_type" value="1"/>
+									<Condition type="isEqual" target="ali_type" value="2"/>
+									<Condition type="isEqual" target="ali_type" value="3"/>
+								</Condition>
+							</Definition>
+						</Item>
+					</GroupBox>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+
+		<Tab name="discharge_coeff" caption="Discharge Coefficient">
+			<VBoxLayout withSpacer="true">
+				<GroupBox caption="Type">
+					<Item name="discharge_method" caption="Discharge Coefficient Method">
+						<Definition valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Specify inlet geometry"/>
+								<Enumeration value="1" caption="Specify discharge coefficient adjustment settings"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+				</GroupBox>
+				<Label caption="&lt;h3&gt;Specify inlet geometry&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Use &quot;Edging&quot; page, &quot;Projection&quot; page to specify the inlet geometry.&lt;/li&gt;
+  &lt;li&gt;This corresponds to using &quot;*CC&quot; record.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Specify discharge coefficient adjustment settings&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Use &quot;Wingwalls&quot; page and &quot;Adjustment parameters&quot; page to specify adjustment settings.&lt;/li&gt;
+  &lt;li&gt;This corresponds to using &quot;*C3&quot; record.&lt;/li&gt;
+&lt;/ul&gt;
+
+"/>
+			</VBoxLayout>
+		</Tab>
+
+		<Tab name="edging" caption="  Edging">
+			<HBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<Image src="edging_types.png">
+						<SubImage src="edging_rounded.png">
+							<Condition type="isEqual" target="edg_type" value="2"/>
+						</SubImage>
+						<SubImage src="edging_beveled.png">
+							<Condition type="isEqual" target="edg_type" value="3"/>
+						</SubImage>
+					</Image>
+				</VBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<GroupBox caption="Type">
+						<Item name="edg_type" caption="Type (INLET)">
+							<Definition valueType="integer" option="true" default="1">
+								<Enumerations>
+									<Enumeration value="1" caption="No Edging (1)"/>
+									<Enumeration value="2" caption="Rounding (1)"/>
+									<Enumeration value="3" caption="Beveled (1)"/>
+									<Enumeration value="4" caption="Mitered end (2)"/>
+									<Enumeration value="5" caption="Bell mouth or tongue and groove (3)"/>
+									<Enumeration value="6" caption="Flared pipe (4)"/>
+								</Enumerations>
+								<Condition type="isEqual" target="discharge_method" value="0"/>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Sizes">
+						<Item name="edg_rc" caption="Radius of Curvature [inches] (R)">
+							<SubCaption caption="Radius of Curvature [centimeters] (R)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="and">
+									<Condition type="isEqual" target="discharge_method" value="0"/>
+									<Condition type="isEqual" target="edg_type" value="2"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="edg_wb" caption="Width of Bevel [inches] (W)">
+							<SubCaption caption="Width of Bevel [centimeters] (W)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="and">
+									<Condition type="isEqual" target="discharge_method" value="0"/>
+									<Condition type="isEqual" target="edg_type" value="3"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="edg_ab" caption="Angle of Bevel [degrees] (THETA)">
+							<Definition valueType="real" default="0">
+								<Condition type="and">
+									<Condition type="isEqual" target="discharge_method" value="0"/>
+									<Condition type="isEqual" target="edg_type" value="3"/>
+								</Condition>
+							</Definition>
+						</Item>
+					</GroupBox>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+
+		<Tab name="projection" caption="  Projection">
+			<HBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<Image src="projection_types.png">
+						<SubImage src="projection_equal.png">
+							<Condition type="isEqual" target="proj_type" value="2"/>
+						</SubImage>
+					</Image>
+				</VBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<GroupBox caption="Type">
+						<Item name="proj_type" caption="Type">
+							<Definition valueType="integer" option="true" default="1">
+								<Enumerations>
+									<Enumeration value="1" caption="Flush (No Projection)"/>
+									<Enumeration value="2" caption="With Projection"/>
+								</Enumerations>
+								<Condition type="isEqual" target="discharge_method" value="0"/>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Distances">
+						<Item name="proj_l" caption="L&lt;sub&gt;proj&lt;/sub&gt; [inches] (LPROJ)">
+							<SubCaption caption="L&lt;sub&gt;proj&lt;/sub&gt; [centimeters] (LPROJ)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition valueType="real" default="0">
+								<Condition type="and">
+									<Condition type="isEqual" target="discharge_method" value="0"/>
+									<Condition type="isEqual" target="proj_type" value="2"/>
+								</Condition>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<Label caption="The projection length LPROJ is a function of projection geometry&lt;br&gt;relative to the headwater elevation.&lt;br&gt;Determine LPROJ according to Bodhaine (1968), p. 41-42."/>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+
+		<Tab name="wingwalls" caption="  Wingwalls">
+			<HBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<Image src="wingwalls_types.png">
+						<SubImage src="wingwalls_equal.png">
+							<Condition type="isEqual" target="ww_type" value="1"/>
+						</SubImage>
+						<SubImage src="wingwalls_unequal.png">
+							<Condition type="isEqual" target="ww_type" value="2"/>
+						</SubImage>
+					</Image>
+				</VBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<GroupBox caption="Type">
+						<Item name="ww_type" caption="Type">
+							<Definition valueType="integer" option="true" default="0">
+								<Enumerations>
+									<Enumeration value="0" caption="None"/>
+									<Enumeration value="1" caption="Equal Angled"/>
+									<Enumeration value="2" caption="Unequal Angled"/>
+								</Enumerations>
+								<Condition type="isEqual" target="discharge_method" value="1"/>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Angles">
+						<Item name="ww_theta" caption="Theta [degrees] (THETA)">
+							<Definition valueType="real" default="0">
+								<Condition type="and">
+									<Condition type="isEqual" target="discharge_method" value="1"/>
+									<Condition type="isEqual" target="ww_type" value="1"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="ww_theta1" caption="Theta&lt;sub&gt;1&lt;/sub&gt; [degrees] (THETA)">
+							<Definition valueType="real" default="0">
+								<Condition type="and">
+									<Condition type="isEqual" target="discharge_method" value="1"/>
+									<Condition type="isEqual" target="ww_type" value="2"/>
+								</Condition>
+							</Definition>
+						</Item>
+						<Item name="ww_theta2" caption="Theta&lt;sub&gt;2&lt;/sub&gt; [degrees] (THETA)">
+							<Definition valueType="real" default="0">
+								<Condition type="and">
+									<Condition type="isEqual" target="discharge_method" value="1"/>
+									<Condition type="isEqual" target="ww_type" value="2"/>
+								</Condition>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<Label caption="When Type=&quot;Unequal Angled&quot;, k&lt;sub&gt;theta&lt;/sub&gt; is calculated as &lt;br&gt;the average value of k&lt;sub&gt;theta&lt;/sub&gt; values for each angles.&lt;br&gt;&lt;br&gt;For unequal wingwall angles and Type 4 flow, the user&lt;br&gt;will need to manually compute and average C value (C46)&lt;br&gt;and either compute discharge by hand computation or by&lt;br&gt;setting the C46 value in this program.&lt;br&gt;&lt;br&gt;You can input C46 value on &quot;Coefficients&quot; page."/>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+
+		<Tab name="adj_params" caption="  Adjustment parameters">
+			<Item name="inlet" caption="Inlet code (INLET)">
+				<Definition valueType="integer" option="true" default="1">
+					<Enumerations>
+						<Enumeration value="1" caption="Vertical headwall flush (1)"/>
+						<Enumeration value="2" caption="Mitered (2)"/>
+						<Enumeration value="3" caption="Bellmouth, or tongue and groove concrete pipe (3)"/>
+						<Enumeration value="4" caption="flared pipe ends (4)"/>
+					</Enumerations>
+					<Condition type="isEqual" target="discharge_method" value="1"/>
+				</Definition>
+			</Item>
+			<Item name="kr" caption="Entrance-rounding adjustment (KR)">
+				<Definition valueType="real" default="1">
+					<Condition type="or">
+						<Condition type="isEqual" target="discharge_method" value="1"/>
+					</Condition>
+				</Definition>
+			</Item>
+			<Item name="kw" caption="Entrance-beveling adjustment (KW)">
+				<Definition valueType="real" default="1">
+					<Condition type="or">
+						<Condition type="isEqual" target="discharge_method" value="1"/>
+					</Condition>
+				</Definition>
+			</Item>
+			<Item name="kproj" caption="Projecting-pipe adjustment (KPROJ)">
+				<Definition valueType="real" default="1">
+					<Condition type="or">
+						<Condition type="isEqual" target="discharge_method" value="1"/>
+					</Condition>
+				</Definition>
+			</Item>
+		</Tab>
+
+		<Tab name="coefficients" caption="  Coefficients">
+			<GridLayout>
+				<GroupBox caption="Flow Types 1 to 3" row="0" col="0">
+					<Item name="c1_enable" caption="Coefficients">
+						<Definition valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Use default values"/>
+								<Enumeration value="1" caption="Specify CB12"/>
+								<Enumeration value="2" caption="Specify CP, HP"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="cb12" caption="Coefficient for flow type 1 and 2 (CB12)">
+						<Definition valueType="real" default="0.95">
+							<Condition type="isEqual" target="c1_enable" value="1"/>
+						</Definition>
+					</Item>
+					<Item name="cp" caption="Coefficient for flow type 3 (HP, CP)">
+						<Definition valueType="functional">
+							<Parameter caption="HP" valueType="real"/>
+							<Value caption="CP" valueType="real"/>
+							<Condition type="isEqual" target="c1_enable" value="2"/>
+						</Definition>
+					</Item>
+				</GroupBox>
+				<VBoxLayout withSpacer="true" row="0" col="1">
+					<Label caption="0.85 &amp;lt;= CB12 &amp;lt;= 0.98&lt;br&gt;0.65 &amp;lt;= CP &amp;lt;= 0.98&lt;br&gt;The number of CP, HP pairs must be &lt;br&gt;between 1 and 4."/>
+				</VBoxLayout>
+
+				<GroupBox caption="Flow Types 4 to 6" row="1" col="0">
+					<Item name="c5_enable" caption="Coefficients">
+						<Definition valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Use default values"/>
+								<Enumeration value="1" caption="Specify values"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="c46" caption="Coefficient for flow type 4 and 6 (C46)">
+						<Definition valueType="real" default="0.95">
+							<Condition type="isEqual" target="c5_enable" value="1"/>
+						</Definition>
+					</Item>
+					<Item name="c5" caption="Coefficient for flow type 5 (H5, C5)">
+						<Definition valueType="functional">
+							<Parameter caption="H5" valueType="real"/>
+							<Value caption="C5" valueType="real"/>
+							<Condition type="isEqual" target="c5_enable" value="1"/>
+						</Definition>
+					</Item>
+				</GroupBox>
+
+				<VBoxLayout withSpacer="true" row="1" col="1">
+					<Label caption="0.65 &amp;lt;= C46 &amp;lt;= 0.98&lt;br&gt;0.39 &amp;lt;= C5 &amp;lt;= 0.75&lt;br&gt;The number of C5, H5 pairs must be &lt;br&gt;between 1 and 4.&lt;br&gt;&lt;br&gt;For unequal wingwall angles and Type 4&lt;br&gt;flow, the user needs to manually compute&lt;br&gt;an average C46 value and input here."/>
+				</VBoxLayout>
+
+				<GroupBox caption="High head flow" row="2" col="0">
+					<Item name="tflw" caption="Type of high head flows (TFLW)">
+						<Definition valueType="integer" option="true" default="6">
+							<Enumerations>
+								<Enumeration value="6" caption="Flow type 6 (6)"/>
+								<Enumeration value="5" caption="Flow type 5 (5)"/>
+								<Enumeration value="65" caption="Both (6 5)"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="hflw" caption="Transition between flow type 5 and 6 (HFLW)">
+						<Definition valueType="real" default="100000">
+							<Condition type="isEqual" target="tflw" value="5"/>
+						</Definition>
+					</Item>
+					<Label caption="&lt;B&gt;Note&lt;/B&gt;: Please see Bodhaine (1968) fig. 16 for HFLW"/>
+				</GroupBox>
+			</GridLayout>
+
+		</Tab>
+
+		<Tab name="approach" caption="Approach">
+			<GroupBox caption="Crosssection and Roughness">
+				<VBoxLayout>
+					<GridLayout>
+						<Label caption="Type" row="0" col="0"/>
+						<Item name="n_type" row="0" col="1">
+							<Definition valueType="integer" option="true" default="0">
+								<Enumerations>
+									<Enumeration value="0" caption="Simple"/>
+									<Enumeration value="1" caption="Horizontal distribution"/>
+									<Enumeration value="2" caption="Horizontal + vertical distribution"/>
+								</Enumerations>
+							</Definition>
+						</Item>
+
+						<Label caption="Simple: Cross Section (X, Y)" row="1" col="0"/>
+						<Item name="appr_xs" row="1" col="1">
+							<Definition conditionType="functional">
+								<Parameter caption="X" valueType="real"/>
+								<Value caption="Y" valueType="real"/>
+								<Condition type="isEqual" target="n_type" value="0"/>
+							</Definition>
+						</Item>
+
+						<Label caption="Simple: Roughness  (NVAL(1))" row="2" col="0"/>
+						<Item name="n_simple" row="2" col="1">
+							<Definition valueType="real" default="0">
+								<Condition type="isEqual" target="n_type" value="0"/>
+							</Definition>
+						</Item>
+
+						<Label caption="Horizontal distribution: (X, Y, NVAL)" row="3" col="0"/>
+						<Item name="n_h" row="3" col="1">
+							<Definition conditionType="functional">
+								<Parameter name="X" caption="X" valueType="real"/>
+								<Value name="Y" caption="Y" valueType="real"/>
+								<Value name="NVAL" caption="NVAL" valueType="real" span="true"/>
+								<Condition type="isEqual" target="n_type" value="1"/>
+							</Definition>
+						</Item>
+
+						<Label caption="Horizontal + vertical distribution (X, Y, BOTD, TOPD, BOTN, TOPN)" row="4" col="0"/>
+						<Item name="n_h_v" row="4" col="1">
+							<Definition conditionType="functional">
+								<Parameter name="X" caption="X" valueType="real"/>
+								<Value name="Y" caption="Y" valueType="real" axis="left"/>
+								<Value name="BOTD" caption="BOTD" valueType="real" axis="right" span="true"/>
+								<Value name="TOPD" caption="TOPD" valueType="real" axis="right" span="true"/>
+								<Value name="BOTN" caption="BOTN" valueType="real" axis="right" span="true"/>
+								<Value name="TOPN" caption="TOPN" valueType="real" axis="right" span="true"/>
+								<Condition type="isEqual" target="n_type" value="2"/>
+							</Definition>
+						</Item>
+					</GridLayout>
+					<Label caption="&lt;B&gt;Note&lt;/B&gt;: Unit of X, Y, BOTD, TOPD = [feet]">
+						<SubCaption caption="&lt;B&gt;Note&lt;/B&gt;: Unit of X, Y, BOTD, TOPD = [meters]">
+							<Condition type="or">
+								<Condition type="isEqual" target="units" value="1"/>
+								<Condition type="isEqual" target="units" value="3"/>
+							</Condition>
+						</SubCaption>
+					</Label>
+				</VBoxLayout>
+			</GroupBox>
+
+			<GroupBox caption="Other">
+				<Item name="appr_skew" caption="Skew angle [degree] (SKEW)">
+					<Definition valueType="real" default="0">
+					</Definition>
+				</Item>
+				<Item name="max_depth" caption="Maximum Depth [feet] (DMAX)">
+					<SubCaption caption="Maximum Depth [meters] (DMAX)">
+						<Condition type="or">
+							<Condition type="isEqual" target="units" value="1"/>
+							<Condition type="isEqual" target="units" value="3"/>
+						</Condition>
+					</SubCaption>
+					<Definition valueType="real" default="100">
+					</Definition>
+				</Item>
+				<Item name="spacing_ratio" caption="Spacing Ratio (RATIO)">
+					<Definition valueType="real" default="1">
+					</Definition>
+				</Item>
+			</GroupBox>
+		</Tab>
+
+		<Tab name="flows_tailwater" caption="Flows / Tailwater">
+			<HBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<GroupBox caption="Flows / Tailwater">
+						<Item name="discharges" caption="Flow discharges [cfs] (Q)">
+							<SubCaption caption="Flow discharges [cms] (Q)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition conditionType="functional">
+								<Parameter caption="ID"/>
+								<Value caption="Discharge" valueType="real"/>
+							</Definition>
+						</Item>
+						<Item name="tailwater_elevation" caption="Tailwater Elevations [feet] (H4TW)">
+							<SubCaption caption="Tailwater Elevations [meters] (H4TW)">
+								<Condition type="or">
+									<Condition type="isEqual" target="units" value="1"/>
+									<Condition type="isEqual" target="units" value="3"/>
+								</Condition>
+							</SubCaption>
+							<Definition conditionType="functional">
+								<Parameter caption="ID"/>
+								<Value caption="Elevation" valueType="real"/>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<Label caption="ID of Flow discharges and Tailwater Elevations are ignored."/>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+	</CalculationCondition>
+</SolverDefinition>

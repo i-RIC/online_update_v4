@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Grid Importer plugins</DisplayName>
+	<Description>Plugins for importing grid</Description>
+	<Version>1.0.0</Version>
+	<Default>true</Default>
+	<ReleaseDate>2017-04-18</ReleaseDate>
+	<SortingPriority>30</SortingPriority>
+</Package>

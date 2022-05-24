@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridImporterPluginDefinition 
+  xmlns="www.iric.net/GridImporterPluginDefinition/1.0"
+  name="structured2dgdalimporter" caption="Structured grid GDAL importer" version="1.0.0" release="2020.04.17"
+  copyright="iRIC Organization"
+>
+</GridImporterPluginDefinition>

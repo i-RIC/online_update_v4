@@ -1,0 +1,1210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition
+	xmlns="www.iric.net/SolverDefinition/1.0"
+	name="fastmech" caption="FaSTMECH" version="1.1.3"  copyright="None"
+	release="2022.02.01" homepage="https://wwwbrr.cr.usgs.gov/gstl/index.html"
+	executable="Fastmech.exe"
+	iterationtype="time"
+	gridtype="structured2d"
+	gridgenerators="center_and_width, gridgen"
+	>
+	<CalculationCondition>
+		<Tab name="Discharge" caption="Discharge">
+			<Content>
+				<Items>
+					<Item name="FM_HydAttVarDischType" caption="Discharge Type">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Constant" />
+								<Enumeration value="1" caption="Variable" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttQ" caption="Discharge">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="100.0">
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttVarDischType" value="0" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttVelDepthCoef" caption="Depth Weighting Coefficient">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.5">
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttVelAngleCoef" caption="Velocity Angle (degrees)">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.0">
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttVarDischarge" caption="Variable Discharge">
+						<Definition conditionType="functional">
+							<Parameter valueType="real" caption="Time" />
+							<Value valueType="real" caption="Discharge" />
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttVarDischType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttVelBC" caption="Use Velocity Weighting Function">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttVarVelBC" caption="Variable Velocity Distribution">
+						<Definition conditionType="functional">
+              <Parameter name="Normalized_Distance" valueType="real" caption="Normalized Distance (m)"/>
+              <Value name="Normalized_Velocity" valueType="real" caption="Normalized Velocity(m/s)"/>
+              <Value name="Angle" valueType="real" caption="Angle (degrees)"/>
+              <Dependency>
+							<Condition type="isEqual" target="FM_HydAttVelBC" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="stage" caption="Stage">
+			<Content>
+				<Items>
+					<Item name="FM_HydAttVarStgType" caption="Stage Type">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0"
+						>
+							<Enumerations>
+								<Enumeration value="0" caption="Constant" />
+								<Enumeration value="1" caption="Time-Series" />
+								<Enumeration value="2" caption="Rating Curve" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttWS" caption="Constant Stage">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="100.0"
+						>
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttVarStgType" value="0" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttVarStageTS" caption="Stage Time-Series">
+						<Definition conditionType="functional">
+							<Parameter valueType="real" caption="Time" />
+							<Value valueType="real" caption="Stage" />
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttVarStgType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttVarStageRC" caption="Stage Rating Curve">
+						<Definition conditionType="functional">
+							<Parameter valueType="real" caption="Discharge" />
+							<Value valueType="real" caption="Stage" />
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttVarStgType" value="2" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="roughness" caption="Roughness">
+			<Content>
+				<Items>
+					<Item name="FM_HydAttRoughnessType" caption="Roughness Type">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0"
+						>
+							<Enumerations>
+								<Enumeration value="0" caption="Drag Coefficient" />
+								<Enumeration value="1" caption="Znaught" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttCDType" caption="Roughness Distribution">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0"
+						>
+							<Enumerations>
+								<Enumeration value="0" caption="Constant" />
+								<Enumeration value="1" caption="Variable by Node" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttCD" caption="Constant Roughness Value">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.003"
+						>
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttCDType" value="0" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttCDMin" caption="Minimum Drag Coefficient">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.0001"
+						>
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttRoughnessType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttCDMax" caption="Maximum Drag Coefficient">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.01"
+						>
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttRoughnessType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="lateral_eddy_viscosity" caption="Lateral Eddy Viscosity">
+			<Content>
+				<Items>
+					<Item name="FM_HydAttLEVType" caption="Lateral Eddy Viscoscity Type">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Constant" />
+								<Enumeration value="1" caption="Variable" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_LEVStartIter" caption="Starting Iteration">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="500" max="10000">
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttLEVType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_LEVEndIter" caption="Ending Iteration">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="1000" max="10000">
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttLEVType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_StartLEV" caption="Starting LEV">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default=".05">
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttLEVType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_EndLEV" caption="Ending LEV">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default=".005">
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttLEVType" value="1" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttEVC" caption="Constant LEV">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default=".005">
+						<Dependency>
+							<Condition type="isEqual" target="FM_HydAttLEVType" value="0" />
+							<Action type="enable" />
+						</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="grid_extension" caption="Grid Extension">
+			<Content>
+				<Items>
+					<Item name="FM_SolAttNSExt" caption="Grid Extension Nodes">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="0">
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttNSExtSlope" caption="Grid Extension Slope">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.001">
+							<Dependency>
+								<Condition type="isGreaterThan" target="FM_SolAttNSExt" value="0" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<!--<Item name="FM_SolAttNSExtShow" caption="View Extension">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="isGreaterThan" target="FM_SolAttNSExt" value="0" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>-->
+					<Item name="FM_HydAttVelBCDS" caption="Downstream Boundary Velocity">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Normal" />
+								<Enumeration value="1" caption="Force no-recirculation" />
+							</Enumerations>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="initial_conditions" caption="Initial Conditions">
+			<Content>
+				<Items>
+					<Item name="FM_HydAttWSType" caption="Initial Water Surface Elevation">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Upstream Stage" />
+								<Enumeration value="1" caption="Uniform Slope" />
+								<Enumeration value="2" caption="1D Step-backwater" />
+								<!--<Enumeration value="3" caption="Hot Start" />-->
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttWS2" caption="Upstream Stage">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="100">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttWSType" value="0" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttWSSlope" caption="Uniform Slope">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="100">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttWSType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<!--<Item name="FM_HydAttWS1DDisch" caption="1D Discharge">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="100">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttWSType" value="2" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttWS1DStage" caption="1D Stage">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="100">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttWSType" value="2" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>-->
+					<Item name="FM_HydAttWS1DCD" caption="1D Drag Coefficient">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default=".003">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttWSType" value="2" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<!--<Item name="FM_HydAttHSFile" caption="Hot Start File">
+						<Definition conditionType="constant" valueType="filename" option="false"
+							default="file.cgn">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttWSType" value="3" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttSolIndex" caption="Hot Start Time-Step">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="1">
+						</Definition>
+					</Item>-->
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="wetting_and_drying" caption="Wetting and Drying">
+			<Content>
+				<Items>
+					<Item name="FM_HydAttDryType" caption="Drying Type">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Set Node Off" />
+								<Enumeration value="1" caption="Set Node to Drying Depth" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttDryMinDepth" caption="Drying Depth">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.0">
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttCalcWetting" caption="Re-wetting Option">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Off" />
+								<Enumeration value="1" caption="On" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttWetMinDepth" caption="Re-wetting Minimum Depth">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.01">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttCalcWetting" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttWetIterInterval" caption="Iteration to check Re-wetting">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="50" max="10000">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttCalcWetting" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_HydAttWetIterStop" caption="Iteration to Stop Re-wetting">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="100" max="10000">
+							<Dependency>
+								<Condition type="isEqual" target="FM_HydAttCalcWetting" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="solution_parameters" caption="Solution Parameters">
+			<Content>
+				<Items>
+					<Item name="FM_SolAttType" caption="Solution Type">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Constant Discharge" />
+								<Enumeration value="1" caption="Quasi-steady Discharge" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttItm" caption="Iterations">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="600" max="100000">
+							<!--<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="0" />
+								<Action type="enable" />
+							</Dependency>-->
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttIterOut" caption="Output Iteration Solution">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0" max="10000">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="0" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttIncPlOut" caption="Iteration Plot Interval">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="10"  max="10000">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SolAttType" value="0"/>
+									<Condition type="isEqual" target="FM_SolAttIterOut" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttVarDischSTime" caption="Start Time">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttVarDischETime" caption="End Time">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttDT" caption="Time Step">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="600">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttInterItm" caption="Num. Iterations Between Time-Steps">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="100"  max="10000">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttMaxInterIter" caption="Wetting and Drying Iteration Multiplyer">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="1"  max="10000">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttPlinc" caption="Plot Interval">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="10" max="10000">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttFlumeBndry" caption="Use Straight-Channel Vertical Wall Boundary">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttDbgStop" caption="Stop Solution for Debugging">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="FM_SolAttType" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttDbgTimeStep" caption="Time-Step to Stop">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="1">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SolAttType" value="1"/>
+									<Condition type="isEqual" target="FM_SolAttDbgStop" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttDbgIterNum" caption="Iteration to Stop">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="1">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SolAttType" value="1"/>
+									<Condition type="isEqual" target="FM_SolAttDbgStop" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="solution_relaxation" caption="Solution Relaxation Coefficients">
+			<Content>
+				<Items>
+					<Item name="FM_SolAttERlx" caption="ERelax">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default=".4">
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttURlx" caption="URelax">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default=".2">
+						</Definition>
+					</Item>
+					<Item name="FM_SolAttARlx" caption="ARelax">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default=".2">
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="2d_solution_output" caption="2D Solution Output">
+			<Content>
+				<Items>
+					<Item name="FM_SolWrtVelSN" caption="Velocity SN">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SolWrtShearXY" caption="Shear Stress XY">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SolWrtShearSN" caption="Shear Stress SN">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SolWrtShearDiv" caption="Shear Stress Divergence">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SolWrtCD" caption="Drag Coefficient">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+          <Item name="FM_SolWrtUnitDischarge" caption="Unit Discharge">
+            <Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="No" />
+                <Enumeration value="1" caption="Yes" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="FM_SolWrtHArea" caption="Habitat Area">
+            <Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="No" />
+                <Enumeration value="1" caption="Yes" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="FM_SolWrtInitVel" caption="Initial Velocity for Hot Start">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="quasi3d_solution" caption="Quasi3D Solution">
+			<Content>
+				<Items>
+					<Item name="FM_Quasi3D" caption="Calculate Quasi-3D Solution">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_Quasi3D_NZ" caption="Number of Vertical Nodes">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="11">
+							<Dependency>
+								<Condition type="isEqual" target="FM_Quasi3D" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>			
+					<Item name="FM_Quasi3D_CalcRS" caption="Use Streamline-curvature">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="FM_Quasi3D" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Quasi3D_MinRS" caption="Minimum Streamline Curvature">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="1">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_Quasi3D" value="1"/>
+									<Condition type="isEqual" target="FM_Quasi3D_CalcRS" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="3d_solution_output" caption="3D Solution Output">
+			<Content>
+				<Items>
+					<Item name="FM_SolWrtHelix" caption="Helix Strength">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SolWrt3DOutput" caption="3D Scalar/Vector">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="sediment_transport" caption="Sediment Transport">
+			<Content>
+				<Items>
+					<Item name="FM_SedTrans" caption="Calculate Sediment Transport">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="FM_SedTrans_Type" caption="Transport Equation">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Yalin" />
+								<Enumeration value="1" caption="Engelund-Hansen" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+								<!--<Enumeration value="2" caption="Wilcock-Kenworthy" />
+                <Enumeration value="3" caption="Meyer-Peter Muller" />-->
+              </Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedGrainSize" caption="Grainsize">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.002">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedDuneH" caption="Dune Hieght (0 for planebed)">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedDuneWL" caption="Dune Wavelength">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+          <!--<Item name="FM_RsSmoothLvl" caption="Number of Curvature Smoothing Passes">
+            <Definition conditionType="constant" valueType="integer" option="false"
+							default="0">
+              <Dependency>
+                <Condition type="isEqual" target="FM_SedTrans" value="1" />
+                <Action type="enable" />
+              </Dependency>
+            </Definition>
+          </Item>-->
+          <Item name="FM_SedSmoothLvl" caption="Number of Smoothing Passes">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="0">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedSmoothWeight" caption="Smoothing Wieght">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.3">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedTransAuto" caption="Automatic Time-Stepping">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedTSFracDepth" caption="Max. Fraction of Depth per Time-step">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.2">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTransAuto" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedBCNode" caption="Downstream Node Number to Begin Transport">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="10"  max="10000">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<!--<Item name="FM_SedBCFractionTaper" caption="Number of nodes to taper transport">
+						<Definition conditionType="constant" valueType="integer" option="false"
+							default="10"  max="10000">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>-->
+					<Item name="FM_SedBCFraction" caption="Fraction of Equilibrium Load">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="1.0">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<!--<Item name="FM_SedBCEquiMult" caption="BC load/Equilibrium load">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="1.0">
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>-->
+					<Item name="FM_SedCalcGravCorr" caption="Gravitational Correction">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="None" />
+								<Enumeration value="1" caption="Pseudo-Stress" />
+								<Enumeration value="2" caption="Slope Correction" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="FM_SedTrans" value="1" />
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedSAngleOfRepose" caption="Submerged Angle of Repose">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="30.0">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedCalcGravCorr" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_SedFlatBedCorrCoef" caption="Slope Correction Coefficient">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="1.5">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedCalcGravCorr" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="wilcock_kenworthy_params_1" caption="Wilcock-Kenworthy Parameters 1">
+			<Content>
+				<Items>
+					<Item name="FM_Sed_WK_RG0" caption="Tau Star RG0">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.035">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_RG1" caption="Tau Star RG1">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.011">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_RS1" caption="Tau Star RS1">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.065">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_Alpha" caption="Alpha">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="1.0">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_AK" caption="AK">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="115.0">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_Chi" caption="Chi">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.923">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_PhiPrime" caption="Phi Prime">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="1.27">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_FsMin" caption="Fs Min">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.01">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_HMax" caption="HMax">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.09">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_ABH" caption="ABH">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="4.1">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_BBH" caption="BBH">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="3.65">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_LSub" caption="LSub">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_LSubActDepth" caption="LSubActDepth">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.0">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="wilcock_kenworthy_params_2" caption="Wilcock-Kenworthy Parameters 2">
+			<Content>
+				<Items>
+					<Item name="FM_Sed_WK_ConstBndry" caption="Set Sand Fraction and Sand Depth Constant at Boundary">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_DSand" caption="DSand">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.06">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_DGravel" caption="DGravel">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.2">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_RoughType" caption="Use Variable Roughness">
+						<Definition conditionType="constant" valueType="integer" option="true"
+							default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="No" />
+								<Enumeration value="1" caption="Yes" />
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_RoughShapeParam" caption="Shape Parameter">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.7">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+									<Condition type="isEqual" target="FM_Sed_WK_RoughType" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_Z0Min" caption="Z0 Min">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.0015">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+									<Condition type="isEqual" target="FM_Sed_WK_RoughType" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="FM_Sed_WK_Z0Max" caption="Z0 Max">
+						<Definition conditionType="constant" valueType="real" option="false"
+							default="0.009">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="FM_SedTrans" value="1"/>
+									<Condition type="isEqual" target="FM_SedTrans_Type" value="2"/>
+									<Condition type="isEqual" target="FM_Sed_WK_RoughType" value="1"/>
+								</Condition>
+								<Action type="enable" />
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+	</CalculationCondition>
+	<GridRelatedCondition>
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" default="max"/>
+		</Item>
+		<Item name="roughness" caption="Roughness">
+			<Definition position="node" valueType="real" default="0.003" option="false"/>
+		</Item>
+		<Item name="vegroughness" caption="Vegetation Roughness">
+			<Definition position="node" valueType="real" default="0.0" option="false"/>
+		</Item>
+<!--
+		<Item name="minelevation" caption="Minimum_Elevation">
+			<Definition position="node" valueType="real" default="0.002" option="false"/>
+		</Item>
+		<Item name="depth" caption="Depth">
+			<Definition position="node" valueType="real" default="0.002" option="false"/>
+		</Item>
+		<Item name="grainsize" caption="Grainsize">
+			<Definition position="node" valueType="real" default="0.002" option="false"/>
+		</Item>
+-->
+		<Item name="sanddepth" caption="Sand_Depth">
+			<Definition position="node" valueType="real" default="0.003" option="false"/>
+		</Item>
+		<Item name="sandfraction" caption="Sand_Fraction">
+			<Definition position="node" valueType="real" default="0.003" option="false"/>
+		</Item>
+	</GridRelatedCondition>
+</SolverDefinition>

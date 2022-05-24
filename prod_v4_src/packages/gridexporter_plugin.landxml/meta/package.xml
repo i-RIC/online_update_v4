@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Grid LandXML exporter</DisplayName>
+	<Description>Grid LandXML exporter</Description>
+	<Version>1.0.2</Version>
+	<Default>true</Default>
+	<ReleaseDate>2020-10-13</ReleaseDate>
+	<SortingPriority>30</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridExporterPluginDefinition 
+  xmlns="www.iric.net/GridExporterPluginDefinition/1.0"
+  name="unstructured2dgridvtkexporter" caption="Unstructured grid VTK file exporter" version="1.0.1" release="2020.2.3"
+  copyright="iRIC Organization"
+>
+</GridExporterPluginDefinition>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>iRIC v4 (develop)</DisplayName>
+	<Description>iRIC Main GUI</Description>
+	<Version>3.9.0.6823</Version>
+	<ReleaseDate>2022-05-23</ReleaseDate>
+	<SortingPriority>100</SortingPriority>
+	<ForcedInstallation>true</ForcedInstallation>
+	<Script>installscript.qs</Script>
+	<Licenses>
+		<License name="MIT License" file="LICENSE" />
+	</Licenses>
+</Package>

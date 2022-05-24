@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+	<Name>iRIC Software v4</Name>
+	<Version>4.0.0</Version>
+	<Title>iRIC Software v4</Title>
+	<Publisher>iRIC organization</Publisher>
+	<!-- Directory name is used in component.xml -->
+	<StartMenuDir>iRIC v4</StartMenuDir>
+	<TargetDir>@HomeDir@/iRIC_v4</TargetDir>
+	<RemoteRepositories>
+		<Repository>
+			<Url>https://raw.githubusercontent.com/i-RIC/online_update_v4/master/prod_v4</Url>
+			<DisplayName>iRIC Repository for v4</DisplayName>
+		</Repository>
+	</RemoteRepositories>
+</Installer>

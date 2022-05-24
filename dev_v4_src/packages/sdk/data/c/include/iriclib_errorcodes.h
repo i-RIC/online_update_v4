@@ -1,0 +1,29 @@
+#ifndef IRICLIB_ERRORCODES_H
+#define IRICLIB_ERRORCODES_H
+
+const int IRIC_NO_ERROR = 0;
+const int IRIC_H5_CALL_ERROR = 1;
+const int IRIC_NOT_GROUP = 2;
+const int IRIC_WRONG_GROUP_LABEL = 3;
+const int IRIC_WRONG_DATASIZE = 4;
+const int IRIC_NO_DATA = 5;
+const int IRIC_WRONG_FILEMODE = 6;
+const int IRIC_WRONG_GRIDTYPE = 7;
+const int IRIC_WRONG_DATATYPE = 8;
+const int IRIC_H5_CREATE_FAIL = 9;
+const int IRIC_H5_OPEN_FAIL = 10;
+const int IRIC_FOLDER_CLEAR_ERROR = 11;
+const int IRIC_DATA_NOT_FOUND = 12;
+const int IRIC_FILE_COPY_FAIL = 13;
+const int IRIC_INVALID_FILEID = 14;
+const int IRIC_INVALID_GROUPNAME = 15;
+const int IRIC_INVALID_GRIDTYPE = 16;
+const int IRIC_INVALID_DIMENSION = 17;
+const int IRIC_GRID_NOT_FOUND = 18;
+const int IRIC_BC_NOT_FOUND = 19;
+const int IRIC_SOLUTION_ID_INVALID = 20;
+const int IRIC_FOLDER_CREATE_ERROR = 21;
+const int IRIC_WRONG_POINTER = 22;
+const int IRIC_WRONG_CELLID = 23;
+
+#endif // IRICLIB_ERRORCODES_H

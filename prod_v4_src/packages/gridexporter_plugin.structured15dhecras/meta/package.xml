@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>SAC grid HEC-RAS file exporter</DisplayName>
+	<Description>SAC grid HEC-RAS file exporter</Description>
+	<Version>1.0.2</Version>
+	<Default>true</Default>
+	<ReleaseDate>2021-04-28</ReleaseDate>
+	<SortingPriority>30</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>

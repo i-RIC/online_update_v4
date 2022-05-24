@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridExporterPluginDefinition 
+  xmlns="www.iric.net/GridExporterPluginDefinition/1.0"
+  name="structured2dgridnayscsvexporter" caption="Structured grid Nays CSV exporter" version="1.1.1" release="2020.02.03"
+  copyright="iRIC Organization"
+>
+</GridExporterPluginDefinition>

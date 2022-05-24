@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Structured grid Nays CSV file importer</DisplayName>
+	<Description>Structured grid Nays CSV file importer</Description>
+	<Version>1.1.0</Version>
+	<Default>true</Default>
+	<ReleaseDate>2019-11-30</ReleaseDate>
+	<SortingPriority>100</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>

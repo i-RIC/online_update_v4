@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridImporterPluginDefinition 
+  xmlns="www.iric.net/GridImporterPluginDefinition/1.0"
+  name="structured2dnayscsvimporter" caption="Structured grid Nays CSV file importer" version="1.1.0" release="2019.11.30"
+  copyright="iRIC Organization"
+>
+</GridImporterPluginDefinition>

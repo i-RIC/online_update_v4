@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Unstructured grid VTK file exporter</DisplayName>
+	<Description>Unstructured grid VTK file exporter</Description>
+	<Version>1.0.1</Version>
+	<Default>true</Default>
+	<ReleaseDate>2020-02-03</ReleaseDate>
+	<SortingPriority>30</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
