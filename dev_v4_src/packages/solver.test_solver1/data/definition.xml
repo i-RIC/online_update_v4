@@ -6,7 +6,7 @@
   copyright="RiverLINK, Co., Ltd."
   release="2021.09.01"
   homepage="http://river-link.co.jp/"
-  executable="go.bat"
+  executable="solver.exe"
   iterationtype="time"
 >
 	<CalculationCondition>
