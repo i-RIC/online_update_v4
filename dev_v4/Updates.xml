@@ -337,30 +337,4 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>a26daf103f3bfe22d605dff2f8d094bec2cd0854</SHA1>
  </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.riverlink_solver1</Name>
-  <DisplayName>Sample Solver</DisplayName>
-  <Description/>
-  <Version>1.0.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-09-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="393547" CompressedSize="55742"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>8e795b68a30282cfa9f97bffc92040b6ac34c9a3</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.test_solver1</Name>
-  <DisplayName>Sample Solver</DisplayName>
-  <Description/>
-  <Version>1.0.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-09-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="394059" CompressedSize="55731"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>5f97095eea81a5682883fddc854a51f2e0b88455</SHA1>
- </PackageUpdate>
 </Updates>
