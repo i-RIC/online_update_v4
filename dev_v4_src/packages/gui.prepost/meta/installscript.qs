@@ -11,9 +11,9 @@ Component.prototype.createOperations = function()
 	component.createOperations();
 
 	component.addOperation("CreateShortcut", "@TargetDir@/guis/prepost/iRIC.exe",
-		"@StartMenuDir@/iRIC v4 (beta).lnk", "workingDirectory=@TargetDir@/guis/prepost");
+		"@StartMenuDir@/iRIC v4 (develop).lnk", "workingDirectory=@TargetDir@/guis/prepost");
 	component.addOperation("CreateShortcut", "@TargetDir@/guis/prepost/iRIC.exe",
-		"@DesktopDir@/iRIC v4 (beta).lnk", "workingDirectory=@TargetDir@/guis/prepost");
+		"@DesktopDir@/iRIC v4 (develop).lnk", "workingDirectory=@TargetDir@/guis/prepost");
 	component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",
 		"@StartMenuDir@/iRIC Maintainance.lnk", "--updater", "workingDirectory=@TargetDir@");
 	component.addOperation("CreateShortcut", "@TargetDir@/maintenancetool.exe",
