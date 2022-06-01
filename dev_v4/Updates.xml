@@ -376,4 +376,17 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>6ae52e50b4d230410edb4aefc7290fd03c40eb23</SHA1>
  </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.takeh2nd_Morpho2DH</Name>
+  <DisplayName>Morpho2DH</DisplayName>
+  <Description/>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2021-09-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" CompressedSize="909" UncompressedSize="2272"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>063056dfb0807abca88f29226bbc45e32d4e85e7</SHA1>
+ </PackageUpdate>
 </Updates>
