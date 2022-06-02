@@ -1,0 +1,744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SolverDefinition 
+	name="CERI1D"
+	caption="CERI1D"
+	version="1.1.6"
+	copyright="Yasuhiro Yoshikawa and Civil Engineering Research Institute for Cold Region"
+	release="2018.08.24"
+	homepage="http://i-ric.org"
+	executable="CERI1D.exe"
+	iterationtype="time"
+	gridtype="structured2d"
+>
+	<CalculationCondition>
+		<Tab name="solvers" caption="Solver Type">
+			<Content>
+				<Items>
+					<Item name="edition" caption="Select solver type">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<!-- <Enumeration value="0" caption="Standard"/> -->
+								<Enumeration value="1" caption="+Advanced"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="non-uniform_iric" caption="   Non-uniform flow calculation">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+								       <Condition type="isEqual" target="edition" value="1"/>
+								       <Condition type="isEqual" target="ice_iric" value="0"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="bed_iric" caption="   Bed deformation calculation">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+								       <Condition type="isEqual" target="edition" value="2"/>
+								<!-- 河床変動計算を有効にする場合は↑を編集 value="2"→value="1" -->
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="ice_iric" caption="   River Ice deformation calculation">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+								       <Condition type="isEqual" target="edition" value="1"/>
+								       <Condition type="isEqual" target="non-uniform_iric" value="0"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="auto_grid" caption="Auto grid generation (direct calc by riv-data)">
+			<Content>
+				<Items>
+					<Item name="auto_grid_iric" caption="Auto grid generation (direct calc by riv-data)">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="n_grid" caption="n_grid:Grid division number for visualization (total grid number:2*n_grid+1)">
+						<Definition conditionType="constant" valueType="integer" option="true" default="15">
+							<Dependency>
+								<Condition type="isEqual" target="auto_grid_iric" value="1"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="boundary_condition" caption="Boundary Condition">
+			<Content>
+				<Items>
+					<Item name="total_t_iric" caption="Total time of calculation(sec)">
+						<Definition conditionType="constant" valueType="real" option="true" default="3600">
+							<Dependency>
+								<Condition type="isEqual" target="non-uniform_iric" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="indt_iric" caption="Time step of input data(sec)">
+						<Definition conditionType="constant" valueType="real" option="true" default="600">
+							<Dependency>
+								<Condition type="isEqual" target="non-uniform_iric" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="tuk" caption="Output time interval (sec)">
+						<Definition conditionType="constant" valueType="real" option="false" default="600">
+							<Dependency>
+								<Condition type="isEqual" target="non-uniform_iric" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="j_dis" caption="Input data Type">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Read from iRIC"/>
+								<Enumeration value="1" caption="Read from file"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="non-uniform_iric" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="flux_ts" caption="Water level(downst.) / discharge(upst.) [Time series]">
+						<Definition valueType="functional">
+							<Parameter name="time" valueType="real" caption="Time(sec)"/>
+							<Value  name="wl" valueType="real" caption="Water level(m)"/>
+							<Value name="dis" valueType="real" caption="Discharge(m3/sec)"/>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="non-uniform_iric" value="0"/>
+									<Condition type="isEqual" target="j_dis" value="0"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="fluxfile" caption="Input file [Water level / discharge]">
+						<Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="non-uniform_iric" value="0"/>
+									<Condition type="isEqual" target="j_dis" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="j_wl" caption="Water surface at downstream end">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Read from iRIC"/>
+								<Enumeration value="1" caption="Uniform flow"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="bh_slope" caption="   Slope value at downstream end">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.001">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_wl" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="Mannings_Roughness" caption="Manning's Roughness coefficient">
+			<Content>
+				<Items>
+					<Item name="sn_l" caption="Initial value of Bed roughness coefficient">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.03">
+						</Definition>
+					</Item>
+					<Item name="j_drg" caption="Bed roughness coefficient">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Automatic calculation from bed material"/>
+								<Enumeration value="1" caption="Constant value"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="j_snc" caption="Input data Type">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Constant value"/>
+								<Enumeration value="1" caption="Read from iRIC"/>
+								<Enumeration value="2" caption="Read from file"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="di84" caption="84% grain diameter of bed material(m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+							<Dependency>
+								<Condition type="isEqual" target="j_snc" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="diam" caption="Average grain diameter of bed material(m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.05">
+							<Dependency>
+								<Condition type="isEqual" target="j_snc" value="0"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="snfile_iric" caption="Bed roughness coefficient/84% grain diameter/Average grain diameter[Flow direction]">
+						<Definition conditionType="functional">
+							<Parameter valueType="integer" caption="Section No."/>
+							<Value name="sn_l_i" valueType="real" caption="Bed roughness coefficient"/>
+							<Value name="di84_i" valueType="real" caption="84% grain diameter of bed material(m)"/>
+							<Value name="diam_i" valueType="real" caption="Average grain diameter of bed material(m)"/>
+							<Dependency>
+								<Condition type="isEqual" target="j_snc" value="1"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="snfile" caption="Input file [Bed roughness coefficient/84% grain diameter/Average grain diameter]">
+						<Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+							<Dependency>
+								<Condition type="isEqual" target="j_snc" value="2"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="coefficients_for_water" caption="Coefficients for water calculation">
+			<Content>
+				<Items>
+					<Item name="Hmin_iric" caption="Minimum water depth on calculation(m)">
+						<Definition conditionType="constant" valueType="real" option="true" default="0.01">
+						</Definition>
+					</Item>
+					<Item name="Hmax_iric" caption="Maximum water depth on calculation(m)">
+						<Definition conditionType="constant" valueType="real" option="true" default="20">
+						</Definition>
+					</Item>
+					<Item name="Hdiv_iric" caption="Number of water depth division (for cross-section formula creation)(m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="100">
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="non-uniform" caption="+Boundary Condition for Non-uniform flow calculation">
+			<Content>
+				<Items>
+					<Item name="n_case" caption="Number of Case">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<Enumeration value="1" caption="1"/>
+								<Enumeration value="2" caption="2"/>
+								<Enumeration value="3" caption="3"/>
+								<Enumeration value="4" caption="4"/>
+								<Enumeration value="5" caption="5"/>
+								<Enumeration value="6" caption="6"/>
+								<Enumeration value="7" caption="7"/>
+								<Enumeration value="8" caption="8"/>
+								<Enumeration value="9" caption="9"/>
+								<Enumeration value="10" caption="10"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<GroupBox caption="Boundary Conditions">
+						<GridLayout>
+							<Label row="0" col="1" caption="discharge(upst.)"/>
+							<Label row="0" col="3" caption="Water level(downst.)"/>
+
+							<Label row="1" col="0" caption="Q1"/>
+							<Item row="1" col="1" name="q1">
+								<Definition valueType="real" default="0.0">
+									<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+								</Definition>
+							</Item>
+							<Label row="1" col="2" caption="H1"/>
+							<Item row="1" col="3" name="h1">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="2" col="0" caption="Q2"/>
+							<Item row="2" col="1" name="q2">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="2"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="2" col="2" caption="H2"/>
+							<Item row="2" col="3" name="h2">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="2"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="3" col="0" caption="Q3"/>
+							<Item row="3" col="1" name="q3">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="3"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="3" col="2" caption="H3"/>
+							<Item row="3" col="3" name="h3">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="3"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="4" col="0" caption="Q4"/>
+							<Item row="4" col="1" name="q4">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="4"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="4" col="2" caption="H4"/>
+							<Item row="4" col="3" name="h4">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="4"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="5" col="0" caption="Q5"/>
+							<Item row="5" col="1" name="q5">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="5"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="5" col="2" caption="H5"/>
+							<Item row="5" col="3" name="h5">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="5"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="6" col="0" caption="Q6"/>
+							<Item row="6" col="1" name="q6">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="6"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="6" col="2" caption="H6"/>
+							<Item row="6" col="3" name="h6">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="6"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="7" col="0" caption="Q7"/>
+							<Item row="7" col="1" name="q7">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="7"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="7" col="2" caption="H7"/>
+							<Item row="7" col="3" name="h7">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="7"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="8" col="0" caption="Q8"/>
+							<Item row="8" col="1" name="q8">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="8"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="8" col="2" caption="H8"/>
+							<Item row="8" col="3" name="h8">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="8"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="9" col="0" caption="Q9"/>
+							<Item row="9" col="1" name="q9">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="9"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="9" col="2" caption="H9"/>
+							<Item row="9" col="3" name="h9">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="9"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+
+							<Label row="10" col="0" caption="Q10"/>
+							<Item row="10" col="1" name="q10">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="10"/>
+									</Condition>
+								</Definition>
+							</Item>
+							<Label row="10" col="2" caption="H10"/>
+							<Item row="10" col="3" name="h10">
+								<Definition valueType="real" default="0.0">
+									<Condition type="and">
+										<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+										<Condition type="isGreaterEqual" target="n_case" value="10"/>
+										<Condition type="isEqual" target="j_wl" value="0"/>
+									</Condition>
+								</Definition>
+							</Item>
+						</GridLayout>
+					</GroupBox>
+					<Item name="HQ_iric" caption="Calculate Coefficient of H-Q eq.">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="isEqual" target="non-uniform_iric" value="1"/>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="boundary_condition_for_ice" caption="+Boundary Condition for River Ice deformation calculation">
+			<Content>
+				<Items>
+					<Item name="ice_ts" caption="River ice area(downst.) and discharge(upst.) [Time series]">
+						<Definition conditionType="functional">
+							<Parameter name="time" valueType="real" caption="Time(sec)"/>
+							<Value  name="iA" valueType="real" caption="River ice area(downst.) (m2)"/>
+							<Value name="iQ" valueType="real" caption="River Ice discharge(upst.) (m3/sec)"/>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_dis" value="0"/>
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="temp_ts" caption="Air temperature / Air temperature [Time series]">
+						<Definition conditionType="functional">
+							<Parameter name="time" valueType="real" caption="Time(sec)"/>
+							<Value  name="Ta" valueType="real" caption="Air temperature(degree Celsius)"/>
+							<Value name="Tw" valueType="real" caption="Water temperature(degree Celsius)"/>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_dis" value="0"/>
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="icefile" caption="Input file [river ice / temperatur]">
+						<Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_dis" value="1"/>
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="j_ini_ice" caption="Initial value of Ice thickness(m)">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Constant value"/>
+								<Enumeration value="1" caption="Read from iRIC"/>
+								<Enumeration value="2" caption="Read from file"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="hiaf_iric" caption="Initial value of Ice thickness(m)(constant)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.00">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_ini_ice" value="0"/>
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="hicefile_iric" caption="Initial value of Ice thickness[Flow direction]">
+						<Definition conditionType="functional">
+							<Parameter valueType="integer" caption="Section No."/>
+							<Value name="hiaf_i" valueType="real" caption="Initial value of Ice thickness(m)"/>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_ini_ice" value="1"/>
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="hicefile" caption="Input file [Initial value of Ice thickness]">
+						<Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_ini_ice" value="2"/>
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="coefficients_for_ice" caption="+Coefficients for River Ice deformation calculation">
+			<Content>
+				<Items>
+					<Item name="his_iric" caption="Minimum ice thickness on calculation(m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.001">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="hi_min_iric" caption="Minimum ice thickness at the freezing time(m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="hi_max_iric" caption="Minimum ice thickness in full ice-covered river(m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.4">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="nis_iric" caption="Initial value of Ice roughness coefficient">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.02">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="kxy_iric" caption="Roughness coefficient between ice and river-bank">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.05">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="hi_bre_iric" caption="Minimum ice thickness at the ice break(m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="njam_iric" caption="Compound roughness coefficient at the ice jam">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.058">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="uu_iric" caption="Decrease coefficient of ice velocity at the ice jam">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.5">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item name="jam0_iric" caption="Judgment value at the ice jam(River width/Ice_thickness)">
+						<Definition conditionType="constant" valueType="real" option="false" default="300">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="edition" value="1"/>
+									<Condition type="isEqual" target="ice_iric" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+		<Tab name="output_variables" caption="+Output variables">
+			<Content>
+				<Items>
+					<Item name="jop_zave" caption="Averaged bed elevation in the cross sections">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="jop_us" caption="U*">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="jop_ts" caption="Tau*">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Disabled"/>
+								<Enumeration value="1" caption="Enabled"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+				</Items>
+			</Content>
+		</Tab>
+	</CalculationCondition>
+	<GridRelatedCondition>
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+	</GridRelatedCondition>
+</SolverDefinition>
