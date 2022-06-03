@@ -467,4 +467,17 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>5fa7b53f505c21162c6f44cfd9330d762ac9c511</SHA1>
  </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.starfieldKt_nays2dp</Name>
+  <DisplayName>Nays2d+</DisplayName>
+  <Description/>
+  <Version>1.1.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-03-20</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="378731" OS="Any" UncompressedSize="1365457"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>bea7bc1eedc246cfa0ec2f1f47724043885d5d44</SHA1>
+ </PackageUpdate>
 </Updates>
