@@ -1,67 +1,198 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
-  name="v4_solver"
-  caption="Sample Solver"
-  version="1.0"
-  copyright="RiverLINK, Co., Ltd."
-  release="2021.09.01"
-  homepage="http://river-link.co.jp/"
-  executable="solver.exe"
-  iterationtype="time"
+	xmlns="www.iric.net/SolverDefinition/1.0"
+	name="elimo" caption="Elimo" version="4.0" copyright="Yasunori Watanabe"
+	release="2020.3.21" homepage="http://i-ric.org"
+	executable="elimo.exe"
+	iterationtype="time"
+	 gridtype="structured2d"
 >
 	<CalculationCondition>
-		<Tab name="time" caption="Time Conditions">
-			<Item name="dt" caption="Calculation Time Step[sec]">
-				<Definition valueType="real" default="0.1">
-				</Definition>
-			</Item>
-			<Item name="toutput" caption="Output Interval[sec]">
-				<Definition valueType="real" default="600.0">
-				</Definition>
-			</Item>
-			<Item name="stime" caption="Calculation Start Time[sec]">
-				<Definition valueType="real" default="0.0">
-				</Definition>
-			</Item>
-			<Item name="etime" caption="Calculation End Time from the Start Time[sec]">
-				<Definition valueType="real" default="86400.0">
-				</Definition>
-			</Item>
+    <Tab name="FaultC" caption="File Input of Fault Rupture Conditions">
+      <Content>
+        <Items>
+          <Item name="InputManner" caption="Which manner to input fault conditions?">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+              <Enumerations>
+                <Enumeration value="1" caption="Manual Input"/>
+                <Enumeration value="2" caption="File Input"/>
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="FaultConditions" caption="File Name of Fault Conditions">
+            <Definition conditionType="constant" valueType="filename" option="false" default="N/A">
+            </Definition>
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+		<Tab name="Fault" caption="Fault Rupture Conditions (Manual)">
+			<Content>
+				<Items>
+
+					<Item name="Longitude" caption="Longitude of Fault Top (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="144.55">
+						</Definition>
+					</Item>
+					<Item name="Latitude" caption="Latitude of of Fault Top (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="42.12">
+						</Definition>
+					</Item>
+					<Item name="Length" caption="Rupture length (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="85.7">
+						</Definition>
+					</Item>
+					<Item name="Width" caption="Rupture width (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="41.5">
+						</Definition>
+					</Item>
+					<Item name="Slip" caption="Slip length (m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="5.19">
+						</Definition>
+					</Item>
+					<Item name="Strike" caption="Strike angle (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="231.0">
+						</Definition>
+					</Item>
+					<Item name="Dip" caption="Dip angle (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="22.0">
+						</Definition>
+					</Item>
+					<Item name="Rake" caption="Rake angle (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="110.0">
+						</Definition>
+					</Item>
+          <Item name="Depth" caption="Fault Depth (km)">
+            <Definition conditionType="constant" valueType="real" option="false" default="53.2">
+            </Definition>
+          </Item>
+        </Items>
+
+			</Content>
 		</Tab>
-		
+
+		<Tab name="SecondFault" caption="Second Fault Rupture Conditions (Manual)">
+			<Content>
+				<Items>
+
+					<Item name="Longitude2" caption="Longitude of 2nd Fault Top (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Latitude2" caption="Latitude of of 2nd Fault Top (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Length2" caption="Rupture length (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Width2" caption="Rupture width (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Slip2" caption="Slip length (m)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Strike2" caption="Strike angle (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Dip2" caption="Dip angle (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Rake2" caption="Rake angle (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+          <Item name="Depth2" caption="Fault Depth (km)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0">
+            </Definition>
+          </Item>
+        </Items>
+
+			</Content>
+		</Tab>
+
+		<Tab name="Landslide" caption="Submarine Mass Failure Conditions (Manual)">
+			<Content>
+				<Items>
+					<Item name="WhichTsunami" caption="Which tsunami to compute?">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+              <Enumerations>
+                <Enumeration value="1" caption="Plate Boundary Earthquake Tsunami Only"/>
+                <Enumeration value="2" caption="Submarine Landslide Tsunami Only"/>
+								<Enumeration value="3" caption="Both"/>
+              </Enumerations>
+            </Definition>
+          </Item>
+
+					<Item name="LongitudeSMF" caption="Longitude of SMF center (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="LatitudeSMF" caption="Latitude of of SMF center (deg)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="LengthSMF" caption="Length of SMF along seabed slope (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="WidthSMF" caption="Width of SMF (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="CaracteristicL" caption="Characteristic wavelength (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Parameter3d1" caption="Parameter Kappa'">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+					<Item name="Parameter3d2" caption="Parameter Delta (km)">
+						<Definition conditionType="constant" valueType="real" option="false" default="0">
+						</Definition>
+					</Item>
+        </Items>
+
+			</Content>
+		</Tab>
+
+
+
+		<Tab name="Comp" caption="Computing Conditions">
+			<Content>
+				<Items>
+
+					<Item name="Maxstp" caption="Maximum time step number">
+						<Definition conditionType="constant" valueType="integer" option="false" default="400" max="999999">
+						</Definition>
+					</Item>
+					<Item name="Interval" caption="Time step interval to output results">
+						<Definition conditionType="constant" valueType="integer" option="false" default="10" max="999999">
+						</Definition>
+					</Item>
+					<Item name="Dlayer" caption="Numbers of grid points required for an absorbing sponge zone">
+						<Definition conditionType="constant" valueType="integer" option="false" default="20" max="100">
+						</Definition>
+					</Item>
+					<Item name="Damp" caption="Amplification factor for wave dissipation in an absorbing sponge zone">
+						<Definition conditionType="constant" valueType="real" option="false" default="0.05" max="10.0">
+						</Definition>
+					</Item>
+				</Items>
+
+			</Content>
+		</Tab>
 	</CalculationCondition>
-
-
 	<GridRelatedCondition>
-		<Item name="elevation" caption="Elevation[m]">
-			<Definition position="cell" valueType="real" default="max" />
-		</Item>
-		<Item name="roughness" caption="Manning Roughness[]">
-			<Definition position="cell" valueType="real" default="0.028" />
-		</Item>
-		<Item name="obstacle" caption="Obstacle">
-			<Definition position="cell" valueType="integer" default="0">
-				<Enumeration value="0" caption="Normal cell" />
-				<Enumeration value="1" caption="Obstacle" />
-			</Definition>
+			<!-- RMCD changed Bed Elevation to Elevation for consistency in MD_SWMS -->
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" default="10" />
 		</Item>
 	</GridRelatedCondition>
-	
-	<BoundaryCondition name="inflow" caption="Inflow" position="edge">
-		<Item name="discharge" caption="Discharge Time Series">
-			<Definition conditionType="functional">
-				<Parameter valueType="real" caption="Time[hour]"/>
-				<Value valueType="real" caption="Discharge[m3/s]"/>
-			</Definition>
-		</Item>
-	</BoundaryCondition>
-	<BoundaryCondition name="outflow" caption="Outflow" position="edge">
-		<Item name="waterlevel" caption="Water Level Time Series">
-			<Definition conditionType="functional">
-				<Parameter valueType="real" caption="Time[hour]"/>
-				<Value valueType="real" caption="Water Level[m]"/>
-			</Definition>
-		</Item>
-	</BoundaryCondition>
-	
 </SolverDefinition>

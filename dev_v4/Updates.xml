@@ -482,15 +482,15 @@
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iricelimo_elimo</Name>
-  <DisplayName>Sample Solver</DisplayName>
+  <DisplayName>Elimo</DisplayName>
   <Description/>
-  <Version>1.0.0</Version>
+  <Version>4.0.0</Version>
   <Default>true</Default>
-  <ReleaseDate>2021-09-01</ReleaseDate>
+  <ReleaseDate>2020-03-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="2276" OS="Any" CompressedSize="936"/>
+  <UpdateFile UncompressedSize="606680" OS="Any" CompressedSize="117753"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>e4cf796c465181e38f9d2f504e73a08a7ee7ff15</SHA1>
+  <SHA1>efceb319e4caf68c6f1a534766b2e612c0cf0df9</SHA1>
  </PackageUpdate>
 </Updates>
