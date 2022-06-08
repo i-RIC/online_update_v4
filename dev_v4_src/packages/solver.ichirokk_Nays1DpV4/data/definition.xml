@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 
-	name="Nays1Dp_v1" caption="Nays1Dp v.1.00.8 64bit v3" version="1.00.8" copyright="Ichiro Kimura"
+	name="Nays1Dp_v1" caption="Nays1Dp v.1.00.8 64bit v4" version="1.00.8" copyright="Ichiro Kimura"
 	release="2019.11.22" homepage="http://i-ric.org/"
-	executable="nays1dp_v3.exe"
+	executable="nays1dp_v4.exe"
 	iterationtype="time"
 	gridtype="structured2d"
 >
