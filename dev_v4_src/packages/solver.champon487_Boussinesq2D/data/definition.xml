@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition
+	name="boussinesq_2d_Unsteady"
+	caption="Boussinesq2D Tracer Model"
+	version="1.0"
+	copyright="Toshiki Iwasaki@Hokkaido University"
+	release="2021.04.01"
+	homepage="http://i-ric.org"
+	executable="Boussinesq.exe"
+	iterationtype="time"
+	gridtype="structured2d"
+>
+	<CalculationCondition>
+		<Tab name="model" caption="計算モデル">
+			<Item name="imoment_eq" caption="運動方程式">
+				<Definition valueType="integer" default="1">
+					<Enumerations>
+						<Enumeration value="0" caption="浅水流方程式"/>
+						<Enumeration value="1" caption="ブシネスク方程式1"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="b_bs" caption="Boussinesq coef">
+				<Definition valueType="real" default="0.067">
+					<Condition type="isEqual" target="imoment_eq" value="1"/>
+				</Definition>
+			</Item>
+			<Item name="iadvec" caption="移流項計算">
+				<Definition valueType="integer" default="1">
+					<Enumerations>
+						<Enumeration value="0" caption="1次風上"/>
+						<Enumeration value="1" caption="3次風上"/>
+						<Enumeration value="2" caption="CIP"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+		</Tab>
+		<Tab name="flow" caption="Flow parameters">
+			<Item name="irep" caption="Periodic boundary condition">
+			<Definition valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="No"/>
+					<Enumeration value="1" caption="Yes"/>
+				</Enumerations>
+			</Definition>
+			</Item>
+			<Item name="discharge" caption="Discharge">
+				<Definition conditionType="functional">
+					<Parameter valueType="real" caption="Time(s)"/>
+					<Value valueType="real" caption="Discharge(m3/s)"/>
+					<Dependency>
+					</Dependency>
+				</Definition>
+			</Item>
+			<Item name="slope" caption="Slope">
+				<Definition valueType="real" default="0.0145">
+				</Definition>
+			</Item>
+			<Item name="aks" caption="Roughness height coef">
+				<Definition valueType="real" default="2.5">
+				</Definition>
+			</Item>
+		</Tab>
+		<Tab name="condition" caption="計算条件">
+			<Item name="end_time" caption="計算時間（秒）">
+				<Definition valueType="real" default="1000"></Definition>
+			</Item>
+			<Item name="bedcal_start" caption="河床変動開始時間（秒）">
+				<Definition valueType="real" default="10"></Definition>
+			</Item>
+			<Item name="tuk" caption="Output interval[sec]">
+				<Definition valueType="real" default="5"></Definition>
+			</Item>
+			<Item name="diam" caption="Grain Size[mm]">
+				<Definition valueType="real" default="1.42"></Definition>
+			</Item>
+			<Item name="ct" caption="Courant Number">
+				<Definition valueType="real" default="0.5"></Definition>
+			</Item>
+			<Item name="dtmax" caption="DT MAX[sec]">
+				<Definition valueType="real" default="0.05"></Definition>
+			</Item>
+			<Item name="alh" caption="Relaxation coef for Non-Adv Phase">
+				<Definition valueType="real" default="0.8"></Definition>
+			</Item> 
+			<Item name="alh2" caption="Relaxation coef for Non-hydrostatic term">
+				<Definition valueType="real" default="1.3"></Definition>
+			</Item> 
+			<Item name="specific_weight" caption="specific weight of sediment">
+				<Definition valueType="real" default="1.65"></Definition>
+			</Item>
+			<Item name="slambda" caption="Porosity of bed">
+				<Definition valueType="real" default="0.3"></Definition>
+			</Item>
+			<Item name="hmin" caption="Minimum depth (m)">
+				<Definition valueType="real" default="0.001"></Definition>
+			</Item>
+			<Item name="errmax" caption="Error max for Non-adv phase">
+				<Definition valueType="real" default="0.0001"></Definition>
+			</Item>
+			<Item name="errmax2" caption="Error max for Non-hydrostatic term">
+				<Definition valueType="real" default="0.00001"></Definition>
+			</Item>
+			<Item name="lmax" caption="Number of iteration">
+				<Definition valueType="integer" default="10" max="10000"></Definition>
+			</Item>
+			<Item name="npara" caption="Number of core for parallel comp.">
+				<Definition valueType="integer" default="1"></Definition>
+			</Item>
+			<Item name="mu_c" caption="static friction coef of sediment">
+				<Definition valueType="real" default="0.7"></Definition>
+			</Item>
+			<Item name="morph_factor" caption="Morphological factor">
+				<Definition valueType="real" default="1"></Definition>
+			</Item>
+		</Tab>
+		<Tab name="Bedcal" caption="流砂条件">
+			<Item name="i_none" caption="Type of Exner">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Flux-based: Equilibrium"/>
+						<Enumeration value="1" caption="Flux-based: Non-Equilibrium"/>
+						<Enumeration value="2" caption="Entrainment-based"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="steplength" caption="Non-dimensional steplength">
+				<Definition valueType="real" default="100"></Definition>
+			</Item>
+			<Item name="j_btrans" caption="Transverse bedload formula">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Hasegawa"/>
+						<Enumeration value="1" caption="Ashida et al"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_bedload" caption="Bedload?">
+				<Definition valueType="integer" default="1">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_suspend" caption="Suspended load?">
+				<Definition valueType="integer" default="1">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_sf" caption="Secondary flow model">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Equilibrium"/>
+						<Enumeration value="1" caption="Non-equilibrium"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="snst" caption="coef of secondary flow">
+				<Definition valueType="real" default="7"></Definition>
+			</Item>
+			<Item name="ibank" caption="Slope failure model">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+		</Tab>
+		<Tab name="thick" caption="層厚">
+			<Item name="e_deposition" caption="Thickness of deposition layer (m)">
+				<Definition valueType="real" default="0.05"></Definition>
+			</Item>
+			<Item name="activelayer" caption="Nondimensional active layer thickness (uniform sediment only)">
+				<Definition valueType="real" default="2"></Definition>
+			</Item>
+			<Item name="e_thickness" caption="Thickness of movable bed (m)">
+				<Definition valueType="real" default="0.5"></Definition>
+			</Item>
+		</Tab>
+		<Tab name="tracer" caption="トレーサー">
+			<Item name="i_tracer" caption="calculation of bedload tracers">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_cs_scheme" caption="tracer scheme">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="1st order upwind"/>
+						<Enumeration value="1" caption="WENO"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_tracer" caption="トレーサー側方流入">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+		</Tab>
+		<Tab name="mix" caption="混合粒径">
+			<Item name="i_mixture" caption="calculation of graded sediment">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_mixture" caption="sediment supply from the side">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+					<Condition type="isEqual" target="i_mixture" value="1"/>
+				</Definition>
+			</Item>
+			<Item name="mixture" caption="GSD">
+				<Definition conditionType="functional">
+					<Parameter valueType="real" caption="D(mm)"/>
+					<Value valueType="real" caption="fraction(%)"/>
+					<Condition type="isEqual" target="i_mixture" value="1"/>
+				</Definition>
+			</Item>
+			<Item name="j_he" caption="hiding function">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Asada"/>
+						<Enumeration value="1" caption="Power"/>
+					</Enumerations>
+					<Condition type="isEqual" target="i_mixture" value="1"/>
+				</Definition>
+			</Item>
+			<Item name="c_he" caption="power law exponent for hiding function">
+				<Definition valueType="real" default="0.9"></Definition>
+					<Condition type="isEqual" target="i_mixture" value="1"/>
+					<Condition type="isEqual" target="j_he" value="1"/>
+			</Item>
+			<Item name="j_dgdm" caption="dg or dm?">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="dm"/>
+						<Enumeration value="1" caption="dg"/>
+					</Enumerations>
+					<Condition type="isEqual" target="i_mixture" value="1"/>
+				</Definition>
+			</Item>
+			<Item name="j_bed_scheme" caption="Scheme for advection term of bedload">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="3 order WENO"/>
+						<Enumeration value="1" caption="1st Upwind"/>
+					</Enumerations>
+					<Condition type="isEqual" target="i_mixture" value="1"/>
+				</Definition>
+			</Item>
+		</Tab>
+	</CalculationCondition>
+	<GridRelatedCondition>
+      <Item name="Elevation" caption="Elevation">
+         <Definition position="node" valueType="real" default="max" />
+      </Item>
+      <Item name="Tracer" caption="TracerConc">
+         <Definition position="cell" valueType="real" default="max" />
+      </Item>
+   </GridRelatedCondition>
+
+	<BoundaryCondition name="sideflow" caption="Tracer inflow" position="edge">
+		<Item name="qbj_in" caption="time series of sediment supply from side">
+			<Definition conditionType="functional">
+				<Parameter valueType="real" caption="Time"/>
+				<Value valueType="real" caption="qb(m2/s)"/>
+			</Definition>
+		</Item>
+		<Item name="csj_in" caption="concentration of bedload tracers">
+			<Definition valueType="real" default="10">
+			</Definition>
+		</Item>
+		<Item name="mixture_side" caption="GSD of supplied sediment">
+			<Definition conditionType="functional">
+				<Parameter valueType="real" caption="D(mm)"/>
+				<Value valueType="real" caption="fraction(%)"/>
+			</Definition>
+		</Item>
+	</BoundaryCondition>
+
+</SolverDefinition>
