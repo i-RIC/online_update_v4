@@ -2,8 +2,8 @@
 <Package>
 	<DisplayName>Miniconda 3</DisplayName>
 	<Description>Miniconda 3-py38_4.9.2</Description>
-	<Version>1.0.0</Version>
+	<Version>4.0.33</Version>
 	<Default>false</Default>
-	<ReleaseDate>2022-06-01</ReleaseDate>
+	<ReleaseDate>2022-06-09</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 </Package>

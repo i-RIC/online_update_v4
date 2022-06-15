@@ -28,6 +28,8 @@ public:
 
 	static int getGroupNames(hid_t groupId, std::vector<std::string>* names);
 	static int getGroupNames(hid_t groupId, std::set<std::string>* names);
+	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::vector<std::string>* names);
+	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::set<std::string>* names);
 	static int getDatasetNames(hid_t groupId, std::vector<std::string>* names);
 	static int getDatasetNames(hid_t groupId, std::set<std::string>* names);
 
