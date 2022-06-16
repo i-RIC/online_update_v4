@@ -3,11 +3,11 @@
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="Mflow_02"
 	caption="Mflow22_02_ver1 64 bit for iRIC ver.4"
-	version="3.2020.2"
+	version="3.2022.1"
 	copyright="Mineyuki Gamou"
-	release="2022.06.02"
+	release="2022.07.01"
 	homepage="http://i-ric.org"
-	executable="Mflow22_02_v1_iric4.exe"
+	executable="Mflow22_02_ver1_iric4.exe"
 	iterationtype="time"
 	gridtype="unstructured2d"
 >
@@ -45,19 +45,9 @@
 								<Enumeration value="1" caption="K-epsilon (simple) model"/>
 								<Enumeration value="2" caption="Zero equation model"/>
 								<Enumeration value="3" caption="Specific value of eddy viscosity coefficient"/>
-								<!--<Enumeration value="3" caption="Specific value of eddy viscosity coefficient (constant)"/>-->
-								<!--<Enumeration value="4" caption="K-epsilon (full) model"/>-->
 							</Enumerations>
 						</Definition>
 					</Item>
-					<!--<Item name="EDY_CO" caption="Eddy viscosity coefficient (constant)">
-						<Definition conditionType="constant" valueType="real" option="true" default="5.0">
-							<Dependency>
-						  		<Condition type="isEqual" target="ICON_09" value="3"/>
-								<Action type="enable"/>
-							</Dependency>
-						</Definition>
-					</Item>-->
 				</Items>
 			</Content>
 		</Tab>
@@ -119,9 +109,6 @@
 						<Item name="IRIC_DLT_TIME" caption="     Time interval to iRIC (s)">
 							<Definition conditionType="constant" valueType="real" option="false" default="10"/>
 						</Item>
-						<!--<Item name="IRIC_END_TIME" caption="     End time of output to iRIC (s)">
-							<Definition conditionType="constant" valueType="real" option="false" default="10"/>
-						</Item>-->
  					</GroupBox>
 					<GroupBox caption="External text file">
 						<Item name="ICON_01" caption="     Output to external file">
@@ -190,14 +177,6 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<!--<Item name="FE_TIME" caption="     End time of output to dump file (s)">
-							<Definition conditionType="constant" valueType="real" option="false" default="10">
-								<Dependency>
-									<Condition type="isEqual" target="ICON_05" value="1"/>
-									<Action type="enable"/>
-								</Dependency>
-							</Definition>
-						</Item>-->
  					</GroupBox>
 				</Items>
 			</Content>
@@ -210,8 +189,6 @@
 							<Enumerations>
 								<Enumeration value="0" caption="Disabled" />
 								<Enumeration value="1" caption="Enabled"/>
-								<!--<Enumeration value="1" caption="Vegetation density" />-->
-								<!--<Enumeration value="2" caption="Permeability coefficient" />-->
 							</Enumerations>
 						</Definition>
 					</Item>
@@ -296,8 +273,6 @@
 								<Enumerations>
 									<Enumeration value="0" caption="No limit" />
 									<Enumeration value="1" caption="Yes limit" />
-									<!--<Enumeration value="1" caption="Scour depth control" />-->
-									<!--<Enumeration value="2" caption="Scour elevation control" />-->
 								</Enumerations>
 								<Dependency>
 									<Condition type="isEqual" target="ICON_13" value="1"/>
@@ -378,7 +353,6 @@
 						<Item name="ITYPE_SUS" caption="     Type of diffusion coefficient of suspended load">
 							<Definition conditionType="constant" valueType="integer" option="true" default="2">
 								<Enumerations>
-									<!--<Enumeration value="0" caption="Specific value (constant)"/>-->
 									<Enumeration value="1" caption="Specific value"/>
 									<Enumeration value="2" caption="Equal to eddy viscosity coefficient"/>
 								</Enumerations>
@@ -391,18 +365,6 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<!--<Item name="DFC_SUS" caption="     Diffusion coefficient of suspended load">
-							<Definition conditionType="constant" valueType="real" option="true" default="0">
-								<Dependency>
-									<Condition type="and">
-								  		<Condition type="isEqual" target="ICON_12" value="1"/>
-								  		<Condition type="isEqual" target="ICON_13" value="1"/>
-								  		<Condition type="isEqual" target="ITYPE_SUS" value="0"/>
-									</Condition>
-									<Action type="enable"/>
-								</Dependency>
-							</Definition>
-						</Item>-->
 					</GroupBox>
 					<GroupBox caption="Grain size distribution">
 						<Item name="IDP_00" caption="     Bed material dictribution">
@@ -443,21 +405,6 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="I_TAU" caption="     Shelter effect">
-							<Definition conditionType="constant" valueType="integer" option="true" default="0">
-								<Enumerations>
-									<Enumeration value="0" caption="Disabled"/>
-									<Enumeration value="1" caption="Enabled"/>
-								</Enumerations>
-								<Dependency>
-									<Condition type="and">
-										<Condition type="isEqual" target="ICON_13" value="1"/>
-										<Condition type="isEqual" target="IDP_00" value="1" />
-									</Condition>
-									<Action type="enable"/>
-								</Dependency>
-							</Definition>
-						</Item>
 						<Item name="DDM" caption="     Exchange layer thickness (m)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.50">
 								<Dependency>
@@ -480,32 +427,6 @@
 										<Condition type="isEqual" target="ICON_13" value="1"/>
 										<Condition type="isEqual" target="IDP_00" value="1" />
 									</Condition>
-									<Action type="enable"/>
-								</Dependency>
-							</Definition>
-						</Item>
-					</GroupBox>
-					<GroupBox caption="Slope failure and riparian erosion">
-						<Item name="IBK_00" caption="     Slope failure">
-							<Definition conditionType="constant" valueType="integer" option="true" default="0">
-								<Enumerations>
-									<Enumeration value="0" caption="Disabled"/>
-									<Enumeration value="1" caption="Enabled"/>
-								</Enumerations>
-								<Dependency>
-							  		<Condition type="isEqual" target="ICON_13" value="1"/>
-									<Action type="enable"/>
-								</Dependency>
-							</Definition>
-						</Item>
-						<Item name="IRE_00" caption="     Riparian erosion">
-							<Definition conditionType="constant" valueType="integer" option="true" default="0">
-								<Enumerations>
-									<Enumeration value="0" caption="Disabled"/>
-									<Enumeration value="1" caption="Enabled"/>
-								</Enumerations>
-								<Dependency>
-							  		<Condition type="isEqual" target="ICON_13" value="1"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
@@ -537,11 +458,9 @@
 			</Content>
 		</Tab>
 		<Tab name="Dike break" caption="Dike break">
-		<!--<Tab name="Dike break or sheathing board down" caption="Dike break or sheathing board down">-->
 			<Content>
 				<Items>
 					<Item name="ICON_16" caption="Dike break">
-					<!--<Item name="ICON_16" caption="Dike break or sheathing board down">-->
 						<Definition conditionType="constant" valueType="integer" option="true" default="0" >
 							<Enumerations>
 								<Enumeration value="0" caption="Disabled"/>
@@ -572,7 +491,7 @@
 				<GroupBox caption="River survey file">
 					<HBoxLayout>
 						<Label row="0" col="0" caption="     River survey file name"/>
-						<Item row="0" col="1" name="SURVEY_FILE">
+						<Item row="0" col="1" name="SURVEY_FILE" >
 							<Definition conditionType="constant" valueType="filename" option="false" default="Select File" keepOrder="true">
 							<Condition type="or">
 								<Condition type="isEqual" target="IAREA" value="1"/>
@@ -746,12 +665,6 @@
 		</Item>
 		<Item name="DIFF_CO" caption="Diffusion coefficient of suspended load(Specific value)">
 			<Definition position="cell" valueType="real" default="1" keepOrder="true"/>
-		</Item>
-		<Item name="REP_ANGLE" caption="Angle of repose for slope failure (deg)">
-			<Definition position="node" valueType="real" default="0.00" keepOrder="true"/>
-		</Item>
-		<Item name="ERO_ANGLE" caption="Angle of repose for riparian erosion (deg)">
-			<Definition position="node" valueType="real" default="0.00" keepOrder="true"/>
 		</Item>
 		<Item name="HTNZ_COD" caption="Dike break">
 			<Definition position="node" valueType="complex" keepOrder="true">

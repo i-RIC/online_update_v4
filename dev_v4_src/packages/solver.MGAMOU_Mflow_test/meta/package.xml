@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Mflow22_02_ver1 64 bit for iRIC ver.4</DisplayName>
 	<Description></Description>
-	<Version>3.2020.2</Version>
+	<Version>3.2022.1</Version>
 	<Default>true</Default>
-	<ReleaseDate>2022-06-02</ReleaseDate>
+	<ReleaseDate>2022-07-01</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
