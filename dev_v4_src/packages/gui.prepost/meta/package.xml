@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>iRIC v4 (develop)</DisplayName>
 	<Description>iRIC Main GUI</Description>
-	<Version>3.9.0.6828</Version>
+	<Version>3.9.0.6829</Version>
 	<ReleaseDate>2022-06-20</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<ForcedInstallation>true</ForcedInstallation>
