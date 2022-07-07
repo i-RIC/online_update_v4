@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <SolverDefinition
-name="NaysCUBE_v4" caption="NaysCUBE v4.10.01" version="4.10.01" copyright="Ichiro Kimura"
-release="2022.7.3" homepage="http://i-ric.org/"
+name="NaysCUBE_v4" caption="NaysCUBE v3.50.01" version="3.50.01" copyright="Ichiro Kimura"
+release="2022.7.7" homepage="http://i-ric.org/"
 executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
