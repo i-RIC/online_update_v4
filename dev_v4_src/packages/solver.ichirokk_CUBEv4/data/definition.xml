@@ -1,0 +1,2807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SolverDefinition
+name="NaysCUBE_v4" caption="NaysCUBE v4.10.01" version="4.10.01" copyright="Ichiro Kimura"
+release="2022.7.3" homepage="http://i-ric.org/"
+executable="nayscube.exe"
+iterationtype="time"
+gridtype="structured2d"
+>
+
+<!-- 計算条件の定義 -->
+<CalculationCondition>
+
+<!--=============================================================================================-->
+  <Tab name="Basic_Parameters" caption="Basic Parameters">
+    <Content>
+      <Items>
+
+        <Item name="i_CLOSED" caption="River or closed basin">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="River"/>
+              <Enumeration value="1" caption="Closed basin"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_layer" caption="Number of Vertical Layers">
+          <Definition conditionType="constant" valueType="integer" option="false" default="10" max="1000">
+          </Definition>
+        </Item>
+        <Item name="m_bed" caption="Fixed or Movable Bed">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Fixed bed"/>
+              <Enumeration value="1" caption="Movable bed"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+<!--
+        <Item name="i_HYD_ST" caption="Hydrostatic/Non-Hydrostatic">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Non-Hydrostatic(full-3D)"/>
+              <Enumeration value="1" caption="Hydrostatic(quasi-3D)"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+-->
+<!--        <Item name="i_LINEAR" caption="Turbulence Model">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Non-linear k-e model"/>
+              <Enumeration value="1" caption="Linear k-e model"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+-->
+        <Item name="i_Non_L" caption="Turbulence Model">
+          <Definition conditionType="constant" valueType="integer" option="true" default="2" max="3">
+            <Enumerations>
+              <Enumeration value="1" caption="Linear k-e model"/>
+              <Enumeration value="2" caption="2nd order Non-linear k-e model"/>
+              <Enumeration value="3" caption="3rd order Non-linear k-e model"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+
+        <Item name="i_SCHEME" caption="Spatial Scheme for Advection Terms">
+          <Definition conditionType="constant" valueType="integer" option="true" default="2" max="3">
+            <Enumerations>
+              <Enumeration value="1" caption="1st Upwind"/>
+              <Enumeration value="2" caption="TVD MUSCL"/>
+              <Enumeration value="3" caption="QUICK"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!--=============================================================================================-->
+  <Tab name="Time_Conditions" caption="Time Conditions">
+    <Content>
+      <Items>
+        <Item name="stime" caption="Start Time[s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+          </Definition>
+        </Item>
+        <Item name="etime" caption="End Time[s]">
+    <!--  <Definition conditionType="constant" valueType="real" option="false" default="100.0" max="10000"> -->
+          <Definition conditionType="constant" valueType="real" option="false" default="100.0">
+          </Definition>
+        </Item>
+        <Item name="ftime" caption="File Output Time[s]">
+    <!--  <Definition conditionType="constant" valueType="real" option="false" default="10.0" max="1000"> -->
+          <Definition conditionType="constant" valueType="real" option="false" default="10.0">
+          </Definition>
+        </Item>
+        <Item name="T_Start_Surf" caption="Start time of surface move[s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="2.0" max="1000.0">
+          </Definition>
+        </Item>
+        <Item name="T_Start_Bed" caption="Start time of bed move[s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="2.0" max="1000.0">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_CFL" caption="Variable DT with CFL condition">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Fixed DT"/>
+              <Enumeration value="1" caption="Variable DT"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="c_CFL" caption="Coefficient for CFL condition">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.13" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_CFL" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="dt" caption="Time Step[s]">
+    <!--  <Definition conditionType="constant" valueType="real" option="false" default="0.1" max="10.0"> -->
+          <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+            <Dependency>
+              <Condition type="isEqual" target="i_CFL" value="0"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item name="k_disp" caption="Display output interval">
+          <Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="100000">
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!--=============================================================================================-->
+  <Tab name="Inlet_Discharge_and_Outlet_WaterLeverl" caption="Inlet Discharge and Outlet WaterLevel">
+    <Content>
+      <Items>
+        <Item name="i_HYDRO" caption="Hydrograph Data Type">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Constant discharge"/>
+              <Enumeration value="1" caption="Set as a table"/>
+         <!-- <Enumeration value="2" caption="Read an outer text file"/> -->
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="Q_const" caption="Constant Discharge[m3/s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_HYDRO" value="0"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_WL_fixedQ" caption="Outlet water level for fixed Q">
+          <Definition conditionType="constant" valueType="integer" option="true" default="2">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="i_HYDRO"  value="0"/>
+                <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="set from uniform flow"/>
+              <Enumeration value="2" caption="given as a constant"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="i_WL_variQ" caption="Outlet water level for variable Q">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+            <Dependency>
+              <Condition type="isEqual" target="i_HYDRO" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="set from uniform flow"/>
+              <Enumeration value="1" caption="read from hydrograph"/>
+              <Enumeration value="2" caption="given as a constant"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="WL_const" caption="Constant outlet water level[m]">
+          <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+            <Dependency>
+              <Condition type="or">
+                <Condition type="isEqual" target="i_WL_fixedQ" value="2"/>
+                <Condition type="isEqual" target="i_WL_variQ"  value="2"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item name="i_sec_hour" caption="Unit of time for Q">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="3">
+            <Dependency>
+              <Condition type="isEqual" target="i_HYDRO" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="second"/>
+              <Enumeration value="1" caption="hour"/>
+              <Enumeration value="2" caption="day"/>
+              <Enumeration value="3" caption="year"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="Q_only" caption="Time series of Q at inlet">
+          <Definition conditionType="functional">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual"   target="i_HYDRO"    value="1"/>
+                <Condition type="or">
+                  <Condition type="isEqual" target="i_WL_variQ" value="0"/>
+                  <Condition type="isEqual" target="i_WL_variQ" value="2"/>
+                </Condition>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Parameter name="time"  valueType="real" caption="Time"/>
+            <Value name="discharge" valueType="real" caption="Discharge[m3/s]"/>
+          </Definition>
+        </Item>
+        <Item name="Q_and_WL" caption="Time series of Q at inlet and WL at outlet">
+          <Definition conditionType="functional">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="i_HYDRO"    value="1"/>
+                <Condition type="isEqual" target="i_WL_variQ" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Parameter name="time"    valueType="real" caption="Time"/>
+            <Value name="discharge"   valueType="real" caption="Discharge[m3/s]"/>
+            <Value name="water_level" valueType="real" caption="Water level[m]"/>
+          </Definition>
+        </Item>
+
+        <Item name="i_QINI" caption="Q gradual increase">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+           <Dependency>
+            <Condition type="isEqual" target="i_CLOSED" value="0"/>
+            <Action type="enable"/>
+            <Enumerations>
+              <Enumeration value="0" caption="Q given directly"/>
+              <Enumeration value="1" caption="Gradual increase"/>
+            </Enumerations>
+           </Dependency>
+          </Definition>
+        </Item>
+        <Item name="rateQ_ini" caption="Initial Q rate">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.1" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_QINI" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="grQ_time" caption="Time for Q slope[s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="10.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_QINI" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!--=============================================================================================-->
+  <Tab name="Depth_and_WAD" caption="Depth and Wet-Dry Conditions">
+    <Content>
+      <Items>
+        <Item name="i_WAD" caption="Wet and Dry Cells">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Fixed wet and dry cells"/>
+              <Enumeration value="1" caption="Changeble wet and dry cells"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="H_min" caption="Minimum Depth[m]">
+    <!--  <Definition conditionType="constant" valueType="real" option="false" default="2.0" max="10.0"> -->
+          <Definition conditionType="constant" valueType="real" option="false" default="2.0" max="10.0">
+          </Definition>
+        </Item>
+        <Item name="i_SSini" caption="How to give initial surface slope?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="3">
+            <Enumerations>
+              <Enumeration value="0" caption="Given by parabolic curve fit"/>
+              <Enumeration value="1" caption="Given by initial average bed slope"/>
+              <Enumeration value="2" caption="Given directly"/>
+              <Enumeration value="3" caption="Given by Nonuniform flow model"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="SS_ini" caption="Initial surface slope">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0001" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_SSini" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="c_relax" caption="Relaxation coefficient">
+          <Definition conditionType="constant" valueType="real" default="0.3" max="2" >
+            <Dependency>
+              <Condition type="isEqual" target="i_SSini" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!--=============================================================================================-->
+  <Tab name="Roughness_Conditions" caption="Roughness Conditions">
+    <Content>
+      <Items>
+        <Item name="i_UFRI" caption="How to evaluate u* at BED?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="3" max="3">
+            <Enumerations>
+              <Enumeration value="1" caption="Smooth Log-Law"/>
+              <Enumeration value="2" caption="Rough Log-Law"/>
+              <Enumeration value="3" caption="Manning Law"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="AN_a" caption="Manning n for zone A">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.02" max="0.2">
+            <Dependency>
+              <Condition type="isEqual" target="i_UFRI" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AN_b" caption="Manning n for zone B">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.02" max="0.2">
+            <Dependency>
+              <Condition type="isEqual" target="i_UFRI" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AN_c" caption="Manning n for zone C">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.02" max="0.2">
+            <Dependency>
+              <Condition type="isEqual" target="i_UFRI" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AN_d" caption="Manning n for zone D">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.02" max="0.2">
+            <Dependency>
+              <Condition type="isEqual" target="i_UFRI" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AN_e" caption="Manning n for zone E">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.02" max="0.2">
+            <Dependency>
+              <Condition type="isEqual" target="i_UFRI" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_WFRI" caption="How to calculate u* at WALL?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="3" max="3">
+            <Enumerations>
+              <Enumeration value="1" caption="Smooth Log-Law"/>
+              <Enumeration value="2" caption="Rough Log-Law"/>
+              <Enumeration value="3" caption="Manning Law"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="AN_wll" caption="Manning n for WALL">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.01" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_WFRI" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AN_art" caption="Manning n for obstacle">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.01" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_WFRI" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!--=============================================================================================-->
+  <Tab name="Bed_Conditions" caption="Bed Conditions">
+    <Content>
+      <Items>
+        <Item name="DM0" caption="Grain Size[m]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0001" max="100.0">
+            <Dependency>
+              <Condition type="isGreaterEqual" target="i_UFRI" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_SED" caption="Sediment type">
+          <Definition conditionType="constant" valueType="integer" option="true" default="1" max="3">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="1" caption="bedload only"/>
+              <Enumeration value="2" caption="suspended load only"/>
+              <Enumeration value="3" caption="both bed and suspended load"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="i_BEDL" caption="Bedload Model">
+          <Definition conditionType="constant" valueType="integer" option="true" default="3" max="3">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="m_bed" value="1" />
+                <Condition type="or">
+                  <Condition type="isEqual" target="i_SED" value="1" />
+                  <Condition type="isEqual" target="i_SED" value="3" />
+                </Condition>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="1" caption="Meyer-Peter-Muller Model"/>
+              <Enumeration value="2" caption="Ashida Michiue Model"/>
+              <Enumeration value="3" caption="Kovacs Parker Model"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="i_SCHEME_BED" caption="Scheme for Bedload">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="m_bed" value="1" />
+                <Condition type="or">
+                  <Condition type="isEqual" target="i_SED" value="1" />
+                  <Condition type="isEqual" target="i_SED" value="3" />
+                </Condition>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Central scheme"/>
+              <Enumeration value="1" caption="Upwind scheme"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="RHO_S" caption="Density of Bed Grain[kg/m3]">
+          <Definition conditionType="constant" valueType="real" option="false" default="2650.0" max="10000.0">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="PORO" caption="Porosity of Bed">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.4" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AMUS" caption="Static friction coefficient">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.7" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AMUK" caption="Kinematic friction coefficient">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.5" max="1.0">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="TH_REP_deg" caption="Angle of Repose[deg]">
+          <Definition conditionType="constant" valueType="real" option="false" default="35.0" max="70.0">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="f_morph" caption="Morphological factor">
+          <Definition conditionType="constant" valueType="real" option="false" default="1.0" max="10000.0">
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_SUSin" caption="Inlet cond. for suspended load">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="m_bed" value="1" />
+                <Condition type="or">
+                  <Condition type="isEqual" target="i_SED" value="2" />
+                  <Condition type="isEqual" target="i_SED" value="3" />
+                </Condition>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Equilibrium condition with Rouse distribution"/>
+              <Enumeration value="1" caption="Concentration is given as a const."/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="CSS_in" caption="Inlet suspended load concentration">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0" max="10.0">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="m_bed" value="1" />
+                <Condition type="isEqual" target="i_SUSin" value="1" />
+                <Condition type="or">
+                  <Condition type="isEqual" target="i_SED" value="2" />
+                  <Condition type="isEqual" target="i_SED" value="3" />
+                </Condition>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item name="r_Tsc" caption="Coefficient for critical shear stress">
+          <Definition conditionType="constant" valueType="real" option="false" default="1.0" >
+            <Dependency>
+              <Condition type="isEqual" target="m_bed" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item name="i_cBANK" caption="Slope collapse model">
+          <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+            <Dependency>
+             <Condition type="isEqual" target="m_bed" value="1" />
+             <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="No slope collapse"/>
+              <Enumeration value="1" caption="Consider slope collapse"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_cBANK_loop" caption="Max number of iteration for slope collapse">
+          <Definition conditionType="constant" valueType="integer" option="true" default="10" >
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="m_bed"   value="1" />
+                <Condition type="isEqual" target="i_cBANK" value="1" />
+              </Condition>
+             <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item name="c_dump" caption="Relaxation coeffieient for slope collapse">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.2" max="1.0">
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="m_bed"   value="1" />
+                <Condition type="isEqual" target="i_cBANK" value="1" />
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+      </Items>
+    </Content>
+  </Tab>
+
+  <Tab name="Vegetation_Conditions" caption="Vegetation Conditions">
+    <Content>
+      <Items>
+        <Item name="i_VEG" caption="How to assign vegetation?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+            <Enumerations>
+              <Enumeration value="0" caption="No vegetation"/>
+              <Enumeration value="1" caption="Given as Veg. Density"/>
+              <Enumeration value="2" caption="Given as Diam.,Number,Area"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="Cd_veg" caption="Drag Coefficient">
+          <Definition conditionType="constant" valueType="real" option="false" default="1.5">
+            <Dependency>
+              <Condition type="isGreaterEqual" target="i_VEG" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="aLambda_veg" caption="Vegetation Density">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.5" max="1000.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_VEG" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="Diam_veg" caption="Vegetation Diameter[m]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_VEG" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="Area_veg" caption="Vegetation Area[m2]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_VEG" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="Number_veg" caption="Number of Vegetation">
+          <Definition conditionType="constant" valueType="integer" option="false" default="0" max="999999999">
+            <Dependency>
+              <Condition type="isEqual" target="i_VEG" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!--=============================================================================================-->
+  <Tab name="Boundary_conditions" caption="Boundary conditions">
+    <Content>
+      <Items>
+        <Item name="i_WALLSLIP" caption="Side wall friction">
+          <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Slip condition"/>
+              <Enumeration value="1" caption="Consider friction"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_REP" caption="Periodic/Non-periodic B.C. for X">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Non periodic B.C. for X"/>
+              <Enumeration value="1" caption="Periodic B.C. for X"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_BC_z" caption="Upstream and downstream B.C. for bed and surface">
+          <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Paralell to the averaged bed slope"/>
+              <Enumeration value="1" caption="Extrapolation"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_MR" caption="Normal/Mirror Periodic in X ?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="and">
+              <Condition type="isEqual" target="i_REP"    value="1"/>
+              <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Normal Periodic in X"/>
+              <Enumeration value="1" caption="Mirror Periodic in X"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="i_gh_PBC" caption="Method to adjust Q under periodic B.C.">
+          <Definition conditionType="constant" valueType="integer" option="true" default="1" max="2">
+            <Dependency>
+              <Condition type="and">
+              <Condition type="isEqual" target="i_REP"    value="1"/>
+              <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="1" caption="Adjust with slope"/>
+              <Enumeration value="2" caption="Adjust with depth"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="j_REP" caption="Periodic/Non-periodic B.C. for Y">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="Non periodic B.C. for Y"/>
+              <Enumeration value="1" caption="Periodic B.C. for Y"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="j_SBCr" caption="Symmetric B.C.at Right bank?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="isEqual" target="j_REP" value="0"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="No-symmetric(normal)"/>
+              <Enumeration value="1" caption="Symmetric"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="j_SBCl" caption="Symmetric B.C.at Left bank?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="isEqual" target="j_REP" value="0"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="No-symmetric(normal)"/>
+              <Enumeration value="1" caption="Symmetric"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!--=============================================================================================-->
+  <Tab name="Hot_start_conditions" caption="Hot start conditions">
+	    <Content>
+		<Items>
+		<Item name="iREAD" caption="Hot start or not">
+		  <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+			<Enumerations>
+			  <Enumeration value="0" caption="NOT hot start"/>
+			  <Enumeration value="1" caption="FULL hot start"/>
+			  <Enumeration value="2" caption="HALF hot start"/>
+			</Enumerations>
+  		  </Definition>
+		</Item>
+		<Item name="CREAD" caption="Input file name">
+		  <Definition conditionType="constant" valueType="filename" option="false" default="input.dat">
+		    <Dependency>
+		      <Condition type="isGreaterEqual" target="iREAD" value="1"/>
+		      <Action type="enable"/>
+		    </Dependency>
+  		  </Definition>
+		</Item>
+		<Item name="N0" caption="Input file-number">
+		  <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9998">
+		    <Dependency>
+		      <Condition type="isGreaterEqual" target="iREAD" value="1"/>
+		      <Action type="enable"/>
+		    </Dependency>
+  		  </Definition>
+		</Item>
+		<Item name="ITST" caption="Time initialize or not">
+		  <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    <Dependency>
+		      <Condition type="isGreaterEqual" target="iREAD" value="1"/>
+		      <Action type="enable"/>
+		    </Dependency>
+			<Enumerations>
+			  <Enumeration value="0" caption="Initialize Timer"/>
+			  <Enumeration value="1" caption="NOT initialize Timer"/>
+			</Enumerations>
+  		  </Definition>
+		</Item>
+		</Items>
+   	    </Content>
+	  </Tab>
+
+<!--=============================================================================================-->
+	<Tab name="Additional_output_files" caption="Additional output files">
+	  <Content>
+		  <Items>
+		  <Item name="i_HOT" caption="File for hot start">
+		    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+			    <Enumerations>
+			      <Enumeration value="0" caption="NOT output file for hot start"/>
+            <Enumeration value="1" caption="Output file for hot start"/>
+       <!-- <Enumeration value="1" caption="Output file for FULL hot start"/> -->
+       <!-- <Enumeration value="2" caption="Output file for HALF hot start"/> -->
+			    </Enumerations>
+        </Definition>
+		  </Item>
+		  <Item name="i_VTK" caption="VTK file output">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+          <Enumerations>
+			      <Enumeration value="0" caption="NOT output VTK file"/>
+			      <Enumeration value="1" caption="Output VTK file"/>
+			    </Enumerations>
+  		  </Definition>
+		  </Item>
+		  <Item name="i_MAVS" caption="Micro AVS file output">
+		    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+			    <Enumerations>
+			      <Enumeration value="0" caption="NOT output file for Micro AVS"/>
+			      <Enumeration value="1" caption="Output file for Micro AVS"/>
+			    </Enumerations>
+  		  </Definition>
+		  </Item>
+		  <Item name="i_TECP" caption="Tecplot file output">
+		    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+			    <Enumerations>
+			      <Enumeration value="0" caption="NOT output file for Tecplot"/>
+			      <Enumeration value="1" caption="Output file for Tecplot"/>
+			    </Enumerations>
+  		  </Definition>
+		  </Item>
+
+		  <Item name="i_DRI_file" caption="Driftwood file output">
+		    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+			    <Enumerations>
+			      <Enumeration value="0" caption="NOT output file of Driftwood"/>
+			      <Enumeration value="1" caption="Output file of Driftwood"/>
+			    </Enumerations>
+  		  </Definition>
+		  </Item>
+
+		  <Item name="i_POV_file" caption="POV-Ray file output">
+		    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+			    <Enumerations>
+			      <Enumeration value="0" caption="NOT output POV-Ray file"/>
+			      <Enumeration value="1" caption="Output POV-RAY file"/>
+			    </Enumerations>
+  		  </Definition>
+		  </Item>
+
+		  <Item name="fname" caption="FileName">
+        <Definition conditionType="constant" valueType="string" option="false" default="test_3D">
+        </Definition>
+		  </Item>
+		  <Item name="out_path" caption="Output folder path">
+		    <Definition conditionType="constant" valueType="string" option="false" default="c:\temp">
+  		  </Definition>
+		  </Item>
+		  </Items>
+    </Content>
+	</Tab>
+
+<!--=============================================================================================-->
+	<Tab name="Initial_topography_correction" caption="Initial topography correction">
+	  <Content>
+			<Items>
+			<Item name="i_GEOCORR" caption="Correct bed topography?">
+		  	<Definition conditionType="constant" valueType="integer" option="true" default="1" max="2">
+					<Enumerations>
+			  		<Enumeration value="0" caption="No correction"/>
+			  		<Enumeration value="1" caption="Correct with standard parameters"/>
+			  		<Enumeration value="2" caption="Correct with user's parameters"/>
+					</Enumerations>
+  			</Definition>
+			</Item>
+			<Item name="SL_LIMIT" caption="Limit of slope (tan)">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="2.0">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_GEOCORR" value="2"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+			<Item name="RT_LIMIT" caption="Limit of grid expantion rate">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="3.0">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_GEOCORR" value="2"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="i_ZMOD" caption="Increase bed at land?">
+		  	<Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+					<Enumerations>
+			  		<Enumeration value="0" caption="No increase"/>
+			  		<Enumeration value="1" caption="Increase land height"/>
+					</Enumerations>
+  			</Definition>
+			</Item>
+			<Item name="z_base" caption="Base elevation at land">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="1.0">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_ZMOD" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+			<Item name="z_increase" caption="Increase amount">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="10.0">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_ZMOD" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+  <Item name="i_APP" caption="Add approach channel">
+    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+      <Dependency>
+        <Condition type="isEqual" target="i_CLOSED" value="0"/>
+        <Action type="enable"/>
+      </Dependency>
+      <Enumerations>
+        <Enumeration value="0" caption="No approach channel"/>
+        <Enumeration value="1" caption="Add approach channel"/>
+      </Enumerations>
+    </Definition>
+  </Item>
+  <Item name="n_app" caption="Number of approach cells">
+		  	<Definition conditionType="constant" valueType="integer" option="false" default="10">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_APP" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  			</Definition>
+			</Item>
+			<Item name="slope_app" caption="Slope of approach channel">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.002">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_APP" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+      <Item name="i_dist_bed" caption="Initial bed disturbance">
+	      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		      <Enumerations>
+		        <Enumeration value="0" caption="No disturbance"/>
+		        <Enumeration value="1" caption="Add disturbance"/>
+		      </Enumerations>
+  	    </Definition>
+      </Item>
+      <Item name="amp_dist_bed" caption="Amplitude of bed disturbance[m]">
+	      <Definition conditionType="constant" valueType="real" option="false" default="0.005">
+	    	  <Dependency>
+			      <Condition type="isEqual" target="i_dist_bed" value="1"/>
+			      <Action type="enable"/>
+	    	  </Dependency>
+  	    </Definition>
+      </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+
+  <Tab name="DriftWood_basic" caption="DriftWood basic">
+    <Content>
+      <Items>
+			<Item name="i_DRIFT" caption="Calculate DriftWood?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="4">
+					<Enumerations>
+			  		<Enumeration value="0" caption="No DriftWood"/>
+			 <!--	<Enumeration value="1" caption="Neutral float"/>
+			  		<Enumeration value="2" caption="Equivalent sphere"/> -->
+			  		<Enumeration value="3" caption="Grouped spheres"/>
+			  		<Enumeration value="4" caption="Arbitral shape"/>
+					</Enumerations>
+  			</Definition>
+			</Item>
+
+			<Item name="dn_len" caption="Length of DriftWood[m]">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="1.0">
+		    	<Dependency>
+            <!--<Condition type="isGreaterEqual" target="i_DRIFT" value="2"/>-->
+                <Condition type="isEqual"        target="i_DRIFT" value="3"/>
+            <Action type="enable"/>
+		    	</Dependency>
+  			</Definition>
+			</Item>
+
+			<Item name="dn_diam" caption="Diameter of DriftWood[m]">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+		    	<Dependency>
+            <!--<Condition type="isGreaterEqual" target="i_DRIFT" value="2"/>-->
+                <Condition type="isEqual"        target="i_DRIFT" value="3"/>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+			<Item name="rho_dn" caption="Density of DriftWood[kg/m3]">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="900">
+		    	<Dependency>
+            <!--<Condition type="isGreaterEqual" target="i_DRIFT" value="2"/>-->
+                <Condition type="isEqual"        target="i_DRIFT" value="3"/>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+      <Item name="i_nsp" caption="How to set particle number?">
+	  	  <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+            <!--<Condition type="isGreaterEqual" target="i_DRIFT" value="2"/>-->
+                <Condition type="isEqual"        target="i_DRIFT" value="3"/>
+						<Action type="enable"/>
+		    	</Dependency>
+          <Enumerations>
+            <Enumeration value="0" caption="set arbitral number"/>
+            <Enumeration value="1" caption="set as length/diamter"/>
+          </Enumerations>
+  	    </Definition>
+	    </Item>
+
+      <Item name="m_nsp" caption="Number of spheres for a wood">
+        <Definition conditionType="constant" valueType="integer" option="false" default="5" max="999">
+          <Dependency>
+            <Condition type="isEqual"        target="i_DRIFT" value="3"/>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+			<Item name="dn_diam2" caption="Diameter of element[m]">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+		    	<Dependency>
+            <Condition type="isEqual"        target="i_DRIFT" value="4"/>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+			<Item name="rho_dn2" caption="Density of element[kg/m3]">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="900">
+		    	<Dependency>
+            <Condition type="isEqual"        target="i_DRIFT" value="4"/>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+      <Item name="shape_arbit" caption="Arbitral shape">
+        <Definition conditionType="functional">
+          <Dependency>
+            <Condition type="isEqual" target="i_DRIFT"    value="4"/>
+            <Action type="enable"/>
+          </Dependency>
+          <Parameter name="x" valueType="real" caption="x[m]"/>
+          <Value name    ="y" valueType="real" caption="y[m]"/>
+          <Value name    ="z" valueType="real" caption="z[m]"/>
+        </Definition>
+      </Item>
+    </Items>
+  </Content>
+  </Tab>
+
+
+  <Tab name="DriftWood_advanced" caption="DriftWood advanced">
+   <Content>
+    <Items>
+     <Item name="i_DRI_imp" caption="Impinging of driftwood">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+       <Dependency>
+        <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+        <Action type="enable"/>
+       </Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="No"/>
+			  		<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+  			</Definition>
+	    </Item>
+
+	    <Item name="i_DRI_set" caption="How to supply driftwood?">
+		  	<Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+            <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="Pack from the air"/>
+			  		<Enumeration value="1" caption="Set at the surface without overlapping"/>
+					</Enumerations>
+  			</Definition>
+	    </Item>
+
+			<Item name="i_DRI_CYC" caption="Supply driftwood periodically?">
+		  	<Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="No"/>
+			  		<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+  			</Definition>
+			</Item>
+			<Item name="time_dri_start" caption="Start time of driftwood calculation[sec]">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+			<Item name="time_dri_intvl" caption="Period of driftwood supply[sec]">
+		  	<Definition conditionType="constant" valueType="real" option="false">
+		    	<Dependency>
+  			 		<Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_CYC" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+      <Item name="i_DRI_STOP" caption="Stop driftwood supply during computation?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+          <Dependency>
+            <Condition type="and">
+            <Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+            <Condition type="isEqual"        target="i_DRI_CYC" value="1"/>
+            </Condition>
+            <Action type="enable"/>
+          </Dependency>
+          <Enumerations>
+            <Enumeration value="0" caption="No"/>
+            <Enumeration value="1" caption="Yes"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+      <Item name="time_dri_stop" caption="Stop time of driftwood supply[sec]">
+        <Definition conditionType="constant" valueType="real" option="false">
+          <Dependency>
+            <Condition type="and">
+              <Condition type="isGreaterEqual" target="i_DRIFT"    value="1"/>
+              <Condition type="isEqual"        target="i_DRI_STOP" value="1"/>
+            </Condition>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+<!--
+			<Item name="i_DRIFT_out" caption="Output external file?">
+		  	<Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+					<Enumerations>
+			  		<Enumeration value="0" caption="No"/>
+			  		<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+  			</Definition>
+      </Item>
+      <Item name="p_DRIFT_out" caption="Output driftwood as dot-type?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+                    <Enumerations>
+                        <Enumeration value="0" caption="No"/>
+                        <Enumeration value="1" caption="Yes"/>
+                    </Enumerations>
+        </Definition>
+      </Item>
+-->
+
+	    <Item name="i_drag_drft" caption="One-way or Two-way">
+  	    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+ 		      <Enumerations>
+	  	      <Enumeration value="0" caption="One-Way model"/>
+	  	      <Enumeration value="1" caption="Two-Way model"/>
+		      </Enumerations>
+	      </Definition>
+	    </Item>
+
+	    <Item name="i_CD" caption="How to set drag coefficient?">
+  	    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+ 		      <Enumerations>
+	  	      <Enumeration value="0" caption="Function of Reynolds number"/>
+	  	      <Enumeration value="1" caption="Given as a constant"/>
+		      </Enumerations>
+	      </Definition>
+	    </Item>
+
+	    <Item name="CD_drft" caption="Drag coefficient for driftwood">
+  	    <Definition conditionType="constant" valueType="real" option="false" default="2">
+    	    <Dependency>
+ 		        <Condition type="and">
+		        <Condition type="isGreaterEqual" target="i_DRIFT"     value="1"/>
+		  <!--  <Condition type="isEqual"        target="i_drag_drft" value="1"/> -->
+		        <Condition type="isEqual"        target="i_CD"        value="1"/>
+            </Condition>
+		        <Action type="enable"/>
+    	    </Dependency>
+        </Definition>
+	    </Item>
+
+<!-- bed friction -->
+	    <Item name="i_bed_friction" caption="Bed friction">
+  	    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+ 		      <Enumerations>
+	  	      <Enumeration value="0" caption="No bed friction"/>
+	  	      <Enumeration value="1" caption="Consider bed friction"/>
+		      </Enumerations>
+	      </Definition>
+	    </Item>
+
+	    <Item name="i_bed_roll" caption="Rolling motion">
+  	    <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+ 		        <Condition type="and">
+		        <Condition type="isEqual" target="i_DRIFT"        value="3"/>
+		        <Condition type="isEqual" target="i_bed_friction" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+ 		      <Enumerations>
+	  	      <Enumeration value="0" caption="No rolling motion"/>
+	  	      <Enumeration value="1" caption="Consider rolling motion"/>
+		      </Enumerations>
+	      </Definition>
+	    </Item>
+
+	    <Item name="bed_fric_static" caption="Static friction coefficient for driftwood">
+  	    <Definition conditionType="constant" valueType="real" option="false" default="0.4">
+    	    <Dependency>
+ 		        <Condition type="and">
+		        <Condition type="isGreaterEqual" target="i_DRIFT"        value="1"/>
+		        <Condition type="isEqual"        target="i_bed_friction" value="1"/>
+            </Condition>
+		        <Action type="enable"/>
+    	    </Dependency>
+        </Definition>
+	    </Item>
+
+	    <Item name="bed_fric_kinematic" caption="Kinematic friction coefficient for driftwood">
+  	    <Definition conditionType="constant" valueType="real" option="false" default="0.05">
+    	    <Dependency>
+ 		        <Condition type="and">
+		        <Condition type="isGreaterEqual" target="i_DRIFT"        value="1"/>
+		        <Condition type="isEqual"        target="i_bed_friction" value="1"/>
+            </Condition>
+		        <Action type="enable"/>
+    	    </Dependency>
+        </Definition>
+	    </Item>
+
+	    <Item name="bed_fric_roll" caption="Rolling friction coefficient for driftwood">
+  	    <Definition conditionType="constant" valueType="real" option="false" default="0.001">
+    	    <Dependency>
+ 		        <Condition type="and">
+		        <Condition type="isGreaterEqual" target="i_DRIFT"        value="1"/>
+		        <Condition type="isEqual"        target="i_bed_friction" value="1"/>
+		        <Condition type="isEqual"        target="i_bed_roll"     value="1"/>
+            </Condition>
+		        <Action type="enable"/>
+    	    </Dependency>
+        </Definition>
+	    </Item>
+
+      <Item name="i_random_walk" caption="Consider turbulence by random walk">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+          <Dependency>
+            <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+            <Action type="enable"/>
+          </Dependency>
+          <Enumerations>
+            <Enumeration value="0" caption="No"/>
+            <Enumeration value="1" caption="Yes"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+
+  <Tab name="DriftWood_additional" caption="DriftWood additional">
+    <Content>
+      <Items>
+
+			<Item name="i_DRI_2d" caption="Calculate wood motion in 2D or 3D?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+            <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+            <Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="3-D computation"/>
+			  		<Enumeration value="1" caption="2-D computation"/>
+					</Enumerations>
+  			</Definition>
+			</Item>
+
+<!-- M180509a
+     <Item name="i_DRI_da" caption="Drive driftwood by depth-ave. velo. or surface velo.">
+       <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+         <Enumerations>
+         <Enumeration value="0" caption="Drive by surface velo."/>
+         <Enumeration value="1" caption="Drive by depth-ave. velo."/>
+         </Enumerations>
+       </Definition>
+     </Item>
+-->
+
+			<Item name="young" caption="Young coefficient for DEM">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="100000">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="e_coe" caption="Repulsion ratio for DEM">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.8">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="ratio_overlap" caption="Overlap ratio of spheres for DEM">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="repul_natural" caption="Repulsion ratio to natural obstacle">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="1.0">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="repul_artificial" caption="Repulsion ratio to artificial obstacle">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="1.0">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="repul_dump" caption="Dumping of repulsion with obstacle">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="1.0">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+      <Item name="i_DRI_set_random" caption="Set driftwood random or not">
+        <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+          <Dependency>
+            <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+            <Action type="enable"/>
+          </Dependency>
+          <Enumerations>
+	  	      <Enumeration value="0" caption="Set fixed"/>
+	  	      <Enumeration value="1" caption="Set random"/>
+          </Enumerations>
+	      </Definition>
+      </Item>
+
+			<Item name="i_DRI_att" caption="Suction force of driftwood">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="Not considered"/>
+			  		<Enumeration value="1" caption="Considered"/>
+					</Enumerations>
+  			</Definition>
+      </Item>
+
+			<Item name="coe_ATT_dis" caption="Coef. of suction range">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+						<Condition type="isEqual"        target="i_DRI_att" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="coe_ATT_max" caption="Coef. of maximum suction force">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.0001">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+						<Condition type="isEqual"        target="i_DRI_att" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="ATT_lambda" caption="Maximum submerged ratio for activating suction force">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="0.5">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+						<Condition type="isEqual"        target="i_DRI_att" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="i_projection" caption="Projection area for drag force">
+        <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_DRIFT"   value="3"/>
+						<Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="Constant"/>
+			  		<Enumeration value="1" caption="Variable"/>
+					</Enumerations>
+  			</Definition>
+      </Item>
+
+			<Item name="i_skin_fric" caption="Whether to consider skin friction?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+		    	<Dependency>
+						<Condition type="isEqual" target="i_DRIFT"   value="3"/>
+						<Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="No"/>
+			  		<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+  			</Definition>
+      </Item>
+
+			<Item name="coef_skin_fric" caption="Coefficient for skin friction">
+		  	<Definition conditionType="constant" valueType="real" option="false" default="1">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"     value="1"/>
+						<Condition type="isEqual"        target="i_skin_fric" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+  		  </Definition>
+			</Item>
+
+			<Item name="i_DEM_rot" caption="Whether to consider sphere rotation in DEM?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+		    	<Dependency>
+            <Condition type="and">
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+            </Condition>
+						<Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="No"/>
+			  		<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+  			</Definition>
+      </Item>
+
+			<Item name="i_OBST_previous_velo0" caption="If sphere was inside OBST in old step, set v=0 ?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+		    	<Dependency>
+						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+						<Action type="enable"/>
+		    	</Dependency>
+					<Enumerations>
+			  		<Enumeration value="0" caption="No"/>
+			  		<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+  			</Definition>
+      </Item>
+    </Items>
+  </Content>
+  </Tab>
+
+
+<!--
+  <Tab name="Advanced_DriftWood" caption="Advanced DriftWood">
+  <Content>
+    <Items>
+    <Item name="i_select_DRIFT" caption="Detailed settings?">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="4">
+        <Enumerations>
+        <Enumeration value="0" caption="No"/>
+        <Enumeration value="1" caption="Random (all)"/>
+        <Enumeration value="2" caption="Random (scale)"/>
+        <Enumeration value="3" caption="Set as cell unit"/>
+        <Enumeration value="4" caption="Coming soon..."/>
+        </Enumerations>
+      </Definition>
+    </Item>
+
+  <Item name="dm_len" caption="Maximum length of driftwood[m]">
+    <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+      <Dependency>
+        <Condition type="and">
+        <Condition type="isGreaterEqual" target="i_DRIFT"        value="2"/>
+        <Condition type="isGreaterEqual" target="i_select_DRIFT" value="1"/>
+        <Condition type="isLessEqual"    target="i_select_DRIFT" value="2"/>
+        </Condition>
+        <Action type="enable"/>
+      </Dependency>
+    </Definition>
+  </Item>
+
+                    <Item name="dl_len" caption="Minimum length of driftwood[m]">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.5">
+                            <Dependency>
+                                <Condition type="and">
+                                <Condition type="isGreaterEqual" target="i_DRIFT" value="2"/>
+                                <Condition type="isGreaterEqual" target="i_select_DRIFT" value="1"/>
+                                <Condition type="isLessEqual"    target="i_select_DRIFT" value="2"/>
+                                </Condition>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+
+                    <Item name="dm_diam" caption="Maximum diameter of driftwood[m]">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+                            <Dependency>
+                                <Condition type="and">
+                                    <Condition type="isGreaterEqual" target="i_DRIFT"        value="2"/>
+                                    <Condition type="isGreaterEqual" target="i_select_DRIFT" value="1"/>
+                                    <Condition type="isLessEqual"    target="i_select_DRIFT" value="2"/>
+                                </Condition>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+
+                    <Item name="dl_diam" caption="Minimum diameter of driftwood[m]">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.05">
+                            <Dependency>
+                                <Condition type="and">
+                                    <Condition type="isGreaterEqual" target="i_DRIFT"        value="2"/>
+                                    <Condition type="isGreaterEqual" target="i_select_DRIFT" value="1"/>
+                                    <Condition type="isLessEqual"    target="i_select_DRIFT" value="2"/>
+                                </Condition>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    
+                    <Item name="rho_dm" caption="Maximum density of driftwood[kg/m3]">
+                        <Definition conditionType="constant" valueType="real" option="false" default="900">
+                            <Dependency>
+                                <Condition type="and">
+                                    <Condition type="isGreaterEqual" target="i_DRIFT"        value="2"/>
+                                    <Condition type="isGreaterEqual" target="i_select_DRIFT" value="1"/>
+                                    <Condition type="isLessEqual"    target="i_select_DRIFT" value="2"/>
+                                </Condition>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+
+                    <Item name="rho_dl" caption="Minimum density of driftwood[kg/m3]">
+                        <Definition conditionType="constant" valueType="real" option="false" default="600">
+                            <Dependency>
+                                <Condition type="and">
+                                    <Condition type="isGreaterEqual" target="i_DRIFT"        value="2"/>
+                                    <Condition type="isGreaterEqual" target="i_select_DRIFT" value="1"/>
+                                    <Condition type="isLessEqual"    target="i_select_DRIFT" value="2"/>
+                                </Condition>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                </Items>
+            </Content>
+        </Tab>
+
+        <Tab name="Driftwood_cell_unit" caption="Setting as cell unit">
+            <Content>
+                <Items>
+                    <Item name="Ad_len" caption="Cell A: Length of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Ad_diam" caption="Cell A: Diameter of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Ad_rho" caption="Cell A: Density of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="900">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iAd_ang_set" caption="Cell A: Initial angle : randam or constant">
+                        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+                            <Enumerations>
+                                <Enumeration value="0" caption="Random"/>
+                                <Enumeration value="1" caption="Constant"/>
+                            </Enumerations>
+                        </Definition>
+                    </Item>
+                    <Item name="Ad_ang" caption="Cell A: Initial angle of driftwood(deg)">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Condition type="isEqual" target="Ad_ang_set" value="1"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iAd_num" caption="Cell A: Number of driftwood">
+                        <Definition conditionType="constant" valueType="integer" option="false" default="0" max="999">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Bd_len" caption="Cell B: Length of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Bd_diam" caption="Cell B: Diameter of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Bd_rho" caption="Cell B: Density of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="900">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iBd_ang_set" caption="Cell B: Initial angle : randam or constant">
+                        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+                            <Enumerations>
+                                <Enumeration value="0" caption="Random"/>
+                                <Enumeration value="1" caption="Constant"/>
+                            </Enumerations>
+                        </Definition>
+                    </Item>
+                    <Item name="Bd_ang" caption="Cell B: initial angle of driftwood(deg)">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Condition type="isEqual" target="Bd_ang_set" value="1"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iBd_num" caption="Cell B: Number of driftwood">
+                        <Definition conditionType="constant" valueType="integer" option="false" default="0" max="999">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Cd_len" caption="Cell C: Length of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Cd_diam" caption="Cell C: Diameter of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Cd_rho" caption="Cell C: Density of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="900">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iCd_ang_set" caption="Cell C: Initial angle : randam or constant">
+                        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+                            <Enumerations>
+                                <Enumeration value="0" caption="Random"/>
+                                <Enumeration value="1" caption="Constant"/>
+                            </Enumerations>
+                        </Definition>
+                    </Item>
+                    <Item name="Cd_ang" caption="Cell C: initial angle of driftwood(deg)">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Condition type="isEqual" target="Cd_ang_set" value="1"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iCd_num" caption="Cell C: Number of driftwood">
+                        <Definition conditionType="constant" valueType="integer" option="false" default="0" max="999">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Dd_len" caption="Cell D: Length of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Dd_diam" caption="Cell D: Diameter of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Dd_rho" caption="Cell D: Density of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="900">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iDd_ang_set" caption="Cell D: Initial angle : randam or constant">
+                        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+                            <Enumerations>
+                                <Enumeration value="0" caption="Random"/>
+                                <Enumeration value="1" caption="Constant"/>
+                            </Enumerations>
+                        </Definition>
+                    </Item>
+                    <Item name="Dd_ang" caption="Cell D: initial angle of driftwood(deg)">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Condition type="isEqual" target="Dd_ang_set" value="1"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iDd_num" caption="Cell D: Number of driftwood">
+                        <Definition conditionType="constant" valueType="integer" option="false" default="0" max="999">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Ed_len" caption="Cell E: Length of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Ed_diam" caption="Cell E: Diameter of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="Ed_rho" caption="Cell E: Density of driftwood">
+                        <Definition conditionType="constant" valueType="real" option="false" default="900">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iEd_ang_set" caption="Cell E: Initial angle : randam or constant">
+                        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+                            <Enumerations>
+                                <Enumeration value="0" caption="Random"/>
+                                <Enumeration value="1" caption="Constant"/>
+                            </Enumerations>
+                        </Definition>
+                    </Item>
+                    <Item name="Ed_ang" caption="Cell E: initial angle of driftwood(deg)">
+                        <Definition conditionType="constant" valueType="real" option="false" default="0">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Condition type="isEqual" target="Ed_ang_set" value="1"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                    <Item name="iEd_num" caption="Cell E: Number of driftwood">
+                        <Definition conditionType="constant" valueType="integer" option="false" default="0" max="999">
+                            <Dependency>
+                                <Condition type="isEqual" target="i_select_DRIFT" value="3"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+                </Items>
+            </Content>
+        </Tab>
+
+        <Tab name="vtk_out_put" caption="Set output obstacle to vtk file">
+            <Content>
+                <Items>
+                    <Item name="i_Obst_out" caption="Output obstacle  file?">
+                        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+                            <Enumerations>
+                                <Enumeration value="0" caption="No"/>
+                                <Enumeration value="1" caption="Yes"/>
+                            </Enumerations>
+                        </Definition>
+                    </Item>
+                    <Item name="aLayer_obst" caption="Output layers over surface[m] (for vtk)">
+                        <Definition conditionType="constant" valueType="real" option="false" default="1" >
+                            <Dependency>
+                                <Condition type="isEqual" target="i_Obst_out" value="1"/>
+                                <Action type="enable"/>
+                            </Dependency>
+                        </Definition>
+                    </Item>
+
+                </Items>
+            </Content>
+        </Tab>
+-->
+
+  <Tab name="Wind_Conditions" caption="Wind Conditions">
+    <Content>
+      <Items>
+        <Item name="i_wind" caption="Consider wind or not?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="No wind"/>
+              <Enumeration value="1" caption="Consider wind"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="uwind10" caption="Wind velocity 10m above surface [m/s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_wind" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="w_ang_deg" caption="Wind angle to x-axis [deg]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0" max="360.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_wind" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+<!-- Dam settings (for Prof. Sumi) -->
+  <Tab name="DAM_settings" caption="DAM settings">
+    <Content>
+      <Items>
+        <Item name="i_DAM" caption="Set dam at outlet">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="No"/>
+              <Enumeration value="1" caption="Yes"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+	<Item name="Q_dam" caption="Discharge from dam gate">
+	  <Definition conditionType="constant" valueType="real" option="false" default="1">
+	  	  <Dependency>
+			  <Condition type="isEqual" target="i_DAM" value="1"/>
+			  <Action type="enable"/>
+	    	  </Dependency>
+  	  </Definition>
+	 </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+  <Tab name="Pump_settings" caption="Pump settings">
+    <Content>
+      <Items>
+        <Item name="i_PUMP" caption="Consider pump or not?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="No pump"/>
+              <Enumeration value="1" caption="Consider pump"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="i_PUMP_xy" caption="Pump direction">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
+            <Dependency>
+              <Condition type="isEqual" target="i_PUMP" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="xi-direction"/>
+              <Enumeration value="1" caption="eta-direction"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="i_PUMP_bot" caption="Pump bottom cell">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
+            <Dependency>
+              <Condition type="isEqual" target="i_PUMP" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_PUMP_top" caption="Pump top cell">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
+            <Dependency>
+              <Condition type="isEqual" target="i_PUMP" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="PUMP_velo" caption="Pump velocity [m/s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type="isEqual" target="i_PUMP" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+  <Tab name="Advanced_settings" caption="Advanced settings">
+    <Content>
+      <Items>
+        <Item name="i_WALL_PRESS" caption="Near wall pressure gradient">
+          <Definition conditionType="constant" valueType="integer" option="true" default="2" max="2">
+            <Enumerations>
+              <Enumeration value="0" caption="Gradient 0"/>
+              <Enumeration value="1" caption="4 points one side gradient"/>
+              <Enumeration value="2" caption="3 points triangular gradient"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="ER_PRESS" caption="Threshold for pressure convergence">
+          <Definition conditionType="constant" valueType="real" option="false" default="1.0e-10"></Definition>
+        </Item>
+        <Item name="ER_SURF"  caption="Threshold for HSMAC convergence">
+          <Definition conditionType="constant" valueType="real" option="false" default="1.0e-6"></Definition>
+        </Item>
+        <Item name="i_AHK" caption="Coefficients of non-linear k-e model">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="isGreaterEqual" target="i_Non_L" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Optimized values"/>
+              <Enumeration value="1" caption="Original values in 2007"/>
+              </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="C1"  caption="Coefficient C1 for non-linear terms">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.4">
+            <Dependency>
+         <!-- <Condition type="isEqual"        target="i_LINEAR"value="0"/> -->
+              <Condition type="isGreaterEqual" target="i_Non_L" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="C2"  caption="Coefficient C2 for non-linear terms">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+         <!-- <Condition type="isEqual"        target="i_LINEAR"value="0"/> -->
+              <Condition type="isGreaterEqual" target="i_Non_L" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="C3"  caption="Coefficient C3 for non-linear terms">
+          <Definition conditionType="constant" valueType="real" option="false" default="-0.13">
+            <Dependency>
+         <!-- <Condition type="isEqual"        target="i_LINEAR"value="0"/> -->
+              <Condition type="isGreaterEqual" target="i_Non_L" value="2"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="C4"  caption="Coefficient C4 for non-linear terms">
+          <Definition conditionType="constant" valueType="real" option="false" default="-0.02">
+            <Dependency>
+              <Condition type="isEqual" target="i_Non_L" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="C5"  caption="Coefficient C5 for non-linear terms">
+          <Definition conditionType="constant" valueType="real" option="false" default="0">
+            <Dependency>
+              <Condition type="isEqual" target="i_Non_L" value="3"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item name="i_DIST" caption="Add inlet disturbance?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="No"/>
+              <Enumeration value="1" caption="Yes"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="IEXCIT" caption="i-index for inlet disturbance">
+          <Definition conditionType="constant" valueType="integer" option="false" default="1" max="9999">
+            <Dependency>
+              <Condition type="isEqual" target="i_DIST" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="AMP_dist"  caption="Amplitude of inlet disturbance">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.01">
+            <Dependency>
+              <Condition type="isEqual" target="i_DIST" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="coef_sten"  caption="Coef. for surface tension">
+          <Definition conditionType="constant" valueType="real" option="false" default="10.0">
+          </Definition>
+        </Item>
+        <Item name="i_PRESS_Hincl" caption="Cal. surf. included in press iteration?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="No"/>
+              <Enumeration value="1" caption="Yes"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_SURF_type" caption="Comp. on surface?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="type 1"/>
+              <Enumeration value="1" caption="type 2"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="r_wet_n"  caption="Number of adjuscent wet cells for re-wet dry cell">
+          <Definition conditionType="constant" valueType="real" option="false" default="1.5" max="8">
+            <Dependency>
+              <Condition type="isEqual" target="i_WAD" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_INFLOW_prof" caption="Inflow velocity profile">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Dependency>
+              <Condition type= "and" >
+                <Condition type="isEqual" target="i_REP"    value="0"/>
+                <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Take over profile at previous time step"/>
+              <Enumeration value="1" caption="Log law"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_IN_section" caption="i-range for inlet BC">
+          <Definition conditionType="constant" valueType="integer" option="true" default="2" max="5" min="1">
+            <Dependency>
+              <Condition type= "and" >
+                <Condition type="isEqual" target="i_REP"    value="0"/>
+                <Condition type="isEqual" target="i_CLOSED" value="0"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item name="NN_press_max" caption="Maximum number of pressure iteration">
+          <Definition conditionType="constant" valueType="integer" option="true" default="50" max="9999">
+          </Definition>
+        </Item>
+
+        <Item name="i_debug_stop" caption="Debug mode on/off">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="off"/>
+              <Enumeration value="1" caption="on"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+      </Items>
+    </Content>
+  </Tab>
+
+</CalculationCondition>
+
+<GridRelatedCondition>
+		<Item name="Elevation" caption="Bed elevation">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+		<Item name="Obstacle" caption="Obstacle cell">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption="Normal movable bed" />
+					<Enumeration value="999" caption="Emerged obstacle" />
+					<Enumeration value="1"   caption="Submerged  1 cells" />
+					<Enumeration value="2"   caption="Submerged  2 cells" />
+					<Enumeration value="3"   caption="Submerged  3 cells" />
+					<Enumeration value="4"   caption="Submerged  4 cells" />
+					<Enumeration value="5"   caption="Submerged  5 cells" />
+					<Enumeration value="6"   caption="Submerged  6 cells" />
+					<Enumeration value="7"   caption="Submerged  7 cells" />
+					<Enumeration value="8"   caption="Submerged  8 cells" />
+					<Enumeration value="9"   caption="Submerged  9 cells" />
+					<Enumeration value="10"  caption="Submerged 10 cells" />
+					<Enumeration value="11"  caption="Submerged 11 cells" />
+					<Enumeration value="12"  caption="Submerged 12 cells" />
+					<Enumeration value="13"  caption="Submerged 13 cells" />
+					<Enumeration value="14"  caption="Submerged 14 cells" />
+					<Enumeration value="15"  caption="Submerged 15 cells" />
+					<Enumeration value="16"  caption="Submerged 16 cells" />
+					<Enumeration value="17"  caption="Submerged 17 cells" />
+					<Enumeration value="18"  caption="Submerged 18 cells" />
+					<Enumeration value="19"  caption="Submerged 19 cells" />
+					<Enumeration value="20"  caption="Submerged 20 cells" />
+					<Enumeration value="21"  caption="Submerged 21 cells" />
+					<Enumeration value="22"  caption="Submerged 22 cells" />
+					<Enumeration value="23"  caption="Submerged 23 cells" />
+					<Enumeration value="24"  caption="Submerged 24 cells" />
+					<Enumeration value="25"  caption="Submerged 25 cells" />
+					<Enumeration value="26"  caption="Submerged 26 cells" />
+					<Enumeration value="27"  caption="Submerged 27 cells" />
+					<Enumeration value="28"  caption="Submerged 28 cells" />
+					<Enumeration value="29"  caption="Submerged 29 cells" />
+					<Enumeration value="30"  caption="Submerged 30 cells" />
+					<Enumeration value="31"  caption="Submerged 31 cells" />
+					<Enumeration value="32"  caption="Submerged 32 cells" />
+					<Enumeration value="33"  caption="Submerged 33 cells" />
+					<Enumeration value="34"  caption="Submerged 34 cells" />
+					<Enumeration value="35"  caption="Submerged 35 cells" />
+					<Enumeration value="36"  caption="Submerged 36 cells" />
+					<Enumeration value="37"  caption="Submerged 37 cells" />
+					<Enumeration value="38"  caption="Submerged 38 cells" />
+					<Enumeration value="39"  caption="Submerged 39 cells" />
+					<Enumeration value="40"  caption="Submerged 40 cells" />
+					<Enumeration value="41"  caption="Submerged 41 cells" />
+					<Enumeration value="42"  caption="Submerged 42 cells" />
+					<Enumeration value="43"  caption="Submerged 43 cells" />
+					<Enumeration value="44"  caption="Submerged 44 cells" />
+					<Enumeration value="45"  caption="Submerged 45 cells" />
+					<Enumeration value="46"  caption="Submerged 46 cells" />
+					<Enumeration value="47"  caption="Submerged 47 cells" />
+					<Enumeration value="48"  caption="Submerged 48 cells" />
+					<Enumeration value="49"  caption="Submerged 49 cells" />
+					<Enumeration value="50"  caption="Submerged 50 cells" />
+					<Enumeration value="51"  caption="Submerged 51 cells" />
+					<Enumeration value="52"  caption="Submerged 52 cells" />
+					<Enumeration value="53"  caption="Submerged 53 cells" />
+					<Enumeration value="54"  caption="Submerged 54 cells" />
+					<Enumeration value="55"  caption="Submerged 55 cells" />
+					<Enumeration value="56"  caption="Submerged 56 cells" />
+					<Enumeration value="57"  caption="Submerged 57 cells" />
+					<Enumeration value="58"  caption="Submerged 58 cells" />
+					<Enumeration value="59"  caption="Submerged 59 cells" />
+					<Enumeration value="60"  caption="Submerged 60 cells" />
+					<Enumeration value="61"  caption="Submerged 61 cells" />
+					<Enumeration value="62"  caption="Submerged 62 cells" />
+					<Enumeration value="63"  caption="Submerged 63 cells" />
+					<Enumeration value="64"  caption="Submerged 64 cells" />
+					<Enumeration value="65"  caption="Submerged 65 cells" />
+					<Enumeration value="66"  caption="Submerged 66 cells" />
+					<Enumeration value="67"  caption="Submerged 67 cells" />
+					<Enumeration value="68"  caption="Submerged 68 cells" />
+					<Enumeration value="69"  caption="Submerged 69 cells" />
+					<Enumeration value="70"  caption="Submerged 70 cells" />
+					<Enumeration value="71"  caption="Submerged 71 cells" />
+					<Enumeration value="72"  caption="Submerged 72 cells" />
+					<Enumeration value="73"  caption="Submerged 73 cells" />
+					<Enumeration value="74"  caption="Submerged 74 cells" />
+					<Enumeration value="75"  caption="Submerged 75 cells" />
+					<Enumeration value="76"  caption="Submerged 76 cells" />
+					<Enumeration value="77"  caption="Submerged 77 cells" />
+					<Enumeration value="78"  caption="Submerged 78 cells" />
+					<Enumeration value="79"  caption="Submerged 79 cells" />
+					<Enumeration value="80"  caption="Submerged 80 cells" />
+					<Enumeration value="81"  caption="Submerged 81 cells" />
+					<Enumeration value="82"  caption="Submerged 82 cells" />
+					<Enumeration value="83"  caption="Submerged 83 cells" />
+					<Enumeration value="84"  caption="Submerged 84 cells" />
+					<Enumeration value="85"  caption="Submerged 85 cells" />
+					<Enumeration value="86"  caption="Submerged 86 cells" />
+					<Enumeration value="87"  caption="Submerged 87 cells" />
+					<Enumeration value="88"  caption="Submerged 88 cells" />
+					<Enumeration value="89"  caption="Submerged 89 cells" />
+					<Enumeration value="90"  caption="Submerged 90 cells" />
+					<Enumeration value="91"  caption="Submerged 91 cells" />
+					<Enumeration value="92"  caption="Submerged 92 cells" />
+					<Enumeration value="93"  caption="Submerged 93 cells" />
+					<Enumeration value="94"  caption="Submerged 94 cells" />
+					<Enumeration value="95"  caption="Submerged 95 cells" />
+					<Enumeration value="96"  caption="Submerged 96 cells" />
+					<Enumeration value="97"  caption="Submerged 97 cells" />
+					<Enumeration value="98"  caption="Submerged 98 cells" />
+					<Enumeration value="99"  caption="Submerged 99 cells" />
+					<Enumeration value="100" caption="Submerged 100cells" />
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="Vegetation" caption="Vegetation cell">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption="No vegetation" />
+					<Enumeration value="999" caption="Emerged vegetation" />
+					<Enumeration value="1"   caption="Submerged  1 cells" />
+					<Enumeration value="2"   caption="Submerged  2 cells" />
+					<Enumeration value="3"   caption="Submerged  3 cells" />
+					<Enumeration value="4"   caption="Submerged  4 cells" />
+					<Enumeration value="5"   caption="Submerged  5 cells" />
+					<Enumeration value="6"   caption="Submerged  6 cells" />
+					<Enumeration value="7"   caption="Submerged  7 cells" />
+					<Enumeration value="8"   caption="Submerged  8 cells" />
+					<Enumeration value="9"   caption="Submerged  9 cells" />
+					<Enumeration value="10"  caption="Submerged 10 cells" />
+					<Enumeration value="11"  caption="Submerged 11 cells" />
+					<Enumeration value="12"  caption="Submerged 12 cells" />
+					<Enumeration value="13"  caption="Submerged 13 cells" />
+					<Enumeration value="14"  caption="Submerged 14 cells" />
+					<Enumeration value="15"  caption="Submerged 15 cells" />
+					<Enumeration value="16"  caption="Submerged 16 cells" />
+					<Enumeration value="17"  caption="Submerged 17 cells" />
+					<Enumeration value="18"  caption="Submerged 18 cells" />
+					<Enumeration value="19"  caption="Submerged 19 cells" />
+					<Enumeration value="20"  caption="Submerged 20 cells" />
+					<Enumeration value="21"  caption="Submerged 21 cells" />
+					<Enumeration value="22"  caption="Submerged 22 cells" />
+					<Enumeration value="23"  caption="Submerged 23 cells" />
+					<Enumeration value="24"  caption="Submerged 24 cells" />
+					<Enumeration value="25"  caption="Submerged 25 cells" />
+					<Enumeration value="26"  caption="Submerged 26 cells" />
+					<Enumeration value="27"  caption="Submerged 27 cells" />
+					<Enumeration value="28"  caption="Submerged 28 cells" />
+					<Enumeration value="29"  caption="Submerged 29 cells" />
+					<Enumeration value="30"  caption="Submerged 30 cells" />
+					<Enumeration value="31"  caption="Submerged 31 cells" />
+					<Enumeration value="32"  caption="Submerged 32 cells" />
+					<Enumeration value="33"  caption="Submerged 33 cells" />
+					<Enumeration value="34"  caption="Submerged 34 cells" />
+					<Enumeration value="35"  caption="Submerged 35 cells" />
+					<Enumeration value="36"  caption="Submerged 36 cells" />
+					<Enumeration value="37"  caption="Submerged 37 cells" />
+					<Enumeration value="38"  caption="Submerged 38 cells" />
+					<Enumeration value="39"  caption="Submerged 39 cells" />
+					<Enumeration value="40"  caption="Submerged 40 cells" />
+					<Enumeration value="41"  caption="Submerged 41 cells" />
+					<Enumeration value="42"  caption="Submerged 42 cells" />
+					<Enumeration value="43"  caption="Submerged 43 cells" />
+					<Enumeration value="44"  caption="Submerged 44 cells" />
+					<Enumeration value="45"  caption="Submerged 45 cells" />
+					<Enumeration value="46"  caption="Submerged 46 cells" />
+					<Enumeration value="47"  caption="Submerged 47 cells" />
+					<Enumeration value="48"  caption="Submerged 48 cells" />
+					<Enumeration value="49"  caption="Submerged 49 cells" />
+					<Enumeration value="50"  caption="Submerged 50 cells" />
+					<Enumeration value="51"  caption="Submerged 51 cells" />
+					<Enumeration value="52"  caption="Submerged 52 cells" />
+					<Enumeration value="53"  caption="Submerged 53 cells" />
+					<Enumeration value="54"  caption="Submerged 54 cells" />
+					<Enumeration value="55"  caption="Submerged 55 cells" />
+					<Enumeration value="56"  caption="Submerged 56 cells" />
+					<Enumeration value="57"  caption="Submerged 57 cells" />
+					<Enumeration value="58"  caption="Submerged 58 cells" />
+					<Enumeration value="59"  caption="Submerged 59 cells" />
+					<Enumeration value="60"  caption="Submerged 60 cells" />
+					<Enumeration value="61"  caption="Submerged 61 cells" />
+					<Enumeration value="62"  caption="Submerged 62 cells" />
+					<Enumeration value="63"  caption="Submerged 63 cells" />
+					<Enumeration value="64"  caption="Submerged 64 cells" />
+					<Enumeration value="65"  caption="Submerged 65 cells" />
+					<Enumeration value="66"  caption="Submerged 66 cells" />
+					<Enumeration value="67"  caption="Submerged 67 cells" />
+					<Enumeration value="68"  caption="Submerged 68 cells" />
+					<Enumeration value="69"  caption="Submerged 69 cells" />
+					<Enumeration value="70"  caption="Submerged 70 cells" />
+					<Enumeration value="71"  caption="Submerged 71 cells" />
+					<Enumeration value="72"  caption="Submerged 72 cells" />
+					<Enumeration value="73"  caption="Submerged 73 cells" />
+					<Enumeration value="74"  caption="Submerged 74 cells" />
+					<Enumeration value="75"  caption="Submerged 75 cells" />
+					<Enumeration value="76"  caption="Submerged 76 cells" />
+					<Enumeration value="77"  caption="Submerged 77 cells" />
+					<Enumeration value="78"  caption="Submerged 78 cells" />
+					<Enumeration value="79"  caption="Submerged 79 cells" />
+					<Enumeration value="80"  caption="Submerged 80 cells" />
+					<Enumeration value="81"  caption="Submerged 81 cells" />
+					<Enumeration value="82"  caption="Submerged 82 cells" />
+					<Enumeration value="83"  caption="Submerged 83 cells" />
+					<Enumeration value="84"  caption="Submerged 84 cells" />
+					<Enumeration value="85"  caption="Submerged 85 cells" />
+					<Enumeration value="86"  caption="Submerged 86 cells" />
+					<Enumeration value="87"  caption="Submerged 87 cells" />
+					<Enumeration value="88"  caption="Submerged 88 cells" />
+					<Enumeration value="89"  caption="Submerged 89 cells" />
+					<Enumeration value="90"  caption="Submerged 90 cells" />
+					<Enumeration value="91"  caption="Submerged 91 cells" />
+					<Enumeration value="92"  caption="Submerged 92 cells" />
+					<Enumeration value="93"  caption="Submerged 93 cells" />
+					<Enumeration value="94"  caption="Submerged 94 cells" />
+					<Enumeration value="95"  caption="Submerged 95 cells" />
+					<Enumeration value="96"  caption="Submerged 96 cells" />
+					<Enumeration value="97"  caption="Submerged 97 cells" />
+					<Enumeration value="98"  caption="Submerged 98 cells" />
+					<Enumeration value="99"  caption="Submerged 99 cells" />
+					<Enumeration value="100" caption="Submerged 100cells" />
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="UnderPass_Cell" caption="UnderPass Cell">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption="No UnderPass" />
+					<Enumeration value="1"   caption="Tunnel-height  1 cells" />
+					<Enumeration value="2"   caption="Tunnel-height  2 cells" />
+					<Enumeration value="3"   caption="Tunnel-height  3 cells" />
+					<Enumeration value="4"   caption="Tunnel-height  4 cells" />
+					<Enumeration value="5"   caption="Tunnel-height  5 cells" />
+					<Enumeration value="6"   caption="Tunnel-height  6 cells" />
+					<Enumeration value="7"   caption="Tunnel-height  7 cells" />
+					<Enumeration value="8"   caption="Tunnel-height  8 cells" />
+					<Enumeration value="9"   caption="Tunnel-height  9 cells" />
+					<Enumeration value="10"  caption="Tunnel-height 10 cells" />
+					<Enumeration value="11"  caption="Tunnel-height 11 cells" />
+					<Enumeration value="12"  caption="Tunnel-height 12 cells" />
+					<Enumeration value="13"  caption="Tunnel-height 13 cells" />
+					<Enumeration value="14"  caption="Tunnel-height 14 cells" />
+					<Enumeration value="15"  caption="Tunnel-height 15 cells" />
+					<Enumeration value="16"  caption="Tunnel-height 16 cells" />
+					<Enumeration value="17"  caption="Tunnel-height 17 cells" />
+					<Enumeration value="18"  caption="Tunnel-height 18 cells" />
+					<Enumeration value="19"  caption="Tunnel-height 19 cells" />
+					<Enumeration value="20"  caption="Tunnel-height 20 cells" />
+					<Enumeration value="21"  caption="Tunnel-height 21 cells" />
+					<Enumeration value="22"  caption="Tunnel-height 22 cells" />
+					<Enumeration value="23"  caption="Tunnel-height 23 cells" />
+					<Enumeration value="24"  caption="Tunnel-height 24 cells" />
+					<Enumeration value="25"  caption="Tunnel-height 25 cells" />
+					<Enumeration value="26"  caption="Tunnel-height 26 cells" />
+					<Enumeration value="27"  caption="Tunnel-height 27 cells" />
+					<Enumeration value="28"  caption="Tunnel-height 28 cells" />
+					<Enumeration value="29"  caption="Tunnel-height 29 cells" />
+					<Enumeration value="30"  caption="Tunnel-height 30 cells" />
+					<Enumeration value="31"  caption="Tunnel-height 31 cells" />
+					<Enumeration value="32"  caption="Tunnel-height 32 cells" />
+					<Enumeration value="33"  caption="Tunnel-height 33 cells" />
+					<Enumeration value="34"  caption="Tunnel-height 34 cells" />
+					<Enumeration value="35"  caption="Tunnel-height 35 cells" />
+					<Enumeration value="36"  caption="Tunnel-height 36 cells" />
+					<Enumeration value="37"  caption="Tunnel-height 37 cells" />
+					<Enumeration value="38"  caption="Tunnel-height 38 cells" />
+					<Enumeration value="39"  caption="Tunnel-height 39 cells" />
+					<Enumeration value="40"  caption="Tunnel-height 40 cells" />
+					<Enumeration value="41"  caption="Tunnel-height 41 cells" />
+					<Enumeration value="42"  caption="Tunnel-height 42 cells" />
+					<Enumeration value="43"  caption="Tunnel-height 43 cells" />
+					<Enumeration value="44"  caption="Tunnel-height 44 cells" />
+					<Enumeration value="45"  caption="Tunnel-height 45 cells" />
+					<Enumeration value="46"  caption="Tunnel-height 46 cells" />
+					<Enumeration value="47"  caption="Tunnel-height 47 cells" />
+					<Enumeration value="48"  caption="Tunnel-height 48 cells" />
+					<Enumeration value="49"  caption="Tunnel-height 49 cells" />
+					<Enumeration value="50"  caption="Tunnel-height 50 cells" />
+					<Enumeration value="51"  caption="Tunnel-height 51 cells" />
+					<Enumeration value="52"  caption="Tunnel-height 52 cells" />
+					<Enumeration value="53"  caption="Tunnel-height 53 cells" />
+					<Enumeration value="54"  caption="Tunnel-height 54 cells" />
+					<Enumeration value="55"  caption="Tunnel-height 55 cells" />
+					<Enumeration value="56"  caption="Tunnel-height 56 cells" />
+					<Enumeration value="57"  caption="Tunnel-height 57 cells" />
+					<Enumeration value="58"  caption="Tunnel-height 58 cells" />
+					<Enumeration value="59"  caption="Tunnel-height 59 cells" />
+					<Enumeration value="60"  caption="Tunnel-height 60 cells" />
+					<Enumeration value="61"  caption="Tunnel-height 61 cells" />
+					<Enumeration value="62"  caption="Tunnel-height 62 cells" />
+					<Enumeration value="63"  caption="Tunnel-height 63 cells" />
+					<Enumeration value="64"  caption="Tunnel-height 64 cells" />
+					<Enumeration value="65"  caption="Tunnel-height 65 cells" />
+					<Enumeration value="66"  caption="Tunnel-height 66 cells" />
+					<Enumeration value="67"  caption="Tunnel-height 67 cells" />
+					<Enumeration value="68"  caption="Tunnel-height 68 cells" />
+					<Enumeration value="69"  caption="Tunnel-height 69 cells" />
+					<Enumeration value="70"  caption="Tunnel-height 70 cells" />
+					<Enumeration value="71"  caption="Tunnel-height 71 cells" />
+					<Enumeration value="72"  caption="Tunnel-height 72 cells" />
+					<Enumeration value="73"  caption="Tunnel-height 73 cells" />
+					<Enumeration value="74"  caption="Tunnel-height 74 cells" />
+					<Enumeration value="75"  caption="Tunnel-height 75 cells" />
+					<Enumeration value="76"  caption="Tunnel-height 76 cells" />
+					<Enumeration value="77"  caption="Tunnel-height 77 cells" />
+					<Enumeration value="78"  caption="Tunnel-height 78 cells" />
+					<Enumeration value="79"  caption="Tunnel-height 79 cells" />
+					<Enumeration value="80"  caption="Tunnel-height 80 cells" />
+					<Enumeration value="81"  caption="Tunnel-height 81 cells" />
+					<Enumeration value="82"  caption="Tunnel-height 82 cells" />
+					<Enumeration value="83"  caption="Tunnel-height 83 cells" />
+					<Enumeration value="84"  caption="Tunnel-height 84 cells" />
+					<Enumeration value="85"  caption="Tunnel-height 85 cells" />
+					<Enumeration value="86"  caption="Tunnel-height 86 cells" />
+					<Enumeration value="87"  caption="Tunnel-height 87 cells" />
+					<Enumeration value="88"  caption="Tunnel-height 88 cells" />
+					<Enumeration value="89"  caption="Tunnel-height 89 cells" />
+					<Enumeration value="90"  caption="Tunnel-height 90 cells" />
+					<Enumeration value="91"  caption="Tunnel-height 91 cells" />
+					<Enumeration value="92"  caption="Tunnel-height 92 cells" />
+					<Enumeration value="93"  caption="Tunnel-height 93 cells" />
+					<Enumeration value="94"  caption="Tunnel-height 94 cells" />
+					<Enumeration value="95"  caption="Tunnel-height 95 cells" />
+					<Enumeration value="96"  caption="Tunnel-height 96 cells" />
+					<Enumeration value="97"  caption="Tunnel-height 97 cells" />
+					<Enumeration value="98"  caption="Tunnel-height 98 cells" />
+					<Enumeration value="99"  caption="Tunnel-height 99 cells" />
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="UnErodable" caption="UnErodable cell">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption="Erodable" />
+					<Enumeration value="1"   caption="UnErodable" />
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="Roughness" caption="Roughness">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption="zone A" />
+					<Enumeration value="1"   caption="zone B" />
+					<Enumeration value="2"   caption="zone C" />
+					<Enumeration value="3"   caption="zone D" />
+					<Enumeration value="4"   caption="zone E" />
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="DriftWood" caption="DriftWood">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption=" 0" />
+					<Enumeration value="1"   caption=" 1" />
+					<Enumeration value="2"   caption=" 2" />
+					<Enumeration value="3"   caption=" 3" />
+					<Enumeration value="4"   caption=" 4" />
+					<Enumeration value="5"   caption=" 5" />
+					<Enumeration value="6"   caption=" 6" />
+					<Enumeration value="7"   caption=" 7" />
+					<Enumeration value="8"   caption=" 8" />
+					<Enumeration value="9"   caption=" 9" />
+					<Enumeration value="10"  caption="10" />
+					<Enumeration value="11"  caption="11" />
+					<Enumeration value="12"  caption="12" />
+					<Enumeration value="13"  caption="13" />
+					<Enumeration value="14"  caption="14" />
+					<Enumeration value="15"  caption="15" />
+					<Enumeration value="16"  caption="16" />
+					<Enumeration value="17"  caption="17" />
+					<Enumeration value="18"  caption="18" />
+					<Enumeration value="19"  caption="19" />
+					<Enumeration value="20"  caption="20" />
+					<Enumeration value="21"  caption="21" />
+					<Enumeration value="22"  caption="22" />
+					<Enumeration value="23"  caption="23" />
+					<Enumeration value="24"  caption="24" />
+					<Enumeration value="25"  caption="25" />
+					<Enumeration value="26"  caption="26" />
+					<Enumeration value="27"  caption="27" />
+					<Enumeration value="28"  caption="28" />
+					<Enumeration value="29"  caption="29" />
+					<Enumeration value="30"  caption="30" />
+					<Enumeration value="31"  caption="31" />
+					<Enumeration value="32"  caption="32" />
+					<Enumeration value="33"  caption="33" />
+					<Enumeration value="34"  caption="34" />
+					<Enumeration value="35"  caption="35" />
+					<Enumeration value="36"  caption="36" />
+					<Enumeration value="37"  caption="37" />
+					<Enumeration value="38"  caption="38" />
+					<Enumeration value="39"  caption="39" />
+					<Enumeration value="40"  caption="40" />
+					<Enumeration value="41"  caption="41" />
+					<Enumeration value="42"  caption="42" />
+					<Enumeration value="43"  caption="43" />
+					<Enumeration value="44"  caption="44" />
+					<Enumeration value="45"  caption="45" />
+					<Enumeration value="46"  caption="46" />
+					<Enumeration value="47"  caption="47" />
+					<Enumeration value="48"  caption="48" />
+					<Enumeration value="49"  caption="49" />
+					<Enumeration value="50"  caption="50" />
+					<Enumeration value="51"  caption="51" />
+					<Enumeration value="52"  caption="52" />
+					<Enumeration value="53"  caption="53" />
+					<Enumeration value="54"  caption="54" />
+					<Enumeration value="55"  caption="55" />
+					<Enumeration value="56"  caption="56" />
+					<Enumeration value="57"  caption="57" />
+					<Enumeration value="58"  caption="58" />
+					<Enumeration value="59"  caption="59" />
+					<Enumeration value="60"  caption="60" />
+					<Enumeration value="61"  caption="61" />
+					<Enumeration value="62"  caption="62" />
+					<Enumeration value="63"  caption="63" />
+					<Enumeration value="64"  caption="64" />
+					<Enumeration value="65"  caption="65" />
+					<Enumeration value="66"  caption="66" />
+					<Enumeration value="67"  caption="67" />
+					<Enumeration value="68"  caption="68" />
+					<Enumeration value="69"  caption="69" />
+					<Enumeration value="70"  caption="70" />
+					<Enumeration value="71"  caption="71" />
+					<Enumeration value="72"  caption="72" />
+					<Enumeration value="73"  caption="73" />
+					<Enumeration value="74"  caption="74" />
+					<Enumeration value="75"  caption="75" />
+					<Enumeration value="76"  caption="76" />
+					<Enumeration value="77"  caption="77" />
+					<Enumeration value="78"  caption="78" />
+					<Enumeration value="79"  caption="79" />
+					<Enumeration value="80"  caption="80" />
+					<Enumeration value="81"  caption="81" />
+					<Enumeration value="82"  caption="82" />
+					<Enumeration value="83"  caption="83" />
+					<Enumeration value="84"  caption="84" />
+					<Enumeration value="85"  caption="85" />
+					<Enumeration value="86"  caption="86" />
+					<Enumeration value="87"  caption="87" />
+					<Enumeration value="88"  caption="88" />
+					<Enumeration value="89"  caption="89" />
+					<Enumeration value="90"  caption="90" />
+					<Enumeration value="91"  caption="91" />
+					<Enumeration value="92"  caption="92" />
+					<Enumeration value="93"  caption="93" />
+					<Enumeration value="94"  caption="94" />
+					<Enumeration value="95"  caption="95" />
+					<Enumeration value="96"  caption="96" />
+					<Enumeration value="97"  caption="97" />
+					<Enumeration value="98"  caption="98" />
+					<Enumeration value="99"  caption="99" />
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<Item name="Fence" caption="Fence cell">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption="No fence" />
+					<Enumeration value="999" caption="Emerged fence" />
+					<Enumeration value="1"   caption="Submerged  1 cells" />
+					<Enumeration value="2"   caption="Submerged  2 cells" />
+					<Enumeration value="3"   caption="Submerged  3 cells" />
+					<Enumeration value="4"   caption="Submerged  4 cells" />
+					<Enumeration value="5"   caption="Submerged  5 cells" />
+					<Enumeration value="6"   caption="Submerged  6 cells" />
+					<Enumeration value="7"   caption="Submerged  7 cells" />
+					<Enumeration value="8"   caption="Submerged  8 cells" />
+					<Enumeration value="9"   caption="Submerged  9 cells" />
+					<Enumeration value="10"  caption="Submerged 10 cells" />
+					<Enumeration value="11"  caption="Submerged 11 cells" />
+					<Enumeration value="12"  caption="Submerged 12 cells" />
+					<Enumeration value="13"  caption="Submerged 13 cells" />
+					<Enumeration value="14"  caption="Submerged 14 cells" />
+					<Enumeration value="15"  caption="Submerged 15 cells" />
+					<Enumeration value="16"  caption="Submerged 16 cells" />
+					<Enumeration value="17"  caption="Submerged 17 cells" />
+					<Enumeration value="18"  caption="Submerged 18 cells" />
+					<Enumeration value="19"  caption="Submerged 19 cells" />
+					<Enumeration value="20"  caption="Submerged 20 cells" />
+					<Enumeration value="21"  caption="Submerged 21 cells" />
+					<Enumeration value="22"  caption="Submerged 22 cells" />
+					<Enumeration value="23"  caption="Submerged 23 cells" />
+					<Enumeration value="24"  caption="Submerged 24 cells" />
+					<Enumeration value="25"  caption="Submerged 25 cells" />
+					<Enumeration value="26"  caption="Submerged 26 cells" />
+					<Enumeration value="27"  caption="Submerged 27 cells" />
+					<Enumeration value="28"  caption="Submerged 28 cells" />
+					<Enumeration value="29"  caption="Submerged 29 cells" />
+					<Enumeration value="30"  caption="Submerged 30 cells" />
+					<Enumeration value="31"  caption="Submerged 31 cells" />
+					<Enumeration value="32"  caption="Submerged 32 cells" />
+					<Enumeration value="33"  caption="Submerged 33 cells" />
+					<Enumeration value="34"  caption="Submerged 34 cells" />
+					<Enumeration value="35"  caption="Submerged 35 cells" />
+					<Enumeration value="36"  caption="Submerged 36 cells" />
+					<Enumeration value="37"  caption="Submerged 37 cells" />
+					<Enumeration value="38"  caption="Submerged 38 cells" />
+					<Enumeration value="39"  caption="Submerged 39 cells" />
+					<Enumeration value="40"  caption="Submerged 40 cells" />
+					<Enumeration value="41"  caption="Submerged 41 cells" />
+					<Enumeration value="42"  caption="Submerged 42 cells" />
+					<Enumeration value="43"  caption="Submerged 43 cells" />
+					<Enumeration value="44"  caption="Submerged 44 cells" />
+					<Enumeration value="45"  caption="Submerged 45 cells" />
+					<Enumeration value="46"  caption="Submerged 46 cells" />
+					<Enumeration value="47"  caption="Submerged 47 cells" />
+					<Enumeration value="48"  caption="Submerged 48 cells" />
+					<Enumeration value="49"  caption="Submerged 49 cells" />
+					<Enumeration value="50"  caption="Submerged 50 cells" />
+					<Enumeration value="51"  caption="Submerged 51 cells" />
+					<Enumeration value="52"  caption="Submerged 52 cells" />
+					<Enumeration value="53"  caption="Submerged 53 cells" />
+					<Enumeration value="54"  caption="Submerged 54 cells" />
+					<Enumeration value="55"  caption="Submerged 55 cells" />
+					<Enumeration value="56"  caption="Submerged 56 cells" />
+					<Enumeration value="57"  caption="Submerged 57 cells" />
+					<Enumeration value="58"  caption="Submerged 58 cells" />
+					<Enumeration value="59"  caption="Submerged 59 cells" />
+					<Enumeration value="60"  caption="Submerged 60 cells" />
+					<Enumeration value="61"  caption="Submerged 61 cells" />
+					<Enumeration value="62"  caption="Submerged 62 cells" />
+					<Enumeration value="63"  caption="Submerged 63 cells" />
+					<Enumeration value="64"  caption="Submerged 64 cells" />
+					<Enumeration value="65"  caption="Submerged 65 cells" />
+					<Enumeration value="66"  caption="Submerged 66 cells" />
+					<Enumeration value="67"  caption="Submerged 67 cells" />
+					<Enumeration value="68"  caption="Submerged 68 cells" />
+					<Enumeration value="69"  caption="Submerged 69 cells" />
+					<Enumeration value="70"  caption="Submerged 70 cells" />
+					<Enumeration value="71"  caption="Submerged 71 cells" />
+					<Enumeration value="72"  caption="Submerged 72 cells" />
+					<Enumeration value="73"  caption="Submerged 73 cells" />
+					<Enumeration value="74"  caption="Submerged 74 cells" />
+					<Enumeration value="75"  caption="Submerged 75 cells" />
+					<Enumeration value="76"  caption="Submerged 76 cells" />
+					<Enumeration value="77"  caption="Submerged 77 cells" />
+					<Enumeration value="78"  caption="Submerged 78 cells" />
+					<Enumeration value="79"  caption="Submerged 79 cells" />
+					<Enumeration value="80"  caption="Submerged 80 cells" />
+					<Enumeration value="81"  caption="Submerged 81 cells" />
+					<Enumeration value="82"  caption="Submerged 82 cells" />
+					<Enumeration value="83"  caption="Submerged 83 cells" />
+					<Enumeration value="84"  caption="Submerged 84 cells" />
+					<Enumeration value="85"  caption="Submerged 85 cells" />
+					<Enumeration value="86"  caption="Submerged 86 cells" />
+					<Enumeration value="87"  caption="Submerged 87 cells" />
+					<Enumeration value="88"  caption="Submerged 88 cells" />
+					<Enumeration value="89"  caption="Submerged 89 cells" />
+					<Enumeration value="90"  caption="Submerged 90 cells" />
+					<Enumeration value="91"  caption="Submerged 91 cells" />
+					<Enumeration value="92"  caption="Submerged 92 cells" />
+					<Enumeration value="93"  caption="Submerged 93 cells" />
+					<Enumeration value="94"  caption="Submerged 94 cells" />
+					<Enumeration value="95"  caption="Submerged 95 cells" />
+					<Enumeration value="96"  caption="Submerged 96 cells" />
+					<Enumeration value="97"  caption="Submerged 97 cells" />
+					<Enumeration value="98"  caption="Submerged 98 cells" />
+					<Enumeration value="99"  caption="Submerged 99 cells" />
+					<Enumeration value="100" caption="Submerged 100cells" />
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<Item name="Pump" caption="Pump cell">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0"   caption="normal cell" />
+					<Enumeration value="1"   caption="pump cell" />
+				</Enumerations>
+			</Definition>
+		</Item>
+
+
+<!--
+    <Item name="Advanced_DriftWood" caption="Advanced driftwood">
+            <Definition position="cell" valueType="integer" default="99" option="true">
+                <Enumerations>
+                    <Enumeration value="0"   caption="Cell A" />
+                    <Enumeration value="1"   caption="Cell B" />
+                    <Enumeration value="2"   caption="Cell C" />
+                    <Enumeration value="3"   caption="Cell D" />
+                    <Enumeration value="4"   caption="Cell E" />
+                    <Enumeration value="99"  caption="No driftwood" />
+                </Enumerations>
+            </Definition>
+        </Item>
+-->
+
+		<Item name="Obstacle_Height" caption="Obstacle height [m]">
+			<Definition position="cell" valueType="real" default="-99999999.0" />
+		</Item>
+		<Item name="Underpass_Top_Height" caption="Underpass top height [m]">
+			<Definition position="cell" valueType="real" default="-99999999.0" />
+		</Item>
+		<Item name="Underpass_Bottom_Height" caption="Underpass bottom height [m]">
+			<Definition position="cell" valueType="real" default="-99999999.0" />
+		</Item>
+
+	</GridRelatedCondition>
+</SolverDefinition>
