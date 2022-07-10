@@ -1653,9 +1653,28 @@
     </message>
 
     <message>
-        <source>Pump velocity [m/s]l</source>
+        <source>Pump top cell</source>
+        <translation>ポンプ最上層セル番号</translation>
+    </message>
+
+    <message>
+        <source>Pump velocity [m/s]</source>
         <translation>吐出し速度[m/s]</translation>
     </message>
 
+    <message>
+       <source>River or colsed basin</source>
+        <translation>計算対象は河川か閉鎖性水域か？</translation>
+    </message>
+
+    <message>
+       <source>River</source>
+        <translation>河川の計算</translation>
+    </message>
+
+    <message>
+       <source>Closed basin</source>
+        <translation>閉鎖性水域の計算</translation>
+    </message>
 </context>
 </TS>
