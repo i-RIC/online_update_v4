@@ -1617,5 +1617,45 @@
         <translation>ランダムウォーク法による乱流の考慮</translation>
     </message>
 
+    <message>
+        <source>Pump settings</source>
+        <translation>ポンプの設定</translation>
+    </message>
+
+    <message>
+        <source>Consider pump or not?</source>
+        <translation>ポンプを設置する?</translation>
+    </message>
+
+    <message>
+        <source>Consider pump</source>
+        <translation>設置する</translation>
+    </message>
+
+    <message>
+        <source>No pump</source>
+        <translation>設置しない</translation>
+    </message>
+
+    <message>
+        <source>Pump direction</source>
+        <translation>吐出し方向</translation>
+    </message>
+
+    <message>
+        <source>xi-direction</source>
+        <translation>ξ方向</translation>
+    </message>
+
+    <message>
+        <source>Pump bottom cell</source>
+        <translation>ポンプ最下層セル番号</translation>
+    </message>
+
+    <message>
+        <source>Pump velocity [m/s]l</source>
+        <translation>吐出し速度[m/s]</translation>
+    </message>
+
 </context>
 </TS>
