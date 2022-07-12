@@ -2,7 +2,7 @@
 <SolverDefinition 
 	name="CERI1D"
 	caption="CERI1D"
-	version="1.1.6"
+	version="1.1.7"
 	copyright="Yasuhiro Yoshikawa and Civil Engineering Research Institute for Cold Region"
 	release="2018.08.24"
 	homepage="http://i-ric.org"
