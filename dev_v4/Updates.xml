@@ -375,19 +375,6 @@
   <SHA1>8451dc17a055bc2107c29273a321102291de0bf1</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.YukiHiramatsu_CERI1D</Name>
-  <DisplayName>CERI1D</DisplayName>
-  <Description/>
-  <Version>1.1.6</Version>
-  <Default>true</Default>
-  <ReleaseDate>2018-08-24</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="127188" UncompressedSize="664725" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>dfdb28bfe15e33276b469f391cef581551ad118f</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iricelimo_elimo</Name>
   <DisplayName>Elimo</DisplayName>
   <Description/>
@@ -492,7 +479,7 @@
   <UpdateFile CompressedSize="5110557" UncompressedSize="36965530" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>c8b7716ea3519b1b7d91d4078c1adcf9743b1db9</SHA1>
  </PackageUpdate>
@@ -573,5 +560,18 @@
   <UpdateFile CompressedSize="148502" UncompressedSize="749889" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>3f71211dc3487d33b568133d60954ba09cdb2bee</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.YukiHiramatsu_CERI1D</Name>
+  <DisplayName>CERI1D</DisplayName>
+  <Description/>
+  <Version>1.1.6</Version>
+  <Default>true</Default>
+  <ReleaseDate>2018-08-24</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="664725" CompressedSize="127187" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>3327babe772a4cb7a603082fecb7cf5dbc01e256</SHA1>
  </PackageUpdate>
 </Updates>
