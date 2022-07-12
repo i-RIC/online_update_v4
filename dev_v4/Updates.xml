@@ -284,19 +284,6 @@
   <SHA1>063056dfb0807abca88f29226bbc45e32d4e85e7</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.tamakisumner_iric_v4_solver</Name>
-  <DisplayName>Sample Solver</DisplayName>
-  <Description/>
-  <Version>1.0.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-09-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="2276" CompressedSize="912" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>41f40d61adc5907162a5769feb2c1d3c24e06851</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.kazutake_Mflow_test</Name>
   <DisplayName>Mflow22_02_ver1 64 bit for iRIC ver.4</DisplayName>
   <Description/>
