@@ -388,19 +388,6 @@
   <SHA1>344b419266d253c4f6d04e0c2ff6dad114dc9b26</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.kskinoue0612_nays2dp</Name>
-  <DisplayName>Nays2d+</DisplayName>
-  <Description/>
-  <Version>1.1.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-03-20</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1391303" CompressedSize="381340" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>fdb13f4b5983e59ab8726f8b23d8b4b60814d708</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.champon487_Boussinesq2D</Name>
   <DisplayName>Boussinesq2D Tracer Model</DisplayName>
   <Description/>
