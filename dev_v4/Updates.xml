@@ -562,19 +562,6 @@
   <SHA1>3f71211dc3487d33b568133d60954ba09cdb2bee</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.YukiHiramatsu_CERI1D</Name>
-  <DisplayName>CERI1D</DisplayName>
-  <Description/>
-  <Version>1.1.6</Version>
-  <Default>true</Default>
-  <ReleaseDate>2018-08-24</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="664725" OS="Any" CompressedSize="127187"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>3327babe772a4cb7a603082fecb7cf5dbc01e256</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_CERI1D</Name>
   <DisplayName>CERI1D</DisplayName>
   <Description/>
