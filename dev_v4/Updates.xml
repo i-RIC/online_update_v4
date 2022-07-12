@@ -414,19 +414,6 @@
   <SHA1>fdb13f4b5983e59ab8726f8b23d8b4b60814d708</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.kskinoue0612_test_solver_20220601_01</Name>
-  <DisplayName>test_solver_20220601_01</DisplayName>
-  <Description />
-  <Version>1.0.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-09-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="914" UncompressedSize="2300" />
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>518f9272dcff73caf1537b58ad7ff24c6916e9f3</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.champon487_Nays2DH</Name>
   <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
   <Description />
