@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SolverDefinition
+<SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="Mvl_flow_level1"
-	caption="Fbml_flow3_ver2022.1 64 bit for iRIC ver.4"
+	caption="Fbml_flow3 iRIC4 ver1.1"
 	version="1.2022.1"
 	copyright="Mineyuki Gamou"
 	release="2022.07.01"
