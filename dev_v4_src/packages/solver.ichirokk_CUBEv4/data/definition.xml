@@ -2,8 +2,8 @@
 
 <SolverDefinition
 name="NaysCUBE_v3" caption="NaysCUBE v3.43.68" version="3.43.68" copyright="Ichiro Kimura"
-release="2022.7.12" homepage="http://i-ric.org/"
-executable="nayscube.exe"
+release="2022.4.16" homepage="http://i-ric.org/"
+executable="go_cube.bat"
 iterationtype="time"
 gridtype="structured2d"
 >
