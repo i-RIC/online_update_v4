@@ -390,19 +390,6 @@
   <SHA1>c2651fc64743bdb45281b894812abc2838369eaf</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_CERI1D</Name>
-  <DisplayName>CERI1D</DisplayName>
-  <Description/>
-  <Version>1.1.7</Version>
-  <Default>true</Default>
-  <ReleaseDate>2018-08-24</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="664725" OS="Any" CompressedSize="127193"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>d44d8833bc9e4aa1be5dc43d6c54af98cb521b7a</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.champon487_Nays2DH</Name>
   <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
   <Description/>
@@ -521,5 +508,18 @@
   <UpdateFile UncompressedSize="79558" OS="Any" CompressedSize="17657"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>799dc2cc8f9ac9c6af65f1b42d030e27f4b9763e</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_CERI1D</Name>
+  <DisplayName>CERI1D</DisplayName>
+  <Description/>
+  <Version>1.1.7</Version>
+  <Default>true</Default>
+  <ReleaseDate>2018-08-24</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="664725" OS="Any" CompressedSize="127198"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>e95a06d3cf31c729258772f6746edb90f928a1a7</SHA1>
  </PackageUpdate>
 </Updates>
