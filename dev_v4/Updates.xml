@@ -284,19 +284,6 @@
   <SHA1>063056dfb0807abca88f29226bbc45e32d4e85e7</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.kazutake_Mflow_test</Name>
-  <DisplayName>Mflow22_02_ver1 64 bit for iRIC ver.4</DisplayName>
-  <Description/>
-  <Version>3.2020.2</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-06-02</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="46581" CompressedSize="4955" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>aa3f1dc8cf043a75535f781b3221306547baca86</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.kazutake_SRM_test</Name>
   <DisplayName>SRM</DisplayName>
   <Description/>
@@ -389,19 +376,6 @@
  </PackageUpdate>
  <SHA1>fb942b79cb4409dd32e190cc61efa51f13f66686</SHA1>
  <MetadataName>2022-06-27-2307_meta.7z</MetadataName>
- <PackageUpdate>
-  <Name>solver.MGAMOU_Mflow_test</Name>
-  <DisplayName>Mflow22_02_ver1 64 bit for iRIC ver.4</DisplayName>
-  <Description/>
-  <Version>3.2022.1</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-07-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1086679" CompressedSize="256787" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>ae942c690a2324e87242ab2e1e45bafc6d8d2a10</SHA1>
- </PackageUpdate>
  <PackageUpdate>
   <Name>solver.fastmech</Name>
   <DisplayName>FaSTMECH</DisplayName>
