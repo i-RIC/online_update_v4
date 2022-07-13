@@ -310,19 +310,6 @@
   <SHA1>770c3b56390bda785a3c7568af9beacf55006317</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.TakKONO_EvaTRiP_Pro</Name>
-  <DisplayName>EvaTRiP Pro</DisplayName>
-  <Description/>
-  <Version>1.0.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-04-27</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="79619" OS="Any" CompressedSize="17855"/>
-  <DownloadableArchives>__pycache__.7z,content.7z</DownloadableArchives>
-  <SHA1>9576a80266a0f44fc3d0434c32ace8f2d5150ba2</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.tamakisumner_Nays2D_Flood</Name>
   <DisplayName>Nays2D Flood v5.0 64 bit</DisplayName>
   <Description/>
