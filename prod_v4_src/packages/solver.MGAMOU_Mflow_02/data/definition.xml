@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SolverDefinition
+<SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="Mflow_02"
 	caption="Mflow22_02_ver2"
-	version="3.2022.2"
+	version="3.2022.1"
 	copyright="Mineyuki Gamou"
 	release="2022.07.01"
 	homepage="http://i-ric.org"

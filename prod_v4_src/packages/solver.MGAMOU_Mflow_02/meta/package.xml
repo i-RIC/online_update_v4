@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Mflow22_02_ver2</DisplayName>
 	<Description></Description>
-	<Version>3.2022.2</Version>
+	<Version>3.2022.1</Version>
 	<Default>true</Default>
 	<ReleaseDate>2022-07-01</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
