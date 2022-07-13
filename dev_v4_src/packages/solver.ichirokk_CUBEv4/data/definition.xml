@@ -3,10 +3,10 @@
 <SolverDefinition
 name="NaysCUBE_v3" caption="NaysCUBE v3.43.68" version="3.43.68" copyright="Ichiro Kimura"
 release="2022.4.16" homepage="http://i-ric.org/"
-executable="nayscube..exe"
+executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
-> 
+>
 
 <!-- 計算条件の定義 -->
 <CalculationCondition>
