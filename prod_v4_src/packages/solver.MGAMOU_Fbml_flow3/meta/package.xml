@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Fbml_flow3_ver2022.1 64 bit for iRIC ver.4</DisplayName>
+	<Description></Description>
+	<Version>1.2022.1</Version>
+	<Default>true</Default>
+	<ReleaseDate>2022-07-01</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
