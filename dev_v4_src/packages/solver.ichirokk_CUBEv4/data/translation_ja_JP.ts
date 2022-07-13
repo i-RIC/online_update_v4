@@ -1623,6 +1623,11 @@
     </message>
 
     <message>
+        <source>Pump cell</source>
+        <translation>ポンプ</translation>
+    </message>
+
+    <message>
         <source>Consider pump or not?</source>
         <translation>ポンプを設置する?</translation>
     </message>
@@ -1663,7 +1668,7 @@
     </message>
 
     <message>
-       <source>River or colsed basin</source>
+       <source>River or closed basin</source>
         <translation>計算対象は河川か閉鎖性水域か？</translation>
     </message>
 
