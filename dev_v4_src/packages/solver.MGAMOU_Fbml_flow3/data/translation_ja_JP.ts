@@ -1229,10 +1229,8 @@
         <translation>密度の拡散係数</translation>
     </message>
     <message>
-        <source>Diffusion coefficient of suspended load or density
-(Specific value)</source>
-        <translation>密度または浮遊砂の拡散係数
-（直接入力）</translation>
+        <source>Diffusion coefficient of suspended load or density(Specific value)</source>
+        <translation>密度または浮遊砂の拡散係数（直接入力）</translation>
     </message>
     <message>
         <source>     Diffusion coefficient of suspended load</source>
