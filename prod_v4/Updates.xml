@@ -309,19 +309,6 @@
   <SHA1>07a97a921b1e037cc33bf20e52f952e10f84e443</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.nays2dh</Name>
-  <DisplayName>Nays2DH</DisplayName>
-  <Description>Nays2DH is a computational model for simulating horizontal two-dimensional (2D) flow, sediment transport, morphological changes of bed and banks in rivers.</Description>
-  <Version>1.5.301</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-10-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="1689284" CompressedSize="432739"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>0704bcf3696db11ba2fc1e9fd84180fed17aa521</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.champon487_Nays2DH</Name>
   <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
   <Description/>

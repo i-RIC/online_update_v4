@@ -310,19 +310,6 @@
   <SHA1>770c3b56390bda785a3c7568af9beacf55006317</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.tamakisumner_Nays2D_Flood</Name>
-  <DisplayName>Nays2D Flood v5.0 64 bit</DisplayName>
-  <Description/>
-  <Version>5.0.1509</Version>
-  <Default>true</Default>
-  <ReleaseDate>2018-11-30</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="232404" UncompressedSize="960105" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>8451dc17a055bc2107c29273a321102291de0bf1</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iricelimo_elimo</Name>
   <DisplayName>Elimo</DisplayName>
   <Description/>
@@ -363,19 +350,6 @@
  </PackageUpdate>
  <SHA1>fb942b79cb4409dd32e190cc61efa51f13f66686</SHA1>
  <MetadataName>2022-06-27-2307_meta.7z</MetadataName>
- <PackageUpdate>
-  <Name>solver.starfieldKt_nays2dp</Name>
-  <DisplayName>Nays2d+</DisplayName>
-  <Description/>
-  <Version>1.1.1</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-06-13</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="381652" UncompressedSize="1391303" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>c2651fc64743bdb45281b894812abc2838369eaf</SHA1>
- </PackageUpdate>
  <PackageUpdate>
   <Name>solver.champon487_Nays2DH</Name>
   <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
