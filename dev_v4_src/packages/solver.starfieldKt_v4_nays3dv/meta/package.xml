@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>nays3dv 3D Density Flow Solver</DisplayName>
+	<Description></Description>
+	<Version>1.7.3</Version>
+	<Default>true</Default>
+	<ReleaseDate>2021-01-18</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
