@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SolverDefinition
+  name="v4_gridgen"
+  caption="Sample gridgen"
+  version="1.0"
+  copyright="Keisuke Inoue"
+  release="2021.09.01"
+  homepage="http://google.com/"
+  executable="solver.exe"
+  iterationtype="time"
+>
+	<CalculationCondition>
+		<Tab name="time" caption="Time Conditions">
+			<Item name="dt" caption="Calculation Time Step[sec]">
+				<Definition valueType="real" default="0.1">
+				</Definition>
+			</Item>
+			<Item name="toutput" caption="Output Interval[sec]">
+				<Definition valueType="real" default="600.0">
+				</Definition>
+			</Item>
+			<Item name="stime" caption="Calculation Start Time[sec]">
+				<Definition valueType="real" default="0.0">
+				</Definition>
+			</Item>
+			<Item name="etime" caption="Calculation End Time from the Start Time[sec]">
+				<Definition valueType="real" default="86400.0">
+				</Definition>
+			</Item>
+		</Tab>
+		
+	</CalculationCondition>
+</SolverDefinition>
