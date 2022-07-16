@@ -594,7 +594,7 @@ gridtype="structured2d"
           </Definition>
         </Item>
 
-        <Item name="c_dump" caption="Relaxation coeffieient for slope collapse">
+        <Item name="c_dump" caption="Relaxation coefficient for slope collapse">
           <Definition conditionType="constant" valueType="real" option="false" default="0.2" max="1.0">
             <Dependency>
               <Condition type="and">
