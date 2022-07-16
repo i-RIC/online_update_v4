@@ -1688,12 +1688,12 @@
     </message>
 
     <message>
-       <source>Slope collapse model</source>
+       <source>Consider slope collapse</source>
         <translation>安息角による斜面崩落を考慮</translation>
     </message>
 
     <message>
-       <source>Slope collapse model</source>
+       <source>No slope collapse</source>
         <translation>斜面崩落を考慮しない</translation>
     </message>
 
