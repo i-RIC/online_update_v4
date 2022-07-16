@@ -1681,5 +1681,30 @@
        <source>Closed basin</source>
         <translation>閉鎖性水域の計算</translation>
     </message>
+
+    <message>
+       <source>Slope collapse model</source>
+        <translation>安息角斜面崩落モデル</translation>
+    </message>
+
+    <message>
+       <source>Slope collapse model</source>
+        <translation>安息角による斜面崩落を考慮</translation>
+    </message>
+
+    <message>
+       <source>Slope collapse model</source>
+        <translation>斜面崩落を考慮しない</translation>
+    </message>
+
+    <message>
+       <source>Max number of iteration for slope collapse</source>
+        <translation>斜面崩落計算における最大繰り返し数</translation>
+    </message>
+
+    <message>
+       <source>Relaxation coefficient for slope collapse</source>
+        <translation>斜面崩落計算緩和係数</translation>
+    </message>
 </context>
 </TS>
