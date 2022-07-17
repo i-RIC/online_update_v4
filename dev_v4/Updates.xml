@@ -559,4 +559,17 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>02083f958f89281f3494365a8bc61d6a9ba21f65</SHA1>
  </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.ichirokk_Uchannel_generator</Name>
+  <DisplayName>U-shape channel generator</DisplayName>
+  <Description/>
+  <Version>1.1.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-02-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="410821" CompressedSize="62220"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>9b8ea861fc16ffbff02784d46029e443def74dff</SHA1>
+ </PackageUpdate>
 </Updates>

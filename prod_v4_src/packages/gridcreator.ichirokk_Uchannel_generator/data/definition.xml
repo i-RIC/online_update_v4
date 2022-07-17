@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridGeneratorDefinition 
+  xmlns="www.iric.net/GridGeneratorDefinition/1.0"
+  name="U-channel" caption="U-shape channel generator" version="1.1" 
+  copyright="Ichiro Kimura" executable="Uchannel_gen.exe" gridtype="structured2d"
+>
+
+<GridGeneratingCondition>
+  <Tab name="Channel_scales" caption="Scales of channel components">
+    <Item name="chl_inn" caption="Length of upstream straight part">
+      <Definition valueType="real" default="1.0" />
+    </Item>
+    <Item name="chl_out" caption="Length of downstream straight part">
+      <Definition valueType="real" default="1.0" />
+    </Item>
+    <Item name="chl_wid" caption="Channel width">
+      <Definition valueType="real" default="1.0" />
+    </Item>
+    <Item name="r_curve" caption="Curvature radius of the arc part">
+      <Definition valueType="real" default="1.0" />
+    </Item>
+    <Item name="deg_arc" caption="Angle of the arc part [deg]">
+      <Definition valueType="real" default="180.0" />
+    </Item>
+    <Item name="slope" caption="Channel slope">
+      <Definition valueType="real" default="0.002" />
+    </Item>
+  </Tab>
+
+  <Tab name="Numbers_of_cells" caption="Number of cells for each components">
+    <Item name="n_inn" caption="Number of cells for upstream straight part">
+       <Definition valueType="integer" default="10" max="999"/>
+    </Item>
+    <Item name="n_arc" caption="Number of cells for arc part">
+       <Definition valueType="integer" default="10" max="999"/>
+    </Item>
+    <Item name="n_out" caption="Number of cells for downstream straight part">
+       <Definition valueType="integer" default="10" max="999"/>
+    </Item>
+    <Item name="n_wid" caption="Number of cells for channel width (even number)">
+       <Definition valueType="integer" default="10" max="999"/>
+    </Item>
+  </Tab>
+
+  <Tab name="Stretch_ratio" caption="Stretch ratios for each part">
+    <Item name="str_inn" caption="Stretch ratio for upstream straight part">
+      <Definition valueType="real" default="0.9" />
+    </Item>
+    <Item name="str_out" caption="Stretch ratio for downstream straight part">
+      <Definition valueType="real" default="1.1" />
+    </Item>
+    <Item name="str_wid" caption="Stretch ratio for lateral direction">
+      <Definition valueType="real" default="1.1" />
+    </Item>
+  </Tab>
+
+</GridGeneratingCondition>
+
+</GridGeneratorDefinition>
+
