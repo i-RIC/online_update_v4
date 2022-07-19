@@ -95,6 +95,7 @@ public:
 	bool polyDataSolutionExists() const;
 	H5CgnsPolyDataSolution* polyDataSolution();
 
+	int copyGridTo(H5CgnsBase* target);
 	int copyGridTo(H5CgnsZone* target);
 	int flush();
 	void clearSolutionGroups();

@@ -463,6 +463,10 @@ def cg_iRIC_Read_Grid_FunctionalTimeSize_WithGridId(fid, gid, name):
 	_checkErrorCode(ier)
 	return count
 
+def cg_iRIC_Copy_Grid_WithGridId(fid_from, fid_to, gid):
+	ier = _iric.cg_iRIC_Copy_Grid_WithGridId(fid_from, fid_to, gid)
+	_checkErrorCode(ier)
+
 
 # from iriclib_grid_solverlib.h
 def cg_iRIC_Read_Grid2d_Open_WithGridId(fid, gid):
@@ -686,6 +690,10 @@ def cg_iRIC_Read_Grid_FunctionalTimeSize(fid, name):
 	ier, count = _iric.cg_iRIC_Read_Grid_FunctionalTimeSize(fid, name)
 	_checkErrorCode(ier)
 	return count
+
+def cg_iRIC_Copy_Grid(fid_from, fid_to):
+	ier = _iric.cg_iRIC_Copy_Grid(fid_from, fid_to)
+	_checkErrorCode(ier)
 
 def cg_iRIC_Read_Grid2d_Open(fid):
 	ier, grid_handle = _iric.cg_iRIC_Read_Grid2d_Open(fid)
@@ -1174,6 +1182,33 @@ def cg_iRIC_Write_Grid3d_Coords_WithGridId(fid, isize, jsize, ksize, x_arr, y_ar
 	_checkErrorCode(ier)
 	return gid
 
+def cg_iRIC_Write_NamedGrid1d_Coords_WithGridId(fid, name, isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier, gid = _iric.cg_iRIC_Write_NamedGrid1d_Coords_WithGridId(fid, name, isize, x)
+	_checkErrorCode(ier)
+	return gid
+
+def cg_iRIC_Write_NamedGrid2d_Coords_WithGridId(fid, name, isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier, gid = _iric.cg_iRIC_Write_NamedGrid2d_Coords_WithGridId(fid, name, isize, jsize, x, y)
+	_checkErrorCode(ier)
+	return gid
+
+def cg_iRIC_Write_NamedGrid3d_Coords_WithGridId(fid, name, isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier, gid = _iric.cg_iRIC_Write_NamedGrid3d_Coords_WithGridId(fid, name, isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+	return gid
+
 def cg_iRIC_Write_Grid_Real_Node_WithGridId(fid, gid, name, v_arr):
 	v = RealArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1432,6 +1467,30 @@ def cg_iRIC_Write_Grid3d_Coords(fid, isize, jsize, ksize, x_arr, y_arr, z_arr):
 	z = RealArrayContainer(z_arr.size)
 	z.set(z_arr)
 	ier = _iric.cg_iRIC_Write_Grid3d_Coords(fid, isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_NamedGrid1d_Coords(fid, name, isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier = _iric.cg_iRIC_Write_NamedGrid1d_Coords(fid, name, isize, x)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_NamedGrid2d_Coords(fid, name, isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier = _iric.cg_iRIC_Write_NamedGrid2d_Coords(fid, name, isize, jsize, x, y)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_NamedGrid3d_Coords(fid, name, isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier = _iric.cg_iRIC_Write_NamedGrid3d_Coords(fid, name, isize, jsize, ksize, x, y, z)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Grid_Real_Node(fid, name, v_arr):
