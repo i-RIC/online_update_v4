@@ -560,19 +560,6 @@
   <SHA1>76f65c584aa79c0431d3e2ffe0017b8b68e8a8c9</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.takeh2nd_Morpho2DH</Name>
-  <DisplayName>Morpho2DH</DisplayName>
-  <Description/>
-  <Version>1.0.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-09-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="2272" OS="Any" CompressedSize="911"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>03be15cb7a22c12c1028aed4232c213eea98ce03</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_Morpho2DH</Name>
   <DisplayName>Morpho2DH</DisplayName>
   <Description/>
