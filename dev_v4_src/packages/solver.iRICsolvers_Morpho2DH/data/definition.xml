@@ -1,67 +1,357 @@
-<?xml version="1.0" encoding="utf-8"?>
-<SolverDefinition
-  name="Morpho2DH"
-  caption="Morpho2DH"
-  version="1.0"
-  copyright="RiverLINK, Co., Ltd."
-  release="2021.09.01"
-  homepage="http://river-link.co.jp/"
-  executable="solver.exe"
-  iterationtype="time"
->
-	<CalculationCondition>
-		<Tab name="time" caption="Time Conditions">
-			<Item name="dt" caption="Calculation Time Step[sec]">
-				<Definition valueType="real" default="0.1">
-				</Definition>
-			</Item>
-			<Item name="toutput" caption="Output Interval[sec]">
-				<Definition valueType="real" default="600.0">
-				</Definition>
-			</Item>
-			<Item name="stime" caption="Calculation Start Time[sec]">
-				<Definition valueType="real" default="0.0">
-				</Definition>
-			</Item>
-			<Item name="etime" caption="Calculation End Time from the Start Time[sec]">
-				<Definition valueType="real" default="86400.0">
-				</Definition>
-			</Item>
-		</Tab>
-		
-	</CalculationCondition>
-
-
-	<GridRelatedCondition>
-		<Item name="elevation" caption="Elevation[m]">
-			<Definition position="cell" valueType="real" default="max" />
-		</Item>
-		<Item name="roughness" caption="Manning Roughness[]">
-			<Definition position="cell" valueType="real" default="0.028" />
-		</Item>
-		<Item name="obstacle" caption="Obstacle">
-			<Definition position="cell" valueType="integer" default="0">
-				<Enumeration value="0" caption="Normal cell" />
-				<Enumeration value="1" caption="Obstacle" />
-			</Definition>
-		</Item>
-	</GridRelatedCondition>
-	
-	<BoundaryCondition name="inflow" caption="Inflow" position="edge">
-		<Item name="discharge" caption="Discharge Time Series">
-			<Definition conditionType="functional">
-				<Parameter valueType="real" caption="Time[hour]"/>
-				<Value valueType="real" caption="Discharge[m3/s]"/>
-			</Definition>
-		</Item>
-	</BoundaryCondition>
-	<BoundaryCondition name="outflow" caption="Outflow" position="edge">
-		<Item name="waterlevel" caption="Water Level Time Series">
-			<Definition conditionType="functional">
-				<Parameter valueType="real" caption="Time[hour]"/>
-				<Value valueType="real" caption="Water Level[m]"/>
-			</Definition>
-		</Item>
-	</BoundaryCondition>
-	
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SolverDefinition xmlns="www.iric.net/SolverDefinition/1.0" name="morpho2d" caption="Morpho2DH v1.0" version="1.0" copyright="Hiroshi Takebayashi" release="2014.11.01" homepage="http://www.google.co.jp/" executable="Morpho2d.exe" iterationtype="time" gridtype="structured2d">
+  <CalculationCondition>
+    <Tab name="discharge" caption="Boundary Conditions">
+      <Content>
+        <Items>
+          <Item name="discharge" caption="Discharge">
+            <Definition conditionType="functional">
+              <Parameter valueType="real" caption="Time (s)" />
+              <Value valueType="real" caption="Discharge (m3/s)" />
+            </Definition>
+          </Item>
+          <Item name="stage_at_downstream" caption="Stage at Downstream">
+            <Definition conditionType="functional">
+              <Parameter valueType="real" caption="Time (s)" />
+              <Value valueType="real" caption="Stage (m)" />
+            </Definition>
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+    <Tab name="parameters" caption="Calculation Type and Data">
+      <Content>
+        <Items>
+          <Item name="calculation_type" caption="Calculation Type">
+            <Definition conditionType="constant" valueType="integer" option="true" default="2">
+              <Enumerations>
+                <Enumeration value="0" caption="Flow Only" />
+                <Enumeration value="1" caption="Bed Material Load" />
+                <Enumeration value="2" caption="Debris/Mud Flow" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="start_time" caption="Start Time (s)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0" min="0" />
+          </Item>
+          <Item name="end_time" caption="End Time (s)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0" min="start_time">
+              <Dependency>
+                <Condition type="always" target="start_time" />
+                <Action type="setMinimum" target="start_time" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <Item name="computational_timestep" caption="Computational Time Step (s)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0" min="0" />
+          </Item>
+          <Item name="output_timestep_for_file" caption="Output Time Step for File (s)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0" min="0" />
+          </Item>
+          <Item name="output_timestep_for_screen" caption="Output Time Step for Screen (s)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0" min="0" />
+          </Item>
+          <Item name="bed_evolution_time" caption="Bed Deformation Start Time (s)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0" min="0" />
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+    <Tab name="sediment_transport" caption="Calculation Conditions (Bed Material Load)">
+      <Content>
+        <Items>
+          <Item name="secondary_flow_coefficient" caption="Secondary Flow Coefficient">
+            <Definition conditionType="constant" valueType="real" option="false" default="7.0" min="0" />
+          </Item>
+          <Item name="permeability" caption="Coefficient of Permeability (m/s)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.0001" min="0" />
+          </Item>
+          <Item name="sediment_transport_type" caption="Sediment Transport Type">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="Bed Load" />
+                <Enumeration value="1" caption="Bed and Suspended Load" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="suspended_sediment_type" caption="Suspended Load Equation">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="Lane-Kalinske Equation" />
+                <Enumeration value="1" caption="Kishi-Itakura Equation" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="non_erodable_height" caption="Non-Erodable Height">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+              <Enumerations>
+                <Enumeration value="0" caption="Enabled" />
+                <Enumeration value="1" caption="Disabled" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="upstream_slope" caption="Upstream Bed Slope">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="Average" />
+                <Enumeration value="1" caption="Input Value" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="upstream_slope_value" caption="Upstream Bed Slope Value">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.001" min="0">
+              <Dependency>
+                <Condition type="isEqual" target="upstream_slope" value="1" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <Item name="rat_sed_to_equilib_sed_disch_us" caption="Ratio of Sediment Discharge to &lt;br&gt;Equilibrium Sediment Discharge">
+            <Definition conditionType="constant" valueType="real" option="false" default="1.0" min="1.0" />
+          </Item>
+          <Item name="rat_of_sed_dt_to_flow_dt" caption="Ratio of Bed Deformation DT to Flow DT">
+            <Definition conditionType="constant" valueType="real" option="false" default="1.0" min="1.0" />
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+    <Tab name="sediment_transport2" caption="Calculation Conditions (Debris/Mud Flow)">
+      <Content>
+        <Items>
+          <Item name="concentration_cal" caption="Sediment Concentration">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+              <Enumerations>
+                <Enumeration value="0" caption="Change" />
+                <Enumeration value="1" caption="Constant" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="sediment_concentration_value" caption="Sediment Concentration Value">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.4" min="0">
+              <Dependency>
+                <Condition type="isEqual" target="concentration_cal" value="1" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <Item name="original_liquid_density" caption="Original Liquid Density">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.6" min="0" />
+          </Item>
+          <Item name="sediment_density" caption="Sediment Density">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.6" min="0" />
+          </Item>
+          <Item name="static_deposition_concentration" caption="Static Deposition Sediment Concentration">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.6" min="0" />
+          </Item>
+          <Item name="liquid_behavior_sediment_ratio" caption="Liquid Behavior Sediment Ratio">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.2" min="0" />
+          </Item>
+          <Item name="minimum_flow_depth" caption="Minimum Flow Depth (m)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.01" min="0" />
+          </Item>
+          <Item name="internal_friction_angle" caption="Internal Friction Angle (degree)">
+            <Definition conditionType="constant" valueType="real" option="false" default="34" min="0" />
+          </Item>
+          <Item name="laminar_flow_depth" caption="Laminar Flow Depth">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="Change" />
+                <Enumeration value="1" caption="Constant" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="laminar_flow_depth_ratio" caption="Laminar Flow Depth Ratio">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.4" min="0">
+              <Dependency>
+                <Condition type="isEqual" target="laminar_flow_depth" value="1" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <Item name="resistance_coefficient" caption="Resistance Coefficient">
+            <Definition conditionType="constant" valueType="real" option="false" default="72" min="0" />
+          </Item>
+          <Item name="non_erodable_height2" caption="Non-Erodable Height">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+              <Enumerations>
+                <Enumeration value="0" caption="Enabled" />
+                <Enumeration value="1" caption="Disabled" />
+              </Enumerations>
+            </Definition>
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+    <Tab name="bed_material" caption="Bed Material">
+      <Content>
+        <Items>
+          <Item name="bed_material_type" caption="Bed Material Type">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="Uniform" />
+                <Enumeration value="1" caption="Non-Uniform" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="mean_grain_diameter" caption="Mean Grain Diameter (m)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.01" min="0">
+              <Dependency>
+                <Condition type="isEqual" target="bed_material_type" value="0" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <Item name="sediment_grainsize" caption="Grain Size Distribution">
+            <Definition conditionType="functional">
+              <Parameter name="Diameter" valueType="real" caption="Diameter (m)" />
+              <Value name="Surface_Fraction" valueType="real" caption="Fraction" />
+              <Value name="Subsurface_Fraction" valueType="real" caption="Fraction" />
+			  <Value name="Surface_Fraction2" valueType="real" caption="Fraction" />
+              <Dependency>
+                <Condition type="isEqual" target="bed_material_type" value="1" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <!--<Item name="subsurface_grainsize" caption="Sub-Active Layer Grain size Distribution">
+						<Definition conditionType="functional">
+							<Parameter valueType="real" caption="Fraction" />
+							<Dependency>
+								<Condition type="isEqual" target="bed_material_type" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>-->
+          <Item name="exchage_layer_thickness" caption="Exchange Layer Thickness (m)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.3" min="0">
+              <Dependency>
+                <Condition type="isEqual" target="bed_material_type" value="1" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <Item name="number_of_deposition_layers" caption="Number Of Deposition Layer">
+            <Definition conditionType="constant" valueType="integer" option="false" default="25" min="1" max="30">
+              <Dependency>
+                <Condition type="isEqual" target="bed_material_type" value="1" />
+              </Dependency>
+            </Definition>
+          </Item>
+          <Item name="initial_layer_number" caption="Initial Layer Number">
+            <Definition conditionType="constant" valueType="integer" option="false" default="15" min="1">
+              <Dependency>
+                <Condition type="isEqual" target="bed_material_type" value="1" />
+              </Dependency>
+            </Definition>
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+    <Tab name="vegetation" caption="Vegetation">
+      <Content>
+        <Items>
+          <Item name="vegetation_density" caption="Vegetation Density">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+              <Enumerations>
+                <Enumeration value="0" caption="Enabled" />
+                <Enumeration value="1" caption="Disabled" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="vegetation_height" caption="Vegetation Height">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+              <Enumerations>
+                <Enumeration value="0" caption="Enabled" />
+                <Enumeration value="1" caption="Disabled" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="root_depth" caption="Vegetation Erosion Depth (m)">
+            <Definition conditionType="constant" valueType="real" option="false" default="0.5" min="0" />
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+    <Tab name="obstacle" caption="Obstacle">
+      <Content>
+        <Items>
+          <Item name="obstacle_switch" caption="Obstacle">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="Disabled" />
+                <Enumeration value="1" caption="Enabled" />
+              </Enumerations>
+            </Definition>
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+    <Tab name="hot_start" caption="Hot Start">
+      <Content>
+        <Items>
+          <Item name="hot_start" caption="Hot Start">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+              <Enumerations>
+                <Enumeration value="0" caption="New" />
+                <Enumeration value="1" caption="Continue" />
+              </Enumerations>
+            </Definition>
+          </Item>
+          <Item name="continue_file" caption="Continue File">
+            <Definition conditionType="constant" valueType="filename" option="false" default="flow.prn">
+              <Dependency>
+                <Condition type="isEqual" target="hot_start" value="1" />
+                <Action type="disable" />
+              </Dependency>
+            </Definition>
+          </Item>
+        </Items>
+      </Content>
+    </Tab>
+  </CalculationCondition>
+  <GridRelatedCondition>
+    <!-- RMCD changed Bed Elevation to Elevation for consistency in MD_SWMS -->
+    <Item name="Elevation" caption="Elevation">
+      <Definition position="node" valueType="real" default="max" />
+    </Item>
+    <Item name="Roughness" caption="Roughness">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="FixedBedElevation" caption="FixedBedElevation">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="FixedBedElevationP" caption="FixedBedElevationP">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="VegetationDensity" caption="VegetationDensity">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="VegetationHeight" caption="VegetationHeight">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="Obstacle" caption="Obstacle">
+      <Definition position="node" valueType="integer" default="1" option="true">
+        <Enumerations>
+          <Enumeration value="1" caption="Normal" />
+          <Enumeration value="2" caption="Obstacle" />
+        </Enumerations>
+      </Definition>
+    </Item>
+    <Item name="LandSlide" caption="LandSlide">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="LandSlideTime" caption="LandSlideTime">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="MaxErosionDepth" caption="MaxErosionDepth">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="SurfaceSediment2" caption="SurfaceSediment2">
+      <Definition position="node" valueType="real" default="0" />
+    </Item>
+  </GridRelatedCondition>
+  <BoundaryCondition name="inflow" caption="Inflow" position="node">
+    <Item name="qt1" caption="Discharge time series">
+      <Definition conditionType="functional">
+        <Parameter valueType="real" caption="Time" />
+        <Value valueType="real" caption="Discharge(m3/s)" />
+      </Definition>
+    </Item>
+    <Item name="slope1" caption="Slope value at inflow">
+      <Definition valueType="real" default="0.001"></Definition>
+    </Item>
+  </BoundaryCondition>
 </SolverDefinition>
