@@ -2,7 +2,7 @@
 <SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="Mvl_flow_level1"
-	caption="Fbml_flow3 iRIC4 ver1.1"
+	caption="Fbml_flow3 iRIC4 ver 1.1"
 	version="1.2022.1"
 	copyright="Mineyuki Gamou"
 	release="2022.07.01"
@@ -1019,7 +1019,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<GroupBox caption=" 水面での光量">
+						<!--<GroupBox caption=" 水面での光量">
 							<Item name="DIF_PARA10_FIX" caption="     設定方法">
 								<Definition conditionType="constant" valueType="integer" option="true" default="1">
 									<Enumerations>
@@ -1044,7 +1044,7 @@
 									</Dependency>
 								</Definition>
 							</Item>
-						</GroupBox>
+						</GroupBox>-->
 					</GroupBox>
 				</Items>
 			</Content>
@@ -2221,11 +2221,11 @@
 		<Item name="DIF_PARA_10" caption="物質拡散の緒係数（生態系（詳細）モデル）">
 			<Definition position="node" valueType="complex" keepOrder="true">
 				<GroupBox caption=" 生態系（詳細）モデルの拡散計算の緒係数">
-					<Item name="FIS_CHL_FRX" caption="     水面での光量(cal/m**2/day)">
+					<!--<Item name="FIS_CHL_FRX" caption="     水面での光量(cal/m**2/day)">
 						<Definition position="node" conditionType="constant" valueType="real" option="false" default="0.0">
 							<Action type="enable"/>
 						</Definition>
-					</Item>
+					</Item>-->
 					<Item name="SPOP_RIN_PARA10" caption="     巻き上がった SS 量に含まれる懸濁態有機リンの割合 (％)">
 						<Definition position="node" conditionType="constant" valueType="real" option="false" default="0.0">
 							<Action type="enable"/>
