@@ -279,22 +279,11 @@
 						<Item name="LAY_FRC_PARA" caption="内部せん断力">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<!--<Enumeration value="0" caption="マニング則より算定" />-->
 									<Enumeration value="1" caption="全領域一定" />
 									<Enumeration value="2" caption="水域ごとに可変" />
 								</Enumerations>
 							</Definition>
 						</Item>
-						<!--<Item name="LAY_MNG" caption="     マニング粗度係数">
-							<Definition conditionType="functional">
-								<Parameter name="LAY_NM4" valueType="real" caption="層"/>
-								<Value name="FRIC_MNG" valueType="real" caption="マニング粗度係数"/>
-								<Dependency>
-									<Condition type="isEqual" target="LAY_FRC_PARA" value="0"/>
-									<Action type="enable"/>
-								</Dependency>
-							</Definition>
-						</Item>-->
 						<Item name="LAY_FRC" caption="     層間の内部せん断力">
 							<Definition conditionType="functional">
 								<Parameter name="LAY_NM3" valueType="real" caption="層"/>
@@ -461,7 +450,7 @@
 						</Item>
  					</GroupBox>
 					<GroupBox caption="水面での熱収支">
-						<Item name="QQS_SURF" caption="     完全晴天時の日射量 (cal/m**2/day)">
+						<Item name="QQS_SURF" caption="     完全晴天時の日射量 (cal/cm**2/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_06" value="1"/>
@@ -984,7 +973,7 @@
 							<Definition conditionType="functional" >
 								<Parameter name="MPN_FIX44" valueType="real" caption="植物プランクトン種"/>
 								<Value name="BTM10_CHL_FIX" valueType="real" caption="最適水温(℃)"/>
-								<Value name="FIS10_CHL_FIX" valueType="real" caption="最適日射量(cal/m**2/day)"/>
+								<Value name="FIS10_CHL_FIX" valueType="real" caption="最適日射量(cal/cm**2/day)"/>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
