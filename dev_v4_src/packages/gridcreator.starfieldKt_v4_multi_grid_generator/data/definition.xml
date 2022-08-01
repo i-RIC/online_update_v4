@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridGeneratorDefinition 
+  xmlns="www.iric.net/GridGeneratorDefinition/1.0"
+  name="gridgenerator" caption="Multifunction Grid Genarator" version="1.0" 
+  copyright="Yasuyuki Shimizu" executable="gridgen.exe" gridtype="structured2d"
+>
+
+<GridGeneratingCondition>
+  <Tab name="Channel" caption="Channel Shape">
+    <Item name="j_chn" caption="Select Channel Shape">
+      <Definition valueType="integer" default="0">
+	  <Enumeration value="0" caption="Straight"/>
+          <Enumeration value="1" caption="Sine-generated curve"/>
+          <Enumeration value="2" caption="Zigzad"/>
+	  <Enumeration value="3" caption="Kinoshita Meandering Curve"/>
+      </Definition>
+    </Item>
+
+    <Item name="j_zpt" caption="Grid Patern of Zigzag Channel">
+       <Definition valueType="integer" default="1">
+	   <Enumeration value="1" caption="Pattern I"/>
+	   <Enumeration value="2" caption="Pattern II"/>
+	   <Condition type="isEqual" target="j_chn" value="2"/>
+	</Definition>
+    </Item>
+
+    <Item name="j_cmp" caption="Cross Sectional Shape">
+      <Definition valueType="integer" default="1">
+          <Enumeration value="1" caption="Single Cross Section"/>
+          <Enumeration value="2" caption="Compound Cross Section"/>
+      </Definition>
+    </Item>
+
+    <Item name="j_cmpt" caption="Compound Cross Section Pattern">
+      <Definition valueType="integer" default="1">
+          <Enumeration value="1" caption="Pararel to Main Channel"/>
+          <Enumeration value="2" caption="With Straight Levees"/>
+          <Enumeration value="3" caption="Meandering Levees"/>
+	  <Condition type="and">
+            <Condition type="isEqual" target="j_cmp" value="2"/>
+	    <Condition type="isLessEqual" target="j_chn" value="2"/>
+	  </Condition>
+      </Definition>
+    </Item>
+
+
+</Tab>
+<Tab name="Cross Section" caption="Cross Sectional Shape Parameters">
+  <GroupBox caption="Single Cross Section">
+	<Item name="width" caption="Width(m)">
+		<Definition valueType="real" default="0.2">
+			<Condition type="isEqual" target="j_cmp" value="1"/>
+		</Definition>
+	</Item>
+	<Item name="ny" caption="Number of Grid in Lateral Direction">
+		<Definition valueType="integer" default="8" max="9999">
+			<Condition type="isEqual" target="j_cmp" value="1"/>
+		</Definition>
+	</Item>
+  </GroupBox>
+  <GroupBox caption="Compound Channel">
+	<GroupBox caption="Numbers of Grids">
+		<Item name="ny_l" caption="Left Floodplain">
+		   <Definition valueType="integer" default="5" max="9999">
+			<Condition type="isEqual" target="j_cmp" value="2"/>
+		   </Definition>
+		</Item>
+		<Item name="ny_c" caption="Low Water Channel">
+		   <Definition valueType="integer" default="5" max="9999">
+			<Condition type="isEqual" target="j_cmp" value="2"/>
+		   </Definition>
+		</Item>
+		<Item name="ny_r" caption="Right Floodplain">
+		   <Definition valueType="integer" default="5" max="9999">
+			<Condition type="isEqual" target="j_cmp" value="2"/>
+		   </Definition>
+		</Item>
+	</GroupBox>
+		<Item name="height_l" caption="Low Water Channel Depth(m)">
+		   <Definition valueType="real" default="0.02">
+			<Condition type="isEqual" target="j_cmp" value="2"/>
+		   </Definition>
+		</Item>
+		<Item name="alpha_l" caption="Bank Slope Raitio of Low Water Channel">
+		   <Definition valueType="real" default="2.0">
+			<Condition type="isEqual" target="j_cmp" value="2"/>
+		   </Definition>
+		</Item>
+		<Item name="ny_m" caption="Numbers of Grids in Low Water Channel Bank">
+		   <Definition valueType="integer" default="1" max="9999">
+			<Condition type="isEqual" target="j_cmp" value="2"/>
+		   </Definition>
+		</Item>
+  </GroupBox>
+  <GroupBox caption="Simple Compound Channel">
+	<GroupBox caption="Channel Width">
+		<Item name="width_l" caption="Left Flood Channel Width(m)">
+		   <Definition valueType="real" default="0.3">
+			<Condition type="and">
+			  <Condition type="isEqual" target="j_cmp" value="2"/>
+			  <Condition type="isEqual" target="j_cmpt" value="1"/>
+			</Condition>
+		   </Definition>
+		</Item>
+		<Item name="width_c" caption="Low Water Channel Width(m)">
+		   <Definition valueType="real" default="0.3">
+			<Condition type="and">
+			  <Condition type="isEqual" target="j_cmp" value="2"/>
+			  <Condition type="isEqual" target="j_cmpt" value="1"/>
+			</Condition>
+		   </Definition>
+		</Item>
+		<Item name="width_r" caption="Right Flood Channel Width(m)">
+		   <Definition valueType="real" default="0.3">
+			<Condition type="and">
+			  <Condition type="isEqual" target="j_cmp" value="2"/>
+			  <Condition type="isEqual" target="j_cmpt" value="1"/>
+			</Condition>
+		   </Definition>
+		</Item>
+	</GroupBox>
+  </GroupBox>
+  <GroupBox caption="With Straight or Meandering Levees">
+	<Item name="width_t" caption="Total Width(m)">
+	    <Definition valueType="real" default="2.0">
+		<Condition type="and">
+		<Condition type="isEqual" target="j_cmp" value="2"/>
+		<Condition type="isEqual" target="j_cmpt" value="2"/>
+	        </Condition>
+	    </Definition>
+	</Item>
+	<Item name="width_ct" caption="Low Water Channel Width(m)">
+	    <Definition valueType="real" default="0.3">
+		<Condition type="and">
+		<Condition type="isEqual" target="j_cmp" value="2"/>
+		<Condition type="isGreaterEqual" target="j_cmpt" value="2"/>
+	        </Condition>
+	    </Definition>
+	</Item>
+	<Item name="width_tl" caption="Left Levee Distance from Channel Center(m)">
+	    <Definition valueType="real" default="2.0">
+		<Condition type="and">
+		<Condition type="isEqual" target="j_cmp" value="2"/>
+		<Condition type="isEqual" target="j_cmpt" value="3"/>
+	        </Condition>
+	    </Definition>
+	</Item>
+	<Item name="width_tr" caption="Right Levee Distance from Channel Center(m)">
+	    <Definition valueType="real" default="2.0">
+		<Condition type="and">
+		<Condition type="isEqual" target="j_cmp" value="2"/>
+		<Condition type="isEqual" target="j_cmpt" value="3"/>
+	        </Condition>
+	    </Definition>
+	</Item>
+  </GroupBox>
+</Tab>
+
+<Tab name="Channel Shape Parameters" caption="Channel Shape Parameters">
+
+
+	<Item name="sl" caption="Wave Length of Meander(m)">
+		<Definition valueType="real" option="false" default="3"/>
+	</Item>
+	<Item name="irns" caption="Wave Number">
+		<Definition valueType="integer" default="1" max="9999"/>
+	</Item>
+	<Item name="phi0" caption="Meander Angle(degree)">
+		<Definition valueType="real" default="0">
+		  <Condition type="isGreaterThan" target="j_chn" value="0"/>
+		</Definition>
+	</Item>
+
+	<Item name="nt" caption="Number of Grids in One Wave Length">
+		<Definition valueType="integer" default="20" max="9999"/>
+	</Item>
+
+  <GroupBox caption="Levee Meander Parameters">
+	<Item name="phi_b" caption="Meander Angle(degree)">
+	<Definition valueType="real" default="0">
+	<Condition type="and">
+	<Condition type="isEqual" target="j_cmp" value="2"/>
+	<Condition type="isEqual" target="j_cmpt" value="3"/>
+	</Condition>
+	</Definition>
+	</Item>
+
+	<Item name="wl_b" caption="Meander Wave Length(m)">
+	<Definition valueType="real" default="3.0">
+	<Condition type="and">
+	<Condition type="isEqual" target="j_cmp" value="2"/>
+	<Condition type="isEqual" target="j_cmpt" value="3"/>
+	</Condition>
+	</Definition>
+	</Item>
+
+ 	<Item name="plag_b" caption="Phase Lag from LWC(m)">
+	<Definition valueType="real" default="0">
+	<Condition type="and">
+	<Condition type="isEqual" target="j_cmp" value="2"/>
+	<Condition type="isEqual" target="j_cmpt" value="3"/>
+	</Condition>
+	</Definition>
+	</Item>
+
+  </GroupBox>
+
+
+  <GroupBox caption="Kinoshita Meander Parameters">
+	<Item name="phi1" caption="Additionl Meander Angle(degree)">
+		<Definition valueType="real" default="10">
+		<Condition type="isEqual" target="j_chn" value="3"/>
+		</Definition>
+	</Item>
+	<Item name="sk_n1" caption="n1(Wave Number of the second term)">
+		<Definition valueType="real" default="3.0">
+		<Condition type="isEqual" target="j_chn" value="3"/>
+		</Definition>
+	</Item>
+  </GroupBox>
+
+</Tab>
+
+
+
+
+
+<Tab name="Bed and Channel Shape" caption="Bed and Channel Shape">
+
+<Item name="j_bar" caption="Initial Bed Shape">
+	<Definition conditionType="constant" valueType="integer" option="true" default="1">
+	<Enumerations>
+	<Enumeration value="1" caption="Flat (no bar)"/>
+	<Enumeration value="2" caption="Alternate Bar"/>
+	<Enumeration value="3" caption="Parabolic Shape"/>
+	</Enumerations>
+		
+	</Definition>
+</Item>
+
+
+<Item name="amp" caption="Bar Height or Amplitute of Parabolic Shape(m)">
+	<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+	<Condition type="isGreaterEqual" target="j_bar" value="2"/>
+	</Definition>
+</Item>
+
+
+<Item name="delta" caption="Lag Btween Bar and Plane Geometry(m)">
+	<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+	<Condition type="isEqual" target="j_bar" value="2"/>
+	</Definition>
+</Item>
+
+<Item name="slope" caption="Channel Slope">
+	<Definition conditionType="constant" valueType="real" option="false" default="0.001"/>
+</Item>
+
+</Tab>
+
+<Tab name="Upstream and Downstream Condition" caption="Upstream and Downstream Condition">
+<Item name="j_add" caption="Add straight channel in upstream and downstream">
+	<Definition valueType="integer" default="0">
+	<Enumerations>
+	<Enumeration value="0" caption="Not Add"/>
+	<Enumeration value="1" caption="Add Channel"/>
+	</Enumerations>
+	</Definition>
+</Item>
+<Item name="ni_up" caption="Number of Adding Sections in Upstream End">
+	<Definition valueType="integer" default="10">
+	<Condition type="isEqual" target="j_add" value="1"/>
+	</Definition>
+</Item>
+
+<Item name="ni_down" caption="Number of Adding Sections in Downstream End">
+	<Definition valueType="integer" default="10">
+	<Condition type="isEqual" target="j_add" value="1"/>
+	</Definition>
+</Item>
+</Tab>
+
+<Tab name="Width Variation" caption="Width Variation">
+
+<Item name="j_width" caption="Width Variation">
+	<Definition valueType="integer" default="1">
+	<Enumerations>
+	<Enumeration value="1" caption="Constant Width"/>
+	<Enumeration value="2" caption="Width Variation in Stream Drection"/>
+	</Enumerations>
+	</Definition>
+</Item>
+
+<Item name="j_width_type" caption="Width Variation Type">
+	<Definition valueType="integer" default="1">
+	<Enumerations>
+	<Enumeration value="1" caption="Both Banks"/>
+	<Enumeration value="2" caption="Left Bank Only"/>
+	<Enumeration value="3" caption="Right Bank Only"/>
+	</Enumerations>
+	<Condition type="isEqual" target="j_width" value="2"/>
+	</Definition>
+</Item>
+
+<Item name="delta_b" caption="Width Deviation(m)">
+	<Definition valueType="real" default="0.05">
+	<Condition type="isEqual" target="j_width" value="2"/>
+	</Definition>
+</Item>
+
+</Tab>
+
+<Tab name="Bed Contition" caption="Bed Condition">
+
+<GroupBox caption="Low Water Channel">
+
+<Item name="j_fix_l" caption="Bed Condition">
+	<Definition valueType="integer" default="0">
+	<Enumerations>
+	<Enumeration value="0" caption="Moveable Bed"/>
+	<Enumeration value="1" caption="Fixed Bed"/>
+	</Enumerations>
+	</Definition>
+</Item>
+
+<Item name="j_rough_l" caption="Roughness Definition">
+	<Definition valueType="integer" default="0">
+	<Enumerations>
+	<Enumeration value="0" caption="Not Specified"/>
+	<Enumeration value="1" caption="Set Manning's Roughness"/>
+	</Enumerations>
+	</Definition>
+</Item>
+
+<Item name="roughness_l" caption="Roughness Value">
+	<Definition valueType="real" default="0.02">
+		<Condition type="isEqual" target="j_rough_l" value="1"/>
+	</Definition>
+</Item>
+
+</GroupBox>
+
+<GroupBox caption="Floodplain">
+
+<Item name="j_fix_h" caption="Bed Condition">
+	<Definition valueType="integer" default="0">
+	<Enumerations>
+	<Enumeration value="0" caption="Moveable Bed"/>
+	<Enumeration value="1" caption="Fixed Bed"/>
+	</Enumerations>
+	<Condition type="isEqual" target="j_cmp" value="2"/>
+	</Definition>
+</Item>
+
+<Item name="j_rough_h" caption="Roughness Definition">
+	<Definition valueType="integer" default="0">
+	<Enumerations>
+	<Enumeration value="0" caption="Not Specify"/>
+	<Enumeration value="1" caption="Set Manning's Roughness"/>
+	</Enumerations>
+	<Condition type="isEqual" target="j_cmp" value="2"/>
+	</Definition>
+</Item>
+
+<Item name="roughness_h" caption="Roughness Value">
+	<Definition valueType="real" default="0.05">
+		<Condition type="and">
+		<Condition type="isEqual" target="j_rough_h" value="1"/>
+		<Condition type="isEqual" target="j_cmp" value="2"/>
+		</Condition>
+	</Definition>
+</Item>
+
+</GroupBox>
+
+</Tab>
+
+
+</GridGeneratingCondition>
+<ErrorCodes>
+    <ErrorCode value="1" caption="IMax * JMax must be smaller than 100,000." />
+  </ErrorCodes>
+</GridGeneratorDefinition >
+
