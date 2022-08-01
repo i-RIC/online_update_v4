@@ -1,0 +1,4 @@
+﻿Nays2d+ is a quasi 3 dimensional flow solver based on Nays2d which is a depth
+averaged 2 dimensional flow model.   In the Nays2d+, secondary flow is
+calculated using results of depth, depth averaged velocities and streamline
+curvature.  
