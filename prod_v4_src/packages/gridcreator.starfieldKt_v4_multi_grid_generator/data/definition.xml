@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net/GridGeneratorDefinition/1.0"
-  name="gridgenerator" caption="Multifunction Grid Genarator" version="1.0" 
+  name="gridgenerator" caption="Multifunction Grid Genarator" version="1.0.22080101" 
   copyright="Yasuyuki Shimizu" executable="gridgen.exe" gridtype="structured2d"
 >
 
