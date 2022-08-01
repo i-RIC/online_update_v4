@@ -3,7 +3,7 @@
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="nays2dv" 
 	caption="Nasy2dv vertical 2D model " 
-	version="1.0.20220801.01"
+	version="1.6.20220801.01"
 	copyright="Yasuyuki SHIMIZU"
 	release="2022.8.1"
 	homepage="http://i-ric.org"
