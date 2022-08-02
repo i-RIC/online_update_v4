@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Sample GridGenerator</DisplayName>
+	<Description></Description>
+	<Version>1.0.1</Version>
+	<Default>true</Default>
+	<ReleaseDate>2022-07-14</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
