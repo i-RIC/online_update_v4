@@ -372,7 +372,7 @@
   <UpdateFile CompressedSize="5066458" UncompressedSize="36966030" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>b6d0b08c85df431311f9748ff5a257d7b368082c</SHA1>
  </PackageUpdate>
@@ -440,19 +440,6 @@
   <SHA1>22b0bd5430f5335957c737d6c5eceb3736e0971f</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
-  <DisplayName>Multifunction Grid Genarator</DisplayName>
-  <Description/>
-  <Version>1.0.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="87106" UncompressedSize="498221" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>0d2052d99e945df6f27dde14f3244bfbcb833c8c</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.starfieldKt_nays2dv</Name>
   <DisplayName>Nasy2dv vertical 2D model </DisplayName>
   <Description/>
@@ -477,5 +464,18 @@
   <UpdateFile CompressedSize="382165" UncompressedSize="1392377" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>de5817f75c666f3ebd1d02dd7d118801a87e15af</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
+  <DisplayName>Multifunction Grid Genarator</DisplayName>
+  <Description/>
+  <Version>1.0.22080201</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-02</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="87114" UncompressedSize="498221" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>6dc99e992059cd8f09947144a6844d95c5252eaf</SHA1>
  </PackageUpdate>
 </Updates>
