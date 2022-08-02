@@ -440,19 +440,6 @@
   <SHA1>22b0bd5430f5335957c737d6c5eceb3736e0971f</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.starfieldKt_nays2dp</Name>
-  <DisplayName>Nays2d+</DisplayName>
-  <Description/>
-  <Version>1.1.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="67543" CompressedSize="6675"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>b1e249164c585955db88df02dab5684369149a9e</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.starfieldKt_nays2dv</Name>
   <DisplayName>Nasy2dv vertical 2D model </DisplayName>
   <Description/>
@@ -477,5 +464,18 @@
   <UpdateFile OS="Any" UncompressedSize="498221" CompressedSize="87106"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>0d2052d99e945df6f27dde14f3244bfbcb833c8c</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.starfieldKt_nays2dp</Name>
+  <DisplayName>Nays2d+</DisplayName>
+  <Description/>
+  <Version>1.1.22080101</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="1392377" CompressedSize="382163"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>822beaac622cd4e723f64f8d9dc531e9f30a0c49</SHA1>
  </PackageUpdate>
 </Updates>
