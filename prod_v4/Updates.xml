@@ -439,43 +439,4 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>22b0bd5430f5335957c737d6c5eceb3736e0971f</SHA1>
  </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.starfieldKt_v4_nays2dv</Name>
-  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
-  <Description/>
-  <Version>1.6.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="749890" CompressedSize="148617"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>c9a0289fa4d690cf5c7fee0ce9e272f6c174c135</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.starfieldKt_nays2dp</Name>
-  <DisplayName>Nays2d+</DisplayName>
-  <Description/>
-  <Version>1.1.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="1392377" CompressedSize="382164"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>f18617636a3d2fcf9b62d8342a5e8c2c0dec751f</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>gridcreator.starfieldKt_v4_multi_grid_generator</Name>
-  <DisplayName>Multifunction Grid Genarator</DisplayName>
-  <Description/>
-  <Version>1.0.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="498221" OS="Any" CompressedSize="87113"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>1705bc3eeaa8f81a289d49b5748a09fd7c12a12f</SHA1>
- </PackageUpdate>
 </Updates>

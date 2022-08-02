@@ -390,19 +390,6 @@
   <SHA1>e58334b121af2dbec171a6f7d9ef28863603c534</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.starfieldKt_v4_nays3dv</Name>
-  <DisplayName>nays3dv 3D Density Flow Solver</DisplayName>
-  <Description/>
-  <Version>1.7.3</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-01-18</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="279068" OS="Any" UncompressedSize="1116741"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>16c51ef406704a4dac6a5fa2820e4d1c86f84aa4</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator</Name>
   <DisplayName>Grid Generators</DisplayName>
   <Description>Grid Generators that run on iRIC GUI</Description>
@@ -438,19 +425,6 @@
   <UpdateFile CompressedSize="259282" OS="Any" UncompressedSize="1159819"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>484c65b20c7d51ed5ed7ad2d388abb4a376a2aa3</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>gridcreator.starfieldKt_v4_arc_grigen</Name>
-  <DisplayName>2d arc grid generator</DisplayName>
-  <Description/>
-  <Version>1.0.0</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-02-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="71537" OS="Any" UncompressedSize="448891"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>0e985a57fd4a84fb39ec76686919127a526da4ac</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.ichirokk_CUBEv4</Name>
@@ -558,44 +532,5 @@
   <UpdateFile CompressedSize="745779" OS="Any" UncompressedSize="3448387"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>8bbc617a75f42d0134852d05d63a2a6c69a6a118</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.starfieldKt_v4_nays2dv</Name>
-  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
-  <Description/>
-  <Version>1.6.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="148616" OS="Any" UncompressedSize="749890"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>775b20671d7c9175895a1f35cbf21d1295b64a0f</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.starfieldKt_nays2dp</Name>
-  <DisplayName>Nays2d+</DisplayName>
-  <Description/>
-  <Version>1.1.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="382165" OS="Any" UncompressedSize="1392377"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>12709e9481ba87336310e759aa1b968b8c1973e2</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>gridcreator.starfieldKt_v4_multi_grid_generator</Name>
-  <DisplayName>Multifunction Grid Genarator</DisplayName>
-  <Description/>
-  <Version>1.0.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="87112" OS="Any" UncompressedSize="498221"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>390e261b5ee9a8962c0613533ebe26fbe255235d</SHA1>
  </PackageUpdate>
 </Updates>
