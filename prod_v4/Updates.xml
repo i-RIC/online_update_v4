@@ -372,7 +372,7 @@
   <UpdateFile OS="Any" UncompressedSize="36966030" CompressedSize="5066458"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>b6d0b08c85df431311f9748ff5a257d7b368082c</SHA1>
  </PackageUpdate>
@@ -438,5 +438,18 @@
   <UpdateFile OS="Any" UncompressedSize="1364173" CompressedSize="366202"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>22b0bd5430f5335957c737d6c5eceb3736e0971f</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.starfieldKt_nays2dp</Name>
+  <DisplayName>Nays2d+</DisplayName>
+  <Description/>
+  <Version>1.1.22080101</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="67543" CompressedSize="6675"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>b1e249164c585955db88df02dab5684369149a9e</SHA1>
  </PackageUpdate>
 </Updates>
