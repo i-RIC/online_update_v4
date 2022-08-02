@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GuiDefinition 
+  xmlns="www.iric.net/GuiDefinition/1.0"
+  name="sample" caption="Sample GUI" version="1.0.0" release="2022.08.03"
+  copyright="iRIC Organization" essential="true"
+>
+</GuiDefinition>
