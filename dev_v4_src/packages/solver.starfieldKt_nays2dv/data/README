@@ -1,0 +1,5 @@
+﻿Nays2DV is 2Dimensional Vertical plane model developed for calculation of vertical movement of fluid (density currents).
+
+The Nays2DV solver is developed by Professor Yasuyuki Shimizu from Hokkaido University.
+
+Density currents occured due to density differences, arise from temperature variations, suspended solids or dissolved materials. Therefore, formation and evolution of density currents are induced by natural conditions such as saline intrusions, oil spills etc. Density flow is important for problems in lakes, reservoirs and estuaries.
