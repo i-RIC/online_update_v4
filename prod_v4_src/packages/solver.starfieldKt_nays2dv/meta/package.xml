@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Nasy2dv vertical 2D model </DisplayName>
 	<Description></Description>
-	<Version>1.6.22080102</Version>
+	<Version>1.6.22080201</Version>
 	<Default>true</Default>
 	<ReleaseDate>2022-08-02</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
