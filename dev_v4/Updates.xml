@@ -534,19 +534,6 @@
   <SHA1>8bbc617a75f42d0134852d05d63a2a6c69a6a118</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.starfieldKt_nays2dv</Name>
-  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
-  <Description/>
-  <Version>1.6.22080101</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="749890" OS="Any" CompressedSize="148616"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>c446ae546f7a50c8ad2a5bb56e1617a663205c6c</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
   <DisplayName>Multifunction Grid Genarator</DisplayName>
   <Description/>
@@ -571,5 +558,18 @@
   <UpdateFile UncompressedSize="1392377" OS="Any" CompressedSize="382163"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>4e4d3584b76beb1703a3fb866469d218ef3c420a</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.starfieldKt_nays2dv</Name>
+  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
+  <Description/>
+  <Version>1.6.22080102</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-02</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="749890" OS="Any" CompressedSize="148618"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>3e08c0d4ee03d62f3f855d5c424cc70202f28c97</SHA1>
  </PackageUpdate>
 </Updates>
