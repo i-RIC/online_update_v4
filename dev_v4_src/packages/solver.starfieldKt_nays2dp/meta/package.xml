@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Nays2d+</DisplayName>
 	<Description></Description>
-	<Version>1.1.22080101</Version>
+	<Version>1.1.22080102</Version>
 	<Default>true</Default>
-	<ReleaseDate>2022-08-01</ReleaseDate>
+	<ReleaseDate>2022-08-02</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
