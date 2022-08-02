@@ -490,7 +490,7 @@
   <UpdateFile CompressedSize="5061934" UncompressedSize="36977818" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>190f5c25e25b72b56622a72fc3608ca3eef1aebb</SHA1>
  </PackageUpdate>
@@ -547,19 +547,6 @@
   <SHA1>3e08c0d4ee03d62f3f855d5c424cc70202f28c97</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.starfieldKt_nays2dp</Name>
-  <DisplayName>Nays2d+</DisplayName>
-  <Description/>
-  <Version>1.1.22080102</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-02</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="382164" UncompressedSize="1392377" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>86575cd9acba09863628869d16c58bb28643d3ad</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
   <DisplayName>Multifunction Grid Genarator</DisplayName>
   <Description/>
@@ -571,5 +558,18 @@
   <UpdateFile CompressedSize="87113" UncompressedSize="498221" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>a941b6c05b8ddc22e8e313358b0f3623697c4612</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.starfieldKt_nays2dp</Name>
+  <DisplayName>Nays2d+</DisplayName>
+  <Description/>
+  <Version>1.1.22080201</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-02</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="382169" UncompressedSize="1392377" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>72c70db1b6281de7120fe23cfeb8173cc3ccba0b</SHA1>
  </PackageUpdate>
 </Updates>

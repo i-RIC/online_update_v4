@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="nays2d+" caption="Nays2d+" version="1.1.22080102" copyright="Yasuyuki Shimizu"
+    name="nays2d+" caption="Nays2d+" version="1.1.22080201" copyright="Yasuyuki Shimizu"
     release="2022.8.2" homepage="http://i-ric.org"
     executable="nays2d+.exe"
     iterationtype="time"
