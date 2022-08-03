@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridGeneratorDefinition 
+  xmlns="www.iric.net"
+  name="Arc_gridgen_cp" caption="2d arc grid generator (Compound Channel)" version="1.0.22080301" 
+  copyright="Yasuyuki Shimizu" executable="arc_grigen_cp.exe" gridtype="structured2d" release="2022.08.03">
+
+<GridGeneratingCondition>
+<Tab name="Channel(1)" caption="Channel shape">
+
+	<Item name="j_sect" caption="Cross-sectional shape">
+		<Definition conditionType="constant" valueType="integer" option="true" default="1">
+			<Enumerations>
+				<Enumeration value="1" caption="Flat"/>
+				<Enumeration value="2" caption="Point Bar"/>
+				<Enumeration value="3" caption="Parabolic"/>
+			</Enumerations>
+		</Definition>
+	</Item>
+	<Item name="amp" caption="Bar height or Amplitude of parabolic profile(m)">
+		<Definition valueType="real" default="0.1">
+			<Dependency>
+				<Condition type="isGreaterThan" target="j_sect" value="1"/>
+			</Dependency>
+	</Definition>
+	</Item>
+	<Item name="r_center" caption="Centreline radius(m)">
+		<Definition valueType="real" default="0.75">
+		</Definition>
+	</Item>
+	<Item name="arc_degree" caption="Angle of arc(degree)">
+		<Definition valueType="real" default="180">
+		</Definition>
+	</Item>
+	<Item name="width" caption="Channel width(m)">
+		<Definition valueType="real" default="0.3">
+		</Definition>
+	</Item>
+	<Item name="ds0" caption="Grid size in longitudinal direction(m)">
+		<Definition valueType="real" default="0.1">
+		</Definition>
+	</Item>
+	<Item name="ny" caption="Number of grid in lateral direction">
+		<Definition valueType="integer" default="10" max="9999">
+		</Definition>
+	</Item>
+	<Item name="slope" caption="Channel slope">
+		<Definition valueType="real" default="0.005">
+		</Definition>
+	</Item>
+<!--
+	<Item name="roughness" caption="Manning's roughness parameter">
+		<Definition valueType="real" default="0.01">
+		</Definition>
+	</Item>
+-->
+
+</Tab>
+
+
+<Tab name="Channel(2)" caption="Cross section">
+	<Item name="j_cmp" caption="Compound Channel">
+		<Definition conditionType="constant" valueType="integer" option="true" default="0">
+			<Enumerations>
+				<Enumeration value="0" caption="No"/>
+				<Enumeration value="1" caption="Yes"/>
+			</Enumerations>
+			<Dependency>
+				<Condition type="isEqual" target="j_sect" value="1"/>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="rf_width" caption="Right flood plane width">
+		<Definition valueType="real" default="1">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_sect" value="1"/>
+					<Condition type="isEqual" target="j_cmp" value="1"/>
+				</Condition>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="lwc_width" caption="Low water channel width">
+		<Definition valueType="real" default="1">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_sect" value="1"/>
+					<Condition type="isEqual" target="j_cmp" value="1"/>
+				</Condition>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="fp_height" caption="Flood plane height">
+		<Definition valueType="real" default="1">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_sect" value="1"/>
+					<Condition type="isEqual" target="j_cmp" value="1"/>
+				</Condition>
+			</Dependency>
+		</Definition>
+	</Item>
+</Tab>
+
+<Tab name="Channel(3)" caption="Additional channel">
+	<GroupBox caption="Inlet">
+		<Item name="j_inlet" caption="Additional straight channel for inlet">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="No"/>
+					<Enumeration value="1" caption="Yes"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="length_in" caption="Inlet channel length(m)">
+			<Definition valueType="real" default="1">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_inlet" value="1"/>
+				</Condition>
+			</Dependency>
+			</Definition>
+		</Item>
+	</GroupBox>
+	<GroupBox caption="Outlet">
+		<Item name="j_outlet" caption="Additional straight channel for outlet">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="No"/>
+					<Enumeration value="1" caption="Yes"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="length_out" caption="Outlet channel length(m)">
+			<Definition valueType="real" default="1">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_outlet" value="1"/>
+				</Condition>
+			</Dependency>
+			</Definition>
+		</Item>
+	</GroupBox>
+</Tab>
+
+<Tab name="Channel(4)" caption="Roughness and fixed/mobile bed">
+	<GroupBox caption="Roughness">
+		<Item name="j_rough" caption="specify or not specify">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Not specify"/>
+					<Enumeration value="1" caption="Specify"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="roughness_l" caption="Low water channel roughness">
+			<Definition valueType="real" default="0.01">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_rough" value="1"/>
+				</Condition>
+			</Dependency>
+			</Definition>
+		</Item>
+		<Item name="roughness_h" caption="Flood channel roughness">
+			<Definition valueType="real" default="0.03">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_rough" value="1"/>
+					<Condition type="isEqual" target="j_cmp" value="1"/>
+				</Condition>
+			</Dependency>
+			</Definition>
+		</Item>
+	</GroupBox>
+	<GroupBox caption="Fixed bed setup">
+		<Item name="j_fix" caption="Fixed bed setup">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="All moveable"/>
+					<Enumeration value="1" caption="All fixed"/>
+					<Enumeration value="2" caption="Flood plane fixed"/>
+					<Enumeration value="3" caption="Fixed along banks"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+	</GroupBox>
+</Tab>
+
+</GridGeneratingCondition>
+<ErrorCodes>
+    <ErrorCode value="1" caption="IMax * JMax must be smaller than 100,000." />
+  </ErrorCodes>
+</GridGeneratorDefinition >
+

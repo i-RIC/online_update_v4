@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>2d arc grid generator (Compound Channel)</DisplayName>
+	<Description></Description>
+	<Version>1.0.22080301</Version>
+	<Default>true</Default>
+	<ReleaseDate>2022-08-03</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
