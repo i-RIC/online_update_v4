@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridGeneratorDefinition 
+  xmlns="www.iric.net"
+  name="grigen_nays2dv" caption="Grid Generator for Nays2dv" version="1.0.22080301" 
+  copyright="Yasuyuki Shimizu" executable="grigen_nays2dv.exe" gridtype="structured2d"  release="2022.08.03"
+>
+
+<GridGeneratingCondition>
+
+<Tab name="Shape(1)" caption="Channel Bottom Shape">
+	<Item name="j_met" caption="How to set longitudinal bed profile">
+		<Definition conditionType="constant" valueType="integer" option="true" default="1">
+			<Enumerations>
+				<Enumeration value="1" caption="Manually"/>
+				<Enumeration value="2" caption="Automatically"/>
+			</Enumerations>
+		</Definition>
+	</Item>
+	<Item name="nx" caption="Number of Grid in Longitudinal Direction">
+		<Definition valueType="integer" default="61" max="999">
+		</Definition>
+	</Item>
+	<GroupBox caption="Longitudinal Bed Profile Setting(Manually Setting)">
+		<Item name="BedProfile" caption="Longitudinal Bed Profile">
+			<Definition conditionType="functional">
+				<Dependency>
+					<Condition type="isEqual" target="j_met" value="1"/>
+				</Dependency>
+				<Parameter name="x_s" valueType="real" caption="Distance from Upstream End(m)"/>
+				<Value name="z_b" valueType="real" caption="Bed Elevation(m)"/>
+			</Definition>
+		</Item>
+      	</GroupBox>
+
+	<GroupBox caption="Longitudinal Bed Profile Setting(Automatically Setting)">
+		<GroupBox caption="Basic Profile">
+
+		<Item name="chl" caption="Longitudinal Channel Length(m)">
+			<Definition valueType="real" default="1.0">
+				<Dependency>
+					<Condition type="isEqual" target="j_met" value="2"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="b_slope" caption="Bottom Slope">
+			<Definition valueType="real" default="0.00">
+				<Dependency>
+					<Condition type="isEqual" target="j_met" value="2"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="j_bottom" caption="Bottom Shape">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Dependency>
+					<Condition type="isEqual" target="j_met" value="2"/>
+				</Dependency>
+				<Enumerations>
+					<Enumeration value="0" caption="Non Perturbed"/>
+					<Enumeration value="1" caption="Perturb"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="j_bottom_shape" caption="Bottom Perturbation Shape">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Linear Line"/>
+					<Enumeration value="1" caption="Cosine Curve"/>
+					<Enumeration value="2" caption="Dune Shape"/>
+				</Enumerations>
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="b_amp" caption="Amplitude of the Bottom Perturbation">
+			<Definition valueType="real" default="0.1">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+						<Condition type="isLessThan" target="j_bottom_shape" value="2"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="dune_height" caption="Dune Height">
+			<Definition valueType="real" default="0.1">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+						<Condition type="isEqual" target="j_bottom_shape" value="2"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+
+		<Item name="j_amp_unit" caption="Unit of Amplitude or Dune Height">
+			<Definition conditionType="constant" valueType="integer" option="true" default="2">
+				<Enumerations>
+					<Enumeration value="1" caption="Ratio to Water Depth"/>
+					<Enumeration value="2" caption="Actual Height in meter"/>
+				</Enumerations>
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+						<Condition type="isGreaterThan" target="j_bottom_shape" value="0"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+
+		<Item name="b_wavenumber" caption="Wave Number of Bottom Shape">
+			<Definition valueType="real" default="1.0">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+						<Condition type="isGreaterThan" target="j_bottom_shape" value="0"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="b_phase" caption="Phase Lag of Bottom Shape (in meter)">
+			<Definition valueType="real" default="0">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+						<Condition type="isGreaterThan" target="j_bottom_shape" value="0"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		</GroupBox>
+
+		<GroupBox caption="Additional Nodes in the Center of the Channel">
+		<Item name="j_center" caption="Add nodes at center">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Dependency>
+					<Condition type="isEqual" target="j_met" value="2"/>
+				</Dependency>
+				<Enumerations>
+					<Enumeration value="0" caption="No"/>
+					<Enumeration value="1" caption="Yes"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="n_center" caption="Additional grids at center">
+			<Definition valueType="integer" default="0" max="999">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_center" value="1"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		</GroupBox>
+
+		<GroupBox caption="Additional Inlet and Outlet Channel">
+		<Item name="j_add" caption="Channel Add">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Dependency>
+					<Condition type="isEqual" target="j_met" value="2"/>
+				</Dependency>
+				<Enumerations>
+					<Enumeration value="0" caption="No additional channel"/>
+					<Enumeration value="1" caption="Upstream"/>
+					<Enumeration value="2" caption="Downstream"/>
+					<Enumeration value="3" caption="Upstream and Downstream"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="n_up" caption="Additional grids in upstream">
+			<Definition valueType="integer" default="0" max="999">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="1"/>
+						<Condition type="isEqual" target="j_add" value="3"/>
+					</Condition>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="n_down" caption="Additional grids in downstream">
+			<Definition valueType="integer" default="0" max="999">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="2"/>
+						<Condition type="isEqual" target="j_add" value="3"/>
+					</Condition>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		</GroupBox>
+
+	</GroupBox>
+</Tab>
+<Tab name="Shape(2)" caption="Water Surface Shape">
+	<Item name="j_hgive" caption="How to define initial water surface profile">
+		<Definition conditionType="constant" valueType="integer" option="true" default="1">
+			<Enumerations>
+				<Enumeration value="1" caption="specify average depth"/>
+				<Enumeration value="2" caption="specify downstream water surface elevation"/>
+			</Enumerations>
+		</Definition>
+	</Item>
+
+	<GroupBox caption="Vertical Drection">
+		<Item name="h0" caption="Average Channel Depth(m)">
+			<Definition valueType="real" default="0.3">
+				<Dependency>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="h_down" caption="Downstream Water surface Elevation(m)">
+			<Definition valueType="real" default="0.0">
+				<Dependency>
+						<Condition type="isEqual" target="j_hgive" value="2"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="ny" caption="Number of Grid in Z-direction">
+			<Definition valueType="integer" default="21" max="999">
+			</Definition>
+		</Item>
+	</GroupBox>
+	<GroupBox caption="Water Surface">
+		<Item name="s_slope" caption="Water Surface Slope">
+			<Definition valueType="real" default="0.00">
+			</Definition>
+		</Item>
+		<Item name="j_surf" caption="Water Surface Shape">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Dependency>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+				</Dependency>
+				<Enumerations>
+					<Enumeration value="0" caption="None Perturb"/>
+					<Enumeration value="1" caption="Perturb"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="j_surf_shape" caption="Water Surface Perturbation Shape">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Linear Line"/>
+					<Enumeration value="1" caption="Cosine Curve"/>
+				</Enumerations>
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_surf" value="1"/>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="s_amp" caption="Amplitude of the perturbation(ratio to averaged depth)">
+			<Definition valueType="real" default="0.1">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_surf" value="1"/>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+
+		<Item name="js_amp_unit" caption="Unit of Surface Perturbation Amplitude">
+			<Definition conditionType="constant" valueType="integer" option="true" default="1">
+				<Enumerations>
+					<Enumeration value="1" caption="Ratio to Water Depth"/>
+					<Enumeration value="2" caption="Actual Height in meter"/>
+				</Enumerations>
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_surf" value="1"/>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+
+		<Item name="s_wavenumber" caption="Water Surface Wave number">
+			<Definition conditionType="constant" valueType="real" default="1.0">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_surf" value="1"/>
+						<Condition type="isEqual" target="j_surf_shape" value="1"/>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+	</GroupBox>
+</Tab>
+
+
+<Tab name="BackGround" caption="Back Ground Values">
+	<Item name="b_tmp" caption="Back Ground Temperature">
+		<Definition valueType="real" default="15.0">
+		</Definition>
+	</Item>
+	<Item name="b_con" caption="Back Ground Concentration">
+		<Definition valueType="real" default="0.0">
+		</Definition>
+	</Item>
+</Tab>
+
+</GridGeneratingCondition>
+<ErrorCodes>
+    <ErrorCode value="1" caption="IMax * JMax must be smaller than 100,000." />
+  </ErrorCodes>
+</GridGeneratorDefinition >
+
