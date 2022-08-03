@@ -612,19 +612,6 @@
   <SHA1>7cbb1419531daecf136f1b4e92fe925ca7c9b34b</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gridcreator.kskinoue0612_test_gui</Name>
-  <DisplayName>Sample GridGenerator</DisplayName>
-  <Description/>
-  <Version>1.0.1</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-07-14</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="422" OS="Any" CompressedSize="419"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>da37956d135d7bbd65f2413e8f174caccfd5116d</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_grigen_nays2dv</Name>
   <DisplayName>Grid Generator for Nays2dv</DisplayName>
   <Description/>
@@ -649,5 +636,18 @@
   <UpdateFile UncompressedSize="599293" OS="Any" CompressedSize="94702"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>71588fbbb4824077c1c3fc02a5f9217c69a11ff1</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.kskinoue0612_test_gui</Name>
+  <DisplayName>Test GUI</DisplayName>
+  <Description/>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-03</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="265" OS="Any" CompressedSize="359"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>470bba99a21ef2b472284c93332c36d420fd9a16</SHA1>
  </PackageUpdate>
 </Updates>

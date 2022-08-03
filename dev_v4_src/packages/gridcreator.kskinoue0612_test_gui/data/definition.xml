@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GridGeneratorDefinition 
-  xmlns="www.iric.net/GridGeneratorDefinition/1.0"
-  name="gridgen" caption="Sample GridGenerator" version="1.0.1" 
-  copyright="iRIC organization" executable="gridgen.exe" gridtype="structured2d"
-  release="2022.07.14"
+<GuiDefinition 
+  xmlns="www.iric.net/GuiDefinition/1.0"
+  name="testgui" caption="Test GUI" version="1.0" release="2022.08.03"
+  copyright="iRIC Organization"
 >
-
-<GridGeneratingCondition>
-</GridGeneratingCondition>
-</GridGeneratorDefinition >
-
+</GuiDefinition>
