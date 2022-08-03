@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridGeneratorDefinition 
+  xmlns="www.iric.net"
+  name="u-nays3dv" caption="u-shape grid generator for Nays3dv" version="1.0.22080301" 
+  copyright="Yasuyuki Shimizu" executable="u-nays3dv.exe" gridtype="structured2d" release="2022.08.03"
+>
+
+<GridGeneratingCondition>
+<Tab name="Channel" caption="Channel Shape">
+	<Item name="sl_in" caption="Inlet channel length(m)">
+		<Definition valueType="real" default="2">
+		</Definition>
+	</Item>
+	<Item name="sl_out" caption="Outlet channel length(m)">
+		<Definition valueType="real" default="2">
+		</Definition>
+	</Item>
+	<Item name="r_center" caption="Centreline Radius(m)">
+		<Definition valueType="real" default="0.75">
+		</Definition>
+	</Item>
+	<Item name="width" caption="Channel Width(m)">
+		<Definition valueType="real" default="0.3">
+		</Definition>
+	</Item>
+	<Item name="ds0" caption="Grid size in channel direction(m)">
+		<Definition valueType="real" default="0.1">
+		</Definition>
+	</Item>
+	<Item name="ny" caption="Number of Grid in Lateral Direction">
+		<Definition valueType="integer" default="10" max="9999">
+		</Definition>
+	</Item>
+	<Item name="slope" caption="Channel Bed Slope">
+		<Definition valueType="real" default="0.005">
+		</Definition>
+	</Item>
+	<Item name="elv_nx" caption="Bed Elevation of Downstream End(m)">
+		<Definition valueType="real" default="-0.5">
+		</Definition>
+	</Item>
+	<Item name="depth_dw" caption="Downstream Depth(m)">
+		<Definition valueType="real" default="0.5">
+		</Definition>
+	</Item>
+	<Item name="slope_ws" caption="Water Surface Slope">
+		<Definition valueType="real" default="0.005">
+		</Definition>
+	</Item>
+
+</Tab>
+</GridGeneratingCondition>
+<ErrorCodes>
+    <ErrorCode value="1" caption="IMax * JMax must be smaller than 100,000." />
+  </ErrorCodes>
+</GridGeneratorDefinition >
+
