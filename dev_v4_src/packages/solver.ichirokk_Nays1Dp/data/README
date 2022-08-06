@@ -1,0 +1,2 @@
+﻿“Nays1D” is an analytical solver for calculation of steady and unsteady 1D-dimensional open channel flows and riverbed deformations. The solver is developed by Associate Professor Ichiro Kimura of Hokkaido University advised by Prof. Shimizu of Hokkaido University and Mr. Asahi of RIC.
+Users can choose "UnSteady flow model" and "Non Uniform flow model" depending on their purposes. The bed deformation can be calculated using two types of bedload models : Ashida-Michiue model and Kovacs-Parker model.

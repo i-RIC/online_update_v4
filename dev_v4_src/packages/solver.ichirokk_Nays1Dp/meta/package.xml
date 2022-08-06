@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Nays1Dp v.1.00.8 64bit v4</DisplayName>
+	<Description></Description>
+	<Version>1.00.8</Version>
+	<Default>true</Default>
+	<ReleaseDate>2019-11-22</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
