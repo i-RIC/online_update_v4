@@ -13,8 +13,8 @@ set_target_properties(iriclib::iriclib PROPERTIES
   IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/iriclibd.dll"
   )
 
-list(APPEND _IMPORT_CHECK_TARGETS iriclib::iriclib )
-list(APPEND _IMPORT_CHECK_FILES_FOR_iriclib::iriclib "${_IMPORT_PREFIX}/lib/iriclibd.lib" "${_IMPORT_PREFIX}/bin/iriclibd.dll" )
+list(APPEND _cmake_import_check_targets iriclib::iriclib )
+list(APPEND _cmake_import_check_files_for_iriclib::iriclib "${_IMPORT_PREFIX}/lib/iriclibd.lib" "${_IMPORT_PREFIX}/bin/iriclibd.dll" )
 
 # Commands beyond this point should not need to know the version.
 set(CMAKE_IMPORT_FILE_VERSION)
