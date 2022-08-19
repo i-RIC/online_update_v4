@@ -43,6 +43,9 @@ public:
 
 	bool baseExists(int dim) const;
 
+	int deleteResult();
+	int copyExceptSolution(H5CgnsFile* copyTarget);
+
 	int zoneNum() const;
 
 	H5CgnsZone* zoneById(int zid);

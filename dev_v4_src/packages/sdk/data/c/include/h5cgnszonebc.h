@@ -25,6 +25,7 @@ public:
 	H5CgnsBc* bc(const std::string& typeName, int num);
 	bool bcExists(const std::string& typeName, int num) const;
 	int clear();
+	int copyTo(H5CgnsZoneBc* target);
 
 	H5CgnsZone* zone() const;
 

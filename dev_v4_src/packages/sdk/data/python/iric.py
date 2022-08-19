@@ -895,6 +895,10 @@ def cg_iRIC_Write_ErrorCode(fid, errorcode):
 	ier = _iric.cg_iRIC_Write_ErrorCode(fid, errorcode)
 	_checkErrorCode(ier)
 
+def cg_iRIC_Clear_Sol(fid):
+	ier = _iric.cg_iRIC_Clear_Sol(fid)
+	_checkErrorCode(ier)
+
 
 # from iriclib_wrapper.h
 def cg_iRIC_Read_BC_Indices_WithGridId(fid, gid, type, num):

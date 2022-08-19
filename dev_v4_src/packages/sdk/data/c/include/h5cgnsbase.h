@@ -52,6 +52,7 @@ public:
 
 	int setSolutionId(int solutionId);
 	int copyGridsTo(H5CgnsBase* target);
+	int copyExceptSolution(H5CgnsBase* target);
 	int flush();
 
 	H5CgnsFile* file() const;

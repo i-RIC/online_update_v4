@@ -6679,6 +6679,15 @@ contains
 
   end subroutine
 
+  subroutine cg_iric_clear_sol(fid, ier)
+    integer, intent(in):: fid
+    integer, intent(out):: ier
+
+    call cg_iric_clear_sol_f2c &
+      (fid, ier)
+
+  end subroutine
+
 
 
   ! from iriclib_sol_cell.h
