@@ -5,7 +5,7 @@
 -->
     <context>
         <message>
-            <source>Grid Genrator for Nays3dv</source>
+            <source>Grid Generator for Nays3dv</source>
             <translation>Nays3dv用格子作成ツール</translation>
         </message>
         <message>
