@@ -487,8 +487,8 @@
   <ReleaseDate>2022-07-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="282998" UncompressedSize="1141955" OS="Any"/>
+  <UpdateFile CompressedSize="282994" UncompressedSize="1141955" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>752c24886ecc8dede9837e8d6506b8cf35d146e1</SHA1>
+  <SHA1>43a6af510b66ea69db2c92002134feae2bc44aa7</SHA1>
  </PackageUpdate>
 </Updates>
