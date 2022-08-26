@@ -65,14 +65,6 @@
             <translation>Y方向または横断方向のセル数</translation>
         </message>
         <message>
-            <source>Channel Bed Slope of main or central part</source>
-            <translation>主流路部の勾配</translation>
-        </message>
-        <message>
-            <source>Bed Elevation of Downstream End(m)</source>
-            <translation>下流端の河床高(m)</translation>
-        </message>
-        <message>
             <source>Parameters for Kinoshita Meander</source>
             <translation>木下蛇行のパラメーター</translation>
         </message>
@@ -83,6 +75,58 @@
         <message>
             <source>Flatness of Kinoshita Meander</source>
             <translation>平坦度</translation>
+        </message>
+        <message>
+            <source>Longitudinal Profile</source>
+            <translation>河床の縦断形状</translation>
+        </message>
+        <message>
+            <source>Bed profile type</source>
+            <translation>河床形状の種類</translation>
+        </message>
+        <message>
+            <source>One line</source>
+            <translation>一定勾配を与える</translation>
+        </message>
+        <message>
+            <source>Two lines with a brake point</source>
+            <translation>上下流で異なる勾配を与える</translation>
+        </message>
+        <message>
+            <source>Channel Bed Slope of main or central part</source>
+            <translation>主流路部の勾配</translation>
+        </message>
+        <message>
+            <source>Brake point distance from upstream end</source>
+            <translation>上流端から勾配変化点までの距離</translation>
+        </message>
+        <message>
+            <source>Upstream slope</source>
+            <translation>上流側の勾配</translation>
+        </message>
+        <message>
+            <source>Downstream slope</source>
+            <translation>下流側の勾配</translation>
+        </message>
+        <message>
+            <source>Longitudinal Parabolic Bed Elevation Profile</source>
+            <translation>河床の放物線状形状の設定</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>なし</translation>
+        </message>
+        <message>
+            <source>Yes</source>
+            <translation>あり</translation>
+        </message>
+        <message>
+            <source>Longitudinal Amplitude of Parabolic Shape(m)</source>
+            <translation>放物線の頂点の高さ(m)</translation>
+        </message>
+        <message>
+            <source>Bed Elevation at Downstream End(m)</source>
+            <translation>下流端の河床高</translation>
         </message>
         <message>
             <source>Channel Bed Condition</source>

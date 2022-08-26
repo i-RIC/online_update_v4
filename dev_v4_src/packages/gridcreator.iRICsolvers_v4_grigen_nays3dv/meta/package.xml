@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Grid Generator for Nays3dv</DisplayName>
 	<Description></Description>
-	<Version>1.0.22082501</Version>
+	<Version>1.0.22082601</Version>
 	<Default>true</Default>
-	<ReleaseDate>2022-08-25</ReleaseDate>
+	<ReleaseDate>2022-08-26</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

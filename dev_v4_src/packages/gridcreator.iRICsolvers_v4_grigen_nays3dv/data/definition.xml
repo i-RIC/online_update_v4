@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net/GridGeneratorDefinition/1.0"
-  name="grigen_nays3dv" caption="Grid Generator for Nays3dv" version="1.0.22082501" 
-  copyright="Yasuyuki Shimizu" executable="grigen_nays3dv.exe" gridtype="structured2d" release="2022.08.25"
+  name="grigen_nays3dv" caption="Grid Generator for Nays3dv" version="1.0.22082601" 
+  copyright="Yasuyuki Shimizu" executable="grigen_nays3dv.exe" gridtype="structured2d" release="2022.08.26"
 >
 
 <GridGeneratingCondition>
@@ -74,15 +74,6 @@
 	</Item>
 	</GroupBox>
 
-	<Item name="slope" caption="Channel Bed Slope of main or central part">
-		<Definition conditionType="constant" valueType="real" option="false" default="0.005"/>
-	</Item>
-
-	<Item name="elv_nx" caption="Bed Elevation of Downstream End(m)">
-		<Definition valueType="real" default="-0.5">
-		</Definition>
-	</Item>
-
 	<GroupBox caption="Parameters for Kinoshita Meander">
 		<Item name="j_s" caption="Skewness of Kinoshita Meander">
 		<Definition conditionType="constant" valueType="real" option="false" default="0.03125">
@@ -99,6 +90,74 @@
 		</Definition>
 		</Item>
 	</GroupBox>
+
+	<GroupBox caption="Longitudinal Profile">
+	<Item name="j_bed" caption="Bed profile type">
+		<Definition conditionType="constant" valueType="integer" option="true" default="1">
+			<Enumerations>
+				<Enumeration value="1" caption="One line"/>
+				<Enumeration value="2" caption="Two lines with a brake point"/>
+			</Enumerations>
+		</Definition>
+	</Item>
+
+	<Item name="slope" caption="Channel Bed Slope of main or central part">
+		<Definition conditionType="constant" valueType="real" option="false" default="0.005">
+			<Dependency>
+				<Condition type="isEqual" target="j_bed" value="1"/>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="break_pt" caption="Brake point distance from upstream end">
+		<Definition valueType="real" default="100">
+			<Dependency>
+				<Condition type="isEqual" target="j_bed" value="2"/>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="slope_up" caption="Upstream slope">
+		<Definition valueType="real" default="0.001">
+			<Dependency>
+				<Condition type="isEqual" target="j_bed" value="2"/>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="slope_dw" caption="Downstream slope">
+		<Definition valueType="real" default="0.01">
+			<Dependency>
+				<Condition type="isEqual" target="j_bed" value="2"/>
+			</Dependency>
+		</Definition>
+	</Item>
+
+	<Item name="j_para" caption="Longitudinal Parabolic Bed Elevation Profile">
+		<Definition conditionType="constant" valueType="integer" option="true" default="1">
+			<Enumerations>
+				<Enumeration value="1" caption="No"/>
+				<Enumeration value="2" caption="Yes"/>
+			</Enumerations>
+			<Dependency>
+				<Condition type="isEqual" target="j_bed" value="1"/>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="amp_longi" caption="Longitudinal Amplitude of Parabolic Shape(m)">
+		<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+			<Dependency>
+      <Condition type="and">
+				<Condition type="isEqual" target="j_bed" value="1"/>
+				<Condition type="isEqual" target="j_para" value="2"/>
+      </Condition>  
+			</Dependency>
+		</Definition>
+	</Item>
+
+	<Item name="elv_nx" caption="Bed Elevation at Downstream End(m)">
+		<Definition valueType="real" default="-0.5">
+		</Definition>
+	</Item>
+	</GroupBox>
+
 </Tab>
 
 <Tab name="Bed Condition" caption="Channel Bed Condition">
@@ -251,7 +310,7 @@
 		</Definition>
 	</Item>
 	<Item name="up_con_len" caption="Upstream Constant Width Length(m)">
-		<Definition valueType="real" default="0">
+		<Definition valueType="real" default="0.6">
 			<Dependency>
 				<Condition type="isEqual" target="j_width" value="1"/>
 			</Dependency>
