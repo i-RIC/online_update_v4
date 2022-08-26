@@ -435,7 +435,7 @@
   <UpdateFile UncompressedSize="36977799" OS="Any" CompressedSize="5074411"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>a74e939a92999bbc860b7bd125e8d6f295e2bccf</SHA1>
  </PackageUpdate>
@@ -500,8 +500,8 @@
   <ReleaseDate>2022-07-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="3255321" OS="Any" CompressedSize="719219"/>
+  <UpdateFile UncompressedSize="3255321" OS="Any" CompressedSize="719478"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>45c0c024801f71db15da5d2012caa6cb5ff02e6b</SHA1>
+  <SHA1>4b6c2e331a66f5126cc8b3db606385e188e42bba</SHA1>
  </PackageUpdate>
 </Updates>
