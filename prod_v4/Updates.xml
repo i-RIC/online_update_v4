@@ -1,1 +1,520 @@
-<Updates><ApplicationName>{AnyApplication}</ApplicationName><ApplicationVersion>1.0.0</ApplicationVersion><Checksum>true</Checksum><PackageUpdate><Name>gridexporter_plugin</Name><DisplayName>Grid Exporter plugins</DisplayName><Description>Plugins for exporting grid</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2017-04-18</ReleaseDate><SortingPriority>29</SortingPriority><UpdateFile UncompressedSize="0" OS="Any" CompressedSize="0" /><SHA1>81e6196b2ce8be41e2bfeda98227d5f8853e5075</SHA1></PackageUpdate><PackageUpdate><Name>gridexporter_plugin.landxml</Name><DisplayName>Grid LandXML exporter</DisplayName><Description>Grid LandXML exporter</Description><Version>1.0.2</Version><Default>true</Default><ReleaseDate>2020-10-13</ReleaseDate><SortingPriority>30</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="1698" OS="Any" CompressedSize="1141" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>af553234dcc62d1a8cee2f5f0741144fdf9b9ab9</SHA1></PackageUpdate><PackageUpdate><Name>gridexporter_plugin.structured15dhecras</Name><DisplayName>SAC grid HEC-RAS file exporter</DisplayName><Description>SAC grid HEC-RAS file exporter</Description><Version>1.0.2</Version><Default>true</Default><ReleaseDate>2021-04-28</ReleaseDate><SortingPriority>30</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="34883" OS="Any" CompressedSize="13670" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>aa2599557b92df9ccb69059f295eb05176e0cd3b</SHA1></PackageUpdate><PackageUpdate><Name>gridexporter_plugin.structured2dgridnayscsv</Name><DisplayName>Structured grid Nays CSV exporter</DisplayName><Description>Structured grid Nays CSV exporter</Description><Version>1.1.1</Version><Default>true</Default><ReleaseDate>2020-02-03</ReleaseDate><SortingPriority>30</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="33353" OS="Any" CompressedSize="13020" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>8891725b554dbc8d774a1bd1c6947f6a0b209d9c</SHA1></PackageUpdate><PackageUpdate><Name>gridexporter_plugin.structured2dgridnaysgrid</Name><DisplayName>Structured grid Nays grid file exporter</DisplayName><Description>Structured grid Nays grid file exporter</Description><Version>1.0.1</Version><Default>true</Default><ReleaseDate>2020-02-03</ReleaseDate><SortingPriority>30</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="24158" OS="Any" CompressedSize="9858" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>53ffce077d9ca5ee0ae5a52dc0d4c68d7e399685</SHA1></PackageUpdate><PackageUpdate><Name>gridexporter_plugin.structured2dgridvtk</Name><DisplayName>Structured grid VTK file exporter</DisplayName><Description>Structured grid VTK file exporter</Description><Version>1.0.1</Version><Default>true</Default><ReleaseDate>2020-02-03</ReleaseDate><SortingPriority>30</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="22551" OS="Any" CompressedSize="9138" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>62a56590989581174bd5a43306f437ec2da57381</SHA1></PackageUpdate><PackageUpdate><Name>gridexporter_plugin.unstructured2dgridvtk</Name><DisplayName>Unstructured grid VTK file exporter</DisplayName><Description>Unstructured grid VTK file exporter</Description><Version>1.0.1</Version><Default>true</Default><ReleaseDate>2020-02-03</ReleaseDate><SortingPriority>30</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="22557" OS="Any" CompressedSize="9128" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>cb9728cf04248a3dacb31c7fbdd9bd5c839ee220</SHA1></PackageUpdate><PackageUpdate><Name>gridimporter_plugin</Name><DisplayName>Grid Importer plugins</DisplayName><Description>Plugins for importing grid</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2017-04-18</ReleaseDate><SortingPriority>30</SortingPriority><UpdateFile UncompressedSize="0" OS="Any" CompressedSize="0" /><SHA1>d1669db2d658f41d3afb5a79f2973276c10b4b7a</SHA1></PackageUpdate><PackageUpdate><Name>gridimporter_plugin.structured2dgridgdal</Name><DisplayName>Structured grid GDAL importer</DisplayName><Description>Structured grid GDAL importer to import from *.tif and *.asc</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2020-04-17</ReleaseDate><SortingPriority>100</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="78548" OS="Any" CompressedSize="21097" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>6994e40daf7a0f9e17fd987c0568a029b5fb87a6</SHA1></PackageUpdate><PackageUpdate><Name>gridimporter_plugin.structured2dgridnayscsv</Name><DisplayName>Structured grid Nays CSV file importer</DisplayName><Description>Structured grid Nays CSV file importer</Description><Version>1.1.0</Version><Default>true</Default><ReleaseDate>2019-11-30</ReleaseDate><SortingPriority>100</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="37175" OS="Any" CompressedSize="14597" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>41693bdfdfaed196596fd1e2bab6664a56d857d8</SHA1></PackageUpdate><PackageUpdate><Name>gridimporter_plugin.structured2dgridnaysgrid</Name><DisplayName>Structured grid Nays grid file importer</DisplayName><Description>Structured grid Nays grid file importer</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2015-07-01</ReleaseDate><SortingPriority>100</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="26946" OS="Any" CompressedSize="10829" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>c32d4601e72b93160490f036de6ae8d419ece71f</SHA1></PackageUpdate><PackageUpdate><Name>gridimporter_plugin.unstructured2dgridtriangle</Name><DisplayName>Unstructured grid TRIANGLE file importer</DisplayName><Description>Unstructured grid TRIANGLE file importer</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2015-07-01</ReleaseDate><SortingPriority>100</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="25956" OS="Any" CompressedSize="10258" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>3cde87035fc836e96a8d568b1f77fb2a49fddafb</SHA1></PackageUpdate><PackageUpdate><Name>gui</Name><DisplayName>iRIC GUI</DisplayName><Description>Graphical User Interface programs of iRIC</Description><Version>1.0.0</Version><ReleaseDate>2017-04-18</ReleaseDate><SortingPriority>100</SortingPriority><UpdateFile UncompressedSize="0" OS="Any" CompressedSize="0" /><SHA1>900146e2dfc9fcb627340d16a7c3b5494c48aa38</SHA1></PackageUpdate><PackageUpdate><Name>gui.rivmaker</Name><DisplayName>Rivmaker</DisplayName><Description>Riv file maker. You can create *.riv files from survey data.</Description><Version>1.0.5</Version><Default>true</Default><ReleaseDate>2018-05-22</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="102750516" OS="Any" CompressedSize="26581721" /><DownloadableArchives>iconengines.7z,imageformats.7z,languages.7z,platforms.7z,styles.7z,translations.7z,content.7z</DownloadableArchives><SHA1>e67e467e8ac7156652b3411767c33b2114bd5578</SHA1></PackageUpdate><PackageUpdate><Name>miniconda</Name><DisplayName>Miniconda 3</DisplayName><Description>Miniconda 3-py38_4.9.2</Description><Version>1.0.0</Version><Default>false</Default><ReleaseDate>2022-06-01</ReleaseDate><SortingPriority>100</SortingPriority><UpdateFile UncompressedSize="0" OS="Any" CompressedSize="0" /><SHA1>7a7f84a168d52ee78efb8dcfdc62cdab6dd10418</SHA1></PackageUpdate><PackageUpdate><Name>miniconda.iriclib</Name><DisplayName>iriclib for Miniconda 3</DisplayName><Description>iriclib for Miniconda 3</Description><Dependencies /><Version>4.0.31</Version><Default>false</Default><ReleaseDate>2022-05-20</ReleaseDate><SortingPriority>10</SortingPriority><ForcedInstallation>false</ForcedInstallation><Script>installscript.qs</Script><UpdateFile UncompressedSize="6572973" OS="Any" CompressedSize="1402240" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>3e0c65707d41d15092ecfd2cfe6a8e891e86c7ca</SHA1></PackageUpdate><PackageUpdate><Name>miniconda.main</Name><DisplayName>Miniconda 3</DisplayName><Description>Miniconda 3-py38_4.9.2</Description><Dependencies /><Version>4.9.2</Version><Default>false</Default><ReleaseDate>2022-06-01</ReleaseDate><SortingPriority>100</SortingPriority><ForcedInstallation>false</ForcedInstallation><Script>installscript.qs</Script><UpdateFile UncompressedSize="59801695" OS="Any" CompressedSize="58895034" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>1232b2494e6dd996910ad4a2ab83ef911e988a5f</SHA1></PackageUpdate><PackageUpdate><Name>private</Name><DisplayName>Private folders</DisplayName><Description>Private folders to store your original solvers and grid generators</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2021-09-13</ReleaseDate><SortingPriority>20</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="551" OS="Any" CompressedSize="960" /><DownloadableArchives>gridcreators.7z,solvers.7z,content.7z</DownloadableArchives><SHA1>849b9b33de984cdc127ec1f7f2021b97a64befd8</SHA1></PackageUpdate><PackageUpdate><Name>runtime</Name><DisplayName>Runtime libraries</DisplayName><Description>Visual C++ runtime libraries needed to run iRIC system</Description><Version>14.29.30133</Version><ReleaseDate>2021-07-27</ReleaseDate><SortingPriority>5</SortingPriority><ForcedInstallation>true</ForcedInstallation><Script>installscript.qs</Script><UpdateFile UncompressedSize="25167528" OS="Any" CompressedSize="23473550" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>93a7a6bd93d0998a5b1eb59be23a82e0a8b03f2f</SHA1></PackageUpdate><PackageUpdate><Name>sdk</Name><DisplayName>iRIC Solver SDK</DisplayName><Description>Headers and libraries needed to develop iRIC solvers</Description><Version>4.0.31</Version><Default>true</Default><ReleaseDate>2022-05-20</ReleaseDate><SortingPriority>10</SortingPriority><ForcedInstallation>false</ForcedInstallation><Script>installscript.qs</Script><UpdateFile UncompressedSize="24555552" OS="Any" CompressedSize="2606602" /><DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives><SHA1>0f3505813a0d40332345c013600faceadd5029bb</SHA1></PackageUpdate><PackageUpdate><Name>solver</Name><DisplayName>Solvers</DisplayName><Description>Solvers that run on iRIC GUI</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2017-04-18</ReleaseDate><SortingPriority>20</SortingPriority><UpdateFile UncompressedSize="0" OS="Any" CompressedSize="0" /><SHA1>d6d1635abc885ae90c1ee3bd48c3bbc05e1ae89e</SHA1></PackageUpdate><PackageUpdate><Name>solver.cap</Name><DisplayName>CAP</DisplayName><Description>Culvart Analysis Program</Description><Version>2021.0.0</Version><Default>true</Default><ReleaseDate>2022-04-08</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="796557" OS="Any" CompressedSize="254448" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>c22b7f4a28882e126b1b713c8801beddf3bfb71c</SHA1></PackageUpdate><PackageUpdate><Name>solver.fastmech</Name><DisplayName>FaSTMECH</DisplayName><Description>FaSTMECH</Description><Version>1.1.3</Version><Default>true</Default><ReleaseDate>2022-02-01</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="1080372" OS="Any" CompressedSize="258311" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>07a97a921b1e037cc33bf20e52f952e10f84e443</SHA1></PackageUpdate><PackageUpdate><Name>solver.ArrcPWRI_EvaTRiP_Pro</Name><DisplayName>EvaTRiP Pro</DisplayName><Description /><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2021-04-27</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="79558" OS="Any" CompressedSize="17656" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>19fb9d40fdbb17639c2053db1a2fd56f937f5bf4</SHA1></PackageUpdate><PackageUpdate><Name>solver.iRICsolvers_CERI1D</Name><DisplayName>CERI1D</DisplayName><Description /><Version>1.1.7</Version><Default>true</Default><ReleaseDate>2018-08-24</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="664725" OS="Any" CompressedSize="127191" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>2a0fc7f08e7f715d871d08a6289134a3c17f1afb</SHA1></PackageUpdate><PackageUpdate><Name>gridcreator</Name><DisplayName>Grid Generators</DisplayName><Description>Grid Generators that run on iRIC GUI</Description><Version>1.0.0</Version><Default>true</Default><ReleaseDate>2017-04-18</ReleaseDate><SortingPriority>20</SortingPriority><UpdateFile UncompressedSize="0" OS="Any" CompressedSize="0" /><SHA1>f8d1ff92775562110a32a8dfb9d405a7aee3080c</SHA1></PackageUpdate><PackageUpdate><Name>solver.ichirokk_CUBEv4</Name><DisplayName>NaysCUBE</DisplayName><Description /><Version>3.43.69</Version><Default>true</Default><ReleaseDate>2022-07-14</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="12530857" OS="Any" CompressedSize="825898" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>7054ea8916b2c55219bcce5458e6a7c65043f1a8</SHA1></PackageUpdate><PackageUpdate><Name>gridcreator.ichirokk_Uchannel_generator</Name><DisplayName>U-shape channel generator</DisplayName><Description /><Version>1.1.0</Version><Default>true</Default><ReleaseDate>2022-02-01</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="410821" OS="Any" CompressedSize="62218" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>370eddd06ca05ccde501aeb03246bedb7a62cb31</SHA1></PackageUpdate><PackageUpdate><Name>solver.iRICsolvers_Morpho2DH</Name><DisplayName>Morpho2DH v1.0</DisplayName><Description /><Version>1.0.22072201</Version><Default>true</Default><ReleaseDate>2014-11-01</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="1364173" OS="Any" CompressedSize="366202" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>22b0bd5430f5335957c737d6c5eceb3736e0971f</SHA1></PackageUpdate><PackageUpdate><Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name><DisplayName>Multifunction Grid Genarator</DisplayName><Description /><Version>1.0.22080201</Version><Default>true</Default><ReleaseDate>2022-08-02</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="498221" OS="Any" CompressedSize="87114" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>6dc99e992059cd8f09947144a6844d95c5252eaf</SHA1></PackageUpdate><PackageUpdate><Name>solver.iRICsolvers_nays2dp</Name><DisplayName>Nays2d+</DisplayName><Description /><Version>1.1.22080301</Version><Default>true</Default><ReleaseDate>2022-08-03</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="1392377" OS="Any" CompressedSize="382157" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>836fdebb9d52dc9a859bcf9a7d3bf57beed5efa3</SHA1></PackageUpdate><PackageUpdate><Name>solver.iRICsolvers_nays2dv</Name><DisplayName>Nasy2dv vertical 2D model </DisplayName><Description /><Version>1.6.22080301</Version><Default>true</Default><ReleaseDate>2022-08-03</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="749890" OS="Any" CompressedSize="148612" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>f409c26fbcc91f45380fa4f27866774f6b671ca6</SHA1></PackageUpdate><PackageUpdate><Name>gui.prepost</Name><DisplayName>iRIC v4 (release)</DisplayName><Description>iRIC Main GUI</Description><Version>4.0.0.6841</Version><ReleaseDate>2022-07-22</ReleaseDate><SortingPriority>100</SortingPriority><ForcedInstallation>true</ForcedInstallation><Script>installscript.qs</Script><UpdateFile UncompressedSize="36977799" OS="Any" CompressedSize="5074411" /><DownloadableArchives>languages.7z,content.7z</DownloadableArchives><Licenses><License name="MIT License" file="LICENSE" /></Licenses><SHA1>a74e939a92999bbc860b7bd125e8d6f295e2bccf</SHA1></PackageUpdate><PackageUpdate><Name>solver.ichirokk_Nays1Dp</Name><DisplayName>Nays1Dp v.1.00.8 64bit v4</DisplayName><Description /><Version>1.00.8</Version><Default>true</Default><ReleaseDate>2019-11-22</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="714004" OS="Any" CompressedSize="154850" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>ed424db7973cb561fc526649238ac78490f768d0</SHA1></PackageUpdate><PackageUpdate><Name>solver.takuyainoue0317_Nays2D_Flood</Name><DisplayName>Nays2D Flood v5.0 64 bit</DisplayName><Description /><Version>5.0.22071418</Version><Default>true</Default><ReleaseDate>2018-11-30</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="1159819" OS="Any" CompressedSize="259266" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>79c77c99b0736d329e4442647757492d7d6280d8</SHA1></PackageUpdate><PackageUpdate><Name>gui.runtime</Name><DisplayName>iRIC GUI Runtime</DisplayName><Description>Runtime DLLs for iRIC Main GUI</Description><Version>1.1.8</Version><ReleaseDate>2022-08-16</ReleaseDate><SortingPriority>100</SortingPriority><ForcedInstallation>true</ForcedInstallation><Script>installscript.qs</Script><UpdateFile UncompressedSize="320653965" OS="Any" CompressedSize="86331112" /><DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives><SHA1>53dd44b1b58ab4b17d1274538ec4fdaf611b980b</SHA1></PackageUpdate><PackageUpdate><Name>solver.MGAMOU_Mflow_02</Name><DisplayName>Mflow_02 iRIC4 ver1.1</DisplayName><Description /><Version>3.2022.1</Version><Default>true</Default><ReleaseDate>2022-07-01</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="1141955" OS="Any" CompressedSize="282994" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>43a6af510b66ea69db2c92002134feae2bc44aa7</SHA1></PackageUpdate><PackageUpdate><Name>solver.MGAMOU_Fbml_flow3</Name><DisplayName>Fbml_flow3_v2022_2_iric4</DisplayName><Description /><Version>1.1.2</Version><Default>true</Default><ReleaseDate>2022-07-01</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="3255321" OS="Any" CompressedSize="719478" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>4b6c2e331a66f5126cc8b3db606385e188e42bba</SHA1></PackageUpdate><PackageUpdate><Name>gridcreator.iRICsolvers_v4_grigen_nays2dv</Name><DisplayName>Grid Generator for Nays2dv</DisplayName><Description /><Version>1.0.22082601</Version><Default>true</Default><ReleaseDate>2022-08-26</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="566099" OS="Any" CompressedSize="85741" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>f932b8ec8457675d506f10050c906b9de2a81ff6</SHA1></PackageUpdate><PackageUpdate><Name>solver.champon487_v4_Nays2DH</Name><DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName><Description /><Version>1.6.000</Version><Default>true</Default><ReleaseDate>2022-07-13</ReleaseDate><SortingPriority>50</SortingPriority><Script>installscript.qs</Script><UpdateFile UncompressedSize="1648011" OS="Any" CompressedSize="430331" /><DownloadableArchives>content.7z</DownloadableArchives><SHA1>e692b1f757602644a93d34cdc32c9d49f6894796</SHA1></PackageUpdate></Updates>
+<Updates>
+ <ApplicationName>{AnyApplication}</ApplicationName>
+ <ApplicationVersion>1.0.0</ApplicationVersion>
+ <Checksum>true</Checksum>
+ <PackageUpdate>
+  <Name>gridexporter_plugin</Name>
+  <DisplayName>Grid Exporter plugins</DisplayName>
+  <Description>Plugins for exporting grid</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2017-04-18</ReleaseDate>
+  <SortingPriority>29</SortingPriority>
+  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any"/>
+  <SHA1>81e6196b2ce8be41e2bfeda98227d5f8853e5075</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridexporter_plugin.landxml</Name>
+  <DisplayName>Grid LandXML exporter</DisplayName>
+  <Description>Grid LandXML exporter</Description>
+  <Version>1.0.2</Version>
+  <Default>true</Default>
+  <ReleaseDate>2020-10-13</ReleaseDate>
+  <SortingPriority>30</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1698" CompressedSize="1141" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>af553234dcc62d1a8cee2f5f0741144fdf9b9ab9</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridexporter_plugin.structured15dhecras</Name>
+  <DisplayName>SAC grid HEC-RAS file exporter</DisplayName>
+  <Description>SAC grid HEC-RAS file exporter</Description>
+  <Version>1.0.2</Version>
+  <Default>true</Default>
+  <ReleaseDate>2021-04-28</ReleaseDate>
+  <SortingPriority>30</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="34883" CompressedSize="13670" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>aa2599557b92df9ccb69059f295eb05176e0cd3b</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridexporter_plugin.structured2dgridnayscsv</Name>
+  <DisplayName>Structured grid Nays CSV exporter</DisplayName>
+  <Description>Structured grid Nays CSV exporter</Description>
+  <Version>1.1.1</Version>
+  <Default>true</Default>
+  <ReleaseDate>2020-02-03</ReleaseDate>
+  <SortingPriority>30</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="33353" CompressedSize="13020" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>8891725b554dbc8d774a1bd1c6947f6a0b209d9c</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridexporter_plugin.structured2dgridnaysgrid</Name>
+  <DisplayName>Structured grid Nays grid file exporter</DisplayName>
+  <Description>Structured grid Nays grid file exporter</Description>
+  <Version>1.0.1</Version>
+  <Default>true</Default>
+  <ReleaseDate>2020-02-03</ReleaseDate>
+  <SortingPriority>30</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="24158" CompressedSize="9858" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>53ffce077d9ca5ee0ae5a52dc0d4c68d7e399685</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridexporter_plugin.structured2dgridvtk</Name>
+  <DisplayName>Structured grid VTK file exporter</DisplayName>
+  <Description>Structured grid VTK file exporter</Description>
+  <Version>1.0.1</Version>
+  <Default>true</Default>
+  <ReleaseDate>2020-02-03</ReleaseDate>
+  <SortingPriority>30</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="22551" CompressedSize="9138" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>62a56590989581174bd5a43306f437ec2da57381</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridexporter_plugin.unstructured2dgridvtk</Name>
+  <DisplayName>Unstructured grid VTK file exporter</DisplayName>
+  <Description>Unstructured grid VTK file exporter</Description>
+  <Version>1.0.1</Version>
+  <Default>true</Default>
+  <ReleaseDate>2020-02-03</ReleaseDate>
+  <SortingPriority>30</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="22557" CompressedSize="9128" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>cb9728cf04248a3dacb31c7fbdd9bd5c839ee220</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridimporter_plugin</Name>
+  <DisplayName>Grid Importer plugins</DisplayName>
+  <Description>Plugins for importing grid</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2017-04-18</ReleaseDate>
+  <SortingPriority>30</SortingPriority>
+  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any"/>
+  <SHA1>d1669db2d658f41d3afb5a79f2973276c10b4b7a</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridimporter_plugin.structured2dgridgdal</Name>
+  <DisplayName>Structured grid GDAL importer</DisplayName>
+  <Description>Structured grid GDAL importer to import from *.tif and *.asc</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2020-04-17</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="78548" CompressedSize="21097" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>6994e40daf7a0f9e17fd987c0568a029b5fb87a6</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridimporter_plugin.structured2dgridnayscsv</Name>
+  <DisplayName>Structured grid Nays CSV file importer</DisplayName>
+  <Description>Structured grid Nays CSV file importer</Description>
+  <Version>1.1.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2019-11-30</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="37175" CompressedSize="14597" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>41693bdfdfaed196596fd1e2bab6664a56d857d8</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridimporter_plugin.structured2dgridnaysgrid</Name>
+  <DisplayName>Structured grid Nays grid file importer</DisplayName>
+  <Description>Structured grid Nays grid file importer</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2015-07-01</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="26946" CompressedSize="10829" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>c32d4601e72b93160490f036de6ae8d419ece71f</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridimporter_plugin.unstructured2dgridtriangle</Name>
+  <DisplayName>Unstructured grid TRIANGLE file importer</DisplayName>
+  <Description>Unstructured grid TRIANGLE file importer</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2015-07-01</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="25956" CompressedSize="10258" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>3cde87035fc836e96a8d568b1f77fb2a49fddafb</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui</Name>
+  <DisplayName>iRIC GUI</DisplayName>
+  <Description>Graphical User Interface programs of iRIC</Description>
+  <Version>1.0.0</Version>
+  <ReleaseDate>2017-04-18</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any"/>
+  <SHA1>900146e2dfc9fcb627340d16a7c3b5494c48aa38</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.rivmaker</Name>
+  <DisplayName>Rivmaker</DisplayName>
+  <Description>Riv file maker. You can create *.riv files from survey data.</Description>
+  <Version>1.0.5</Version>
+  <Default>true</Default>
+  <ReleaseDate>2018-05-22</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="102750516" CompressedSize="26581721" OS="Any"/>
+  <DownloadableArchives>iconengines.7z,imageformats.7z,languages.7z,platforms.7z,styles.7z,translations.7z,content.7z</DownloadableArchives>
+  <SHA1>e67e467e8ac7156652b3411767c33b2114bd5578</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda</Name>
+  <DisplayName>Miniconda 3</DisplayName>
+  <Description>Miniconda 3-py38_4.9.2</Description>
+  <Version>1.0.0</Version>
+  <Default>false</Default>
+  <ReleaseDate>2022-06-01</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any"/>
+  <SHA1>7a7f84a168d52ee78efb8dcfdc62cdab6dd10418</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda.iriclib</Name>
+  <DisplayName>iriclib for Miniconda 3</DisplayName>
+  <Description>iriclib for Miniconda 3</Description>
+  <Dependencies/>
+  <Version>4.0.31</Version>
+  <Default>false</Default>
+  <ReleaseDate>2022-05-20</ReleaseDate>
+  <SortingPriority>10</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="6572973" CompressedSize="1402240" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>3e0c65707d41d15092ecfd2cfe6a8e891e86c7ca</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda.main</Name>
+  <DisplayName>Miniconda 3</DisplayName>
+  <Description>Miniconda 3-py38_4.9.2</Description>
+  <Dependencies/>
+  <Version>4.9.2</Version>
+  <Default>false</Default>
+  <ReleaseDate>2022-06-01</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="59801695" CompressedSize="58895034" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>1232b2494e6dd996910ad4a2ab83ef911e988a5f</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>private</Name>
+  <DisplayName>Private folders</DisplayName>
+  <Description>Private folders to store your original solvers and grid generators</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2021-09-13</ReleaseDate>
+  <SortingPriority>20</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="551" CompressedSize="960" OS="Any"/>
+  <DownloadableArchives>gridcreators.7z,solvers.7z,content.7z</DownloadableArchives>
+  <SHA1>849b9b33de984cdc127ec1f7f2021b97a64befd8</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>runtime</Name>
+  <DisplayName>Runtime libraries</DisplayName>
+  <Description>Visual C++ runtime libraries needed to run iRIC system</Description>
+  <Version>14.29.30133</Version>
+  <ReleaseDate>2021-07-27</ReleaseDate>
+  <SortingPriority>5</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="25167528" CompressedSize="23473550" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>93a7a6bd93d0998a5b1eb59be23a82e0a8b03f2f</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>sdk</Name>
+  <DisplayName>iRIC Solver SDK</DisplayName>
+  <Description>Headers and libraries needed to develop iRIC solvers</Description>
+  <Version>4.0.31</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-05-20</ReleaseDate>
+  <SortingPriority>10</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="24555552" CompressedSize="2606602" OS="Any"/>
+  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
+  <SHA1>0f3505813a0d40332345c013600faceadd5029bb</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver</Name>
+  <DisplayName>Solvers</DisplayName>
+  <Description>Solvers that run on iRIC GUI</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2017-04-18</ReleaseDate>
+  <SortingPriority>20</SortingPriority>
+  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any"/>
+  <SHA1>d6d1635abc885ae90c1ee3bd48c3bbc05e1ae89e</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.cap</Name>
+  <DisplayName>CAP</DisplayName>
+  <Description>Culvart Analysis Program</Description>
+  <Version>2021.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-04-08</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="796557" CompressedSize="254448" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>c22b7f4a28882e126b1b713c8801beddf3bfb71c</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.fastmech</Name>
+  <DisplayName>FaSTMECH</DisplayName>
+  <Description>FaSTMECH</Description>
+  <Version>1.1.3</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-02-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1080372" CompressedSize="258311" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>07a97a921b1e037cc33bf20e52f952e10f84e443</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ArrcPWRI_EvaTRiP_Pro</Name>
+  <DisplayName>EvaTRiP Pro</DisplayName>
+  <Description/>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2021-04-27</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="79558" CompressedSize="17656" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>19fb9d40fdbb17639c2053db1a2fd56f937f5bf4</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_CERI1D</Name>
+  <DisplayName>CERI1D</DisplayName>
+  <Description/>
+  <Version>1.1.7</Version>
+  <Default>true</Default>
+  <ReleaseDate>2018-08-24</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="664725" CompressedSize="127191" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>2a0fc7f08e7f715d871d08a6289134a3c17f1afb</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator</Name>
+  <DisplayName>Grid Generators</DisplayName>
+  <Description>Grid Generators that run on iRIC GUI</Description>
+  <Version>1.0.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2017-04-18</ReleaseDate>
+  <SortingPriority>20</SortingPriority>
+  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any"/>
+  <SHA1>f8d1ff92775562110a32a8dfb9d405a7aee3080c</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ichirokk_CUBEv4</Name>
+  <DisplayName>NaysCUBE</DisplayName>
+  <Description/>
+  <Version>3.43.69</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-07-14</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="12530857" CompressedSize="825898" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>7054ea8916b2c55219bcce5458e6a7c65043f1a8</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.ichirokk_Uchannel_generator</Name>
+  <DisplayName>U-shape channel generator</DisplayName>
+  <Description/>
+  <Version>1.1.0</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-02-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="410821" CompressedSize="62218" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>370eddd06ca05ccde501aeb03246bedb7a62cb31</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_Morpho2DH</Name>
+  <DisplayName>Morpho2DH v1.0</DisplayName>
+  <Description/>
+  <Version>1.0.22072201</Version>
+  <Default>true</Default>
+  <ReleaseDate>2014-11-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1364173" CompressedSize="366202" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>22b0bd5430f5335957c737d6c5eceb3736e0971f</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
+  <DisplayName>Multifunction Grid Genarator</DisplayName>
+  <Description/>
+  <Version>1.0.22080201</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-02</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="498221" CompressedSize="87114" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>6dc99e992059cd8f09947144a6844d95c5252eaf</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_nays2dp</Name>
+  <DisplayName>Nays2d+</DisplayName>
+  <Description/>
+  <Version>1.1.22080301</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-03</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1392377" CompressedSize="382157" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>836fdebb9d52dc9a859bcf9a7d3bf57beed5efa3</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_nays2dv</Name>
+  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
+  <Description/>
+  <Version>1.6.22080301</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-03</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="749890" CompressedSize="148612" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>f409c26fbcc91f45380fa4f27866774f6b671ca6</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.prepost</Name>
+  <DisplayName>iRIC v4 (release)</DisplayName>
+  <Description>iRIC Main GUI</Description>
+  <Version>4.0.0.6841</Version>
+  <ReleaseDate>2022-07-22</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="36977799" CompressedSize="5074411" OS="Any"/>
+  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
+  <Licenses>
+   <License file="LICENSE" name="MIT License"/>
+  </Licenses>
+  <SHA1>a74e939a92999bbc860b7bd125e8d6f295e2bccf</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ichirokk_Nays1Dp</Name>
+  <DisplayName>Nays1Dp v.1.00.8 64bit v4</DisplayName>
+  <Description/>
+  <Version>1.00.8</Version>
+  <Default>true</Default>
+  <ReleaseDate>2019-11-22</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="714004" CompressedSize="154850" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>ed424db7973cb561fc526649238ac78490f768d0</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.takuyainoue0317_Nays2D_Flood</Name>
+  <DisplayName>Nays2D Flood v5.0 64 bit</DisplayName>
+  <Description/>
+  <Version>5.0.22071418</Version>
+  <Default>true</Default>
+  <ReleaseDate>2018-11-30</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1159819" CompressedSize="259266" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>79c77c99b0736d329e4442647757492d7d6280d8</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.runtime</Name>
+  <DisplayName>iRIC GUI Runtime</DisplayName>
+  <Description>Runtime DLLs for iRIC Main GUI</Description>
+  <Version>1.1.8</Version>
+  <ReleaseDate>2022-08-16</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="320653965" CompressedSize="86331112" OS="Any"/>
+  <DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives>
+  <SHA1>53dd44b1b58ab4b17d1274538ec4fdaf611b980b</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.MGAMOU_Mflow_02</Name>
+  <DisplayName>Mflow_02 iRIC4 ver1.1</DisplayName>
+  <Description/>
+  <Version>3.2022.1</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-07-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1141955" CompressedSize="282994" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>43a6af510b66ea69db2c92002134feae2bc44aa7</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.MGAMOU_Fbml_flow3</Name>
+  <DisplayName>Fbml_flow3_v2022_2_iric4</DisplayName>
+  <Description/>
+  <Version>1.1.2</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-07-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="3255321" CompressedSize="719478" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>4b6c2e331a66f5126cc8b3db606385e188e42bba</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.iRICsolvers_v4_grigen_nays2dv</Name>
+  <DisplayName>Grid Generator for Nays2dv</DisplayName>
+  <Description/>
+  <Version>1.0.22082601</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-26</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="566099" CompressedSize="85741" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>f932b8ec8457675d506f10050c906b9de2a81ff6</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.champon487_v4_Nays2DH</Name>
+  <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
+  <Description/>
+  <Version>1.6.001</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-07-13</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1648011" CompressedSize="430335" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>d303cc3bd1e88bf84a1a1e16e4ab66ed64b6ab45</SHA1>
+ </PackageUpdate>
+</Updates>
