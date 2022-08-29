@@ -651,19 +651,6 @@
   <SHA1>ec3dbc8dc914cc86149293c291cb199c92536c73</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.champon487_v4_Nays2DH</Name>
-  <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
-  <Description/>
-  <Version>1.6.002</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-07-13</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="430389" UncompressedSize="1648011" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>b3be4148f4de9d82fffc5def7d80ee336c8b8c07</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_v4_Nays2DH</Name>
   <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
   <Description/>
