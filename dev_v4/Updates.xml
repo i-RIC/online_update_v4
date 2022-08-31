@@ -492,19 +492,6 @@
   <SHA1>f5c62279e51c51875a38dcf03096560e9edfa7f0</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_nays3dv</Name>
-  <DisplayName>nays3dv 3D Density Flow Solver</DisplayName>
-  <Description/>
-  <Version>1.7.22082401</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-24</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1158217" CompressedSize="294945" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>4ff85786f88f935bbab0fef260e272ca3206d152</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.MGAMOU_Mflow_02</Name>
   <DisplayName>Mflow_02 iRIC4 ver1.1</DisplayName>
   <Description/>
@@ -568,7 +555,7 @@
   <UpdateFile UncompressedSize="36982426" CompressedSize="5062244" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>0b5cfff8ef8058f95161116ebcc742d711f2b54e</SHA1>
  </PackageUpdate>
@@ -662,5 +649,18 @@
   <UpdateFile UncompressedSize="607885" CompressedSize="96411" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>8562f27330a2e99bf50c6e935088159c1e84cb1b</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_nays3dv</Name>
+  <DisplayName>nays3dv 3D Density Flow Solver</DisplayName>
+  <Description/>
+  <Version>1.7.22082401</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-31</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1158217" CompressedSize="294951" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>a0684d249e1afa14cd946ff2afe1837cd09a00f4</SHA1>
  </PackageUpdate>
 </Updates>
