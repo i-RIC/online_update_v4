@@ -1,0 +1,4 @@
+Simple grid generator.
+This tool can generate straight, sine-generated meander, and Kinoshita meander
+channel, with flat, alternate and point bar bed configurations.
+
