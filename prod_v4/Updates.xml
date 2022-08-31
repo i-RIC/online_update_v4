@@ -422,7 +422,7 @@
   <UpdateFile UncompressedSize="36977799" OS="Any" CompressedSize="5074411"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>a74e939a92999bbc860b7bd125e8d6f295e2bccf</SHA1>
  </PackageUpdate>
@@ -568,5 +568,18 @@
   <UpdateFile UncompressedSize="538426" OS="Any" CompressedSize="81906"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>60e957a253a9663b100fecebc852f32e03b4d750</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.iRICsolvers_v4_grigen_nays3dv</Name>
+  <DisplayName>Grid Generator for Nays3dv</DisplayName>
+  <Description/>
+  <Version>1.0.22082601</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-31</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="607885" OS="Any" CompressedSize="96405"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>6bc9bdd0cd8bb3696dac327e4d50a34f09f31d16</SHA1>
  </PackageUpdate>
 </Updates>
