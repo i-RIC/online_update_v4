@@ -2,7 +2,7 @@
 
 <SolverDefinition
 name="NaysCUBE_v3" caption="NaysCUBE" version="3.43.69" copyright="Ichiro Kimura"
-release="2022.7.14" homepage="http://i-ric.org/"
+release="2022.9.1" homepage="http://i-ric.org/"
 executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
@@ -1370,17 +1370,17 @@ gridtype="structured2d"
   		  </Definition>
 			</Item>
 
-			<Item name="ratio_overlap" caption="Overlap ratio of spheres for DEM">
-		  	<Definition conditionType="constant" valueType="real" option="false" default="0.01">
-		    	<Dependency>
-            <Condition type="and">
-						<Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
-						<Condition type="isEqual"        target="i_DRI_imp" value="1"/>
-            </Condition>
-						<Action type="enable"/>
-		    	</Dependency>
-  		  </Definition>
-			</Item>
+    <Item name="ratio_overlap" caption="Overlap ratio of spheres for DEM">
+     <Definition conditionType="constant" valueType="real" option="false" default="0.01">
+      <Dependency>
+       <Condition type="and">
+        <Condition type="isGreaterEqual" target="i_DRIFT"   value="1"/>
+        <Condition type="isEqual"        target="i_DRI_imp" value="1"/>
+       </Condition>
+       <Action type="enable"/>
+      </Dependency>
+      </Definition>
+    </Item>
 
 			<Item name="repul_natural" caption="Repulsion ratio to natural obstacle">
 		  	<Definition conditionType="constant" valueType="real" option="false" default="1.0">
@@ -1416,13 +1416,25 @@ gridtype="structured2d"
             <Action type="enable"/>
           </Dependency>
           <Enumerations>
-	  	      <Enumeration value="0" caption="Set fixed"/>
-	  	      <Enumeration value="1" caption="Set random"/>
+            <Enumeration value="0" caption="Set fixed"/>
+            <Enumeration value="1" caption="Set random"/>
           </Enumerations>
-	      </Definition>
+         </Definition>
       </Item>
 
-			<Item name="i_DRI_att" caption="Suction force of driftwood">
+    <Item name="dri_ini_angle" caption="Initial driftwood angle[deg]">
+     <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+      <Dependency>
+       <Condition type="and">
+        <Condition type="isGreaterEqual" target="i_DRIFT"          value="2"/>
+        <Condition type="isEqual"        target="i_DRI_set_random" value="0"/>
+       </Condition>
+       <Action type="enable"/>
+      </Dependency>
+      </Definition>
+    </Item>
+
+    <Item name="i_DRI_att" caption="Suction force of driftwood">
         <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
 		    	<Dependency>
             <Condition type="and">
