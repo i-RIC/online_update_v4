@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net"
-  name="grigen_nays2dv" caption="Grid Generator for Nays2dv" version="1.0.22082601" 
-  copyright="Yasuyuki Shimizu" executable="grigen_nays2dv.exe" gridtype="structured2d"  release="2022.08.26"
+  name="grigen_nays2dv" caption="Grid Generator for Nays2dv" version="1.0.22090201" 
+  copyright="Yasuyuki Shimizu" executable="grigen_nays2dv.exe" gridtype="structured2d"  release="2022.09.02"
 >
 
 <GridGeneratingCondition>
@@ -235,9 +235,6 @@
 	<GroupBox caption="Vertical Direction">
 		<Item name="h0" caption="Average Channel Depth(m)">
 			<Definition valueType="real" default="0.5">
-				<Dependency>
-						<Condition type="isEqual" target="j_hgive" value="1"/>
-				</Dependency>
 			</Definition>
 		</Item>
 		<Item name="h_down" caption="Downstream Water surface Elevation(m)">
