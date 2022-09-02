@@ -1,1 +1,7 @@
-"Grid Generator for Nays_meander" is specially degined for Nays2d_meander.
+Arc shape channel grid creator.   Arc length can be specified by degree with
+straight channel inlet nd outlet.   
+
+v1.0.22090201　release:2022.9.2　Keita Hoshino
+・Fixed a bug related to Compound Channel creation.
+・Changed the specified parameters from "Right flood plane width" and "Low water channel width" to "Right flood plane width" and "Left flood plane width".
+・Change to it possible to set different heights for the left and right flood plane.

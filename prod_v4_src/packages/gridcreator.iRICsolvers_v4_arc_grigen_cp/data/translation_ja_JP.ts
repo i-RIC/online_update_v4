@@ -77,12 +77,16 @@
             <translation>右岸高水敷幅</translation>
         </message>
         <message>
-            <source>Low water channel width</source>
-            <translation>低水路幅</translation>
+            <source>Right Flood plane height</source>
+            <translation>右岸高水敷の高さ</translation>
         </message>
         <message>
-            <source>Flood plane height</source>
-            <translation>高水敷の高さ</translation>
+            <source>Left flood plane width</source>
+            <translation>左岸高水敷幅</translation>
+        </message>
+        <message>
+            <source>Left Flood plane height</source>
+            <translation>左岸高水敷の高さ</translation>
         </message>
         <message>
             <source>Additional channel</source>

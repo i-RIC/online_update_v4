@@ -531,19 +531,6 @@
   <SHA1>bfb94eae1605979eab343ed3643d1da10c8d2a52</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gridcreator.iRICsolvers_v4_arc_grigen_cp</Name>
-  <DisplayName>2d arc grid generator (Compound Channel)</DisplayName>
-  <Description/>
-  <Version>1.0.22080301</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-31</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="81906" UncompressedSize="538426" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>60e957a253a9663b100fecebc852f32e03b4d750</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_grigen_nays3dv</Name>
   <DisplayName>Grid Generator for Nays3dv</DisplayName>
   <Description/>
@@ -594,5 +581,18 @@
   <UpdateFile CompressedSize="720212" UncompressedSize="3257881" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>90bf8fe26fb761fedf0b8153ebfb3d8396f5acf6</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.iRICsolvers_v4_arc_grigen_cp</Name>
+  <DisplayName>2d arc grid generator (Compound Channel)</DisplayName>
+  <Description/>
+  <Version>1.0.22090201</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-09-02</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="81268" UncompressedSize="537721" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>363f2c9f96afcb06b67a485c1683ac2ceeec1d66</SHA1>
  </PackageUpdate>
 </Updates>

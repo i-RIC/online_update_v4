@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net"
-  name="Arc_gridgen_cp" caption="2d arc grid generator (Compound Channel)" version="1.0.22080301" 
-  copyright="Yasuyuki Shimizu" executable="arc_grigen_cp.exe" gridtype="structured2d" release="2022.08.31">
+  name="Arc_gridgen_cp" caption="2d arc grid generator (Compound Channel)" version="1.0.22090201" 
+  copyright="Yasuyuki Shimizu" executable="arc_grigen_cp.exe" gridtype="structured2d" release="2022.09.02">
 
 <GridGeneratingCondition>
 <Tab name="Channel(1)" caption="Channel shape">
@@ -79,7 +79,7 @@
 			</Dependency>
 		</Definition>
 	</Item>
-	<Item name="lwc_width" caption="Low water channel width">
+	<Item name="rfp_height" caption="Right Flood plane height">
 		<Definition valueType="real" default="1">
 			<Dependency>
 				<Condition type="and">
@@ -89,7 +89,17 @@
 			</Dependency>
 		</Definition>
 	</Item>
-	<Item name="fp_height" caption="Flood plane height">
+		<Item name="lf_width" caption="Left flood plane width">
+		<Definition valueType="real" default="1">
+			<Dependency>
+				<Condition type="and">
+					<Condition type="isEqual" target="j_sect" value="1"/>
+					<Condition type="isEqual" target="j_cmp" value="1"/>
+				</Condition>
+			</Dependency>
+		</Definition>
+	</Item>
+	<Item name="lfp_height" caption="Left Flood plane height">
 		<Definition valueType="real" default="1">
 			<Dependency>
 				<Condition type="and">
