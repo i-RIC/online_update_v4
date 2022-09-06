@@ -24,6 +24,8 @@ int IRICLIBDLL cg_iRIC_Write_Sol_BaseIterative_Real(int fid, const char* name, d
 int IRICLIBDLL cg_iRIC_Write_Sol_BaseIterative_String(int fid, const char* name, const char* value);
 int IRICLIBDLL cg_iRIC_Write_ErrorCode(int fid, int errorcode);
 
+int IRICLIBDLL cg_iRIC_Clear_Sol(int fid);
+
 #ifdef __cplusplus
 }
 #endif

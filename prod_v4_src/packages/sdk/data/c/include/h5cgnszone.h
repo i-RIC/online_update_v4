@@ -73,6 +73,7 @@ public:
 	int readTriangleElementsValueCount(int* size) const;
 	int readTriangleElements(std::vector<int>* indices) const;
 	int writeTriangleElements(const std::vector<int>& indices) const;
+	int copyExceptSolution(H5CgnsZone* target);
 
 	bool gridCoordinatesForSolutionExists() const;
 	H5CgnsGridCoordinates* gridCoordinatesForSolution();
@@ -95,6 +96,7 @@ public:
 	bool polyDataSolutionExists() const;
 	H5CgnsPolyDataSolution* polyDataSolution();
 
+	int copyGridTo(H5CgnsBase* target);
 	int copyGridTo(H5CgnsZone* target);
 	int flush();
 	void clearSolutionGroups();

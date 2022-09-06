@@ -39,6 +39,8 @@ public:
 	int writeFunctional(const std::string& name, int dimid, const std::vector<int>& values) const;
 	int writeFunctional(const std::string& name, int dimid, const std::vector<double>& values) const;
 
+	int copyTo(H5CgnsGridAttributes* target);
+
 	H5CgnsZone* zone() const;
 
 private:

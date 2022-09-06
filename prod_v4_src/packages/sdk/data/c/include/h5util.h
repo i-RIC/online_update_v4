@@ -28,6 +28,8 @@ public:
 
 	static int getGroupNames(hid_t groupId, std::vector<std::string>* names);
 	static int getGroupNames(hid_t groupId, std::set<std::string>* names);
+	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::vector<std::string>* names);
+	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::set<std::string>* names);
 	static int getDatasetNames(hid_t groupId, std::vector<std::string>* names);
 	static int getDatasetNames(hid_t groupId, std::set<std::string>* names);
 
@@ -121,7 +123,8 @@ public:
 	static int deleteDataIfExists(hid_t groupId, const std::string& name);
 	static int deleteAllChildren(hid_t groupId);
 
-	static int copyGroup(hid_t srcGroupId, hid_t tgtGroupId, bool recursive = false);
+	static int copyAttributes(hid_t srcGroupId, hid_t tgtGroupId);
+	static int copyGroupRecursively(hid_t srcGroupId, hid_t tgtGroupId);
 
 private:
 	H5Util();
