@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Morpho2DH v1.0</DisplayName>
 	<Description></Description>
-	<Version>1.0.22090701</Version>
+	<Version>1.0.22090702</Version>
 	<Default>true</Default>
 	<ReleaseDate>2014-11-01</ReleaseDate>
 	<SortingPriority>50</SortingPriority>

@@ -2,7 +2,7 @@
 <SolverDefinition xmlns="www.iric.net/SolverDefinition/1.0" 
   name="morpho2d" 
   caption="Morpho2DH v1.0" 
-  version="1.0.22090701" 
+  version="1.0.22090702" 
   copyright="Hiroshi Takebayashi" 
   release="2014.11.01" 
   homepage="http://www.google.co.jp/" 
@@ -304,7 +304,6 @@
             <Definition conditionType="constant" valueType="filename" option="false" default="flow.prn">
               <Dependency>
                 <Condition type="isEqual" target="hot_start" value="1" />
-                <Action type="disable" />
               </Dependency>
             </Definition>
           </Item>
