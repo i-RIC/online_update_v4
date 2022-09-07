@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Package>
-	<DisplayName>iRIC v4 (develop)</DisplayName>
+	<DisplayName>iRIC v4 (release)</DisplayName>
 	<Description>iRIC Main GUI</Description>
 	<Version>4.0.0.6848</Version>
 	<ReleaseDate>2022-09-05</ReleaseDate>
