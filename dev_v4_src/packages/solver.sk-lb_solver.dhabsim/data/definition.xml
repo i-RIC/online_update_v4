@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition
+	name="DHABSIM"
+	caption="DHABSIM 1.1.2"
+	version="1.1.2"
+	copyright="Sekine Lab., Yamaguchi University"
+	release="2022.09.07"
+	homepage="https://www.facebook.com/PhabWinJ"
+	executable="DHABSIM.exe"
+	iterationtype="time"
+	gridtype="structured2d,unstructured2d"
+>
+	<CalculationCondition>
+		<Tab name="basic" caption="Basic Settings">
+			<Item name="inputfile" caption="File Name">
+				<Definition conditionType="constant" valueType="filename" default="Select CGNS file name" />
+			</Item>
+			<Item name="S" caption="Home Range[m2]">
+				<Definition valueType="real" default="200"/>
+			</Item>
+			<GroupBox caption="Grid cell size">
+				<Item name="cellsize_type" caption="Type">
+					<Definition valueType="integer" default="0">
+						<Enumeration value="0" caption="Auto" />
+						<Enumeration value="1" caption="Manual" />
+					</Definition>
+				</Item>
+				<Item name="cellsize_value" caption="Manual value[m]">
+					<Definition valueType="real" default="0.2">
+						<Condition type="isEqual" target="cellsize_type" value="1" />
+					</Definition>
+				</Item>
+			</GroupBox>
+		</Tab>
+
+		<Tab name="Tv" caption="Velocity categolization">
+			<Item name="Tv1" caption="Low-Mid threshold [m/s]">
+				<Definition valueType="real" default="0.2"/>
+			</Item>
+			<Item name="Tv2" caption="Mid-High threshold [m/s]">
+				<Definition valueType="real" default="0.6"/>
+			</Item>
+			<Item name="Tv3" caption="Highest velocity [m/s]">
+				<Definition valueType="real" default="1.0"/>
+			</Item>
+		</Tab>
+
+		<Tab name="Td" caption="Depth categolization">
+			<Item name="Td1" caption="Lowest depth [m]">
+				<Definition valueType="real" default="0.01"/>
+			</Item>
+			<Item name="Td2" caption="Low-Mid threshold [m]">
+				<Definition valueType="real" default="0.2"/>
+			</Item>
+			<Item name="Td3" caption="Mid-High threshold [m]">
+				<Definition valueType="real" default="0.6"/>
+			</Item>
+		</Tab>
+
+		<Tab name="Tc" caption="Bed categolization">
+			<Item name="TcMethod" caption="Bed categolization method">
+				<Definition valueType="integer" default="0">
+					<Enumeration value="0" caption="Category (1:-2mm(Sand), 2: 2-75mm(Gravel), 3: 75mm(Stone) -)"/>
+					<Enumeration value="1" caption="Material diameter [mm]"/>
+				</Definition>
+			</Item>
+			<Item name="Tc1" caption="Low-Mid threshold [mm]">
+				<Definition valueType="real" default="2">
+					<Condition type="isEqual" target="TcMethod" value="1"/>
+				</Definition>
+			</Item>
+			<Item name="Tc2" caption="Mid-High threshold [mm]">
+				<Definition valueType="real" default="75">
+					<Condition type="isEqual" target="TcMethod" value="1"/>
+				</Definition>
+			</Item>
+		</Tab>
+
+	</CalculationCondition>
+
+	<GridRelatedCondition>
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" />
+		</Item>
+		<Item name="BedCode" caption="BedCode">
+			<Definition position="node" valueType="real" />
+		</Item>
+		<Item name="VegetationCode" caption="VegetationCode">
+			<Definition position="node" valueType="integer" option="true" default="0">
+				<Enumeration value="0" caption="No vegetation"/>
+				<Enumeration value="1" caption="Vegetation"/>
+			</Definition>
+		</Item>
+	</GridRelatedCondition>
+</SolverDefinition>
