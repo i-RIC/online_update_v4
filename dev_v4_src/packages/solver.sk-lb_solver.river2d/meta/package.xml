@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>River2D</DisplayName>
+	<Description></Description>
+	<Version>1.0.2</Version>
+	<Default>true</Default>
+	<ReleaseDate>2018-11-16</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
