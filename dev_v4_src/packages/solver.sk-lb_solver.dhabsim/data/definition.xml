@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 	name="DHABSIM"
-	caption="DHABSIM 1.1.2"
-	version="1.1.2"
+	caption="DHABSIM 1.1"
+	version="1.1.220909"
 	copyright="Sekine Lab., Yamaguchi University"
-	release="2022.09.07"
+	release="2022.09.09"
 	homepage="https://www.facebook.com/PhabWinJ"
 	executable="DHABSIM.exe"
 	iterationtype="time"

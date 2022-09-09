@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <Package>
-	<DisplayName>DHABSIM 1.1.2</DisplayName>
+	<DisplayName>DHABSIM 1.1</DisplayName>
 	<Description></Description>
-	<Version>1.1.2</Version>
+	<Version>1.1.220909</Version>
 	<Default>true</Default>
-	<ReleaseDate>2022-09-07</ReleaseDate>
+	<ReleaseDate>2022-09-09</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
