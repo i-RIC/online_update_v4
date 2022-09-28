@@ -178,17 +178,6 @@
   <SHA1>e67e467e8ac7156652b3411767c33b2114bd5578</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>miniconda</Name>
-  <DisplayName>Miniconda 3</DisplayName>
-  <Description>Miniconda 3-py38_4.9.2</Description>
-  <Version>1.0.0</Version>
-  <Default>false</Default>
-  <ReleaseDate>2022-06-01</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <UpdateFile OS="Any" CompressedSize="0" UncompressedSize="0" />
-  <SHA1>7a7f84a168d52ee78efb8dcfdc62cdab6dd10418</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>miniconda.main</Name>
   <DisplayName>Miniconda 3</DisplayName>
   <Description>Miniconda 3-py38_4.9.2</Description>
@@ -514,20 +503,6 @@
   <SHA1>6542d973d35158123e6445076dfdfe96734e5696</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>sdk</Name>
-  <DisplayName>iRIC Solver SDK</DisplayName>
-  <Description>Headers and libraries needed to develop iRIC solvers</Description>
-  <Version>4.0.37</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-19</ReleaseDate>
-  <SortingPriority>10</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="2650123" UncompressedSize="24955254" />
-  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>98767fc929da535547f87baad168112ed8eb4e26</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_Morpho2DH</Name>
   <DisplayName>Morpho2DH v1.0</DisplayName>
   <Description />
@@ -567,22 +542,6 @@
   <SHA1>b7d49fc11c618d375bbd723ef78867ea219c2835</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gui.prepost</Name>
-  <DisplayName>iRIC v4 (release)</DisplayName>
-  <Description>iRIC Main GUI</Description>
-  <Version>4.0.0.6849</Version>
-  <ReleaseDate>2022-09-13</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>true</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="5071435" UncompressedSize="36982407" />
-  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
-  <Licenses>
-   <License file="LICENSE" name="MIT License" />
-  </Licenses>
-  <SHA1>ce26527bac4f41bcb0375526671b30c55aaa7405</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.takuyainoue0317_Nays2D_Flood</Name>
   <DisplayName>Nays2D Flood v5.0 64 bit</DisplayName>
   <Description />
@@ -607,5 +566,46 @@
   <UpdateFile OS="Any" CompressedSize="127079" UncompressedSize="664725" />
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>c3f704fa0370a69bde3e714bf501027f2cd82454</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.prepost</Name>
+  <DisplayName>iRIC v4 (release)</DisplayName>
+  <Description>iRIC Main GUI</Description>
+  <Version>4.0.0.6855</Version>
+  <ReleaseDate>2022-09-28</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" CompressedSize="5059745" UncompressedSize="36982416" />
+  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
+  <Licenses>
+   <License name="MIT License" file="LICENSE" />
+  </Licenses>
+  <SHA1>dc3828a0ae93274d2726ee9fd1b405ce44b940e8</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda</Name>
+  <DisplayName>Miniconda 3</DisplayName>
+  <Description>Miniconda 3-py38_4.9.2</Description>
+  <Version>1.0.0</Version>
+  <Default>false</Default>
+  <ReleaseDate>2022-06-01</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <UpdateFile OS="Any" CompressedSize="0" UncompressedSize="0" />
+  <SHA1>7ae67472c5aa031705794e4b719c618b8d3f8fc7</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>sdk</Name>
+  <DisplayName>iRIC Solver SDK</DisplayName>
+  <Description>Headers and libraries needed to develop iRIC solvers</Description>
+  <Version>4.0.37</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-08-19</ReleaseDate>
+  <SortingPriority>10</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" CompressedSize="2649022" UncompressedSize="24955254" />
+  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
+  <SHA1>9317fbe469f1f899796f25545770cb953db4cbc2</SHA1>
  </PackageUpdate>
 </Updates>
