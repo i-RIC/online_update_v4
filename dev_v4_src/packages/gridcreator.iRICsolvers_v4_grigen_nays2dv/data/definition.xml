@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net"
-  name="grigen_nays2dv" caption="Grid Generator for Nays2dv" version="1.0.22090201" 
-  copyright="Yasuyuki Shimizu" executable="grigen_nays2dv.exe" gridtype="structured2d"  release="2022.09.02"
+  name="grigen_nays2dv" caption="Grid Generator for Nays2Dv" version="1.0.22092701" 
+  copyright="Yasuyuki Shimizu" executable="grigen_nays2dv.exe" gridtype="structured2d"  release="2022.09.27"
 >
 
 <GridGeneratingCondition>
@@ -17,7 +17,7 @@
 		</Definition>
 	</Item>
 	<Item name="nx" caption="Number of Nodes in Longitudinal Direction">
-		<Definition valueType="integer" default="41" max="999">
+		<Definition valueType="integer" default="41" max="9999">
 		</Definition>
 	</Item>
 	<GroupBox caption="Longitudinal Bed Profile Setting(Manually Setting)">
@@ -43,7 +43,7 @@
 			</Definition>
 		</Item>
 		<Item name="e_down" caption="Downstream Bed Elevation(m)">
-			<Definition valueType="real" default="-1.0">
+			<Definition valueType="real" default="0.0">
 				<Dependency>
 					<Condition type="isEqual" target="j_met" value="2"/>
 				</Dependency>
@@ -56,13 +56,15 @@
 				</Dependency>
 			</Definition>
 		</Item>
-		<Item name="j_bottom" caption="Bottom Shape">
+		</GroupBox>
+		<GroupBox caption="Bottom Shape">
+		<Item name="j_bottom" caption="Bottom Perturbation">
 			<Definition conditionType="constant" valueType="integer" option="true" default="0">
 				<Dependency>
 					<Condition type="isEqual" target="j_met" value="2"/>
 				</Dependency>
 				<Enumerations>
-					<Enumeration value="0" caption="Non Perturbed"/>
+					<Enumeration value="0" caption="Non Perturb"/>
 					<Enumeration value="1" caption="Perturb"/>
 				</Enumerations>
 			</Definition>
@@ -83,42 +85,40 @@
 				</Dependency>
 			</Definition>
 		</Item>
-		<Item name="b_amp" caption="Amplitude of the Bottom Perturbation">
-			<Definition valueType="real" default="0.1">
-				<Dependency>
-					<Condition type="and">
-						<Condition type="isEqual" target="j_met" value="2"/>
-						<Condition type="isEqual" target="j_bottom" value="1"/>
-						<Condition type="isLessThan" target="j_bottom_shape" value="2"/>
-					</Condition>
-					<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-		<Item name="dune_height" caption="Dune Height">
-			<Definition valueType="real" default="0.1">
-				<Dependency>
-					<Condition type="and">
-						<Condition type="isEqual" target="j_met" value="2"/>
-						<Condition type="isEqual" target="j_bottom" value="1"/>
-						<Condition type="isEqual" target="j_bottom_shape" value="2"/>
-					</Condition>
-					<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-
-		<Item name="j_amp_unit" caption="Unit of Amplitude or Dune Height">
+		<Item name="j_amp_unit" caption="How to set Amplitude of Bottom Perturbation">
 			<Definition conditionType="constant" valueType="integer" option="true" default="2">
 				<Enumerations>
-					<Enumeration value="1" caption="Ratio to Water Depth"/>
+					<Enumeration value="1" caption="Ratio to Average Water Depth"/>
 					<Enumeration value="2" caption="Actual Height in meter"/>
 				</Enumerations>
 				<Dependency>
 					<Condition type="and">
 						<Condition type="isEqual" target="j_met" value="2"/>
 						<Condition type="isEqual" target="j_bottom" value="1"/>
-						<Condition type="isGreaterThan" target="j_bottom_shape" value="0"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="b_amp" caption="Amplitude of the Bottom Perturbation(m)">
+			<Definition valueType="real" default="0.1">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+						<Condition type="isEqual" target="j_amp_unit" value="2"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="b_ratio_of_amp" caption="Ratio of Amplitude of the Bottom Perturbation to Average Depth">
+			<Definition valueType="real" default="0.1">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_met" value="2"/>
+						<Condition type="isEqual" target="j_bottom" value="1"/>
+						<Condition type="isEqual" target="j_amp_unit" value="1"/>
 					</Condition>
 					<Action type="enable"/>
 				</Dependency>
@@ -164,7 +164,7 @@
 			</Definition>
 		</Item>
 		<Item name="n_center" caption="Additional grids at center">
-			<Definition valueType="integer" default="0" max="999">
+			<Definition valueType="integer" default="0" max="9999">
 				<Dependency>
 					<Condition type="and">
 						<Condition type="isEqual" target="j_met" value="2"/>
@@ -191,7 +191,7 @@
 			</Definition>
 		</Item>
 		<Item name="n_up" caption="Additional grids in upstream">
-			<Definition valueType="integer" default="0" max="999">
+			<Definition valueType="integer" default="0" max="9999">
 				<Dependency>
 					<Condition type="and">
 						<Condition type="isEqual" target="j_met" value="2"/>
@@ -205,7 +205,7 @@
 			</Definition>
 		</Item>
 		<Item name="n_down" caption="Additional grids in downstream">
-			<Definition valueType="integer" default="0" max="999">
+			<Definition valueType="integer" default="0" max="9999">
 				<Dependency>
 					<Condition type="and">
 						<Condition type="isEqual" target="j_met" value="2"/>
@@ -231,9 +231,13 @@
 			</Enumerations>
 		</Definition>
 	</Item>
+	<Item name="ny" caption="Number of Nodes in Z-direction">
+		<Definition valueType="integer" default="10" max="9999">
+		</Definition>
+	</Item>
 
-	<GroupBox caption="Vertical Direction">
-		<Item name="h0" caption="Average Channel Depth(m)">
+	<GroupBox caption="Basic Profile">
+		<Item name="h0" caption="Average Water Depth(m)">
 			<Definition valueType="real" default="0.5">
 			</Definition>
 		</Item>
@@ -244,23 +248,19 @@
 				</Dependency>
 			</Definition>
 		</Item>
-		<Item name="ny" caption="Number of Nodes in Z-direction">
-			<Definition valueType="integer" default="10" max="999">
-			</Definition>
-		</Item>
-	</GroupBox>
-	<GroupBox caption="Water Surface">
 		<Item name="s_slope" caption="Water Surface Slope">
 			<Definition valueType="real" default="0.00">
 			</Definition>
 		</Item>
-		<Item name="j_surf" caption="Perturbation">
+	</GroupBox>
+	<GroupBox caption="Water Surface Shape">
+		<Item name="j_surf" caption="Water Surface Perturbation">
 			<Definition conditionType="constant" valueType="integer" option="true" default="0">
 				<Dependency>
 						<Condition type="isEqual" target="j_hgive" value="1"/>
 				</Dependency>
 				<Enumerations>
-					<Enumeration value="0" caption="None Perturb"/>
+					<Enumeration value="0" caption="Non Perturb"/>
 					<Enumeration value="1" caption="Perturb"/>
 				</Enumerations>
 			</Definition>
@@ -280,8 +280,12 @@
 				</Dependency>
 			</Definition>
 		</Item>
-		<Item name="s_amp" caption="Amplitude of the perturbation">
-			<Definition valueType="real" default="0.1">
+		<Item name="js_amp_unit" caption="How to set Amplitude of Water Surface Perturbation">
+			<Definition conditionType="constant" valueType="integer" option="true" default="1">
+				<Enumerations>
+					<Enumeration value="1" caption="Ratio to Average Water Depth"/>
+					<Enumeration value="2" caption="Actual Height in meter"/>
+				</Enumerations>
 				<Dependency>
 					<Condition type="and">
 						<Condition type="isEqual" target="j_surf" value="1"/>
@@ -291,17 +295,25 @@
 				</Dependency>
 			</Definition>
 		</Item>
-
-		<Item name="js_amp_unit" caption="Unit of Surface Perturbation Amplitude">
-			<Definition conditionType="constant" valueType="integer" option="true" default="1">
-				<Enumerations>
-					<Enumeration value="1" caption="Ratio to Water Depth"/>
-					<Enumeration value="2" caption="Actual Height in meter"/>
-				</Enumerations>
+		<Item name="s_amp" caption="Amplitude of the Water Surface Perturbation(m)">
+			<Definition valueType="real" default="0.1">
 				<Dependency>
 					<Condition type="and">
 						<Condition type="isEqual" target="j_surf" value="1"/>
 						<Condition type="isEqual" target="j_hgive" value="1"/>
+						<Condition type="isEqual" target="js_amp_unit" value="2"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+		<Item name="s_ratio_of_amp" caption="Ratio of Amplitude of Water Surface Perturbation to Average Depth">
+			<Definition valueType="real" default="0.1">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_surf" value="1"/>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+						<Condition type="isEqual" target="js_amp_unit" value="1"/>
 					</Condition>
 					<Action type="enable"/>
 				</Dependency>

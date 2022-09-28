@@ -5,8 +5,8 @@
 -->
     <context>
         <message>
-            <source>Grid Generator for Nays2dv</source>
-            <translation>Nays2dv用格子生成ツール</translation>
+            <source>Grid Generator for Nays2Dv</source>
+            <translation>Nays2Dv用格子生成ツール</translation>
         </message>
         <message>
             <source>Channel Bottom Shape</source>
@@ -30,7 +30,7 @@
         </message>
         <message>
             <source>Longitudinal Bed Profile Setting(Manually Setting)</source>
-            <translation>縦断方向河床高入力</translation>
+            <translation>縦断形の設定(手動)</translation>
         </message>
         <message>
             <source>Longitudinal Bed Profile</source>
@@ -69,7 +69,11 @@
             <translation>河床形状</translation>
         </message>
         <message>
-            <source>Non Perturbed</source>
+            <source>Bottom Perturbation</source>
+            <translation>河床擾乱</translation>
+        </message>
+        <message>
+            <source>Non Perturb</source>
             <translation>擾乱無し</translation>
         </message>
         <message>
@@ -93,24 +97,24 @@
             <translation>河床波形状</translation>
         </message>
         <message>
-            <source>Amplitude of the Bottom Perturbation</source>
-            <translation>河床擾乱の波高</translation>
+            <source>How to set Amplitude of Bottom Perturbation</source>
+            <translation>河床擾乱波高の設定方法</translation>
         </message>
         <message>
-            <source>Dune Height</source>
-            <translation>河床波の波高</translation>
-        </message>
-        <message>
-            <source>Unit of Amplitude or Dune Height</source>
-            <translation>河床波波高の単位</translation>
-        </message>
-        <message>
-            <source>Ratio to Water Depth</source>
-            <translation>平均水深に対する比率</translation>
+            <source>Ratio to Average Water Depth</source>
+            <translation>平均水深に対する比率から求める</translation>
         </message>
         <message>
             <source>Actual Height in meter</source>
-            <translation>実際の波高</translation>
+            <translation>実際の波高を入力する</translation>
+        </message>
+        <message>
+            <source>Amplitude of the Bottom Perturbation(m)</source>
+            <translation>河床擾乱の波高(m)</translation>
+        </message>
+        <message>
+            <source>Ratio of Amplitude of the Bottom Perturbation to Average Depth</source>
+            <translation>河床擾乱波高の平均水深に対する比率</translation>
         </message>
         <message>
             <source>Wave Number of Bottom Shape</source>
@@ -174,11 +178,11 @@
         </message>
         <message>
             <source>Water Surface Shape</source>
-            <translation>水面形</translation>
+            <translation>水面形状</translation>
         </message>
         <message>
             <source>How to define initial water surface profile</source>
-            <translation>水面形の定義方法</translation>
+            <translation>水面形状の定義方法</translation>
         </message>
         <message>
             <source>specify average depth plus perturbation</source>
@@ -189,11 +193,11 @@
             <translation>下流端の水位と一定勾配を与える</translation>
         </message>
         <message>
-            <source>Vertical Direction</source>
-            <translation>鉛直方向</translation>
+            <source>Number of Nodes in Z-direction</source>
+            <translation>鉛直方向のノード数</translation>
         </message>
         <message>
-            <source>Average Channel Depth(m)</source>
+            <source>Average Water Depth(m)</source>
             <translation>平均水深(m)</translation>
         </message>
         <message>
@@ -201,36 +205,32 @@
             <translation>下流端の水位(m)</translation>
         </message>
         <message>
-            <source>Number of Nodes in Z-direction</source>
-            <translation>鉛直方向のノード数</translation>
-        </message>
-        <message>
-            <source>Water Surface</source>
-            <translation>水面形</translation>
-        </message>
-        <message>
             <source>Water Surface Slope</source>
             <translation>水面勾配</translation>
         </message>
         <message>
-            <source>Perturbation</source>
+            <source>Water Surface Shape</source>
+            <translation>水面形状</translation>
+        </message>
+        <message>
+            <source>Water Surface Perturbation</source>
             <translation>水面擾乱</translation>
         </message>
         <message>
-            <source>None Perturb</source>
-            <translation>水面擾乱無し</translation>
-        </message>
-        <message>
             <source>Water Surface Perturbation Shape</source>
-            <translation>水面擾乱形</translation>
+            <translation>水面擾乱形状</translation>
         </message>
         <message>
-            <source>Amplitude of the perturbation</source>
-            <translation>擾乱の波高</translation>
+            <source>How to set Amplitude of Water Surface Perturbation</source>
+            <translation>水面擾乱波高の設定方法</translation>
         </message>
         <message>
-            <source>Unit of Surface Perturbation Amplitude</source>
-            <translation>水面擾乱波高の単位</translation>
+            <source>Amplitude of the Water Surface Perturbation(m)</source>
+            <translation>水面擾乱の波高(m)</translation>
+        </message>
+        <message>
+            <source>Ratio of Amplitude of Water Surface Perturbation to Average Depth</source>
+            <translation>水面擾乱波高の平均水深に対する比率</translation>
         </message>
         <message>
             <source>Water Surface Wave number</source>
