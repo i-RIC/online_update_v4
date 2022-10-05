@@ -177,6 +177,14 @@
             <translation>追加する</translation>
         </message>
         <message>
+            <source>Add Only Upstream</source>
+            <translation>上流側のみ追加する</translation>
+        </message>
+        <message>
+            <source>Add Only Downstream</source>
+            <translation>下流側のみ追加する</translation>
+        </message>
+        <message>
             <source>Upstream</source>
             <translation>上流部</translation>
         </message>
@@ -229,8 +237,12 @@
             <translation>下流部の勾配の値</translation>
         </message>
         <message>
-            <source>Add a straight channel at the middle part of the channel</source>
-            <translation>中央部に直線水路を追加</translation>
+            <source>middle part of the channel</source>
+            <translation>水路中央部</translation>
+        </message>
+        <message>
+            <source>Add straight channels at the middle part of the channel</source>
+            <translation>水路中央部に直線水路の追加</translation>
         </message>
         <message>
             <source>Numbers grids</source>
@@ -257,7 +269,7 @@
             <translation>水路幅変動の波長(m)</translation>
         </message>
         <message>
-            <source>Wave numbers of the width variation(m)</source>
+            <source>Wave numbers of the width variation</source>
             <translation>水路幅変動の波数</translation>
         </message>
         <message>

@@ -17,14 +17,14 @@
 	</Item>
 	<GroupBox caption="Straight Channel or Cubic Box">
        	<Item name="sl" caption="Length in X or Downstream Direction(m)">
-		<Definition valueType="real" default="3">
+		<Definition valueType="real" min="0" default="10">
 			<Dependency>
 				<Condition type="isEqual" target="j_chn" value="0"/>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="nx" caption="Number of Nodes in X Direction">
-		<Definition valueType="integer" default="10" max="9999">
+		<Definition valueType="integer" min="1" default="10" max="9999">
 			<Dependency>
 				<Condition type="isEqual" target="j_chn" value="0"/>
 			</Dependency>
@@ -34,21 +34,21 @@
 
 	<GroupBox caption="Meandering Channel">
 	<Item name="slm" caption="Wavelength of Meander(m)">
-		<Definition valueType="real" default="3">
+		<Definition valueType="real" min="0" default="10">
 			<Dependency>
 				<Condition type="isGreaterThan" target="j_chn" value="0"/>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="nt" caption="Number of Nodes in One Wavelength">
-		<Definition valueType="integer" default="24" max="9999">
+		<Definition valueType="integer" min="1" default="24" max="9999">
 			<Dependency>
 				<Condition type="isGreaterThan" target="j_chn" value="0"/>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="irns" caption="Wave Number">
-		<Definition valueType="integer" default="1" max="9999">
+		<Definition valueType="integer" min="1" default="1" max="9999">
 			<Dependency>
 				<Condition type="isGreaterThan" target="j_chn" value="0"/>
 			</Dependency>
@@ -65,11 +65,11 @@
 
 	<GroupBox>
 	<Item name="width" caption="Length in Y Direction or Width(m)">
-		<Definition valueType="real" default="0.3">
+		<Definition valueType="real" min="0" default="0.3">
 		</Definition>
 	</Item>
 	<Item name="ny" caption="Number of Nodes in Y or Transverse Direction">
-		<Definition valueType="integer" default="10" max="9999">
+		<Definition valueType="integer" default="10" min="0" max="9999">
 		</Definition>
 	</Item>
 	</GroupBox>
@@ -109,21 +109,21 @@
 		</Definition>
 	</Item>
 	<Item name="break_pt" caption="Brake point distance from upstream end">
-		<Definition valueType="real" default="100">
+		<Definition valueType="real" default="5">
 			<Dependency>
 				<Condition type="isEqual" target="j_bed" value="2"/>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="slope_up" caption="Upstream slope">
-		<Definition valueType="real" default="0.001">
+		<Definition valueType="real" default="0.005">
 			<Dependency>
 				<Condition type="isEqual" target="j_bed" value="2"/>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="slope_dw" caption="Downstream slope">
-		<Definition valueType="real" default="0.01">
+		<Definition valueType="real" default="0.005">
 			<Dependency>
 				<Condition type="isEqual" target="j_bed" value="2"/>
 			</Dependency>
@@ -136,24 +136,18 @@
 				<Enumeration value="1" caption="No"/>
 				<Enumeration value="2" caption="Yes"/>
 			</Enumerations>
-			<Dependency>
-				<Condition type="isEqual" target="j_bed" value="1"/>
-			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="amp_longi" caption="Longitudinal Amplitude of Parabolic Shape(m)">
-		<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+		<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 			<Dependency>
-      <Condition type="and">
-				<Condition type="isEqual" target="j_bed" value="1"/>
 				<Condition type="isEqual" target="j_para" value="2"/>
-      </Condition>  
 			</Dependency>
 		</Definition>
 	</Item>
 
 	<Item name="elv_nx" caption="Bed Elevation at Downstream End(m)">
-		<Definition valueType="real" default="-0.5">
+		<Definition valueType="real" default="0.0">
 		</Definition>
 	</Item>
 	</GroupBox>
@@ -172,14 +166,14 @@
 		</Definition>
 	</Item>
 	<Item name="amp" caption="Bar Height or Amplitude of Parabolic Shape(m)">
-		<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+		<Definition conditionType="constant" valueType="real" option="false" default="0.00">
 			<Dependency>
 				<Condition type="isGreaterThan" target="j_bar" value="1"/>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="delta" caption="Lag Btween Bar and Plane Geometry(m)">
-		<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+		<Definition conditionType="constant" valueType="real" option="false" default="0.00">
 			<Dependency>
 				<Condition type="isEqual" target="j_bar" value="2"/>
 			</Dependency>
@@ -197,22 +191,30 @@
 			<Enumerations>
 			<Enumeration value="0" caption="Not Add"/>
 			<Enumeration value="1" caption="Add Channel"/>
+			<Enumeration value="2" caption="Add Only Upstream"/>
+			<Enumeration value="3" caption="Add Only Downstream"/>
 			</Enumerations>
 		</Definition>
 	</Item>
 	<GroupBox caption="Upstream">
 	<Item name="ni_up" caption="Number of Adding Sections in Upstream End">
-		<Definition valueType="integer" default="0" max="9999">
+		<Definition valueType="integer" default="0" min="0" max="9999">
 			<Dependency>
-				<Condition type="isEqual" target="j_add" value="1"/>
+				<Condition type="or">
+					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="isEqual" target="j_add" value="2"/>
+				</Condition>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="up_add_len" caption="Upstream additional channel length(m)">
-		<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+		<Definition conditionType="constant" valueType="real" option="false" min="0" default="0.0">
 			<Dependency>
 				<Condition type="and">
-					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="1"/>
+						<Condition type="isEqual" target="j_add" value="2"/>
+					</Condition>
 					<Condition type="isGreaterThan" target="ni_up" value="0"/>
 				</Condition>
 			</Dependency>
@@ -227,7 +229,10 @@
 			</Enumerations>
 			<Dependency>
 				<Condition type="and">
-					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="1"/>
+						<Condition type="isEqual" target="j_add" value="2"/>
+					</Condition>
 					<Condition type="isGreaterThan" target="ni_up" value="0"/>
 				</Condition>
 			</Dependency>
@@ -237,7 +242,10 @@
 		<Definition conditionType="constant" valueType="real" option="false" default="0">
 			<Dependency>
 				<Condition type="and">
-					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="1"/>
+						<Condition type="isEqual" target="j_add" value="2"/>
+					</Condition>
 					<Condition type="isGreaterThan" target="ni_up" value="0"/>
 					<Condition type="isEqual" target="j_up_slope" value="2"/>
 				</Condition>
@@ -248,17 +256,23 @@
 
 	<GroupBox caption="Downstream">
 	<Item name="ni_down" caption="Number of Adding Sections in Downstream End">
-		<Definition valueType="integer" default="0" max="9999">
+		<Definition valueType="integer" default="0" min="0" max="9999">
 			<Dependency>
-				<Condition type="isEqual" target="j_add" value="1"/>
+				<Condition type="or">
+					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="isEqual" target="j_add" value="3"/>
+				</Condition>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="down_add_len" caption="Downstream additional channel length(m)">
-		<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+		<Definition conditionType="constant" valueType="real" option="false" min="0" default="0.0">
 			<Dependency>
 				<Condition type="and">
-					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="1"/>
+						<Condition type="isEqual" target="j_add" value="3"/>
+					</Condition>
 					<Condition type="isGreaterThan" target="ni_down" value="0"/>
 				</Condition>
 			</Dependency>
@@ -273,7 +287,10 @@
 			</Enumerations>
 			<Dependency>
 				<Condition type="and">
-					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="1"/>
+						<Condition type="isEqual" target="j_add" value="3"/>
+					</Condition>
 					<Condition type="isGreaterThan" target="ni_down" value="0"/>
 				</Condition>
 			</Dependency>
@@ -283,7 +300,10 @@
 		<Definition conditionType="constant" valueType="real" option="false" default="0">
 			<Dependency>
 				<Condition type="and">
-					<Condition type="isEqual" target="j_add" value="1"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="j_add" value="1"/>
+						<Condition type="isEqual" target="j_add" value="3"/>
+					</Condition>
 					<Condition type="isGreaterThan" target="ni_down" value="0"/>
 					<Condition type="isEqual" target="j_down_slope" value="2"/>
 				</Condition>
@@ -294,9 +314,20 @@
 
    </GroupBox>
 
-   <GroupBox caption="Add a straight channel at the middle part of the channel">
+   <GroupBox caption="middle part of the channel">
+	<Item name="j_add_mid" caption="Add straight channels at the middle part of the channel">
+		<Definition valueType="integer" default="0">
+			<Enumerations>
+				<Enumeration value="0" caption="Not Add"/>
+				<Enumeration value="1" caption="Add Channel"/>
+			</Enumerations>
+		</Definition>
+	</Item>
 	<Item name="ip_c" caption="Numbers grids">
-		<Definition valueType="integer" default="0" max="9999">
+		<Definition valueType="integer" default="0" min="0" max="9999">
+			<Dependency>
+				<Condition type="isEqual" target="j_add_mid" value="1"/>
+			</Dependency>
 		</Definition>
 	</Item>
    </GroupBox>
@@ -310,20 +341,20 @@
 		</Definition>
 	</Item>
 	<Item name="up_con_len" caption="Upstream Constant Width Length(m)">
-		<Definition valueType="real" default="0.6">
+		<Definition valueType="real" default="0.0">
 			<Dependency>
 				<Condition type="isEqual" target="j_width" value="1"/>
 			</Dependency>
 		</Definition>
 	</Item>
 	<Item name="wl_width" caption="Wave length of the width variation(m)">
-		<Definition valueType="real" default="1.0">
+		<Definition valueType="real" min="0" default="0.0">
 			<Dependency>
 				<Condition type="isEqual" target="j_width" value="1"/>
 			</Dependency>
 		</Definition>
 	</Item>
-	<Item name="wn_width" caption="Wave numbers of the width variation(m)">
+	<Item name="wn_width" caption="Wave numbers of the width variation">
 		<Definition valueType="real" default="1.0">
 			<Dependency>
 				<Condition type="isEqual" target="j_width" value="1"/>
@@ -331,7 +362,7 @@
 		</Definition>
 	</Item>
 	<Item name="amp_width" caption="Max width ratio to the original width">
-		<Definition valueType="real" default="1.0">
+		<Definition valueType="real" min="0" default="1.0">
 			<Dependency>
 				<Condition type="isEqual" target="j_width" value="1"/>
 			</Dependency>
@@ -342,7 +373,7 @@
 
 <Tab name="Water" caption="Initial Water Surface Profile">
 	<Item name="depth_dw" caption="Downstream Depth(m)">
-		<Definition valueType="real" default="0.5">
+		<Definition valueType="real" min="0" default="0.5">
 		</Definition>
 	</Item>
 	<Item name="slope_ws" caption="Water Surface Slope">
