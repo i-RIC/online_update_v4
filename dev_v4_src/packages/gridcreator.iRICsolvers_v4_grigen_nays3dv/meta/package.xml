@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Grid Generator for Nays3Dv</DisplayName>
 	<Description></Description>
-	<Version>1.0.22100501</Version>
+	<Version>1.1.22100501</Version>
 	<Default>true</Default>
 	<ReleaseDate>2022-10-06</ReleaseDate>
 	<SortingPriority>50</SortingPriority>

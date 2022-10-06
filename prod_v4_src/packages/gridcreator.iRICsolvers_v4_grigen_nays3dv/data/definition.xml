@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net/GridGeneratorDefinition/1.0"
-  name="grigen_nays3dv" caption="Grid Generator for Nays3Dv" version="1.0.22100501" 
+  name="grigen_nays3dv" caption="Grid Generator for Nays3Dv" version="1.1.22100501" 
   copyright="Yasuyuki Shimizu" executable="grigen_nays3dv.exe" gridtype="structured2d" release="2022.10.06"
 >
 
