@@ -5,7 +5,7 @@
 -->
     <context>
         <message>
-            <source>nays3dv 3D Density Flow Solver</source>
+            <source>nays3Dv 3D Density Flow Solver</source>
             <translation>Nays3dv スーパー3次元密度流モデル</translation>
         </message>
         <message>
