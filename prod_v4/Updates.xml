@@ -598,15 +598,15 @@
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.MGAMOU_Fbml_flow3</Name>
-  <DisplayName>Fbml_flow3 v1.1.2_iric4</DisplayName>
+  <DisplayName>Fbml_flow3_v2022_2_iric4</DisplayName>
   <Description/>
   <Version>1.1.2</Version>
   <Default>true</Default>
   <ReleaseDate>2022-07-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="721449" UncompressedSize="3258467"/>
+  <UpdateFile OS="Any" UncompressedSize="3258468" CompressedSize="721457"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>05e1387c00312eea2c3653b6b937b80e217208b7</SHA1>
+  <SHA1>eeae7e4a7102a83b851b6b9c27cef72fbf914d54</SHA1>
  </PackageUpdate>
 </Updates>
