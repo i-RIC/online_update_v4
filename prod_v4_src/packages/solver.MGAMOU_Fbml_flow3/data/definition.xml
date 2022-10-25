@@ -2,7 +2,7 @@
 <SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="Mvl_flow_level1"
-	caption="Fbml_flow3_v2022_2_iric4"
+	caption="Fbml_flow3_iric4_ver 1.2"
 	version="1.1.2"
 	copyright="Mineyuki Gamou"
 	release="2022.07.01"
