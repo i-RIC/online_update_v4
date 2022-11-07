@@ -5,7 +5,7 @@
 	caption="Fbml_flow3_v2022_2_iric4"
 	version="1.1.2"
 	copyright="Mineyuki Gamou"
-	release="2022.07.01"
+	release="2022.11.01"
 	homepage="http://i-ric.org"
 	executable="Fbml_flow3_v2022_2_iric4.exe"
 	iterationtype="time"
@@ -36,7 +36,7 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Layer number" caption="層">
+		<Tab name="Layer number" caption="層・圧力">
 			<Content>
 				<Items>
 					<Item name="LYER_NUMBER" caption="層の数">
@@ -55,6 +55,21 @@
 								<Enumeration value="1" caption="境界層の位置を断面間内挿方式の可動式とする" />
 								<Enumeration value="2" caption="境界層の位置を節点ごとの可動式とする" />
 							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="PRSS_FRX" caption="圧力の計算方式">
+						<Definition conditionType="constant" valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="静水圧近似" />
+								<!--<Enumeration value="1" caption="ポアソン方程式より計算" />-->
+							</Enumerations>
+							<Dependency>
+								<Condition type="or">
+									<Condition type="isEqual" target="LAY_FRX" value="0"/>
+									<Condition type="isEqual" target="LAY_FRX" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
 						</Definition>
 					</Item>
 				</Items>
@@ -2324,11 +2339,12 @@
 	</GridRelatedCondition>
 	<BoundaryCondition name="IPON_PARM" caption="Boundary condition" position="node">
 		<GroupBox caption="Type of boundary condition">
-			<Item name="IBCON_06" caption="     流れと密度の境界条件">
+			<Item name="IBCON_06" caption="     密度の境界条件">
 				<Definition conditionType="constant" valueType="integer" option="true" default="0">
 					<Enumerations>
-						<Enumeration value="0" caption="流れ境界条件のみ設定" />
-						<Enumeration value="1" caption="流れと密度の境界条件を設定" />
+						<Enumeration value="0" caption="設定なし" />
+						<Enumeration value="1" caption="密度の境界条件として水温・塩素量を設定" />
+						<Enumeration value="2" caption="密度の境界条件として希釈係数を設定" />
 					</Enumerations>
 				</Definition>
 			</Item>
@@ -2433,6 +2449,12 @@
 							<Value name="SAL_BND" valueType="real" caption="塩素量（‰）"/>
 					  		<Condition type="isEqual" target="IBCON_06" value="1"/>
 							<Action type="enable" />
+						</Definition>
+					</Item>
+					<Item name="DEN_RATE" caption="　　　　　希釈係数">
+						<Definition valueType="real" default="0.9" >
+					  		<Condition type="isEqual" target="IBCON_06" value="2"/>
+							<Action type="enable"/>
 						</Definition>
 					</Item>
 				</GroupBox>
@@ -2577,7 +2599,7 @@
 				</GroupBox>
 				<GroupBox caption="希釈係数の設定">
 					<Item name="IPON_RATE" caption="     希釈係数">
-						<Definition valueType="real" default="1.0" >
+						<Definition valueType="real" default="0.9" >
 					  		<Condition type="isEqual" target="IBCON_07" value="7"/>
 							<Action type="enable"/>
 						</Definition>
