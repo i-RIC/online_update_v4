@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="UTT" caption="UTT_dev" version="1.2.22111001" copyright="yasu"
+    name="UTT" caption="UTT" version="1.2.22111001" copyright="yasu"
     release="2022.11.10"
     homepage="http://ws3-er.eng.hokudai.ac.jp/yasu/"
     executable="UTT.exe"
