@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>UTT</DisplayName>
+	<Description></Description>
+	<Version>1.2.22111001</Version>
+	<Default>true</Default>
+	<ReleaseDate>2022-11-10</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
