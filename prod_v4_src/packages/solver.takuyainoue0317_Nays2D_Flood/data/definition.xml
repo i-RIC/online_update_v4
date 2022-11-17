@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
-	name="naysflood" caption="Nays2D Flood v5.0 64 bit" version="5.0.22091418" copyright="Yasuyuki Shimizu"
+	name="naysflood" caption="Nays2D Flood v5.0 64 bit" version="5.0.22111715" copyright="Yasuyuki Shimizu"
 	release="2022.09.14" homepage="http://i-ric.org"
 	executable="Nays2d_flood.exe"
 	iterationtype="time"
