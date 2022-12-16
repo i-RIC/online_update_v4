@@ -2,12 +2,12 @@
 <SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="Mvl_flow_level1"
-	caption="Fbml_flow3_v2022_2_iric4"
-	version="1.1.2"
+	caption="Fbml_flow3_v2022_3_iric4"
+	version="1.1.3"
 	copyright="Mineyuki Gamou"
-	release="2022.11.01"
+	release="2022.12.15"
 	homepage="http://i-ric.org"
-	executable="Fbml_flow3_v2022_2_iric4.exe"
+	executable="Fbml_flow3_v2022_3_iric4.exe"
 	iterationtype="time"
 	gridtype="unstructured2d"
 >
@@ -61,7 +61,7 @@
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
 							<Enumerations>
 								<Enumeration value="0" caption="静水圧近似" />
-								<!--<Enumeration value="1" caption="ポアソン方程式より計算" />-->
+								<Enumeration value="1" caption="ポアソン方程式より計算" />
 							</Enumerations>
 							<Dependency>
 								<Condition type="or">
@@ -96,11 +96,13 @@
 			<Content>
 				<Items>
 					<Item name="ICON_09" caption="Turbulent model">
-						<Definition conditionType="constant" valueType="integer" option="true" default="2">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
 							<Enumerations>
 								<Enumeration value="1" caption="K-epsilon (simple) model"/>
-								<Enumeration value="2" caption="Zero equation model"/>
-								<Enumeration value="3" caption="Specific value of eddy viscosity coefficient"/>
+								<Enumeration value="2" caption="ゼロ方程式（摩擦速度）モデル"/>
+								<Enumeration value="3" caption="ゼロ方程式（混合長）モデル"/>
+								<Enumeration value="4" caption="Smagorinsky モデル"/>
+								<Enumeration value="5" caption="Specific value of eddy viscosity coefficient"/>
 							</Enumerations>
 						</Definition>
 					</Item>
@@ -118,10 +120,13 @@
 							<Value name="EDY_PAR_A" valueType="real" caption="Parameter A"/>
 							<Dependency>
 								<Condition type="and">
-									<Condition type="or">
+							 		<Condition type="isLessThan" target="ICON_09" value="5"/>
+									<!--<Condition type="or">
 								 		<Condition type="isEqual" target="ICON_09" value="1"/>
 								 		<Condition type="isEqual" target="ICON_09" value="2"/>
-									</Condition>
+								 		<Condition type="isEqual" target="ICON_09" value="3"/>
+								 		<Condition type="isEqual" target="ICON_09" value="4"/>
+									</Condition>-->
 							 		<Condition type="isEqual" target="EDDY_PAR" value="0"/>
 								</Condition>
 								<Action type="enable"/>
@@ -134,7 +139,7 @@
 							<Value name="EDY_CO_DI" valueType="real" caption="渦動粘性係数"/>
 							<Dependency>
 								<Condition type="and">
-							 		<Condition type="isEqual" target="ICON_09" value="3"/>
+							 		<Condition type="isEqual" target="ICON_09" value="5"/>
 							 		<Condition type="isEqual" target="EDDY_PAR" value="0"/>
 								</Condition>
 								<Action type="enable"/>
