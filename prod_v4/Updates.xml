@@ -615,11 +615,11 @@
   <Description/>
   <Version>1.2023.1</Version>
   <Default>true</Default>
-  <ReleaseDate>2022-12-15</ReleaseDate>
+  <ReleaseDate>2022-12-24</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="8998330" CompressedSize="895111"/>
+  <UpdateFile OS="Any" UncompressedSize="8967610" CompressedSize="1004489"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>9290be8ebe3f58fb198aafee7d819ffd5f93fc8b</SHA1>
+  <SHA1>89dc9ffb1c9be5b5f2b30e5c67e0e28f8275feb1</SHA1>
  </PackageUpdate>
 </Updates>
