@@ -6,379 +6,473 @@
 >
 
 <GridGeneratingCondition>
-  <Tab name="Channel" caption="Channel Shape">
-    <Item name="j_chn" caption="Select Channel Shape">
-      <Definition valueType="integer" default="0">
-	  <Enumeration value="0" caption="Straight"/>
-          <Enumeration value="1" caption="Sine-generated curve"/>
-          <Enumeration value="2" caption="Zigzad"/>
-	  <Enumeration value="3" caption="Kinoshita Meandering Curve"/>
-      </Definition>
-    </Item>
 
-    <Item name="j_zpt" caption="Grid Patern of Zigzag Channel">
-       <Definition valueType="integer" default="1">
-	   <Enumeration value="1" caption="Pattern I"/>
-	   <Enumeration value="2" caption="Pattern II"/>
-	   <Condition type="isEqual" target="j_chn" value="2"/>
-	</Definition>
-    </Item>
-
-    <Item name="j_cmp" caption="Cross Sectional Shape">
-      <Definition valueType="integer" default="1">
-          <Enumeration value="1" caption="Single Cross Section"/>
-          <Enumeration value="2" caption="Compound Cross Section"/>
-      </Definition>
-    </Item>
-
-    <Item name="j_cmpt" caption="Compound Cross Section Pattern">
-      <Definition valueType="integer" default="1">
-          <Enumeration value="1" caption="Pararel to Main Channel"/>
-          <Enumeration value="2" caption="With Straight Levees"/>
-          <Enumeration value="3" caption="Meandering Levees"/>
-	  <Condition type="and">
-            <Condition type="isEqual" target="j_cmp" value="2"/>
-	    <Condition type="isLessEqual" target="j_chn" value="2"/>
-	  </Condition>
-      </Definition>
-    </Item>
-
-
-</Tab>
-<Tab name="Cross Section" caption="Cross Sectional Shape Parameters">
-  <GroupBox caption="Single Cross Section">
-	<Item name="width" caption="Width(m)">
-		<Definition valueType="real" default="0.2">
-			<Condition type="isEqual" target="j_cmp" value="1"/>
-		</Definition>
-	</Item>
-	<Item name="ny" caption="Number of Grid in Lateral Direction">
-		<Definition valueType="integer" default="8" max="9999">
-			<Condition type="isEqual" target="j_cmp" value="1"/>
-		</Definition>
-	</Item>
-  </GroupBox>
-  <GroupBox caption="Compound Channel">
-	<GroupBox caption="Numbers of Grids">
-		<Item name="ny_l" caption="Left Floodplain">
-		   <Definition valueType="integer" default="5" max="9999">
-			<Condition type="isEqual" target="j_cmp" value="2"/>
-		   </Definition>
-		</Item>
-		<Item name="ny_c" caption="Low Water Channel">
-		   <Definition valueType="integer" default="5" max="9999">
-			<Condition type="isEqual" target="j_cmp" value="2"/>
-		   </Definition>
-		</Item>
-		<Item name="ny_r" caption="Right Floodplain">
-		   <Definition valueType="integer" default="5" max="9999">
-			<Condition type="isEqual" target="j_cmp" value="2"/>
-		   </Definition>
-		</Item>
-	</GroupBox>
-		<Item name="height_l" caption="Low Water Channel Depth(m)">
-		   <Definition valueType="real" default="0.02">
-			<Condition type="isEqual" target="j_cmp" value="2"/>
-		   </Definition>
-		</Item>
-		<Item name="alpha_l" caption="Bank Slope Raitio of Low Water Channel">
-		   <Definition valueType="real" default="2.0">
-			<Condition type="isEqual" target="j_cmp" value="2"/>
-		   </Definition>
-		</Item>
-		<Item name="ny_m" caption="Numbers of Grids in Low Water Channel Bank">
-		   <Definition valueType="integer" default="1" max="9999">
-			<Condition type="isEqual" target="j_cmp" value="2"/>
-		   </Definition>
-		</Item>
-  </GroupBox>
-  <GroupBox caption="Simple Compound Channel">
-	<GroupBox caption="Channel Width">
-		<Item name="width_l" caption="Left Flood Channel Width(m)">
-		   <Definition valueType="real" default="0.3">
-			<Condition type="and">
-			  <Condition type="isEqual" target="j_cmp" value="2"/>
-			  <Condition type="isEqual" target="j_cmpt" value="1"/>
-			</Condition>
-		   </Definition>
-		</Item>
-		<Item name="width_c" caption="Low Water Channel Width(m)">
-		   <Definition valueType="real" default="0.3">
-			<Condition type="and">
-			  <Condition type="isEqual" target="j_cmp" value="2"/>
-			  <Condition type="isEqual" target="j_cmpt" value="1"/>
-			</Condition>
-		   </Definition>
-		</Item>
-		<Item name="width_r" caption="Right Flood Channel Width(m)">
-		   <Definition valueType="real" default="0.3">
-			<Condition type="and">
-			  <Condition type="isEqual" target="j_cmp" value="2"/>
-			  <Condition type="isEqual" target="j_cmpt" value="1"/>
-			</Condition>
-		   </Definition>
-		</Item>
-	</GroupBox>
-  </GroupBox>
-  <GroupBox caption="With Straight or Meandering Levees">
-	<Item name="width_t" caption="Total Width(m)">
-	    <Definition valueType="real" default="2.0">
-		<Condition type="and">
-		<Condition type="isEqual" target="j_cmp" value="2"/>
-		<Condition type="isEqual" target="j_cmpt" value="2"/>
-	        </Condition>
-	    </Definition>
-	</Item>
-	<Item name="width_ct" caption="Low Water Channel Width(m)">
-	    <Definition valueType="real" default="0.3">
-		<Condition type="and">
-		<Condition type="isEqual" target="j_cmp" value="2"/>
-		<Condition type="isGreaterEqual" target="j_cmpt" value="2"/>
-	        </Condition>
-	    </Definition>
-	</Item>
-	<Item name="width_tl" caption="Left Levee Distance from Channel Center(m)">
-	    <Definition valueType="real" default="2.0">
-		<Condition type="and">
-		<Condition type="isEqual" target="j_cmp" value="2"/>
-		<Condition type="isEqual" target="j_cmpt" value="3"/>
-	        </Condition>
-	    </Definition>
-	</Item>
-	<Item name="width_tr" caption="Right Levee Distance from Channel Center(m)">
-	    <Definition valueType="real" default="2.0">
-		<Condition type="and">
-		<Condition type="isEqual" target="j_cmp" value="2"/>
-		<Condition type="isEqual" target="j_cmpt" value="3"/>
-	        </Condition>
-	    </Definition>
-	</Item>
-  </GroupBox>
-</Tab>
-
-<Tab name="Channel Shape Parameters" caption="Channel Shape Parameters">
-
-
-	<Item name="sl" caption="Wave Length of Meander(m)">
-		<Definition valueType="real" option="false" default="3"/>
-	</Item>
-	<Item name="irns" caption="Wave Number">
-		<Definition valueType="integer" default="1" max="9999"/>
-	</Item>
-	<Item name="phi0" caption="Meander Angle(degree)">
-		<Definition valueType="real" default="0">
-		  <Condition type="isGreaterThan" target="j_chn" value="0"/>
-		</Definition>
-	</Item>
-
-	<Item name="nt" caption="Number of Grids in One Wave Length">
-		<Definition valueType="integer" default="20" max="9999"/>
-	</Item>
-
-  <GroupBox caption="Levee Meander Parameters">
-	<Item name="phi_b" caption="Meander Angle(degree)">
-	<Definition valueType="real" default="0">
-	<Condition type="and">
-	<Condition type="isEqual" target="j_cmp" value="2"/>
-	<Condition type="isEqual" target="j_cmpt" value="3"/>
-	</Condition>
-	</Definition>
-	</Item>
-
-	<Item name="wl_b" caption="Meander Wave Length(m)">
-	<Definition valueType="real" default="3.0">
-	<Condition type="and">
-	<Condition type="isEqual" target="j_cmp" value="2"/>
-	<Condition type="isEqual" target="j_cmpt" value="3"/>
-	</Condition>
-	</Definition>
-	</Item>
-
- 	<Item name="plag_b" caption="Phase Lag from LWC(m)">
-	<Definition valueType="real" default="0">
-	<Condition type="and">
-	<Condition type="isEqual" target="j_cmp" value="2"/>
-	<Condition type="isEqual" target="j_cmpt" value="3"/>
-	</Condition>
-	</Definition>
-	</Item>
-
-  </GroupBox>
-
-
-  <GroupBox caption="Kinoshita Meander Parameters">
-	<Item name="phi1" caption="Additionl Meander Angle(degree)">
-		<Definition valueType="real" default="10">
-		<Condition type="isEqual" target="j_chn" value="3"/>
-		</Definition>
-	</Item>
-	<Item name="sk_n1" caption="n1(Wave Number of the second term)">
-		<Definition valueType="real" default="3.0">
-		<Condition type="isEqual" target="j_chn" value="3"/>
-		</Definition>
-	</Item>
-  </GroupBox>
-
-</Tab>
-
-
-
-
-
-<Tab name="Bed and Channel Shape" caption="Bed and Channel Shape">
-
-<Item name="j_bar" caption="Initial Bed Shape">
-	<Definition conditionType="constant" valueType="integer" option="true" default="1">
-	<Enumerations>
-	<Enumeration value="1" caption="Flat (no bar)"/>
-	<Enumeration value="2" caption="Alternate Bar"/>
-	<Enumeration value="3" caption="Parabolic Shape"/>
-	</Enumerations>
+	<!-- 水路形状 -->
+	<Tab name="Channel" caption="Channel Shape">
 		
-	</Definition>
-</Item>
+		<!-- 水路形状の選択 -->
+		<Item name="j_chn" caption="Select Channel Shape">
+			<Definition valueType="integer" default="0">
+				<Enumeration value="0" caption="Straight"/>						<!-- 直線水路 -->
+				<Enumeration value="1" caption="Sine-generated curve"/>			<!-- サインジェネレーテッドカーブ -->
+				<Enumeration value="2" caption="Zigzad"/>						<!-- ジグザグ -->
+				<Enumeration value="3" caption="Kinoshita Meandering Curve"/>	<!-- 木下蛇行水路 -->
+			</Definition>
+		</Item>
 
+		<!-- ジグザグ河道の格子パターン -->
+		<Item name="j_zpt" caption="Grid Patern of Zigzag Channel">
+			<Definition valueType="integer" default="1">
+				<Enumeration value="1" caption="Pattern I"/>					<!-- パターン1 -->
+				<Enumeration value="2" caption="Pattern II"/>					<!-- パターン2 -->
+				<Condition type="isEqual" target="j_chn" value="2"/>
+			</Definition>
+		</Item>
 
-<Item name="amp" caption="Bar Height or Amplitute of Parabolic Shape(m)">
-	<Definition conditionType="constant" valueType="real" option="false" default="0.01">
-	<Condition type="isGreaterEqual" target="j_bar" value="2"/>
-	</Definition>
-</Item>
+		<!-- 横断形状 -->
+		<Item name="j_cmp" caption="Cross Sectional Shape">
+			<Definition valueType="integer" default="1">
+				<Enumeration value="1" caption="Single Cross Section"/>			<!-- 単断面 -->
+				<Enumeration value="2" caption="Compound Cross Section"/>		<!-- 複断面 -->
+			</Definition>
+		</Item>
 
+		<!-- 複断面のパターン -->
+		<Item name="j_cmpt" caption="Compound Cross Section Pattern">
+			<Definition valueType="integer" default="1">
+				<Enumeration value="1" caption="Pararel to Main Channel"/>		<!-- 堤防と低水路が平行 -->
+				<Enumeration value="2" caption="With Straight Levees"/>			<!-- 堤防は直線 -->
+				<Enumeration value="3" caption="Meandering Levees"/>			<!-- 堤防も蛇行 -->
+				<Condition type="and">
+					<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
+					<Condition type="isLessEqual" target="j_chn" value="2"/>
+				</Condition>
+			</Definition>
+		</Item>
 
-<Item name="delta" caption="Lag Btween Bar and Plane Geometry(m)">
-	<Definition conditionType="constant" valueType="real" option="false" default="0.01">
-	<Condition type="isEqual" target="j_bar" value="2"/>
-	</Definition>
-</Item>
+	</Tab>
 
-<Item name="slope" caption="Channel Slope">
-	<Definition conditionType="constant" valueType="real" option="false" default="0.001"/>
-</Item>
+	<!-- 断面形に関するパラメーター -->
+	<Tab name="Cross Section" caption="Cross Sectional Shape Parameters">
+		
+		<!-- 単断面 -->
+		<GroupBox caption="Single Cross Section">
+			
+			<!-- 水路幅 -->
+			<Item name="width" caption="Width(m)">
+				<Definition valueType="real" default="0.2">
+					<Condition type="isEqual" target="j_cmp" value="1"/>
+				</Definition>
+			</Item>
+			
+			<!-- 横断方向の格子数 -->
+			<Item name="ny" caption="Number of Grid in Lateral Direction">
+				<Definition valueType="integer" default="8" max="9999">
+					<Condition type="isEqual" target="j_cmp" value="1"/>
+				</Definition>
+			</Item>
 
-</Tab>
+		</GroupBox>
 
-<Tab name="Upstream and Downstream Condition" caption="Upstream and Downstream Condition">
-<Item name="j_add" caption="Add straight channel in upstream and downstream">
-	<Definition valueType="integer" default="0">
-	<Enumerations>
-	<Enumeration value="0" caption="Not Add"/>
-	<Enumeration value="1" caption="Add Channel"/>
-	</Enumerations>
-	</Definition>
-</Item>
-<Item name="ni_up" caption="Number of Adding Sections in Upstream End">
-	<Definition valueType="integer" default="10">
-	<Condition type="isEqual" target="j_add" value="1"/>
-	</Definition>
-</Item>
+		<!-- 複断面 -->
+  		<GroupBox caption="Compound Channel">
 
-<Item name="ni_down" caption="Number of Adding Sections in Downstream End">
-	<Definition valueType="integer" default="10">
-	<Condition type="isEqual" target="j_add" value="1"/>
-	</Definition>
-</Item>
-</Tab>
+			<!-- 横断方向格子数 -->
+			<GroupBox caption="Numbers of Grids">
+				
+				<!-- 左岸高水敷 -->
+				<Item name="ny_l" caption="Left Floodplain">
+					<Definition valueType="integer" default="5" max="9999">
+						<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
+					</Definition>
+				</Item>
+				
+				<!-- 低水路部 -->
+				<Item name="ny_c" caption="Low Water Channel">
+					<Definition valueType="integer" default="5" max="9999">
+						<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
+					</Definition>
+				</Item>
 
-<Tab name="Width Variation" caption="Width Variation">
+				<!-- 右岸高水敷 -->
+				<Item name="ny_r" caption="Right Floodplain">
+					<Definition valueType="integer" default="5" max="9999">
+						<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
+					</Definition>
+				</Item>
 
-<Item name="j_width" caption="Width Variation">
-	<Definition valueType="integer" default="1">
-	<Enumerations>
-	<Enumeration value="1" caption="Constant Width"/>
-	<Enumeration value="2" caption="Width Variation in Stream Drection"/>
-	</Enumerations>
-	</Definition>
-</Item>
+			</GroupBox>
 
-<Item name="j_width_type" caption="Width Variation Type">
-	<Definition valueType="integer" default="1">
-	<Enumerations>
-	<Enumeration value="1" caption="Both Banks"/>
-	<Enumeration value="2" caption="Left Bank Only"/>
-	<Enumeration value="3" caption="Right Bank Only"/>
-	</Enumerations>
-	<Condition type="isEqual" target="j_width" value="2"/>
-	</Definition>
-</Item>
+			<!-- 低水路河岸深さ -->
+			<Item name="height_l" caption="Low Water Channel Depth(m)">
+				<Definition valueType="real" default="0.02">
+					<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+				</Definition>
+			</Item>
+			
+			<!-- 低水路河岸法勾配 -->
+			<Item name="alpha_l" caption="Bank Slope Raitio of Low Water Channel">
+				<Definition valueType="real" default="2.0">
+					<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+				</Definition>
+			</Item>
+			
+			<!-- 低水路法面の格子数 -->
+			<Item name="ny_m" caption="Numbers of Grids in Low Water Channel Bank">
+				<Definition valueType="integer" default="1" max="9999">
+					<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+				</Definition>
+			</Item>
 
-<Item name="delta_b" caption="Width Deviation(m)">
-	<Definition valueType="real" default="0.05">
-	<Condition type="isEqual" target="j_width" value="2"/>
-	</Definition>
-</Item>
+  		</GroupBox>
 
-</Tab>
+		<!-- 単純な複断面 -->
+		<GroupBox caption="Simple Compound Channel">
+			
+			<!-- 水路幅 -->
+			<GroupBox caption="Channel Width">
+				
+				<!-- 左岸高水敷幅 -->
+				<Item name="width_l" caption="Left Flood Channel Width(m)">
+					<Definition valueType="real" default="0.3">
+						<Condition type="and">
+							<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
+							<Condition type="isEqual" target="j_cmpt" value="1"/>		<!-- 堤防と低水路が平行 -->
+						</Condition>
+					</Definition>
+				</Item>
+				
+				<!-- 低水路幅 -->
+				<Item name="width_c" caption="Low Water Channel Width(m)">
+					<Definition valueType="real" default="0.3">
+						<Condition type="and">
+							<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
+							<Condition type="isEqual" target="j_cmpt" value="1"/>		<!-- 堤防と低水路が平行 -->
+						</Condition>
+					</Definition>
+				</Item>
+				
+				<!-- 右岸高水敷幅 -->
+				<Item name="width_r" caption="Right Flood Channel Width(m)">
+					<Definition valueType="real" default="0.3">
+						<Condition type="and">
+							<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
+							<Condition type="isEqual" target="j_cmpt" value="1"/>		<!-- 堤防と低水路が平行 -->
+						</Condition>
+					</Definition>
+				</Item>
+			
+			</GroupBox>
+		
+		</GroupBox>
 
-<Tab name="Bed Contition" caption="Bed Condition">
+		<!-- 直線堤防または蛇行堤防 -->
+		<GroupBox caption="With Straight or Meandering Levees">
+			
+			<!-- 堤々間の距離 -->
+			<Item name="width_t" caption="Total Width(m)">
+				<Definition valueType="real" default="2.0">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+						<Condition type="isEqual" target="j_cmpt" value="2"/>			<!-- 堤防は直線 -->
+					</Condition>
+				</Definition>
+			</Item>
+			
+			<!-- 低水路幅 -->
+			<Item name="width_ct" caption="Low Water Channel Width(m)">
+				<Definition valueType="real" default="0.3">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+						<Condition type="isGreaterEqual" target="j_cmpt" value="2"/>	<!-- 堤防は直線 or 堤防も蛇行 -->
+					</Condition>
+				</Definition>
+			</Item>
+			
+			<!-- 低水路中心から左岸堤防までの距離 -->
+			<Item name="width_tl" caption="Left Levee Distance from Channel Center(m)">
+				<Definition valueType="real" default="2.0">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+						<Condition type="isEqual" target="j_cmpt" value="3"/>			<!-- 堤防も蛇行 -->
+					</Condition>
+				</Definition>
+			</Item>
 
-<GroupBox caption="Low Water Channel">
+			<!-- 低水路中心から右岸堤防までの距離 -->			
+			<Item name="width_tr" caption="Right Levee Distance from Channel Center(m)">
+				<Definition valueType="real" default="2.0">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+						<Condition type="isEqual" target="j_cmpt" value="3"/>			<!-- 堤防も蛇行 -->
+					</Condition>
+				</Definition>
+			</Item>
 
-<Item name="j_fix_l" caption="Bed Condition">
-	<Definition valueType="integer" default="0">
-	<Enumerations>
-	<Enumeration value="0" caption="Moveable Bed"/>
-	<Enumeration value="1" caption="Fixed Bed"/>
-	</Enumerations>
-	</Definition>
-</Item>
+		</GroupBox>
 
-<Item name="j_rough_l" caption="Roughness Definition">
-	<Definition valueType="integer" default="0">
-	<Enumerations>
-	<Enumeration value="0" caption="Not Specified"/>
-	<Enumeration value="1" caption="Set Manning's Roughness"/>
-	</Enumerations>
-	</Definition>
-</Item>
+	</Tab>
 
-<Item name="roughness_l" caption="Roughness Value">
-	<Definition valueType="real" default="0.02">
-		<Condition type="isEqual" target="j_rough_l" value="1"/>
-	</Definition>
-</Item>
+	<!-- 水路形状に関するパラメータ -->
+	<Tab name="Channel Shape Parameters" caption="Channel Shape Parameters">
 
-</GroupBox>
+		<!-- 蛇行波長 -->
+		<Item name="sl" caption="Wave Length of Meander(m)">
+			<Definition valueType="real" option="false" default="3"/>
+		</Item>
 
-<GroupBox caption="Floodplain">
+		<!-- 蛇行波数 -->
+		<Item name="irns" caption="Wave Number">
+			<Definition valueType="integer" default="1" max="9999"/>
+		</Item>
+		
+		<!-- 蛇行角 -->
+		<Item name="phi0" caption="Meander Angle(degree)">
+			<Definition valueType="real" default="0">
+				<Condition type="isGreaterThan" target="j_chn" value="0"/>
+			</Definition>
+		</Item>
 
-<Item name="j_fix_h" caption="Bed Condition">
-	<Definition valueType="integer" default="0">
-	<Enumerations>
-	<Enumeration value="0" caption="Moveable Bed"/>
-	<Enumeration value="1" caption="Fixed Bed"/>
-	</Enumerations>
-	<Condition type="isEqual" target="j_cmp" value="2"/>
-	</Definition>
-</Item>
+		<!-- 一波長当たりの縦断方向格子数 -->
+		<Item name="nt" caption="Number of Grids in One Wave Length">
+			<Definition valueType="integer" default="20" max="9999"/>
+		</Item>
 
-<Item name="j_rough_h" caption="Roughness Definition">
-	<Definition valueType="integer" default="0">
-	<Enumerations>
-	<Enumeration value="0" caption="Not Specify"/>
-	<Enumeration value="1" caption="Set Manning's Roughness"/>
-	</Enumerations>
-	<Condition type="isEqual" target="j_cmp" value="2"/>
-	</Definition>
-</Item>
+		<!-- 堤防の平面形状パラメータ -->
+  		<GroupBox caption="Levee Meander Parameters">
+	
+			<!-- 蛇行角 -->
+			<Item name="phi_b" caption="Meander Angle(degree)">
+				<Definition valueType="real" default="0">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+						<Condition type="isEqual" target="j_cmpt" value="3"/>			<!-- 堤防も蛇行 -->
+					</Condition>
+				</Definition>
+			</Item>
 
-<Item name="roughness_h" caption="Roughness Value">
-	<Definition valueType="real" default="0.05">
-		<Condition type="and">
-		<Condition type="isEqual" target="j_rough_h" value="1"/>
-		<Condition type="isEqual" target="j_cmp" value="2"/>
-		</Condition>
-	</Definition>
-</Item>
+			<!-- 蛇行波長 -->
+			<Item name="wl_b" caption="Meander Wave Length(m)">
+				<Definition valueType="real" default="3.0">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+						<Condition type="isEqual" target="j_cmpt" value="3"/>			<!-- 堤防も蛇行 -->
+					</Condition>
+				</Definition>
+			</Item>
 
-</GroupBox>
+			<!-- 低水路との位相差 -->
+			<Item name="plag_b" caption="Phase Lag from LWC(m)">
+				<Definition valueType="real" default="0">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+						<Condition type="isEqual" target="j_cmpt" value="3"/>			<!-- 堤防も蛇行 -->
+					</Condition>
+				</Definition>
+			</Item>
 
-</Tab>
+		</GroupBox>
+
+		<!-- 木下蛇行水路のパラメータ -->
+		<GroupBox caption="Kinoshita Meander Parameters">
+
+			<!-- 付加項の蛇行角 -->
+			<Item name="phi1" caption="Additionl Meander Angle(degree)">
+				<Definition valueType="real" default="10">
+					<Condition type="isEqual" target="j_chn" value="3"/>
+				</Definition>
+			</Item>
+			
+			<!-- 付加項の波数 -->
+			<Item name="sk_n1" caption="n1(Wave Number of the second term)">
+				<Definition valueType="real" default="3.0">
+					<Condition type="isEqual" target="j_chn" value="3"/>
+				</Definition>
+			</Item>
+
+		</GroupBox>
+
+	</Tab>
+
+	<!-- 河床形状と河道形状 -->
+	<Tab name="Bed and Channel Shape" caption="Bed and Channel Shape">
+
+		<!-- 河床形状 -->
+		<Item name="j_bar" caption="Initial Bed Shape">
+			<Definition conditionType="constant" valueType="integer" option="true" default="1">
+				<Enumerations>
+					<Enumeration value="1" caption="Flat (no bar)"/>								<!-- 平坦 -->
+					<Enumeration value="2" caption="Alternate Bar"/>								<!-- 交互砂州 -->
+					<Enumeration value="3" caption="Parabolic Shape"/>								<!-- 放物線状 -->
+				</Enumerations>	
+			</Definition>
+		</Item>
+
+		<!-- 砂州波高または放物線の波高 -->
+		<Item name="amp" caption="Bar Height or Amplitute of Parabolic Shape(m)">
+			<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+				<Condition type="isGreaterEqual" target="j_bar" value="2"/>							<!-- 交互砂州 or 放物線状 -->
+			</Definition>
+		</Item>
+
+		<!-- 砂州と平面蛇行の位相差 -->
+		<Item name="delta" caption="Lag Btween Bar and Plane Geometry(m)">
+			<Definition conditionType="constant" valueType="real" option="false" default="0.01">
+				<Condition type="isEqual" target="j_bar" value="2"/>								<!-- 交互砂州 -->
+			</Definition>
+		</Item>
+
+		<!-- 水路勾配 -->
+		<Item name="slope" caption="Channel Slope">
+			<Definition conditionType="constant" valueType="real" option="false" default="0.001"/>
+		</Item>
+
+	</Tab>
+
+	<!-- 上下流の条件 -->
+	<Tab name="Upstream and Downstream Condition" caption="Upstream and Downstream Condition">
+		
+		<!-- 上下流への直線水路の追加 -->
+		<Item name="j_add" caption="Add straight channel in upstream and downstream">
+			<Definition valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Not Add"/>										<!-- 追加する -->
+					<Enumeration value="1" caption="Add Channel"/>									<!-- 追加しない -->
+				</Enumerations>
+			</Definition>
+		</Item>
+		
+		<!-- 上流に追加する断面数 -->
+		<Item name="ni_up" caption="Number of Adding Sections in Upstream End">
+			<Definition valueType="integer" default="10">
+				<Condition type="isEqual" target="j_add" value="1"/>								<!-- 追加しない -->
+			</Definition>
+		</Item>
+
+		<!-- 下流に追加する断面数 -->
+		<Item name="ni_down" caption="Number of Adding Sections in Downstream End">
+			<Definition valueType="integer" default="10">
+				<Condition type="isEqual" target="j_add" value="1"/>								<!-- 追加しない -->
+			</Definition>
+		</Item>
+
+	</Tab>
+
+	<!-- 川幅の流下方向変化 -->
+	<Tab name="Width Variation" caption="Width Variation">
+
+		<!-- 川幅の流下方向変化 -->
+		<Item name="j_width" caption="Width Variation">
+			<Definition valueType="integer" default="1">
+				<Enumerations>
+					<Enumeration value="1" caption="Constant Width"/>								<!-- 一定幅 -->
+					<Enumeration value="2" caption="Width Variation in Stream Drection"/>			<!-- 変化を与える -->
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<!-- 川幅の変化方法 -->
+		<Item name="j_width_type" caption="Width Variation Type">
+			<Definition valueType="integer" default="1">
+				<Enumerations>
+					<Enumeration value="1" caption="Both Banks"/>									<!-- 両岸変化させる -->
+					<Enumeration value="2" caption="Left Bank Only"/>								<!-- 左岸のみ変化させる -->
+					<Enumeration value="3" caption="Right Bank Only"/>								<!-- 右岸のみ変化させる -->
+				</Enumerations>
+			<Condition type="isEqual" target="j_width" value="2"/>									<!-- 変化を与える -->
+			</Definition>
+		</Item>
+
+		<!-- 川幅変化量 -->
+		<Item name="delta_b" caption="Width Deviation(m)">
+			<Definition valueType="real" default="0.05">
+				<Condition type="isEqual" target="j_width" value="2"/>								<!-- 変化を与える -->
+			</Definition>
+		</Item>
+
+	</Tab>
+
+	<!-- 河床の状況 -->
+	<Tab name="Bed Contition" caption="Bed Condition">
+
+		<!-- 低水路 -->
+		<GroupBox caption="Low Water Channel">
+
+			<!-- 河床の状況 -->
+			<Item name="j_fix_l" caption="Bed Condition">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Moveable Bed"/>								<!-- 移動床 -->
+						<Enumeration value="1" caption="Fixed Bed"/>								<!-- 固定床 -->
+					</Enumerations>
+				</Definition>
+			</Item>
+
+			<!-- 粗度定数の定義 -->
+			<Item name="j_rough_l" caption="Roughness Definition">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Not Specified"/>							<!-- 定義しない -->
+						<Enumeration value="1" caption="Set Manning's Roughness"/>					<!-- マニングの粗度係数を与える -->
+					</Enumerations>
+				</Definition>
+			</Item>
+
+			<!-- 粗度係数の値 -->
+			<Item name="roughness_l" caption="Roughness Value">
+				<Definition valueType="real" default="0.02">
+					<Condition type="isEqual" target="j_rough_l" value="1"/>						<!-- マニングの粗度係数を与える -->
+				</Definition>
+			</Item>
+
+		</GroupBox>
+		
+		<!-- 高水敷 -->
+		<GroupBox caption="Floodplain">
+
+			<!-- 河床の状況 -->
+			<Item name="j_fix_h" caption="Bed Condition">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Moveable Bed"/>					<!-- 移動床 -->
+						<Enumeration value="1" caption="Fixed Bed"/>					<!-- 固定床 -->
+					</Enumerations>
+					<Condition type="isEqual" target="j_cmp" value="2"/>				<!-- 複断面 -->
+				</Definition>
+			</Item>
+
+			<!-- 粗度係数の定義 -->
+			<Item name="j_rough_h" caption="Roughness Definition">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="Not Specify"/>					<!-- 定義しない -->
+						<Enumeration value="1" caption="Set Manning's Roughness"/>		<!-- マニングの粗度係数を与える -->
+					</Enumerations>
+					<Condition type="isEqual" target="j_cmp" value="2"/>				<!-- 複断面 -->
+				</Definition>
+			</Item>
+
+			<!-- 粗度係数の値 -->
+			<Item name="roughness_h" caption="Roughness Value">
+				<Definition valueType="real" default="0.05">
+					<Condition type="and">
+						<Condition type="isEqual" target="j_rough_h" value="1"/>		<!-- マニングの粗度係数を与える -->
+						<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
+					</Condition>
+				</Definition>
+			</Item>
+
+		</GroupBox>
+
+	</Tab>
 
 
 </GridGeneratingCondition>
+
 <ErrorCodes>
-    <ErrorCode value="1" caption="IMax * JMax must be smaller than 100,000." />
-  </ErrorCodes>
+	
+	<ErrorCode value="1" caption="IMax * JMax must be smaller than 100,000." />
+  	</ErrorCodes>
+
 </GridGeneratorDefinition >
 
