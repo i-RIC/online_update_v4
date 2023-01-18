@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net/GridGeneratorDefinition/1.0"
-  name="gridgenerator" caption="Multifunction Grid Genarator" version="1.0.22080201" 
-  copyright="Yasuyuki Shimizu" executable="gridgen.exe" gridtype="structured2d" release="2022.08.02"
+  name="gridgenerator" caption="Multifunction Grid Genarator" version="1.1.23011801" 
+  copyright="Yasuyuki Shimizu" executable="gridgen.exe" gridtype="structured2d" release="2023.01.18"
 >
 
 <GridGeneratingCondition>
@@ -15,17 +15,7 @@
 			<Definition valueType="integer" default="0">
 				<Enumeration value="0" caption="Straight"/>						<!-- 直線水路 -->
 				<Enumeration value="1" caption="Sine-generated curve"/>			<!-- サインジェネレーテッドカーブ -->
-				<Enumeration value="2" caption="Zigzad"/>						<!-- ジグザグ -->
 				<Enumeration value="3" caption="Kinoshita Meandering Curve"/>	<!-- 木下蛇行水路 -->
-			</Definition>
-		</Item>
-
-		<!-- ジグザグ河道の格子パターン -->
-		<Item name="j_zpt" caption="Grid Patern of Zigzag Channel">
-			<Definition valueType="integer" default="1">
-				<Enumeration value="1" caption="Pattern I"/>					<!-- パターン1 -->
-				<Enumeration value="2" caption="Pattern II"/>					<!-- パターン2 -->
-				<Condition type="isEqual" target="j_chn" value="2"/>
 			</Definition>
 		</Item>
 
@@ -111,7 +101,7 @@
 			</Item>
 			
 			<!-- 低水路河岸法勾配 -->
-			<Item name="alpha_l" caption="Bank Slope Raitio of Low Water Channel">
+			<Item name="alpha_l" caption="Bank Slope Raitio of Low Water Channel (1:n)">
 				<Definition valueType="real" default="2.0">
 					<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
 				</Definition>
@@ -119,7 +109,7 @@
 			
 			<!-- 低水路法面の格子数 -->
 			<Item name="ny_m" caption="Numbers of Grids in Low Water Channel Bank">
-				<Definition valueType="integer" default="1" max="9999">
+				<Definition valueType="integer" default="1" max="9999" min="1">
 					<Condition type="isEqual" target="j_cmp" value="2"/>			<!-- 複断面 -->
 				</Definition>
 			</Item>

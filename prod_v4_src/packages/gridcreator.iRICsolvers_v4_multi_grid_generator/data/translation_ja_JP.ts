@@ -25,24 +25,8 @@
             <translation>サインジェネレーテッドカーブ</translation>
         </message>
         <message>
-            <source>Zigzad</source>
-            <translation>ジグザグ</translation>
-        </message>
-        <message>
             <source>Kinoshita Meandering Curve</source>
             <translation>木下迂曲蛇行河道</translation>
-        </message>
-        <message>
-            <source>Grid Patern of Zigzag Channel</source>
-            <translation>ジグザグ可動の格子パターン</translation>
-        </message>
-        <message>
-            <source>Pattern I</source>
-            <translation>パターンI</translation>
-        </message>
-        <message>
-            <source>Pattern II</source>
-            <translation>パターンII</translation>
         </message>
         <message>
             <source>Cross Sectional Shape</source>
@@ -86,7 +70,7 @@
         </message>
         <message>
             <source>Compound Channel</source>
-            <translation>副断面に関するパラメーター</translation>
+            <translation>複断面に関するパラメーター</translation>
         </message>
         <message>
             <source>Numbers of Grids</source>
@@ -109,8 +93,8 @@
             <translation>低水路河岸深さ(m)</translation>
         </message>
         <message>
-            <source>Bank Slope Raitio of Low Water Channel</source>
-            <translation>低水路河岸法勾配</translation>
+            <source>Bank Slope Raitio of Low Water Channel (1:n)</source>
+            <translation>低水路河岸法勾配 （1:n）</translation>
         </message>
         <message>
             <source>Numbers of Grids in Low Water Channel Bank</source>
@@ -146,7 +130,7 @@
         </message>
         <message>
             <source>Left Levee Distance from Channel Center(m)</source>
-            <translation>水路中心線から左岸堤防までの距離(m)</translation>
+            <translation>水路中央から左岸堤防までの距離(m)</translation>
         </message>
         <message>
             <source>Right Levee Distance from Channel Center(m)</source>

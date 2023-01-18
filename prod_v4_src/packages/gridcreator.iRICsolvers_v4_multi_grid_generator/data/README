@@ -1,0 +1,16 @@
+Multifunction Grid Genarator creates grids from 3 types of channel shapes and 4 types of cross-sectional patterns.
+And it's can add channels upstream and downstream, change channel width, and set cell attributes for each low channel and high channel.
+
+The channel shape can be selected from:
+・Straight
+・Sine-generated curve
+・Kinoshita Meandering Curve
+
+And you can choose single or compound cross section, the compound cross section pattern is:
+・Pararel to Main Channel
+・With Straight Levees
+・Meandering Levees
+
+v1.1.23011801　release:2023.1.18　Keita Hoshino
+・Fixed a bug related to Width Variation.
+・The zigzag channel generation function has been abolished.

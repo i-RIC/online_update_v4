@@ -613,13 +613,13 @@
   <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
   <DisplayName>Multifunction Grid Genarator</DisplayName>
   <Description/>
-  <Version>1.0.22080201</Version>
+  <Version>1.1.23011801</Version>
   <Default>true</Default>
-  <ReleaseDate>2022-08-02</ReleaseDate>
+  <ReleaseDate>2023-01-18</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="502961" CompressedSize="87634" OS="Any"/>
+  <UpdateFile UncompressedSize="503398" CompressedSize="88032" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>e8ac80776a823ed8575211c85ff7d4bf7b857c1c</SHA1>
+  <SHA1>978f36bacc56899e6c20ce66d15f056fa5e5a4dd</SHA1>
  </PackageUpdate>
 </Updates>
