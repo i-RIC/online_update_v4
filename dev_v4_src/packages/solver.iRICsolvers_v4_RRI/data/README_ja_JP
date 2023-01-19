@@ -4,6 +4,7 @@ RRIはRain Runoff Inundationモデルの略で、流域に降った雨が河川�
 
 --RRI on iRICについて
 RRI on iRICは、 「降雨流出氾濫（RRI）モデルプログラム利用規約 」、第1章ⅱ、ⅲの項目に基づき改変公開しているものです。 そのため、RRI on iRIC(以降、本プログラム)による計算結果の公表、頒布する場合は下記内容を明記してください。
+使用しているRRIモデルのバージョンは1.4.2.2です。
 
 --------
 ・本プログラムの原著作物（以降、RRI）の著作権は、土木研究所（ICHARM）にあります
@@ -21,4 +22,4 @@ Model Features
 3.One-dimensional diffusive wave river routing and its interaction with the slope model.
 
 2023.01.31
-・iRIC ver.4対応版のRRI ver.1.4.2.2.230131リリース
+・iRIC ver.4対応版のRRI on iRIC ver.1.4.2.230131リリース

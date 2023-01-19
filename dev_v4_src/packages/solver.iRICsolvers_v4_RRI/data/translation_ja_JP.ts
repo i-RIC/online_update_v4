@@ -5,8 +5,8 @@
 -->
     <context>
         <message>
-            <source>Rainfall-Runoff-Inundation v1.4.2.2 64 bit</source>
-            <translation>Rainfall-Runoff-Inundation v1.4.2.2 64 bit</translation>
+            <source>RRI v1.4.2.2 on iRIC</source>
+            <translation>RRI v1.4.2.2 on iRIC</translation>
         </message>
         <message>
             <source>Base Conditions</source>

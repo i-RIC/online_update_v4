@@ -6,3 +6,6 @@ Model Features
 1.Rainfall-runoff and inundation simultaneously with diffusion wave approximations.
 2.Subsurface flow (lateral subsurface and vertical infiltration) is simulated for physical representations of rainfall-runoff processes.
 3.One-dimensional diffusive wave river routing and its interaction with the slope model.
+
+2023.01.31
+・RRI on iRIC ver.1.4.2.230131 release for iRIC ver.4
