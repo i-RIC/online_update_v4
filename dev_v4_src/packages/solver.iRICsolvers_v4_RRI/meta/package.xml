@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>RRI v1.4.2.2 on iRIC</DisplayName>
+	<Description></Description>
+	<Version>1.4.2.2.230131</Version>
+	<Default>true</Default>
+	<ReleaseDate>2023-01-31</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
