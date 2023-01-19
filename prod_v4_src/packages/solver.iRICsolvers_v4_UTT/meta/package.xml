@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>UTT</DisplayName>
 	<Description></Description>
-	<Version>1.2.22111001</Version>
+	<Version>1.2.23011901</Version>
 	<Default>true</Default>
-	<ReleaseDate>2022-11-10</ReleaseDate>
+	<ReleaseDate>2023-01-19</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

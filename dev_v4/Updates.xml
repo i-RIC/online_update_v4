@@ -609,19 +609,6 @@
   <SHA1>3d3adf5964767d85d9087000f64a859e4bf2f2b1</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_UTT</Name>
-  <DisplayName>UTT</DisplayName>
-  <Description/>
-  <Version>1.2.22111001</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-11-10</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="148638" UncompressedSize="813353"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>7331e4c70f41d34046955bf4c5d26da2e0a3f6bd</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.takuyainoue0317_Nays2D_Flood</Name>
   <DisplayName>Nays2D Flood v5.0 64 bit</DisplayName>
   <Description/>
@@ -740,5 +727,18 @@
   <UpdateFile OS="Any" CompressedSize="244138" UncompressedSize="2072156"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>1d46b83a4be62e21588e00e82ce1ab002f641151</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_UTT</Name>
+  <DisplayName>UTT</DisplayName>
+  <Description/>
+  <Version>1.2.23011901</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-01-19</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" CompressedSize="152590" UncompressedSize="827476"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>7291afa73ccb6f87cbfd9ea9276eeffa97d246a2</SHA1>
  </PackageUpdate>
 </Updates>
