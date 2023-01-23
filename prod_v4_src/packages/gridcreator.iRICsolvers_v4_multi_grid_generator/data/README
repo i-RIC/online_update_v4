@@ -11,6 +11,6 @@ And you can choose single or compound cross section, the compound cross section 
 ・With Straight Levees
 ・Meandering Levees
 
-v1.1.23011801　release:2023.1.18　Keita Hoshino
+v1.1.23011802　release:2023.1.18　Keita Hoshino
 ・Fixed a bug related to Width Variation.
 ・The zigzag channel generation function has been abolished.

@@ -130,11 +130,11 @@
         </message>
         <message>
             <source>Left Levee Distance from Channel Center(m)</source>
-            <translation>水路中央から左岸堤防までの距離(m)</translation>
+            <translation>低水路中心から左岸堤防までの距離(m)</translation>
         </message>
         <message>
             <source>Right Levee Distance from Channel Center(m)</source>
-            <translation>水路中央か右岸堤防までの距離(m)</translation>
+            <translation>低水路中心から右岸堤防までの距離(m)</translation>
         </message>
         <message>
             <source>Channel Shape Parameters</source>

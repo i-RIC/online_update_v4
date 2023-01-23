@@ -672,7 +672,7 @@
   <UpdateFile UncompressedSize="37692755" OS="Any" CompressedSize="5135397"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>82f3f4c83751b7bde9829b3a882a674820a16e0f</SHA1>
  </PackageUpdate>
@@ -703,19 +703,6 @@
   <SHA1>d6d3c10996889fb77125329e2256ad3c813d28e5</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
-  <DisplayName>Multifunction Grid Genarator</DisplayName>
-  <Description/>
-  <Version>1.1.23011801</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-01-18</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="503398" OS="Any" CompressedSize="88035"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>687a1645e79134ae8cefa7198732701b4d25f936</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_v4_UTT</Name>
   <DisplayName>UTT</DisplayName>
   <Description/>
@@ -737,8 +724,21 @@
   <ReleaseDate>2023-01-31</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="2072255" CompressedSize="244170" OS="Any"/>
+  <UpdateFile UncompressedSize="2072255" OS="Any" CompressedSize="244170"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>29e3d6591717e81e00cc633a293d6b77b879a6e2</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
+  <DisplayName>Multifunction Grid Genarator</DisplayName>
+  <Description/>
+  <Version>1.1.23011802</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-01-18</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="503407" OS="Any" CompressedSize="88030"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>3226e84ff2be177dd3ff357eb3a83461c379ed4d</SHA1>
  </PackageUpdate>
 </Updates>

@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Multifunction Grid Genarator</DisplayName>
 	<Description></Description>
-	<Version>1.1.23011801</Version>
+	<Version>1.1.23011802</Version>
 	<Default>true</Default>
 	<ReleaseDate>2023-01-18</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
