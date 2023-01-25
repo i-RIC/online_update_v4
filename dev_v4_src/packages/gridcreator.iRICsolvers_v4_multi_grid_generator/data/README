@@ -11,6 +11,11 @@ And you can choose single or compound cross section, the compound cross section 
 ・With Straight Levees
 ・Meandering Levees
 
+v1.1.23012501　release:2023.1.25　Keita Hoshino
+・Updated the exe. (Sorry, it wasn't updated in the last version.)
+・When selecting "Kinoshita Meandering Curve", You can no longer select a "Compound Cross Section Pattern" other than "Pararel to Main Channel".
+
 v1.1.23011802　release:2023.1.18　Keita Hoshino
 ・Fixed a bug related to Width Variation.
 ・The zigzag channel generation function has been abolished.
+

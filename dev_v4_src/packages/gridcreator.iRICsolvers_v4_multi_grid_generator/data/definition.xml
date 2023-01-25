@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net/GridGeneratorDefinition/1.0"
-  name="gridgenerator" caption="Multifunction Grid Genarator" version="1.1.23011802" 
-  copyright="Yasuyuki Shimizu" executable="gridgen.exe" gridtype="structured2d" release="2023.01.18"
+  name="gridgenerator" caption="Multifunction Grid Genarator" version="1.1.23012501" 
+  copyright="Yasuyuki Shimizu" executable="gridgen.exe" gridtype="structured2d" release="2023.01.25"
 >
 
 <GridGeneratingCondition>
@@ -30,13 +30,16 @@
 		<!-- 複断面のパターン -->
 		<Item name="j_cmpt" caption="Compound Cross Section Pattern">
 			<Definition valueType="integer" default="1">
-				<Enumeration value="1" caption="Pararel to Main Channel"/>		<!-- 堤防と低水路が平行 -->
-				<Enumeration value="2" caption="With Straight Levees"/>			<!-- 堤防は直線 -->
-				<Enumeration value="3" caption="Meandering Levees"/>			<!-- 堤防も蛇行 -->
-				<Condition type="and">
-					<Condition type="isEqual" target="j_cmp" value="2"/>		<!-- 複断面 -->
-					<Condition type="isLessEqual" target="j_chn" value="2"/>
-				</Condition>
+				<Enumerations>
+					<Enumeration value="1" caption="Pararel to Main Channel"/>		<!-- 堤防と低水路が平行 -->
+					<Enumeration value="2" caption="With Straight Levees"/>			<!-- 堤防は直線 -->
+					<Enumeration value="3" caption="Meandering Levees"/>			<!-- 堤防も蛇行 -->
+					<SubEnumerations>
+						<Enumeration value="1" caption="Pararel to Main Channel"/>		<!-- 堤防と低水路が平行 -->
+						<Condition type="isEqual" target="j_chn" value="3"/>
+					</SubEnumerations>
+				</Enumerations>
+				<Condition type="isEqual" target="j_cmp" value="2"/>				<!-- 複断面 -->
 			</Definition>
 		</Item>
 

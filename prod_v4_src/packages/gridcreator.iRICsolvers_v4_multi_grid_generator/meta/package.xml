@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Multifunction Grid Genarator</DisplayName>
 	<Description></Description>
-	<Version>1.1.23011802</Version>
+	<Version>1.1.23012501</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023-01-18</ReleaseDate>
+	<ReleaseDate>2023-01-25</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
