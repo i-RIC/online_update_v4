@@ -648,19 +648,6 @@
   <SHA1>7905bc5a034a76a9f6a4e62a646bc7b2c433343f</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.MGAMOU_Fbml_flow3</Name>
-  <DisplayName>Fbml_flow3_v2023_1_iric4</DisplayName>
-  <Description/>
-  <Version>1.2023.1</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-12-24</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="12242747" CompressedSize="1463070"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>7716fa6f73287e63c65ccae5995c1d5fc8114067</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (develop)</DisplayName>
   <Description>iRIC Main GUI</Description>
@@ -672,7 +659,7 @@
   <UpdateFile OS="Any" UncompressedSize="37692755" CompressedSize="5135397"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>82f3f4c83751b7bde9829b3a882a674820a16e0f</SHA1>
  </PackageUpdate>
@@ -740,5 +727,18 @@
   <UpdateFile OS="Any" UncompressedSize="598016" CompressedSize="96516"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>0a05a8a836b04b6b03be8d58583d6e79f1f51af5</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.MGAMOU_Fbml_flow3</Name>
+  <DisplayName>Fbml_flow3_v2023_1_iric4</DisplayName>
+  <Description/>
+  <Version>1.2023.1</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-12-24</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="11828027" CompressedSize="1503591"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>20865a3122ac475d3b5057cba23941ea219fc3d7</SHA1>
  </PackageUpdate>
 </Updates>
