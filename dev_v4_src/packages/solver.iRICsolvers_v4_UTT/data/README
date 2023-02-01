@@ -1,2 +1,17 @@
 ﻿UTT is a new Lagrangian particle-tracking code that incorporates both advection and dispersion by turbulence (or other unresolved details of the flow field). 
 Unlike previous models, UTT is flow solver independent, works for one, two, and three-dimensional applications, and has a unique particle cloning/colligation technique that allows high spatial resolution without high computational expense. Importantly, the method is suitable for applications on typical laptop or desktop computers in the iRIC framework for flow, sediment transport, morphodynamics and habitat modelling in rivers (freely available at www.i- ric.org). 
+
+ver.1.2.23020101 update by hoshino
+・Fixed some bugs
+
+ver.1.2.23013001 update by shimizu
+・Added a function to divide normal tracers into two types, "primary" and "secondary".
+・Until now, tracers were removed in areas below the Minimum depth of tracer stopping, but now you can choose to remain in place and resume movement when the water depth exceeds the Minimum depth of tracer stopping.
+・GUI changes due to the above.
+
+ver.1.2.23011901 update by hoshino
+・Fixed the rendering method of trees and gravel polygons.
+・Fixed a bug that the special tracer's coordinates became incorrect when the number of times the special tracer's trajectory was saved exceeded the "maximum number of time steps when saving the trajectory".
+
+ver.1.2.22111001 update by shimizu
+・Added a function to draw polygons of trees and gravel.

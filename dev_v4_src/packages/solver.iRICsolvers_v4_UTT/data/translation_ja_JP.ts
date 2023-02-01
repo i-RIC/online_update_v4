@@ -17,50 +17,6 @@
             <translation>流れの計算結果を読み込むCGNSファイル</translation>
         </message>
         <message>
-            <source>Normal Tracers</source>
-            <translation>通常のトレーサー</translation>
-        </message>
-        <message>
-            <source>Tracer Releasing</source>
-            <translation>トレーサーの放出</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>しない</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>する</translation>
-        </message>
-        <message>
-            <source>Maximum number of total tracer particles</source>
-            <translation>最大個数</translation>
-        </message>
-        <message>
-            <source>Maximum number of tracer particles in one cell</source>
-            <translation>１セルあたりの最大個数</translation>
-        </message>
-        <message>
-            <source>Special Tracers for Trajectory Tracking</source>
-            <translation>軌跡表示をする特別トレーサー</translation>
-        </message>
-        <message>
-            <source>Release Tracers for Trajectory</source>
-            <translation>投入</translation>
-        </message>
-        <message>
-            <source>Maximum number of total tracer particles for Trajectory</source>
-            <translation>特別トレーサーの最大個数</translation>
-        </message>
-        <message>
-            <source>Maximum Times of Tracer Trajectory Saving</source>
-            <translation>軌跡を保存する際の最大の時間ステップ数</translation>
-        </message>
-        <message>
-            <source>Interval of Tracer Trajectory Saving</source>
-            <translation>軌跡を保存する際の間引き間隔</translation>
-        </message>
-        <message>
             <source>Velocity used for tracer tracking</source>
             <translation>トレーサーの軌跡追跡に使用される流速</translation>
         </message>
@@ -93,6 +49,18 @@
             <translation>トレーサーの移動が停止する最小(限界)水深(m)</translation>
         </message>
         <message>
+            <source>Treatment when depth is shallower than critical depth</source>
+            <translation>限界水深以下での通常トレーサーの処理</translation>
+        </message>
+        <message>
+            <source>Stay still</source>
+            <translation>その場に留まる</translation>
+        </message>
+        <message>
+            <source>Disappear</source>
+            <translation>取り除く</translation>
+        </message>
+        <message>
             <source>Delta T for Particle Tracking</source>
             <translation>トレーサー追跡の時間刻み(秒)</translation>
         </message>
@@ -117,12 +85,32 @@
             <translation>描画する</translation>
         </message>
         <message>
-            <source>Normal Tracers Supplying Condition</source>
-            <translation>通常トレーサーの供給条件</translation>
+            <source>Primary Tracers Supplying Condition</source>
+            <translation>プライマリートレーサーの供給条件</translation>
         </message>
         <message>
-            <source>Parameters for Normal Tracer Injection</source>
-            <translation>投入位置情報</translation>
+            <source>Primary Tracers</source>
+            <translation>プライマリートレーサー</translation>
+        </message>
+        <message>
+            <source>Tracer Releasing</source>
+            <translation>トレーサーの放出</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>しない</translation>
+        </message>
+        <message>
+            <source>Yes</source>
+            <translation>する</translation>
+        </message>
+        <message>
+            <source>Maximum number of total tracer particles</source>
+            <translation>最大個数</translation>
+        </message>
+        <message>
+            <source>Maximum number of tracer particles in one cell</source>
+            <translation>１セルあたりの最大個数</translation>
         </message>
         <message>
             <source>Xi(Streamwise) Direction</source>
@@ -157,8 +145,88 @@
             <translation>相対間隔刻み</translation>
         </message>
         <message>
-            <source>Time Parameters(Seconds)</source>
-            <translation>投入時間情報(秒)</translation>
+            <source>- Cloning and Amalgamation for Primary Normal Tracers</source>
+            <translation>- プライマリートレーサーのクローニングと再結合</translation>
+        </message>
+        <message>
+            <source>Tracer Cloning for Primary Normal Tracers</source>
+            <translation>プライマリートレーサーのクローニング</translation>
+        </message>
+        <message>
+            <source>(0)No</source>
+            <translation>しない</translation>
+        </message>
+        <message>
+            <source>(1)Yes</source>
+            <translation>する</translation>
+        </message>
+        <message>
+            <source>Cloning Method</source>
+            <translation>クローニングの方法</translation>
+        </message>
+        <message>
+            <source>Cloning condition or method</source>
+            <translation>方法の選択</translation>
+        </message>
+        <message>
+            <source>All empty cells</source>
+            <translation>トレーサーの無いセルはすべて発生させる</translation>
+        </message>
+        <message>
+            <source>Cells with only one particle</source>
+            <translation>トレーサーが1個のセルだけ新規トレーサーを発生させる</translation>
+        </message>
+        <message>
+            <source>Specified cells with one particle</source>
+            <translation>あらかじめ指定した領域</translation>
+        </message>
+        <message>
+            <source>Maximum Cloning Generations</source>
+            <translation>最大のクローニング世代数</translation>
+        </message>
+        <message>
+            <source>Cloning reduction factor for empty cells cloning</source>
+            <translation>トレーサーが多すぎて密になりすぎる場合の減量係数</translation>
+        </message>
+        <message>
+            <source>Amalgamation</source>
+            <translation>再結合</translation>
+        </message>
+        <message>
+            <source>Amalgamation for Primary Normal Tracers</source>
+            <translation>プライマリートレーサーの再結合</translation>
+        </message>
+        <message>
+            <source>Number of particle at which colligation is executed</source>
+            <translation>再結合開始限界セル内トレーサー数(この数に達したら再結合を開始する)</translation>
+        </message>
+        <message>
+            <source>Secondary Tracers Supplying Condition</source>
+            <translation>セカンダリートレーサーの供給条件</translation>
+        </message>
+        <message>
+            <source>Secondary Tracers</source>
+            <translation>セカンダリートレーサー</translation>
+        </message>
+        <message>
+            <source>- Cloning and Amalgamation for Secondary Normal Tracers</source>
+            <translation>- セカンダリートレーサーのクローニングと再結合</translation>
+        </message>
+        <message>
+            <source>Tracer Cloning for Secondary Normal Tracers</source>
+            <translation>セカンダリートレーサーのクローニング</translation>
+        </message>
+        <message>
+            <source>Amalgamation for Secondary Normal Tracers</source>
+            <translation>セカンダリートレーサーの再結合</translation>
+        </message>
+        <message>
+            <source>Time Settings for Normal Tracers</source>
+            <translation>通常トレーサーの時間設定</translation>
+        </message>
+        <message>
+            <source>Time Parameters for Normal Tracers(Seconds)</source>
+            <translation>通常トレーサーの時間設定(秒)</translation>
         </message>
         <message>
             <source>spread_start</source>
@@ -175,6 +243,26 @@
         <message>
             <source>Special Tracers for Trajectory Supplying Condition</source>
             <translation>軌跡追跡用の特別トレーサー</translation>
+        </message>
+        <message>
+            <source>Special Tracers</source>
+            <translation>特別トレーサー</translation>
+        </message>
+        <message>
+            <source>Release Tracers for Trajectory</source>
+            <translation>投入</translation>
+        </message>
+        <message>
+            <source>Maximum number of total tracer particles for Trajectory</source>
+            <translation>特別トレーサーの最大個数</translation>
+        </message>
+        <message>
+            <source>Maximum Times of Tracer Trajectory Saving</source>
+            <translation>軌跡を保存する際の最大の時間ステップ数</translation>
+        </message>
+        <message>
+            <source>Interval of Tracer Trajectory Saving</source>
+            <translation>軌跡を保存する際の間引き間隔</translation>
         </message>
         <message>
             <source>Parameters for Special Tracers for Trajectory Injection</source>
@@ -237,68 +325,12 @@
             <translation>背景の一定水深</translation>
         </message>
         <message>
-            <source>Tracer Cloning and Amalgamation</source>
-            <translation>トレーサーのクローニング(分割)と再結合</translation>
+            <source>Wind Map Like Plotting</source>
+            <translation>Wind Mapのような描写</translation>
         </message>
         <message>
-            <source>Tracer Cloning (Only for Normal Tracers)</source>
-            <translation>クローニング(通常トレーサーのみ）</translation>
-        </message>
-        <message>
-            <source>(0)No</source>
-            <translation>しない</translation>
-        </message>
-        <message>
-            <source>(1)Yes</source>
-            <translation>する</translation>
-        </message>
-        <message>
-            <source>Cloning Method</source>
-            <translation>クローニングの方法</translation>
-        </message>
-        <message>
-            <source>Cloning condition or method</source>
-            <translation>方法の選択</translation>
-        </message>
-        <message>
-            <source>All empty cells</source>
-            <translation>トレーサーの無いセルはすべて発生させる</translation>
-        </message>
-        <message>
-            <source>Cells with only one particle</source>
-            <translation>トレーサーが1個のセルだけ新規トレーサーを発生させる</translation>
-        </message>
-        <message>
-            <source>Specified cells with one particle</source>
-            <translation>あらかじめ指定した領域</translation>
-        </message>
-        <message>
-            <source>Maximum Cloning Generations</source>
-            <translation>最大のクローニング世代数</translation>
-        </message>
-        <message>
-            <source>Cloning reduction factor for empty cells cloning</source>
-            <translation>トレーサーが多すぎて密になりすぎる場合の減量係数</translation>
-        </message>
-        <message>
-            <source>Amalgamation</source>
-            <translation>再結合</translation>
-        </message>
-        <message>
-            <source>Amalgamation (Only for Normal Tracers)</source>
-            <translation>通常トレーサーのみ</translation>
-        </message>
-        <message>
-            <source>Number of particle at which colligation is executed</source>
-            <translation>再結合開始限界セル内トレーサー数(この数に達したら再結合を開始する)</translation>
-        </message>
-        <message>
-            <source>Wind Map</source>
-            <translation>Wind Map</translation>
-        </message>
-        <message>
-            <source>Wind Map Setting</source>
-            <translation>Wind Mapの設定</translation>
+            <source>Wind Map Setting (Only for Primary Normal Tracers)</source>
+            <translation>Wind Mapの設定(プライマリートレーサーにのみ適用可能)</translation>
         </message>
         <message>
             <source>Drawing Wind Map</source>
@@ -313,15 +345,15 @@
             <translation>する</translation>
         </message>
         <message>
-            <source>Max numbers of winmap lines</source>
+            <source>Max numbers of wind Map lines</source>
             <translation>Wind Mapの最大描画数</translation>
         </message>
         <message>
-            <source>Lifespan of each Winmap lines(sec)</source>
+            <source>Lifespan of each wind Map lines(sec)</source>
             <translation>描画されたWind Mapの各軌跡の寿命(秒)</translation>
         </message>
         <message>
-            <source>Time step for WinMap memory(sec)</source>
+            <source>Time step for wind Map memory(sec)</source>
             <translation>Wind Map記録のタイムステップ(秒)</translation>
         </message>
         <message>
@@ -421,6 +453,10 @@
             <translation>跳躍動作継続時間(sec)</translation>
         </message>
         <message>
+            <source>Simulation of Fish Motion(2)</source>
+            <translation>魚の遊泳シミュレーター(2)</translation>
+        </message>
+        <message>
             <source>Initial Location of Fish</source>
             <translation>魚の初期位置</translation>
         </message>
@@ -479,10 +515,6 @@
         <message>
             <source>Fish Size Magnification Factor</source>
             <translation>魚の表示サイズ係数</translation>
-        </message>
-        <message>
-            <source>Simulation of Fish Motion(2)</source>
-            <translation>魚の遊泳シミュレーター(2)</translation>
         </message>
         <message>
             <source>Counting Numbers of Fish Passing Trough</source>
@@ -599,6 +631,14 @@
         <message>
             <source>Gravel Diameter Variation</source>
             <translation>礫の平均直径のばらつき</translation>
+        </message>
+        <message>
+            <source>Gravel Plot Step in i-direction</source>
+            <translation>礫の描画間隔(流下方向)</translation>
+        </message>
+        <message>
+            <source>Gravel Plot Step in j-direction</source>
+            <translation>礫の描画間隔(横断方向)</translation>
         </message>
         <message>
             <source>Elevation(m)</source>
