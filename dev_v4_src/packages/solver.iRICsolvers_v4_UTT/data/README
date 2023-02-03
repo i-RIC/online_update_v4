@@ -1,17 +1,26 @@
-﻿UTT is a new Lagrangian particle-tracking code that incorporates both advection and dispersion by turbulence (or other unresolved details of the flow field). 
+﻿# What is UTT
+UTT is a new Lagrangian particle-tracking code that incorporates both advection and dispersion by turbulence (or other unresolved details of the flow field). 
 Unlike previous models, UTT is flow solver independent, works for one, two, and three-dimensional applications, and has a unique particle cloning/colligation technique that allows high spatial resolution without high computational expense. Importantly, the method is suitable for applications on typical laptop or desktop computers in the iRIC framework for flow, sediment transport, morphodynamics and habitat modelling in rivers (freely available at www.i- ric.org). 
 
+# Release notes
+ver.1.2.23020301 update by hoshino
+* Fixed a bug that caused a crash when outputting calculation results with no tracers within the calculation range.
+* Revised GUI parameter names, etc. (The parameters used have not been changed.)
+* Change console message
+
 ver.1.2.23020101 update by hoshino
-・Fixed some bugs
+* Fixed a bug that flow velocity etc. are not output unless fish simulation is performed.
+* Fixed a bug that the tracer in the calculation range is not excluded even if it flows out of the range when it is the last one in "primary" and "secondary" respectively.
+* Changed "Primary" and "Secondary" tracers, which were treated as one group, to be treated as independent groups.
 
 ver.1.2.23013001 update by shimizu
-・Added a function to divide normal tracers into two types, "primary" and "secondary".
-・Until now, tracers were removed in areas below the Minimum depth of tracer stopping, but now you can choose to remain in place and resume movement when the water depth exceeds the Minimum depth of tracer stopping.
-・GUI changes due to the above.
+* Added a function to divide normal tracers into two types, "primary" and "secondary".
+* Until now, tracers were removed in areas below the Minimum depth of tracer stopping, but now you can choose to remain in place and resume movement when the water depth exceeds the Minimum depth of tracer stopping.
+* GUI changes due to the above.
 
 ver.1.2.23011901 update by hoshino
-・Fixed the rendering method of trees and gravel polygons.
-・Fixed a bug that the special tracer's coordinates became incorrect when the number of times the special tracer's trajectory was saved exceeded the "maximum number of time steps when saving the trajectory".
+* Fixed the rendering method of trees and gravel polygons.
+* Fixed a bug that the special tracer's coordinates became incorrect when the number of times the special tracer's trajectory was saved exceeded the "maximum number of time steps when saving the trajectory".
 
 ver.1.2.22111001 update by shimizu
-・Added a function to draw polygons of trees and gravel.
+* Added a function to draw polygons of trees and gravel.

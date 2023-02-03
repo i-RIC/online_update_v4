@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="UTT" caption="UTT" version="1.2.23020101" copyright="Yasuyuki SHIMIZU"
-    release="2023.02.01"
+    name="UTT" caption="UTT" version="1.2.23020301" copyright="Yasuyuki SHIMIZU"
+    release="2023.02.03"
     homepage="http://ws3-er.eng.hokudai.ac.jp/yasu/"
     executable="UTT.exe"
     iterationtype="time"
@@ -15,8 +15,6 @@
 			<Item name="inputfile" caption="Flow information input file name">
 				<Definition conditionType="constant" valueType="filename" default="Select CGNS file name" />
 			</Item>
-
-				
 			<Item name="j_surface" caption="Velocity used for tracer tracking">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
@@ -26,7 +24,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="j_rep" caption="Periodic boundary condition for Tracers">
+			<Item name="j_rep" caption="Periodic boundary condition for tracers">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="Not Apply"/>
@@ -37,7 +35,7 @@
 			<Item name="cr_depth" caption="Minimum depth of tracer stopping(m)">
 				<Definition conditionType="constant" valueType="real" default="0.003"/>
 			</Item>
-      <Item name="j_treat" caption="Treatment when depth is shallower than critical depth">
+      		<Item name="j_treat" caption="Treatment when depth is shallower than minimum depth">
 				<Definition conditionType="constant" valueType="integer" default="1">
 					<Enumerations>
 						<Enumeration value="1" caption="Stay still"/>
@@ -45,16 +43,16 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="ddt" caption="Delta T for Particle Tracking">
+			<Item name="ddt" caption="Time interval for tracer tracking(sec)">
 				<Definition conditionType="constant" valueType="real" default="0.001"/>
 			</Item>
-			<Item name="end_time" caption="Computation Finishing Time(sec)">
+			<Item name="end_time" caption="Computation ending time(sec)">
 				<Definition conditionType="constant" valueType="real" default="10"/>
 			</Item>
 			<Item name="moi" caption="Output frequency increase factor">
 				<Definition conditionType="constant" valueType="integer" default="1" max="100"/>
 			</Item>
-			<Item name="j_c_draw" caption="Drawing Center Line">
+			<Item name="j_c_draw" caption="Drawing center line">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="Not Draw"/>
@@ -66,32 +64,34 @@
 		</Tab>
 
 		<Tab name="normal_spread" caption="Primary Tracers Supplying Condition">
-			<GroupBox caption="Primary Tracers">
-				<Item name="j_spread" caption="Tracer Releasing">
-					<Definition conditionType="constant" valueType="integer" default="0">
-						<Enumerations>
-							<Enumeration value="0" caption="No"/>
-							<Enumeration value="1" caption="Yes"/>
-						</Enumerations>
-					</Definition>
-				</Item>
-				<Item name="maxTracerNumber" caption="Maximum number of total tracer particles">
-					<Definition conditionType="constant" valueType="integer" default="100000" max="1000000">
-						<Dependency>
-							<Condition type="isEqual" target="j_spread" value="1"/>
-						</Dependency>
-					</Definition>
-				</Item>
-				<Item name="maxNumberInCell" caption="Maximum number of tracer particles in one cell">
-					<Definition conditionType="constant" valueType="integer" default="10" max="100">
-						<Dependency>
-							<Condition type="isEqual" target="j_spread" value="1"/>
-						</Dependency>
-					</Definition>
-				</Item>
+			
+			<Item name="j_spread" caption="Tracer releasing">
+				<Definition conditionType="constant" valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="maxTracerNumber" caption="Maximum number of total tracers">
+				<Definition conditionType="constant" valueType="integer" default="100000" max="1000000">
+					<Dependency>
+						<Condition type="isEqual" target="j_spread" value="1"/>
+					</Dependency>
+				</Definition>
+			</Item>
+			<Item name="maxNumberInCell" caption="Maximum number of tracers in one cell">
+				<Definition conditionType="constant" valueType="integer" default="10" max="100">
+					<Dependency>
+						<Condition type="isEqual" target="j_spread" value="1"/>
+					</Dependency>
+				</Definition>
+			</Item>
 
+			<GroupBox caption="Tracers Supply Range">
 
 				<GroupBox caption="Xi(Streamwise) Direction">
+
 					<Item name="xi_1" caption="xi_1">
 						<Definition conditionType="constant" valueType="real" default="0.1" >
 							<Condition type="isEqual" target="j_spread" value="1"/>
@@ -102,13 +102,16 @@
 							<Condition type="isEqual" target="j_spread" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="d_trace_xi" caption="d_trace_xi">
+					<Item name="d_trace_xi" caption="d_xi">
 						<Definition conditionType="constant" valueType="real" default="0.1">
 							<Condition type="isEqual" target="j_spread" value="1"/>
 						</Definition>
 					</Item>
+
 				</GroupBox>
+
 				<GroupBox caption="Eta(Transverse) Direction">
+
 					<Item name="eta_1" caption="eta_1">
 						<Definition conditionType="constant" valueType="real" default="0.3" >
 							<Condition type="isEqual" target="j_spread" value="1"/>
@@ -119,18 +122,23 @@
 							<Condition type="isEqual" target="j_spread" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="d_trace_eta" caption="d_trace_eta">
+					<Item name="d_trace_eta" caption="d_eta">
 						<Definition conditionType="constant" valueType="real" default="0.02">
 							<Condition type="isEqual" target="j_spread" value="1"/>
 						</Definition>
 					</Item>
+
 				</GroupBox>
+			
+				<Image src="tracer supply range p.png" title="tracer supply range1"/>
+
 			</GroupBox>
+
 		</Tab>
 
 		<Tab name="Cloning_Primary" caption="- Cloning and Amalgamation for Primary Normal Tracers">
 
-			<Item name="j_add" caption="Tracer Cloning for Primary Normal Tracers">
+			<Item name="j_add" caption="Tracer cloning">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Condition type="isEqual" target="j_spread" value="1"/>
 					<Enumerations>
@@ -152,12 +160,12 @@
 						</Dependency>
 						<Enumerations>
 							<Enumeration value="0" caption="All empty cells"/>
-							<Enumeration value="1" caption="Cells with only one particle"/>
-							<Enumeration value="2" caption="Specified cells with one particle"/>
+							<Enumeration value="1" caption="Cells with only one tracer"/>
+							<Enumeration value="2" caption="Specified cells with one tracer"/>
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="max_generation" caption="Maximum Cloning Generations">
+				<Item name="max_generation" caption="Maximum cloning generations">
 					<Definition conditionType="constant" valueType="integer" default="5" max="100">
 						<Dependency>
 							<Condition type="and">
@@ -178,11 +186,12 @@
 						</Dependency>
 					</Definition>
 				</Item>
+
 			</GroupBox>
 
 			<GroupBox caption="Amalgamation">
 
-				<Item name="j_colligation" caption="Amalgamation for Primary Normal Tracers">
+				<Item name="j_colligation" caption="Tracer amalgamation">
 					<Definition conditionType="constant" valueType="integer" default="0">
 						<Condition type="isEqual" target="j_spread" value="1"/>
 						<Enumerations>
@@ -191,7 +200,7 @@
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="nColligation" caption="Number of particle at which colligation is executed">
+				<Item name="nColligation" caption="Number of tracer at which colligation is executed">
 					<Definition conditionType="constant" valueType="integer" default="20">
 						<Dependency>
 							<Condition type="isEqual" target="j_colligation" value="1"/>
@@ -199,36 +208,41 @@
 						</Dependency>
 					</Definition>
 				</Item>
+
 			</GroupBox>
+
 		</Tab>
 
 
 		<Tab name="normal_spread2" caption="Secondary Tracers Supplying Condition">
-			<GroupBox caption="Secondary Tracers">
-				<Item name="j_spread2" caption="Tracer Releasing">
-					<Definition conditionType="constant" valueType="integer" default="0">
-						<Enumerations>
-							<Enumeration value="0" caption="No"/>
-							<Enumeration value="1" caption="Yes"/>
-						</Enumerations>
-					</Definition>
-				</Item>
-				<Item name="maxTracerNumber2" caption="Maximum number of total tracer particles">
-					<Definition conditionType="constant" valueType="integer" default="100000" max="1000000">
-						<Dependency>
-							<Condition type="isEqual" target="j_spread2" value="1"/>
-						</Dependency>
-					</Definition>
-				</Item>
-				<Item name="maxNumberInCell2" caption="Maximum number of tracer particles in one cell">
-					<Definition conditionType="constant" valueType="integer" default="10" max="100">
-						<Dependency>
-							<Condition type="isEqual" target="j_spread2" value="1"/>
-						</Dependency>
-					</Definition>
-				</Item>
+			
+			<Item name="j_spread2" caption="Tracer releasing">
+				<Definition conditionType="constant" valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="maxTracerNumber2" caption="Maximum number of total tracers">
+				<Definition conditionType="constant" valueType="integer" default="100000" max="1000000">
+					<Dependency>
+						<Condition type="isEqual" target="j_spread2" value="1"/>
+					</Dependency>
+				</Definition>
+			</Item>
+			<Item name="maxNumberInCell2" caption="Maximum number of tracers in one cell">
+				<Definition conditionType="constant" valueType="integer" default="10" max="100">
+					<Dependency>
+						<Condition type="isEqual" target="j_spread2" value="1"/>
+					</Dependency>
+				</Definition>
+			</Item>
+
+			<GroupBox caption="Tracers Supply Range">
 
 				<GroupBox caption="Xi(Streamwise) Direction">
+
 					<Item name="xi_12" caption="xi_1">
 						<Definition conditionType="constant" valueType="real" default="0.1" >
 							<Condition type="isEqual" target="j_spread2" value="1"/>
@@ -239,13 +253,16 @@
 							<Condition type="isEqual" target="j_spread2" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="d_trace_xi2" caption="d_trace_xi">
+					<Item name="d_trace_xi2" caption="d_xi">
 						<Definition conditionType="constant" valueType="real" default="0.1">
 							<Condition type="isEqual" target="j_spread2" value="1"/>
 						</Definition>
 					</Item>
+
 				</GroupBox>
+
 				<GroupBox caption="Eta(Transverse) Direction">
+
 					<Item name="eta_12" caption="eta_1">
 						<Definition conditionType="constant" valueType="real" default="0.3" >
 							<Condition type="isEqual" target="j_spread2" value="1"/>
@@ -256,18 +273,23 @@
 							<Condition type="isEqual" target="j_spread2" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="d_trace_eta2" caption="d_trace_eta">
+					<Item name="d_trace_eta2" caption="d_eta">
 						<Definition conditionType="constant" valueType="real" default="0.02">
 							<Condition type="isEqual" target="j_spread2" value="1"/>
 						</Definition>
 					</Item>
+
 				</GroupBox>
+
+				<Image src="tracer supply range s.png"/>
+
 			</GroupBox>
-    </Tab>
+
+    	</Tab>
 
 		<Tab name="Cloning_Secondary" caption="- Cloning and Amalgamation for Secondary Normal Tracers">
 
-			<Item name="j_add2" caption="Tracer Cloning for Secondary Normal Tracers">
+			<Item name="j_add2" caption="Tracer cloning">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Condition type="isEqual" target="j_spread2" value="1"/>
 					<Enumerations>
@@ -289,12 +311,12 @@
 						</Dependency>
 						<Enumerations>
 							<Enumeration value="0" caption="All empty cells"/>
-							<Enumeration value="1" caption="Cells with only one particle"/>
-							<Enumeration value="2" caption="Specified cells with one particle"/>
+							<Enumeration value="1" caption="Cells with only one tracer"/>
+							<Enumeration value="2" caption="Specified cells with one tracer"/>
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="max_generation2" caption="Maximum Cloning Generations">
+				<Item name="max_generation2" caption="Maximum cloning generations">
 					<Definition conditionType="constant" valueType="integer" default="5" max="100">
 						<Dependency>
 							<Condition type="and">
@@ -315,11 +337,12 @@
 						</Dependency>
 					</Definition>
 				</Item>
+
 			</GroupBox>
 
 			<GroupBox caption="Amalgamation">
 
-				<Item name="j_colligation2" caption="Amalgamation for Secondary Normal Tracers">
+				<Item name="j_colligation2" caption="Tracer amalgamation">
 					<Definition conditionType="constant" valueType="integer" default="0">
 						<Condition type="isEqual" target="j_spread2" value="1"/>
 						<Enumerations>
@@ -328,7 +351,7 @@
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="nColligation2" caption="Number of particle at which colligation is executed">
+				<Item name="nColligation2" caption="Number of tracer at which colligation is executed">
 					<Definition conditionType="constant" valueType="integer" default="20">
 						<Dependency>
 							<Condition type="isEqual" target="j_colligation2" value="1"/>
@@ -336,85 +359,91 @@
 						</Dependency>
 					</Definition>
 				</Item>
+
 			</GroupBox>
+
 		</Tab>
 
-    <Tab name="time_settings" caption="Time Settings for Normal Tracers">
-				<GroupBox caption="Time Parameters for Normal Tracers(Seconds)">
-					<Item name="spread_start" caption="spread_start">
-						<Definition conditionType="constant" valueType="real" default="0.0" >
-						  <Condition type="or">
-								<Condition type="isEqual" target="j_spread" value="1"/>
-								<Condition type="isEqual" target="j_spread2" value="1"/>
-              </Condition>
-						</Definition>
-					</Item>
-					<Item name="spread_end" caption="spread_end">
-						<Definition conditionType="constant" valueType="real" default="10.0">
-						  <Condition type="or">
-								<Condition type="isEqual" target="j_spread" value="1"/>
-								<Condition type="isEqual" target="j_spread2" value="1"/>
-              </Condition>  
-						</Definition>
-					</Item>
-					<Item name="spread_interval" caption="spred_interval">
-						<Definition conditionType="constant" valueType="real" default="0.1">
-						  <Condition type="or">
-								<Condition type="isEqual" target="j_spread" value="1"/>
-								<Condition type="isEqual" target="j_spread2" value="1"/>
-              </Condition>  
-						</Definition>
-					</Item>
-				</GroupBox>
+    	<Tab name="time_settings" caption="Time Settings for Normal Tracers">
+
+			<GroupBox caption="Time Parameters for Normal Tracers">
+
+				<Item name="spread_start" caption="spread_start(sec)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+						<Condition type="or">
+							<Condition type="isEqual" target="j_spread" value="1"/>
+							<Condition type="isEqual" target="j_spread2" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+				<Item name="spread_end" caption="spread_end(sec)">
+					<Definition conditionType="constant" valueType="real" default="10.0">
+						<Condition type="or">
+							<Condition type="isEqual" target="j_spread" value="1"/>
+							<Condition type="isEqual" target="j_spread2" value="1"/>
+						</Condition>  
+					</Definition>
+				</Item>
+				<Item name="spread_interval" caption="spred_interval(sec)">
+					<Definition conditionType="constant" valueType="real" default="0.1">
+						<Condition type="or">
+							<Condition type="isEqual" target="j_spread" value="1"/>
+							<Condition type="isEqual" target="j_spread2" value="1"/>
+						</Condition>  
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
 		</Tab>
 
 		<Tab name="special_spread" caption="Special Tracers for Trajectory Supplying Condition">
-			<GroupBox caption="Special Tracers">
-				<Item name="j_spread_tj" caption="Release Tracers for Trajectory">
-					<Definition conditionType="constant" valueType="integer" default="0">
-						<Enumerations>
-							<Enumeration value="0" caption="No"/>
-							<Enumeration value="1" caption="Yes"/>
-						</Enumerations>
-					</Definition>
-				</Item>
-				<Item name="maxTracerNumber_tj" caption="Maximum number of total tracer particles for Trajectory">
-					<Definition conditionType="constant" valueType="integer" default="100" max="100">
-						<Dependency>
-							<Condition type="isEqual" target="j_spread_tj" value="1"/>
-						</Dependency>
-					</Definition>
-				</Item>
-				<Item name="maxTrjTimes" caption="Maximum Times of Tracer Trajectory Saving">
-					<Definition conditionType="constant" valueType="integer" default="10000" max="100000">
-						<Dependency>
-							<Condition type="isEqual" target="j_spread_tj" value="1"/>
-						</Dependency>
-					</Definition>
-				</Item>
-				<Item name="intervalTrj" caption="Interval of Tracer Trajectory Saving">
-					<Definition conditionType="constant" valueType="integer" default="10" min="1" max="1000">
-						<Dependency>
-							<Condition type="isEqual" target="j_spread_tj" value="1"/>
-						</Dependency>
-					</Definition>
-				</Item>
+			
+			<Item name="j_spread_tj" caption="Special tracer releasing">
+				<Definition conditionType="constant" valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="No"/>
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="maxTracerNumber_tj" caption="Maximum number of total Special Tracers">
+				<Definition conditionType="constant" valueType="integer" default="100" max="100">
+					<Dependency>
+						<Condition type="isEqual" target="j_spread_tj" value="1"/>
+					</Dependency>
+				</Definition>
+			</Item>
+			<Item name="maxTrjTimes" caption="Maximum times of tracer trajectory saving">
+				<Definition conditionType="constant" valueType="integer" default="10000" max="100000">
+					<Dependency>
+						<Condition type="isEqual" target="j_spread_tj" value="1"/>
+					</Dependency>
+				</Definition>
+			</Item>
+			<Item name="intervalTrj" caption="Interval of tracer trajectory saving">
+				<Definition conditionType="constant" valueType="integer" default="10" min="1" max="1000">
+					<Dependency>
+						<Condition type="isEqual" target="j_spread_tj" value="1"/>
+					</Dependency>
+				</Definition>
+			</Item>
 
-			<GroupBox caption="Parameters for Special Tracers for Trajectory Injection">
+			<GroupBox caption="Tracers Supply Range">
 
 				<GroupBox caption="Xi(Streamwise) Direction">
 
-					<Item name="xi_1_tj" caption="xi_1_tj">
+					<Item name="xi_1_tj" caption="xi_1">
 						<Definition conditionType="constant" valueType="real" default="0.1" >
 								<Condition type="isEqual" target="j_spread_tj" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="xi_2_tj" caption="xi_2_tj">
+					<Item name="xi_2_tj" caption="xi_2">
 						<Definition conditionType="constant" valueType="real" default="0.1">
 								<Condition type="isEqual" target="j_spread_tj" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="d_trace_xi_tj" caption="d_trace_xi_tj">
+					<Item name="d_trace_xi_tj" caption="d_xi">
 						<Definition conditionType="constant" valueType="real" default="0.1">
 								<Condition type="isEqual" target="j_spread_tj" value="1"/>
 						</Definition>
@@ -424,41 +453,43 @@
 
 				<GroupBox caption="Eta(Transverse) Direction">
 
-					<Item name="eta_1_tj" caption="eta_1_tj">
+					<Item name="eta_1_tj" caption="eta_1">
 						<Definition conditionType="constant" valueType="real" default="0.3" >
 								<Condition type="isEqual" target="j_spread_tj" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="eta_2_tj" caption="eta_2_tj">
+					<Item name="eta_2_tj" caption="eta_2">
 						<Definition conditionType="constant" valueType="real" default="0.7">
 								<Condition type="isEqual" target="j_spread_tj" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="d_trace_eta_tj" caption="d_trace_eta_tj">
+					<Item name="d_trace_eta_tj" caption="d_eta">
 						<Definition conditionType="constant" valueType="real" default="0.02">
 								<Condition type="isEqual" target="j_spread_tj" value="1"/>
 						</Definition>
 					</Item>
 
 				</GroupBox>
+				
+				<Image src="tracer supply range t.png"/>
 
-				<GroupBox caption="Time of Special Tracers Injection(Seconds)">
-
-					<Item name="spread_tj" caption="spread__tj">
-						<Definition conditionType="constant" valueType="real" default="0.0" >
-								<Condition type="isEqual" target="j_spread_tj" value="1"/>
-						</Definition>
-					</Item>
-
-				</GroupBox>
-			 </GroupBox>
 			</GroupBox>
 
+			<GroupBox caption="Time of Special Tracers Injection(sec)">
+
+				<Item name="spread_tj" caption="spread time(sec)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+							<Condition type="isEqual" target="j_spread_tj" value="1"/>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+				
 		</Tab>
 
 		<Tab name="Initial" caption="Background Flow Condition">
 
-			<Item name="j_flow" caption="Back Ground Flow Velocity Condition">
+			<Item name="j_flow" caption="Back ground flow velocity condition">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="(0) Use Simulated Value"/>
@@ -466,7 +497,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="Ini_Vel_Flow" caption="Background Flow Velocity(m/s)">
+			<Item name="Ini_Vel_Flow" caption="Background flow velocity(m/s)">
 				<Definition conditionType="constant" valueType="real" default="0.0" >
 					<Dependency>
 						<Condition type="and">
@@ -476,7 +507,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="Ini_Depth" caption="Background Depth(m)">
+			<Item name="Ini_Depth" caption="Background depth(m)">
 				<Definition conditionType="constant" valueType="real" default="0.1" >
 					<Dependency>
 						<Condition type="and">
@@ -491,9 +522,9 @@
 
 		<Tab name="Wind_Map" caption="Wind Map Like Plotting">
 
-			<GroupBox caption="Wind Map Setting (Only for Primary Normal Tracers)">
+			<GroupBox caption="Wind Map Setting">
 
-				<Item name="j_winMap" caption="Drawing Wind Map">
+				<Item name="j_winMap" caption="Drawing wind map">
 					<Definition conditionType="constant" valueType="integer" default="0">
 						<Enumerations>
 							<Enumeration value="0" caption="(0) No"/>
@@ -501,7 +532,7 @@
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="n_wm" caption="Max numbers of wind Map lines">
+				<Item name="n_wm" caption="Max numbers of wind map lines">
 					<Definition conditionType="constant" valueType="integer" default="100" max="1000000">
 						<Dependency>
 							<Condition type="isEqual" target="j_winMap" value="1"/>
@@ -519,7 +550,7 @@
 				</Item>
 				-->
 
-				<Item name="wmCtime" caption="Lifespan of each wind Map lines(sec)">
+				<Item name="wmCtime" caption="Lifespan of each wind map lines(sec)">
 					<Definition conditionType="constant" valueType="real" default="10">
 						<Dependency>
 							<Condition type="isEqual" target="j_winMap" value="1"/>
@@ -536,7 +567,8 @@
 						</Definition>
 				</Item>
 				-->
-				<Item name="wmStime" caption="Time step for wind Map memory(sec)">
+
+				<Item name="wmStime" caption="Time step for wind map memory(sec)">
 					<Definition conditionType="constant" valueType="real" default="1" >
 						<Dependency>
 							<Condition type="isEqual" target="j_winMap" value="1"/>
@@ -551,7 +583,7 @@
 
 		<Tab name="fish_motion(1)" caption="Simulation of Fish Motion(1)">
 
-			<Item name="j_fish" caption="Fish Simulation">
+			<Item name="j_fish" caption="Fish simulation">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="No"/>
@@ -559,7 +591,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="j_rep_fish" caption="Periodic Boundary Condition for Fish Simulation">
+			<Item name="j_rep_fish" caption="Periodic boundary condition for fish simulation">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Dependency>
 						<Condition type="isEqual" target="j_fish" value="1"/>
@@ -570,11 +602,12 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="vel_fish" caption="Fish Cruising Speed(m/s)">
+			<Item name="vel_fish" caption="Fish cruising speed(m/s)">
 				<Definition conditionType="constant" valueType="real" default="0.1" >
 					<Condition type="isEqual" target="j_fish" value="1"/>
 				</Definition>
 			</Item>
+
 			<!--
 			<Item name="vf_critical" caption="Minimum Velocity Fish Can Feel(m/s)">
 				<Definition conditionType="constant" valueType="real" default="0.01" >
@@ -582,6 +615,7 @@
 				</Definition>
 			</Item>
 			-->
+
 			<Item name="alphaCruise" caption="Cruising time to fish length ratio(s/m)">
 				<Definition conditionType="constant" valueType="real" default="10." >
 					<Condition type="isEqual" target="j_fish" value="1"/>
@@ -606,7 +640,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="fishLength" caption="Average Fish Body Length(m)">
+			<Item name="fishLength" caption="Average fish body length(m)">
 				<Definition conditionType="constant" valueType="real" default="0.3" >
 					<Condition type="isEqual" target="j_fish" value="1"/>
 				</Definition>
@@ -620,7 +654,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="j_valRange" caption="Variation Range">
+			<Item name="j_valRange" caption="Variation range">
 				<Definition conditionType="constant" valueType="integer" default="1">
 					<Dependency>
 						<Condition type="and">
@@ -635,7 +669,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="icol_t" caption="Number of Fish Sizes(Colors)">
+			<Item name="icol_t" caption="Number of fish sizes(Colors)">
 				<Definition conditionType="constant" valueType="integer" default="10" >
 					<Condition type="isEqual" target="j_fish" value="1"/>
 				</Definition>
@@ -643,7 +677,7 @@
 
 			<GroupBox caption="Fish Jumping">
 
-				<Item name="j_fishJump" caption="Fish Jumping">
+				<Item name="j_fishJump" caption="Fish jumping">
 					<Definition conditionType="constant" valueType="integer" default="0">
 						<Condition type="isEqual" target="j_fish" value="1"/>
 						<Enumerations>
@@ -694,36 +728,36 @@
 				</Item>
 
 			</GroupBox>
+
     </Tab>
 
 		<Tab name="fish_motion(2)" caption="Simulation of Fish Motion(2)">
       
+			<Item name="j_fishLocation" caption="How to set initial location">
+				<Definition conditionType="constant" valueType="integer" default="1">
+					<Condition type="isEqual" target="j_fish" value="1"/>
+					<Enumerations>
+						<Enumeration value="1" caption="Nondimensional Coordinate"/>
+						<Enumeration value="2" caption="Give total numbers and random placement"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="fishNumber" caption="Total number of fish">
+				<Definition conditionType="constant" valueType="integer" default="100" max="1000">
+					<Dependency>
+						<Condition type="and">
+							<Condition type="isEqual" target="j_fish" value="1"/>
+							<Condition type="isEqual" target="j_fishLocation" value="2"/>
+						</Condition>
+					</Dependency>
+				</Definition>
+			</Item>
+	
+			<GroupBox caption="Initial Fish Location">
 
-			<GroupBox caption="Initial Location of Fish">
+				<GroupBox caption="Xi(Streamwise) Direction">
 
-				<Item name="j_fishLocation" caption="How to Set Initial Location">
-					<Definition conditionType="constant" valueType="integer" default="1">
-						<Condition type="isEqual" target="j_fish" value="1"/>
-						<Enumerations>
-							<Enumeration value="1" caption="Nondimensional Coordinate"/>
-							<Enumeration value="2" caption="Give total numbers and random placement"/>
-						</Enumerations>
-					</Definition>
-				</Item>
-				<Item name="fishNumber" caption="Total number of fish">
-					<Definition conditionType="constant" valueType="integer" default="100" max="1000">
-						<Dependency>
-							<Condition type="and">
-								<Condition type="isEqual" target="j_fish" value="1"/>
-								<Condition type="isEqual" target="j_fishLocation" value="2"/>
-							</Condition>
-						</Dependency>
-					</Definition>
-				</Item>
-
-				<GroupBox caption="Initial Fish Location in Xi(Streamwise) Direction">
-
-					<Item name="xi_1_fish" caption="xi_1_fish">
+					<Item name="xi_1_fish" caption="xi_1">
 						<Definition conditionType="constant" valueType="real" default="0.1" >
 							<Dependency>
 								<Condition type="and">
@@ -733,7 +767,7 @@
 							</Dependency>    
 						</Definition>
 					</Item>
-					<Item name="xi_2_fish" caption="xi_2_fish">
+					<Item name="xi_2_fish" caption="xi_2">
 						<Definition conditionType="constant" valueType="real" default="0.1">
 							<Dependency>
 								<Condition type="and">
@@ -743,7 +777,7 @@
 							</Dependency>    
 						</Definition>
 					</Item>
-					<Item name="d_xi_fish" caption="d_xi_fish">
+					<Item name="d_xi_fish" caption="d_xi">
 						<Definition conditionType="constant" valueType="real" default="0.1">
 							<Dependency>
 								<Condition type="and">
@@ -756,8 +790,9 @@
 
 				</GroupBox>
 
-				<GroupBox caption="Initial Fish Location in Eta(Transverse) Direction">
-					<Item name="eta_1_fish" caption="eta_1_fish">
+				<GroupBox caption="Eta(Transverse) Direction">
+
+					<Item name="eta_1_fish" caption="eta_1">
 						<Definition conditionType="constant" valueType="real" default="0.3" >
 							<Dependency>
 								<Condition type="and">
@@ -767,7 +802,7 @@
 							</Dependency>    
 						</Definition>
 					</Item>
-					<Item name="eta_2_fish" caption="eta_2_fish">
+					<Item name="eta_2_fish" caption="eta_2">
 						<Definition conditionType="constant" valueType="real" default="0.7">
 							<Dependency>
 								<Condition type="and">
@@ -777,7 +812,7 @@
 							</Dependency>    
 						</Definition>
 					</Item>
-					<Item name="d_eta_fish" caption="d_eta_fish">
+					<Item name="d_eta_fish" caption="d_eta">
 						<Definition conditionType="constant" valueType="real" default="0.02">
 							<Dependency>
 								<Condition type="and">
@@ -790,9 +825,12 @@
 
 				</GroupBox>
 
-			</GroupBox>
+				<Image src="tracer supply range f.png"/>
 
-			<Item name="hmin_fish" caption="Minimum Depth for Fish Activity(m)">
+			</GroupBox>
+			
+
+			<Item name="hmin_fish" caption="Minimum depth for fish activity(m)">
 				<Definition conditionType="constant" valueType="real" default="0.01">
 					<Dependency>
 						<Condition type="and">
@@ -801,7 +839,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="fishMag" caption="Fish Size Magnification Factor">
+			<Item name="fishMag" caption="Fish size magnification factor">
 				<Definition conditionType="constant" valueType="real" default="1.0">
 					<Dependency>
 						<Condition type="and">
@@ -814,7 +852,7 @@
 
 			<GroupBox caption="Counting Numbers of Fish Passing Trough">
 
-				<Item name="j_fishCount" caption="Fish Count">
+				<Item name="j_fishCount" caption="Fish count">
 					<Definition conditionType="constant" valueType="integer" default="0">
 						<Condition type="isEqual" target="j_fish" value="1"/>
 						<Enumerations>
@@ -824,7 +862,7 @@
 					</Definition>
 				</Item>
 
-				<Item name="isc_Count" caption="Fish Count Section">
+				<Item name="isc_Count" caption="Fish count section">
 					<Definition conditionType="constant" valueType="integer" default="10">
 						<Dependency>
 							<Condition type="and">
@@ -834,7 +872,7 @@
 						</Dependency>
 					</Definition>
 				</Item>
-				<Item name="CountStart" caption="Fish Count Start Time(sec)">
+				<Item name="CountStart" caption="Fish count start time(sec)">
 					<Definition conditionType="constant" valueType="real" default="0">
 						<Dependency>
 							<Condition type="and">
@@ -844,7 +882,7 @@
 						</Dependency>
 					</Definition>
 				</Item>
-				<Item name="CountEnd" caption="Fish Count End Time(sec)">
+				<Item name="CountEnd" caption="Fish Count end Time(sec)">
 					<Definition conditionType="constant" valueType="real" default="10">
 						<Dependency>
 							<Condition type="and">
@@ -862,7 +900,7 @@
 
 		<Tab name="Diffusivity" caption="Diffusion Condition">
 
-			<Item name="j_diff" caption="Diffusivity Correction">
+			<Item name="j_diff" caption="Diffusivity correction">
 				<Definition conditionType="constant" valueType="integer" default="1">
 					<Enumerations>
 						<Enumeration value="0" caption="(0) No"/>
@@ -890,7 +928,7 @@
 
 		<Tab name="Vegetation" caption="Vegetation Plots Condition">
 
-			<Item name="j_vege" caption="Vegetation Plots">
+			<Item name="j_vege" caption="Vegetation drawing">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="(0) No"/>
@@ -898,7 +936,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="j_vegeCond" caption="Vegetation Drawing Condition">
+			<Item name="j_vegeCond" caption="Vegetation drawing condition">
 				<Definition conditionType="constant" valueType="integer" default="1">
 					<Enumerations>
 						<Enumeration value="1" caption="Dry Cell Only"/>
@@ -911,7 +949,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="h_crVege" caption="Critical Depth Below which Vegetation Draw(m)">
+			<Item name="h_crVege" caption="Minimum depth below which vegetation draw(m)">
 				<Definition conditionType="constant" valueType="real" default="0.001">
 					<Dependency>
 						<Condition type="and">
@@ -921,7 +959,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="vegeHeight" caption="Average Tree Height(m)">
+			<Item name="vegeHeight" caption="Average tree height(m)">
 				<Definition conditionType="constant" valueType="real" default="1.0">
 					<Dependency>
 						<Condition type="and">
@@ -930,7 +968,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="j_vhVar" caption="Vegetation Height Variation">
+			<Item name="j_vhVar" caption="Vegetation height variation">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="No"/>
@@ -943,7 +981,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="tree_aspect" caption="Aspect Ratio of Tree Image">
+			<Item name="tree_aspect" caption="Aspect ratio of tree image">
 				<Definition conditionType="constant" valueType="real" option="false" default="0.5">
 					<Dependency>
 						<Condition type="and">
@@ -952,7 +990,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="iv_step" caption="Tree Plot Step in i-direction">
+			<Item name="iv_step" caption="Tree plot step in i-direction">
 				<Definition conditionType="constant" valueType="integer" option="turue" default="1">
 					<Dependency>
 						<Condition type="and">
@@ -961,7 +999,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="jv_step" caption="Tree Plot Step in j-direction">
+			<Item name="jv_step" caption="Tree plot step in j-direction">
 				<Definition conditionType="constant" valueType="integer" option="turue" default="1">
 					<Dependency>
 						<Condition type="and">
@@ -970,10 +1008,12 @@
 					</Dependency>
 				</Definition>
 			</Item>
+
 		</Tab>
 
 		<Tab name="Gravel Bed" caption="Gravel Bed Drawing">
-			<Item name="j_gra" caption="Drawing">
+
+			<Item name="j_gra" caption="Gravel drawing">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="(0) No"/>
@@ -981,7 +1021,7 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="j_graCond" caption="Gravel Bed Drawing Condition">
+			<Item name="j_graCond" caption="Gravel bed drawing condition">
 				<Definition conditionType="constant" valueType="integer" default="1">
 					<Enumerations>
 						<Enumeration value="1" caption="Dry Cell Only"/>
@@ -994,7 +1034,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="h_crGra" caption="Critical Depth Below which Draw Gravel(m)">
+			<Item name="h_crGra" caption="Minimum depth below which draw gravel(m)">
 				<Definition conditionType="constant" valueType="real" default="0.001">
 					<Dependency>
 						<Condition type="and">
@@ -1004,7 +1044,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="graDiam" caption="Average Diameter of Gravel(m)">
+			<Item name="graDiam" caption="Average siameter of Gravel(m)">
 				<Definition conditionType="constant" valueType="real" default="1.0">
 					<Dependency>
 						<Condition type="and">
@@ -1013,7 +1053,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="j_gdVar" caption="Gravel Diameter Variation">
+			<Item name="j_gdVar" caption="Gravel diameter variation">
 				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="No"/>
@@ -1026,7 +1066,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="ig_step" caption="Gravel Plot Step in i-direction">
+			<Item name="ig_step" caption="Gravel plot step in i-direction">
 				<Definition conditionType="constant" valueType="integer" option="turue" default="1">
 					<Dependency>
 						<Condition type="and">
@@ -1035,7 +1075,7 @@
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="jg_step" caption="Gravel Plot Step in j-direction">
+			<Item name="jg_step" caption="Gravel plot step in j-direction">
 				<Definition conditionType="constant" valueType="integer" option="turue" default="1">
 					<Dependency>
 						<Condition type="and">
