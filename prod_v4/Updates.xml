@@ -613,13 +613,13 @@
   <Name>solver.iRICsolvers_nays2dv</Name>
   <DisplayName>Nasy2dv vertical 2D model </DisplayName>
   <Description/>
-  <Version>1.6.23021301</Version>
+  <Version>1.6.23021302</Version>
   <Default>true</Default>
   <ReleaseDate>2022-02-13</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="751160" CompressedSize="149251"/>
+  <UpdateFile OS="Any" CompressedSize="150299" UncompressedSize="763757"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>d099fcf5361b3a8d2234e05e031a62159b718dd8</SHA1>
+  <SHA1>eb4f61cc63af198d3ad906d2a6c0c7e597b7c322</SHA1>
  </PackageUpdate>
 </Updates>

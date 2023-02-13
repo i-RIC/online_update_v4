@@ -685,7 +685,7 @@
   <UpdateFile CompressedSize="5135070" OS="Any" UncompressedSize="37694291"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>fe5c7a2d04f3e2a4a9f0e3e004404d604d9ee3a6</SHA1>
  </PackageUpdate>
@@ -732,13 +732,13 @@
   <Name>solver.iRICsolvers_nays2dv</Name>
   <DisplayName>Nasy2dv vertical 2D model </DisplayName>
   <Description/>
-  <Version>1.6.23021301</Version>
+  <Version>1.6.23021302</Version>
   <Default>true</Default>
   <ReleaseDate>2022-02-13</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="149247" OS="Any" UncompressedSize="751160"/>
+  <UpdateFile CompressedSize="150300" OS="Any" UncompressedSize="763757"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>fa533d958aab6d8d098fe643ff648d7aedbd6111</SHA1>
+  <SHA1>45a435cb44e5cdef6734c4e168727355f666b0f5</SHA1>
  </PackageUpdate>
 </Updates>
