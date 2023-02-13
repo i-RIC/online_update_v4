@@ -716,19 +716,6 @@
   <SHA1>333bd3ebb6fed9e0df660b65b5eeae4a070426ad</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_nays2dv</Name>
-  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
-  <Description/>
-  <Version>1.6.22080301</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-08-03</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="148602" OS="Any" UncompressedSize="749890"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>57b06f87cbd4b7ff867d061edba9a5a82b67da71</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_v4_nays3dv</Name>
   <DisplayName>nays3Dv 3D Density Flow Solver</DisplayName>
   <Description/>
@@ -740,5 +727,18 @@
   <UpdateFile CompressedSize="295752" OS="Any" UncompressedSize="1169233"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>8948ff9223afd6b12bd325edea63aa83015c9454</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_nays2dv</Name>
+  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
+  <Description/>
+  <Version>1.6.23021301</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-02-13</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="149247" OS="Any" UncompressedSize="751160"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>fa533d958aab6d8d098fe643ff648d7aedbd6111</SHA1>
  </PackageUpdate>
 </Updates>

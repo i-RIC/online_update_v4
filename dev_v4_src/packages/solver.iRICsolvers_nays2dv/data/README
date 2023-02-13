@@ -3,3 +3,9 @@
 The Nays2DV solver is developed by Professor Yasuyuki Shimizu from Hokkaido University.
 
 Density currents occured due to density differences, arise from temperature variations, suspended solids or dissolved materials. Therefore, formation and evolution of density currents are induced by natural conditions such as saline intrusions, oil spills etc. Density flow is important for problems in lakes, reservoirs and estuaries.
+
+ver.1.6.23021301
+* Add license
+
+ver.1.7.22080301
+* Released for iRIC v4
