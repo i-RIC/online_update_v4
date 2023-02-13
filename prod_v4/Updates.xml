@@ -618,8 +618,8 @@
   <ReleaseDate>2022-10-13</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="294251" UncompressedSize="1155658" OS="Any"/>
+  <UpdateFile UncompressedSize="1155658" CompressedSize="294251" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>99a2420099ab65948c2cf173a3d2b5ea5afb6730</SHA1>
+  <SHA1>c3a6d3ffef58b32e22a93facf6bb194e5dcee34e</SHA1>
  </PackageUpdate>
 </Updates>
