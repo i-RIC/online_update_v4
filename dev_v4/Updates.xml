@@ -661,19 +661,6 @@
   <SHA1>592cd975373b54e13dc93197212e0d89be94fca3</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_UTT</Name>
-  <DisplayName>UTT</DisplayName>
-  <Description/>
-  <Version>1.2.23020301</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-02-03</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="904338" OS="Any" CompressedSize="170864"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>300575e6a2ea271fca8adbc801cf430140b11943</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (develop)</DisplayName>
   <Description>iRIC Main GUI</Description>
@@ -685,7 +672,7 @@
   <UpdateFile UncompressedSize="37694291" OS="Any" CompressedSize="5135070"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>fe5c7a2d04f3e2a4a9f0e3e004404d604d9ee3a6</SHA1>
  </PackageUpdate>
@@ -740,5 +727,18 @@
   <UpdateFile UncompressedSize="1169523" OS="Any" CompressedSize="295860"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>670764f4fb6e7220f68fcdd1e98152a0b26e64f9</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_UTT</Name>
+  <DisplayName>UTT</DisplayName>
+  <Description/>
+  <Version>1.2.23021301</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-02-13</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="904659" OS="Any" CompressedSize="170977"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>78b1cbdca339b67bf58c79e94647025b738ef925</SHA1>
  </PackageUpdate>
 </Updates>

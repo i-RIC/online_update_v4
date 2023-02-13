@@ -553,7 +553,7 @@
   <UpdateFile CompressedSize="5089506" OS="Any" UncompressedSize="37189767"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>1a19a89b243df098e84057ce29af93c6814aae7f</SHA1>
  </PackageUpdate>
@@ -584,19 +584,6 @@
   <SHA1>716fe973f6999070efa1a81dcb10592deb1bcbcb</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_UTT</Name>
-  <DisplayName>UTT</DisplayName>
-  <Description/>
-  <Version>1.2.23020301</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-02-03</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="170872" OS="Any" UncompressedSize="904338"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>9f55f0febaf85daa39cca756690656daf77f1503</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_nays2dv</Name>
   <DisplayName>Nasy2dv vertical 2D model </DisplayName>
   <Description/>
@@ -621,5 +608,18 @@
   <UpdateFile CompressedSize="295855" OS="Any" UncompressedSize="1169523"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>4b21a7526b44b97c1d97e3494ebbc045a5f5ad37</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_UTT</Name>
+  <DisplayName>UTT</DisplayName>
+  <Description/>
+  <Version>1.2.23021301</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-02-13</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="170965" OS="Any" UncompressedSize="904659"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>eb07271eb63caca7af2d767aebb87de8f069c709</SHA1>
  </PackageUpdate>
 </Updates>
