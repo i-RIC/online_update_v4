@@ -3,7 +3,7 @@
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="nays3dv" 
 	caption="nays3Dv 3D Density Flow Solver" 
-	version="1.7.23021301"
+	version="1.7.23021302"
 	copyright="Yasuyuki SHIMIZU"
 	release="2023.02.13"
 	homepage="http://i-ric.org"
