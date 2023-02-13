@@ -2,3 +2,11 @@
 averaged 2 dimensional flow model.   In the Nays2d+, secondary flow is
 calculated using results of depth, depth averaged velocities and streamline
 curvature.  
+
+Check here for case studies.
+https://i-ric.org/yasu/nays2d+/index.html
+
+ver.1.1.22080301
+* Add case study link to README.
+ver.1.1.22080301
+* Released for iRIC v4
