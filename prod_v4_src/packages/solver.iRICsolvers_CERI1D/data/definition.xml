@@ -5,7 +5,7 @@
 	version="1.1.7"
 	copyright="Yasuhiro Yoshikawa and Civil Engineering Research Institute for Cold Region"
 	release="2018.08.24"
-	homepage="http://i-ric.org"
+	homepage="https://i-ric.org/ja/"
 	executable="CERI1D.exe"
 	iterationtype="time"
 	gridtype="structured2d"
