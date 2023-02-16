@@ -2,3 +2,8 @@ Simple grid generator.
 This tool can generate straight, sine-generated meander, and Kinoshita meander
 channel, with flat, alternate and point bar bed configurations.
 
+ver.1.0.23021601
+* Fixed a bug that crashes when running if there is no "tmp" folder in C drive
+
+ver.1.0.22080301
+* Released for iRIC v4
