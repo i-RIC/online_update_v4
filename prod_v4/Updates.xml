@@ -571,19 +571,6 @@
   <SHA1>91dcacad78e0c8a7b1657810c5eac06187cfbe2e</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_nays2dv</Name>
-  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
-  <Description/>
-  <Version>1.6.23021302</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-02-13</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="763757" OS="Any" CompressedSize="150307"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>ec1ef55ea826a1a52f27413799a6cac2cea8dabf</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_simple_grigen</Name>
   <DisplayName>Simple Straight and Meandering Channel Creator</DisplayName>
   <Description/>
@@ -621,5 +608,18 @@
   <UpdateFile UncompressedSize="904659" OS="Any" CompressedSize="170972"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>f26b01aa39fd0cc902f25fe4864aeed2aa248f40</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_nays2dv</Name>
+  <DisplayName>Nasy2dv vertical 2D model </DisplayName>
+  <Description/>
+  <Version>1.6.23021302</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-02-13</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="763757" CompressedSize="150302" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>8c9924290b9287e449db3403e5dc28e1c4572c82</SHA1>
  </PackageUpdate>
 </Updates>
