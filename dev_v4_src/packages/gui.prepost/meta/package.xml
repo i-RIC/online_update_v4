@@ -2,8 +2,8 @@
 <Package>
 	<DisplayName>iRIC v4 (develop)</DisplayName>
 	<Description>iRIC Main GUI</Description>
-	<Version>4.0.0.6899</Version>
-	<ReleaseDate>2023-03-17</ReleaseDate>
+	<Version>4.0.0.6900</Version>
+	<ReleaseDate>2023-03-23</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<ForcedInstallation>true</ForcedInstallation>
 	<Script>installscript.qs</Script>
