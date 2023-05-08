@@ -9,7 +9,7 @@ namespace iRICLib {
 
 class H5CgnsFile;
 
-class H5CgnsFileSolutionWriter
+class IRICLIBDLL H5CgnsFileSolutionWriter
 {
 public:
 	enum Mode {
