@@ -1,11 +1,14 @@
-﻿# What is UTT
-UTT is a new Lagrangian particle-tracking code that incorporates both advection and dispersion by turbulence (or other unresolved details of the flow field). 
-Unlike previous models, UTT is flow solver independent, works for one, two, and three-dimensional applications, and has a unique particle cloning/colligation technique that allows high spatial resolution without high computational expense. Importantly, the method is suitable for applications on typical laptop or desktop computers in the iRIC framework for flow, sediment transport, morphodynamics and habitat modelling in rivers (freely available at www.i- ric.org). 
+﻿# What is GELATO
+GELATO(GEneralized LAgrangian Tracking with Optimization)(former UTT(Universal Tracer Tracker)) is a new Lagrangian particle-tracking code that incorporates both advection and dispersion by turbulence (or other unresolved details of the flow field). 
+Unlike previous models, GELATO is flow solver independent, works for one, two, and three-dimensional applications, and has a unique particle cloning/colligation technique that allows high spatial resolution without high computational expense. Importantly, the method is suitable for applications on typical laptop or desktop computers in the iRIC framework for flow, sediment transport, morphodynamics and habitat modelling in rivers (freely available at www.i- ric.org). 
 
 Check here for case studies.
 https://i-ric.org/yasu/UTT_EN/index.html
 
 # Release notes
+ver.1.2.23050801 update by shimizu and jon
+* Changed solver name from UTT to GELATO
+
 ver.1.2.23021301 update by hoshino
 * Add case study link to README.
 

@@ -5,8 +5,8 @@
 -->
     <context>
         <message>
-            <source>UTT</source>
-            <translation>UTT とても便利な多機能トレーサー追跡ツール・魚も追跡できます</translation>
+            <source>GELATO(former UTT)</source>
+            <translation>GELATE(旧 UTT)</translation>
         </message>
         <message>
             <source>Basic Settings</source>
