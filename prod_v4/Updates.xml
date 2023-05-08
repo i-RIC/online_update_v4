@@ -542,19 +542,6 @@
   <SHA1>b722b68707d7cfa521ef06fe394560a2cb53f189</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_UTT</Name>
-  <DisplayName>UTT</DisplayName>
-  <Description/>
-  <Version>1.2.23021301</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-02-13</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="170972" UncompressedSize="904659" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>f26b01aa39fd0cc902f25fe4864aeed2aa248f40</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridexporter_plugin.landxml</Name>
   <DisplayName>Grid LandXML exporter</DisplayName>
   <Description>Grid LandXML exporter</Description>
@@ -634,19 +621,6 @@
   <UpdateFile CompressedSize="207825" UncompressedSize="1715887" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>b7c934dedc7eb5c5da5d32ecd48c9e1c7120b1b0</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.iRICsolvers_nays2dv</Name>
-  <DisplayName>Nays2Dv vertical 2D model </DisplayName>
-  <Description/>
-  <Version>1.6.23050801</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-05-08</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="150353" UncompressedSize="763877" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>4e1312b36304880e229c78fbbb5e1b75a48e68fe</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_nays2dv</Name>
