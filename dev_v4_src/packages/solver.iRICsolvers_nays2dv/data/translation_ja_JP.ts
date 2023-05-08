@@ -5,8 +5,8 @@
 -->
     <context>
         <message>
-            <source>Nasy2dv vertical 2D model </source>
-            <translation>Nays2dv 簡単鉛直2次密度流モデル(密度流でなくても計算できます)</translation>
+            <source>Nays2Dv vertical 2D model </source>
+            <translation>Nays2Dv 簡単鉛直2次密度流モデル(密度流でなくても計算できます)</translation>
         </message>
         <message>
             <source>Computational Parameters</source>

@@ -2,10 +2,10 @@
 <SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="nays2dv" 
-	caption="Nasy2dv vertical 2D model " 
-	version="1.6.23021302"
+	caption="Nays2Dv vertical 2D model " 
+	version="1.6.23050801"
 	copyright="Yasuyuki SHIMIZU"
-	release="2023.02.13"
+	release="2023.05.08"
 	homepage="http://i-ric.org"
 	executable="nays2dv.exe"
 	iterationtype="time"

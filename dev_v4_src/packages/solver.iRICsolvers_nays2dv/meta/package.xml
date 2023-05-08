@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <Package>
-	<DisplayName>Nasy2dv vertical 2D model </DisplayName>
+	<DisplayName>Nays2Dv vertical 2D model </DisplayName>
 	<Description></Description>
-	<Version>1.6.23021302</Version>
+	<Version>1.6.23050801</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023-02-13</ReleaseDate>
+	<ReleaseDate>2023-05-08</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
