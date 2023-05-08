@@ -754,4 +754,17 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>1537048476ed8168358989662efe84f966cb3637</SHA1>
  </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_nays2dv</Name>
+  <DisplayName>Nays2Dv vertical 2D model </DisplayName>
+  <Description/>
+  <Version>1.6.23050801</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-05-08</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="763877" CompressedSize="150257"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>7201778d39e10dbc0e6c87af208df06788db45e2</SHA1>
+ </PackageUpdate>
 </Updates>
