@@ -6,6 +6,9 @@ Check here for case studies.
 https://i-ric.org/yasu/UTT_EN/index.html
 
 # Release notes
+ver.1.2.23050901 update by hoshino
+* Fixed to be able to open UTT project.
+
 ver.1.2.23050801 update by shimizu and jon
 * Changed solver name from UTT to GELATO
 

@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>GELATO(former UTT)</DisplayName>
 	<Description></Description>
-	<Version>1.2.23050801</Version>
+	<Version>1.2.23050901</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023-05-08</ReleaseDate>
+	<ReleaseDate>2023-05-09</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

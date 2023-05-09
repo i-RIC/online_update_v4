@@ -10,6 +10,9 @@ GELATOにおいて使用される背景の流れ場は、iRICで提供されて�
 https://i-ric.org/yasu/UTT_JP/index.html
 
 リリースノート
+ver.1.2.23050901 update by hoshino
+* UTTのプロジェクトを開けるように修正しました。
+
 ver.1.2.23050801 update by shimizu and jon
 * ソルバー名をUTTからGELATOに変更しました。
 
