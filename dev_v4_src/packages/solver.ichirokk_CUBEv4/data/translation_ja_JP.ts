@@ -1651,6 +1651,11 @@
         <source>xi-direction</source>
         <translation>ξ方向</translation>
     </message>
+    
+    <message>
+        <source>eta-direction</source>
+        <translation>η方向</translation>
+    </message>
 
     <message>
         <source>Pump bottom cell</source>
@@ -1705,6 +1710,150 @@
     <message>
        <source>Relaxation coefficient for slope collapse</source>
         <translation>斜面崩落計算緩和係数</translation>
+    </message>
+    <message>
+       <source>Initial driftwood supply cells</source>
+        <translation>初期流木セルの設定</translation>
+    </message>
+
+    <message>
+       <source>Specify each cell and number of wood</source>
+        <translation>セルごとに本数を指定</translation>
+    </message>
+
+    <message>
+       <source>Specify area and total number of wood</source>
+        <translation>流木総本数と投入域を指定し乱数で配置</translation>
+    </message>
+
+    <message>
+       <source>Initial driftwood number</source>
+        <translation>初期流木本数</translation>
+    </message>
+
+    <message>
+       <source>Number of pumps</source>
+        <translation>設置するポンプの数</translation>
+    </message>
+
+    <message>
+       <source>Pump 1 direction</source>
+        <translation>ポンプ１の吐出方向</translation>
+    </message>
+    <message>
+       <source>Pump 2 direction</source>
+        <translation>ポンプ２の吐出方向</translation>
+    </message>
+    <message>
+       <source>Pump 3 direction</source>
+        <translation>ポンプ３の吐出方向</translation>
+    </message>
+    <message>
+       <source>Pump 4 direction</source>
+        <translation>ポンプ４の吐出方向</translation>
+    </message>
+    <message>
+       <source>Pump 5 direction</source>
+        <translation>ポンプ５の吐出方向</translation>
+    </message>
+
+    <message>
+       <source>Pump 1 bottom cell</source>
+        <translation>ポンプ１の最下セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 2 bottom cell</source>
+        <translation>ポンプ２の最下セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 3 bottom cell</source>
+        <translation>ポンプ３の最下セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 4 bottom cell</source>
+        <translation>ポンプ４の最下セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 5 bottom cell</source>
+        <translation>ポンプ５の最下セル番号</translation>
+    </message>
+
+    <message>
+       <source>Pump 1 top cell</source>
+        <translation>ポンプ１の最上セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 2 top cell</source>
+        <translation>ポンプ２の最上セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 3 top cell</source>
+        <translation>ポンプ３の最上セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 4 top cell</source>
+        <translation>ポンプ４の最上セル番号</translation>
+    </message>
+    <message>
+       <source>Pump 5 top cell</source>
+        <translation>ポンプ５の最上セル番号</translation>
+    </message>
+
+    <message>
+       <source>Pump 1 velocity [m/s]</source>
+        <translation>ポンプ１吐出速度[m/s]</translation>
+    </message>
+    <message>
+       <source>Pump 2 velocity [m/s]</source>
+        <translation>ポンプ２吐出速度[m/s]</translation>
+    </message>
+    <message>
+       <source>Pump 3 velocity [m/s]</source>
+        <translation>ポンプ３吐出速度[m/s]</translation>
+    </message>
+    <message>
+       <source>Pump 4 velocity [m/s]</source>
+        <translation>ポンプ４吐出速度[m/s]</translation>
+    </message>
+    <message>
+       <source>Pump 5 velocity [m/s]</source>
+        <translation>ポンプ５吐出速度[m/s]</translation>
+    </message>
+
+    <message>
+       <source>Pump 1 stop time [s]</source>
+        <translation>ポンプ１停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 2 stop time [s]</source>
+        <translation>ポンプ２停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 3 stop time [s]</source>
+        <translation>ポンプ３停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 4 stop time [s]</source>
+        <translation>ポンプ４停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 5 stop time [s]</source>
+        <translation>ポンプ５停止時間[s]</translation>
+    </message>
+
+    <message>
+       <source>Driftwood supply cell</source>
+        <translation>流木投入セル範囲</translation>
+    </message>
+
+    <message>
+       <source>Driftwood number for each cell</source>
+        <translation>流木本数（セル毎）</translation>
+    </message>
+
+    <message>
+       <source>Initial driftwood angle[deg]</source>
+        <translation>初期流木角度[deg]</translation>
     </message>
 </context>
 </TS>
