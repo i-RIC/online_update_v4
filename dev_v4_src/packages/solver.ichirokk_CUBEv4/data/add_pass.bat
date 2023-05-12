@@ -1,1 +1,0 @@
-set PATH=%PATH%;C:\Users\kimu\iRIC\guis\prepost
