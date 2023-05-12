@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <Package>
-	<DisplayName>Sample Solver</DisplayName>
+	<DisplayName>NaysCUBE v4.43.74</DisplayName>
 	<Description></Description>
-	<Version>1.0.0</Version>
+	<Version>4.43.74</Version>
 	<Default>true</Default>
-	<ReleaseDate>2021-09-01</ReleaseDate>
+	<ReleaseDate>2023-05-11</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
