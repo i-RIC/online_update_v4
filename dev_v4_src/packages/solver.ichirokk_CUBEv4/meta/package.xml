@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>NaysCUBE v4.43.74</DisplayName>
+	<Description></Description>
+	<Version>4.43.74</Version>
+	<Default>true</Default>
+	<ReleaseDate>2023-05-11</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
