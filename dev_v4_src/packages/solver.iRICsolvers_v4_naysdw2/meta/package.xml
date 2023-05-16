@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>NaysDw2(Simple 2D Driftwood Tracker)</DisplayName>
+	<Description></Description>
+	<Version>1.0.23051601</Version>
+	<Default>true</Default>
+	<ReleaseDate>2023-05-16</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
