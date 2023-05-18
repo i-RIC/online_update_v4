@@ -3,6 +3,10 @@
 
 #include "iriclib_global.h"
 
+namespace iRICLib {
+class H5CgnsZone;
+}
+
 namespace iRICSolverLib {
 
 class Cell2D;
@@ -17,6 +21,7 @@ public:
 
 	int load(int fid, int gid);
 	int load(int fid, int gid, int solid);
+	int load(iRICLib::H5CgnsZone* zone);
 
 	int nodeCount() const;
 	Point2D node(int nodeId) const;
