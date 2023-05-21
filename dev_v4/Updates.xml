@@ -711,7 +711,7 @@
   <UpdateFile OS="Any" CompressedSize="5392092" UncompressedSize="39490984"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>77bb9f52db2f243dec36d9489843a90b6ced0c1e</SHA1>
  </PackageUpdate>
@@ -745,13 +745,13 @@
   <Name>solver.fastmech</Name>
   <DisplayName>FaSTMECH</DisplayName>
   <Description>FaSTMECH</Description>
-  <Version>1.1.5</Version>
+  <Version>1.1.6</Version>
   <Default>true</Default>
-  <ReleaseDate>2022-09-15</ReleaseDate>
+  <ReleaseDate>2023-05-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="163898" UncompressedSize="1796325"/>
+  <UpdateFile OS="Any" CompressedSize="163891" UncompressedSize="1796325"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>f521a976d07541e602b92f105fa9c2ad663fc910</SHA1>
+  <SHA1>ec5a3d5c0cbbbf8ef24d2478eb5885e682d3a9f2</SHA1>
  </PackageUpdate>
 </Updates>
