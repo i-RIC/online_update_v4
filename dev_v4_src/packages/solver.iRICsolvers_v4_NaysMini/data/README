@@ -1,6 +1,10 @@
 ﻿NaysMini is a simple version of Nays2dH written in Python code.
 It can be applied only flow calculation in Cartesian coordinate system.
 
+# Examples
+Check here for case studies.
+https://i-ric.org/yasu/NaysMini/index.html
+
 # Release notes
 ver.1.0.23052201 update by hamaki
 * Released as iRIC v4 compatible version

@@ -1,6 +1,10 @@
-﻿NaysMiniはPythonコードで書かれたNays2dHの簡易版です．
-直交座標の流れの計算のみ可能です．
-Pythonコードが全て見れますので，数値計算法やPythonの勉強になります．
+﻿NaysMiniはPythonコードで書かれたNays2DHの簡易版です。
+直交座標の流れの計算のみ可能です。
+Pythonコードが全て見れますので、数値計算法やPythonの勉強になります。
+
+# 事例集
+事例集はこちらを参照ください。
+https://i-ric.org/yasu/NaysMini/index.html
 
 # リリースノート
 ver.1.0.23052201 update by hamaki
