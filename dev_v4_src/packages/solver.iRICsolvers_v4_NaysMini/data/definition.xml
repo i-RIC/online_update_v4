@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition 
+    xmlns="www.iric.net/SolverDefinition/1.0"
+    name="NaysMini" caption="NaysMini iRIC4.0" version="1.0.23052201" 
+	copyright="Yasu Shimizu"
+    release="2023.5.22" 
+	homepage="https://i-ric.org/"
+    executable="NaysMini.py"
+    iterationtype="time"
+    gridtype="structured2d"
+    >
+	<CalculationCondition>
+		<Tab name="hydraulics" caption="Hydraulic and Pysical Condition">
+			<Item name="qp" caption="Discharge(m**3/s)">
+				<Definition conditionType="constant" valueType="real" default="0.05" >
+				</Definition>
+			</Item>
+			<Item name="snm" caption="Manning's Roughness Value">
+				<Definition conditionType="constant" valueType="real" default="0.02">
+				</Definition>
+			</Item>
+			<Item name="snu_0" caption="Viscosity Coefficient">
+				<Definition conditionType="constant" valueType="real" default="0.00001" >
+				</Definition>
+			</Item>
+			<Item name="hmin" caption="Minimum Depth(m)">
+				<Definition conditionType="constant" valueType="real" default="0.001" >
+				</Definition>
+			</Item>
+			<Item name="cw" caption="Friction Coefficient for Banks or Side Walls">
+				<Definition conditionType="constant" valueType="real" default="0.01" >
+				</Definition>
+			</Item>
+			<Item name="ep_alpha" caption="Coefficient for Eddy Viscosity">
+				<Definition conditionType="constant" valueType="real" default="1.0" >
+				</Definition>
+			</Item>
+		</Tab>
+		<Tab name="Boundary" caption="Boundary Condition">
+			<Item name="j_west" caption="Upstream or West Boundary">
+				<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Open Boundary"/>
+					<Enumeration value="1" caption="Closed Boundary"/>
+					<Enumeration value="3" caption="Periodic Boundary"/>
+				</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_east" caption="Downstream or East Boundary">
+				<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Open Boundary"/>
+					<Enumeration value="1" caption="Closed Boundary"/>
+					<Enumeration value="3" caption="Periodic Boundary"/>
+				</Enumerations>
+				</Definition>
+			</Item>
+			<Item name="j_hdown" caption="Stage Condition when Downstream/East Boundary is Free">
+				<Definition conditionType="constant" valueType="integer" option="true" default="1">
+				<Enumerations>
+					<Enumeration value="0" caption="Free"/>
+					<Enumeration value="1" caption="Uniform Flow"/>
+					<Enumeration value="2" caption="Given Constant Value"/>
+				</Enumerations>
+				<Dependency>
+					<Condition type="isEqual" target="j_east" value="0"/>
+				</Dependency>
+				</Definition>
+			</Item>
+			<Item name="h_down" caption="Downstream/East Stage Value">
+				<Definition conditionType="constant" valueType="real" option="true" default="1.0">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_east" value="0"/>
+						<Condition type="isEqual" target="j_hdown" value="2"/>
+					</Condition>
+				</Dependency>
+				</Definition>
+			</Item>
+			<Item name="slope" caption="Slope for Downstream Uniform Flow Boundary">
+				<Definition conditionType="constant" valueType="real" option="true" default="0.001">
+				<Dependency>
+					<Condition type="and">
+						<Condition type="isEqual" target="j_east" value="0"/>
+						<Condition type="isEqual" target="j_hdown" value="1"/>
+					</Condition>
+				</Dependency>
+				</Definition>
+			</Item>
+		</Tab>
+		<Tab name="TimeAndIteration" caption="Time and Iteration Parameter">
+			<GroupBox caption="Time Parameters">
+			<Item name="etime" caption="Duration Time(sec)">
+				<Definition conditionType="constant" valueType="real" default="100." >
+				</Definition>
+			</Item>
+			<Item name="tuk" caption="Output Interval(sec)">
+				<Definition conditionType="constant" valueType="real" default="0.1">
+				</Definition>
+			</Item>
+			<Item name="dt" caption="Calculation Time Step(sec)">
+				<Definition conditionType="constant" valueType="real" default="0.01">
+				</Definition>
+			</Item>
+			</GroupBox>
+			<GroupBox caption="Iteration Parameters">
+			<Item name="alh" caption="Reluxation of Water Surface Update">
+				<Definition conditionType="constant" valueType="real" default="0.7" >
+				</Definition>
+			</Item>
+			<Item name="lmax" caption="Maximum Iteration Times in Each Time Step">
+				<Definition conditionType="constant" valueType="integer" default="10" >
+				</Definition>
+				</Item>
+					
+			</GroupBox>
+		</Tab>
+		
+			
+	</CalculationCondition>
+
+	<GridRelatedCondition>
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+		<Item name="Obstacle" caption="Obstacle">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal cell" />
+					<Enumeration value="1" caption="Obstacle" />
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="Fix_movable" caption="Fixed or Movable Bed">
+			<Definition position="cell" valueType="integer" default="0" option="true">
+				<Enumerations>
+					<Enumeration value="0" caption="Movable bed" />
+					<Enumeration value="1" caption="Fixed bed" />
+				</Enumerations>
+			</Definition>
+		</Item>
+	</GridRelatedCondition>
+</SolverDefinition>
