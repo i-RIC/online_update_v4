@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 	xmlns="www.iric.net/SolverDefinition/1.0"
-	name="River2D" caption="River2D" version="1.0.220913" copyright="Peter Steffler"
-	release="2022.09.10" homepage="http://www.river2d.ualberta.ca/"
+	name="River2D" caption="River2D 1.0" version="1.0.230601" copyright="Peter Steffler"
+	release="2023.06.01" homepage="http://www.river2d.ualberta.ca/"
 	executable="River2D.exe"
 	iterationtype="time"
 	gridtype="unstructured2d"

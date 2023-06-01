@@ -1,2 +1,7 @@
-﻿V1.0.2 (2022.09.07) Compatible with iRIC v4.
+River2D is a two dimesional flow solver using an unstructured triangular grid. The original version was developed at the University of Alberta. By adopting an unstructured grid, it is possible to increase the resolution of calculations for the part of interest, making it suitable for evaluating fish habitats. The original version also incorporates a habitat evaluation function, but the iRIC version extracts only the flow calculation function from the original. Habitat evaluation is performed by a separate solver such as EvaTRIP or DHABSIM. The iRIC version was developed by USGS, and has been maintained by Prof. Sekine (ms@yamaguchi-u.ac.jp) since September 2022.
+Original version HP https://www.river2d.ca/
+Commentary HP by Prof. Sekine https://sk-lb.net/iric/
+
+V1.0.230601 (2023.06.01) Support STOP and RELOAD buttons.
+V1.0.220913 (2022.09.07) Compatible with iRIC v4.
 V1.0.1 (    .  .  ) Bug fix. 
