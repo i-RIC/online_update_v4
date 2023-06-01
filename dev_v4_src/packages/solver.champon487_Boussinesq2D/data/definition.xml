@@ -4,7 +4,7 @@
 	caption="Boussinesq2D Tracer Model"
 	version="1.0"
 	copyright="Toshiki Iwasaki@Hokkaido University"
-	release="2021.04.01"
+	release="2023.06.01"
 	homepage="http://i-ric.org"
 	executable="Boussinesq.exe"
 	iterationtype="time"
