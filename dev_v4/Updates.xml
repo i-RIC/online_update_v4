@@ -698,7 +698,7 @@
   <UpdateFile UncompressedSize="39569380" OS="Any" CompressedSize="5393422"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>325c9e26138c690a3bba018cbf39cedd86efa24d</SHA1>
  </PackageUpdate>
@@ -758,13 +758,13 @@
   <Name>solver.iricelimo_elimo</Name>
   <DisplayName>Elimo</DisplayName>
   <Description/>
-  <Version>4.2.0</Version>
+  <Version>4.21.0</Version>
   <Default>true</Default>
   <ReleaseDate>2020-03-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="608728" OS="Any" CompressedSize="118016"/>
+  <UpdateFile UncompressedSize="608729" OS="Any" CompressedSize="118019"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>6cb8ac148fd3343d7cd3a9f1f6f8b2addf501711</SHA1>
+  <SHA1>7935c66ed7051bdbbc33fd0d454e95f8c8bb6532</SHA1>
  </PackageUpdate>
 </Updates>
