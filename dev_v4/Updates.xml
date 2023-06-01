@@ -758,13 +758,13 @@
   <Name>solver.iricelimo_elimo</Name>
   <DisplayName>Elimo</DisplayName>
   <Description/>
-  <Version>4.0.0</Version>
+  <Version>4.1.0</Version>
   <Default>true</Default>
   <ReleaseDate>2020-03-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="245720" CompressedSize="74158"/>
+  <UpdateFile UncompressedSize="245720" OS="Any" CompressedSize="74158"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>6bc4ac81325c5b0220dac8073b5c5d61bef49205</SHA1>
+  <SHA1>6260bebd0178fa9a501fc5a03330f167b3ed7b77</SHA1>
  </PackageUpdate>
 </Updates>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 	xmlns="www.iric.net/SolverDefinition/1.0"
-	name="elimo" caption="Elimo" version="4.0" copyright="Yasunori Watanabe"
+	name="elimo" caption="Elimo" version="4.1" copyright="Yasunori Watanabe"
 	release="2020.3.21" homepage="http://i-ric.org"
 	executable="elimo.exe"
 	iterationtype="time"
