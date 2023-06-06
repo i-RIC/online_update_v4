@@ -24,7 +24,7 @@ public:
 
 	int count(int* count);
 	int readValueNames(std::vector<std::string>* names) const override;
-	int readValueNames(std::set<std::string>* names) const override;
+	int readValueNames(std::unordered_set<std::string>* names) const override;
 
 	int readCoordinatesX(std::vector<double>* values) const;
 	int readCoordinatesY(std::vector<double>* values) const;

@@ -3,7 +3,7 @@
 
 #include "../h5cgnssolverinformation.h"
 
-#include <set>
+#include <unordered_set>
 
 namespace iRICLib {
 
@@ -14,7 +14,7 @@ public:
 	~Impl();
 
 	hid_t m_groupId;
-	std::set<std::string> m_names;
+	std::unordered_set<std::string> m_names;
 };
 
 } // namespace iRICLib

@@ -24,7 +24,7 @@ public:
 	int readGroupNames(std::vector<std::string>* names) const;
 	int count(const std::string& groupName, int* count);
 	int readValueNames(const std::string& groupName, std::vector<std::string>* names) const;
-	int readValueNames(const std::string& groupName, std::set<std::string>* names) const;
+	int readValueNames(const std::string& groupName, std::unordered_set<std::string>* names) const;
 	int readCoordinatesX(const std::string& groupName, std::vector<double>* values) const;
 	int readCoordinatesY(const std::string& groupName, std::vector<double>* values) const;
 	int readCoordinatesZ(const std::string& groupName, std::vector<double>* values) const;

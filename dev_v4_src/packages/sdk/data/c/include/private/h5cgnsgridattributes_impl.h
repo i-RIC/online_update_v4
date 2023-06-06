@@ -3,7 +3,7 @@
 
 #include "../h5cgnsgridattributes.h"
 
-#include <set>
+#include <unordered_set>
 
 namespace iRICLib {
 
@@ -15,7 +15,7 @@ public:
 
 	hid_t m_groupId;
 
-	std::set<std::string> m_names;
+	std::unordered_set<std::string> m_names;
 
 	H5CgnsZone* m_zone;
 };

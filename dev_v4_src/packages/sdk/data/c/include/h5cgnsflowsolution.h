@@ -25,7 +25,7 @@ public:
 	std::string name() const;
 
 	int readValueNames(std::vector<std::string>* names) const override;
-	int readValueNames(std::set<std::string>* names) const override;
+	int readValueNames(std::unordered_set<std::string>* names) const override;
 	int readValueType(const std::string& name, H5Util::DataArrayValueType *type) const override;
 	int readValue(const std::string& name, std::vector<int>* values) const override;
 	int readValue(const std::string& name, std::vector<double>* values) const override;

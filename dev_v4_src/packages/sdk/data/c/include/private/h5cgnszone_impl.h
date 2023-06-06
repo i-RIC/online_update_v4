@@ -3,7 +3,7 @@
 
 #include "../h5cgnszone.h"
 
-#include <set>
+#include <unordered_set>
 
 namespace iRICLib {
 
@@ -83,8 +83,8 @@ public:
 	H5CgnsParticleSolution* m_particleSolution;
 	H5CgnsPolyDataSolution* m_polyDataSolution;
 
-	std::set<std::string> m_names;
-	std::set<std::string> m_flowSolutionPointerNames;
+	std::unordered_set<std::string> m_names;
+	std::unordered_set<std::string> m_flowSolutionPointerNames;
 
 	H5CgnsBase* m_base;
 
