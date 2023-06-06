@@ -452,7 +452,7 @@
 			<Content>
 				<Items>
 					<Item name="c_tree" caption="Drag coefficient of tree">
-						<Definition conditionType="constant" valueType="real" option="false" default="0.7"/>
+						<Definition conditionType="constant" valueType="real" option="false" default="1"/>
 					</Item>
 					<Item name="j_vege" caption="Use the data of vegetation height in the cells ?">
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
