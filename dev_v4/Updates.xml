@@ -711,7 +711,7 @@
   <UpdateFile OS="Any" UncompressedSize="39570404" CompressedSize="5393717"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>e3dfda4139d061d30930a498fa0bf1838be95886</SHA1>
  </PackageUpdate>
@@ -766,5 +766,18 @@
   <UpdateFile OS="Any" UncompressedSize="1716071" CompressedSize="207872"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>f2973b95e9ae280b0df5294e771d6af1a6718e62</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.champon487_Nays2DH</Name>
+  <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
+  <Description/>
+  <Version>1.6.001</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-07-13</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="1648009" CompressedSize="430386"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>e61578ef6ec7afdcf3848103b80e2322b771b620</SHA1>
  </PackageUpdate>
 </Updates>
