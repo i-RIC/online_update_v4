@@ -7,6 +7,10 @@ GELATO(旧 UTT)の物質輸送機能を応用して2次元流木の輸送・追�
 https://i-ric.org/yasu/UTT_JP/index.html
 
 # Release notes
+ver.1.0.23060601 update by hoshino
+* 計算終了時間を超えても計算していたのを修正
+* 読み込むcgnsファイルとスカラー名が一致しない場合はコピーしないように修正
+
 ver.1.0.23051601 update by hoshino
 * iRIC ver.3対応のソルバーからiRIC ver.4対応に更新。
 * 河床変化量を読み込みファイルからコピーできるように変更。

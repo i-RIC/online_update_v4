@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="NaysDW2" caption="NaysDw2(Simple 2D Driftwood Tracker)" version="1.0.23051601" copyright="Yasuyuki SHIMIZU"
-    release="2023.05.16"
+    name="NaysDW2" caption="NaysDw2(Simple 2D Driftwood Tracker)" version="1.0.23060601" copyright="Yasuyuki SHIMIZU"
+    release="2023.06.06"
     homepage="https://i-ric.org/"
     executable="naysdw2.exe"
     iterationtype="time"

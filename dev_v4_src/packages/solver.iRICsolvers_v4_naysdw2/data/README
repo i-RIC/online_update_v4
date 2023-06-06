@@ -7,6 +7,10 @@ Check here for case studies.
 https://i-ric.org/yasu/UTT_EN/index.html
 
 # Release notes
+ver.1.0.23060601 update by hoshino
+* Fixed that it was calculating even after the calculation end time
+* Fixed not to copy if the cgns file to be read and the scalar name do not match
+
 ver.1.0.23051601 update by hoshino
 * Updated from iRIC ver.3 compatible solver to iRIC ver.4 compatible.
 * Changed to be able to copy elevation change from read file.
