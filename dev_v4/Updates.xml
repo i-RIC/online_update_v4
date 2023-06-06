@@ -622,19 +622,6 @@
   <SHA1>7201778d39e10dbc0e6c87af208df06788db45e2</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_GELATO</Name>
-  <DisplayName>GELATO(former UTT)</DisplayName>
-  <Description/>
-  <Version>1.2.23050901</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-05-09</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="1716071" CompressedSize="207877"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>952c7258410ae5fa74de6497cacdf62b1ce45257</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.ichirokk_CUBEv4</Name>
   <DisplayName>NaysCUBE v4.43.74</DisplayName>
   <Description/>
@@ -763,8 +750,21 @@
   <ReleaseDate>2023-06-06</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="652794" OS="Any" CompressedSize="108265"/>
+  <UpdateFile OS="Any" UncompressedSize="652794" CompressedSize="108265"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>0f37e3b0c0c2aa164449e138e63d14a912559f12</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_GELATO</Name>
+  <DisplayName>GELATO(former UTT)</DisplayName>
+  <Description/>
+  <Version>1.2.23050901</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-05-09</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="1716071" CompressedSize="207872"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>f2973b95e9ae280b0df5294e771d6af1a6718e62</SHA1>
  </PackageUpdate>
 </Updates>
