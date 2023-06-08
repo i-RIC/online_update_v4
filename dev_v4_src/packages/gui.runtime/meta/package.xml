@@ -2,8 +2,8 @@
 <Package>
 	<DisplayName>iRIC GUI Runtime</DisplayName>
 	<Description>Runtime DLLs for iRIC Main GUI</Description>
-	<Version>1.1.8</Version>
-	<ReleaseDate>2022-08-16</ReleaseDate>
+	<Version>1.1.9</Version>
+	<ReleaseDate>2023-06-08</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<ForcedInstallation>true</ForcedInstallation>
 	<Script>installscript.qs</Script>
