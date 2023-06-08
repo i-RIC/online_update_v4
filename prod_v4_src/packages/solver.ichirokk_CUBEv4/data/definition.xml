@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <SolverDefinition
-name="NaysCUBE_v3" caption="NaysCUBE v4.43.74" version="4.43.74" copyright="Ichiro Kimura"
-release="2023.5.11" homepage="http://i-ric.org/"
+name="NaysCUBE_v3" caption="NaysCUBE v4.43.75" version="4.43.75" copyright="Ichiro Kimura"
+release="2023.6.8" homepage="http://i-ric.org/"
 executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
@@ -2424,6 +2424,15 @@ gridtype="structured2d"
         </Item>
 
         <Item name="i_debug_stop" caption="Debug mode on/off">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+            <Enumerations>
+              <Enumeration value="0" caption="off"/>
+              <Enumeration value="1" caption="on"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+        <Item name="i_debug2" caption="Debug code on/off">
           <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
             <Enumerations>
               <Enumeration value="0" caption="off"/>
