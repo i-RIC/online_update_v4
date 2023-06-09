@@ -1,5 +1,7 @@
 ﻿DHABSIM is an easy-to-use two-dimensional habitat calculator. It can calculate habitat condition of mid to small scale river without using HSI for specific fish species. It imports geometry, velocity,and depth exported by other flow calcuration solvers, and outputs a habitat distribution map.DHABSIM is based on the research supported by JSPS (24560666).
+https://sk-lb.net/iric-dhabsim/
 
+V1.2.230609 (2023.06.09) Allow select all steps or last step of flow simulation. 
 V1.1.2 (2022.09.07) Compatible with iRICv4.
 V1.1.1 (2019.01.22) Bug fix for wrong EED calculation area when grid cell size is manually set.
 V1.1.0 (2018.09.05) for iRIC v3 64bit. Allow manual setting of grid size for EED calculation.

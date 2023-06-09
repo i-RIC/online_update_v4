@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 	name="DHABSIM"
-	caption="DHABSIM 1.1"
-	version="1.1.220909"
+	caption="DHABSIM 1.2"
+	version="1.2.230609"
 	copyright="Sekine Lab., Yamaguchi University"
-	release="2022.09.09"
-	homepage="https://www.facebook.com/PhabWinJ"
+	release="2023.06.09"
+	homepage="https://sk-lb.net/iric-dhabsim/"
 	executable="DHABSIM.exe"
 	iterationtype="time"
 	gridtype="structured2d,unstructured2d"
@@ -15,6 +15,13 @@
 			<Item name="inputfile" caption="File Name">
 				<Definition conditionType="constant" valueType="filename" default="Select CGNS file name" />
 			</Item>
+			<Item name="timestep_type" caption="Process timestep">
+				<Definition valueType="integer" default="0">
+					<Enumeration value="0" caption="Last" />
+					<Enumeration value="1" caption="All" />
+				</Definition>
+			</Item>
+
 			<Item name="S" caption="Home Range[m2]">
 				<Definition valueType="real" default="200"/>
 			</Item>

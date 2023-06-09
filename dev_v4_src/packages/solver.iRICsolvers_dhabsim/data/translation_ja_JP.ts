@@ -5,8 +5,8 @@
 -->
     <context>
         <message>
-            <source>DHABSIM 1.0.0</source>
-            <translation>DHABSIM 1.0.0</translation>
+            <source>DHABSIM 1.2</source>
+            <translation>DHABSIM 1.2</translation>
         </message>
         <message>
             <source>Basic Settings</source>
@@ -15,6 +15,18 @@
         <message>
             <source>File Name</source>
             <translation>ファイル名</translation>
+        </message>
+        <message>
+            <source>Process timestep</source>
+            <translation>処理するタイムステップ</translation>
+        </message>
+        <message>
+            <source>Last</source>
+            <translation>最終</translation>
+        </message>
+        <message>
+            <source>All</source>
+            <translation>全部</translation>
         </message>
         <message>
             <source>Home Range[m2]</source>
