@@ -20,7 +20,7 @@ public:
 	~H5CgnsGridAttributes();
 
 	int getValueNames(std::vector<std::string>* names) const;
-	int getValueNames(std::set<std::string>* names) const;
+	int getValueNames(std::unordered_set<std::string>* names) const;
 	int getValueType(const std::string& name, H5Util::DataArrayValueType *type) const;
 	int readValue(const std::string& name, std::vector<int>* values) const;
 	int readValue(const std::string& name, std::vector<double>* values) const;

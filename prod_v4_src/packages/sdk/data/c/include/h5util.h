@@ -5,7 +5,7 @@
 
 #include <hdf5.h>
 
-#include <set>
+#include <unordered_set>
 #include <string>
 #include <vector>
 
@@ -27,18 +27,18 @@ public:
 	static std::string userDefinedDataType();
 
 	static int getGroupNames(hid_t groupId, std::vector<std::string>* names);
-	static int getGroupNames(hid_t groupId, std::set<std::string>* names);
+	static int getGroupNames(hid_t groupId, std::unordered_set<std::string>* names);
 	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::vector<std::string>* names);
-	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::set<std::string>* names);
+	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::unordered_set<std::string>* names);
 	static int getDatasetNames(hid_t groupId, std::vector<std::string>* names);
-	static int getDatasetNames(hid_t groupId, std::set<std::string>* names);
+	static int getDatasetNames(hid_t groupId, std::unordered_set<std::string>* names);
 
 	static int createGroup(hid_t groupId, const std::string& name, hid_t* newGroup);
 	static int createGroup(hid_t groupId, const std::string& name, const std::string& label, const std::string& type, hid_t* newGroup);
 	static int createUserDefinedDataGroup(hid_t groupId, const std::string& name, hid_t* newGroup);
 	static int openGroup(hid_t groupId, const std::string& name, const std::string& label, hid_t* childGroup, bool noErrorLog = false);
-	static int openOrCreateGroup(hid_t groupId, const std::string& name, const std::string& label, const std::string& type, hid_t* childGroup, const std::set<std::string>& names);
-	static int openOrCreateUserDefinedDataGroup(hid_t groupId, const std::string& name, hid_t* childGroup, const std::set<std::string>& names);
+	static int openOrCreateGroup(hid_t groupId, const std::string& name, const std::string& label, const std::string& type, hid_t* childGroup, const std::unordered_set<std::string>& names);
+	static int openOrCreateUserDefinedDataGroup(hid_t groupId, const std::string& name, hid_t* childGroup, const std::unordered_set<std::string>& names);
 
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const int& value, hid_t* newGroup = nullptr);
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const float& value, hid_t* newGroup = nullptr);
@@ -63,16 +63,16 @@ public:
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<int>& value, const std::vector<hsize_t>& dims);
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<float>& value, const std::vector<hsize_t>& dims);
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<double>& value, const std::vector<hsize_t>& dims);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::string& value, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<char>& value, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<int>& value, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<float>& value, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<double>& value, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<std::string>& value, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<char>& value, const std::vector<hsize_t>& dims, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<int>& value, const std::vector<hsize_t>& dims, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<float>& value, const std::vector<hsize_t>& dims, std::set<std::string>* names = nullptr);
-	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<double>& value, const std::vector<hsize_t>& dims, std::set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::string& value, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<char>& value, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<int>& value, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<float>& value, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<double>& value, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<std::string>& value, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<char>& value, const std::vector<hsize_t>& dims, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<int>& value, const std::vector<hsize_t>& dims, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<float>& value, const std::vector<hsize_t>& dims, std::unordered_set<std::string>* names = nullptr);
+	static int updateOrCreateDataArray(hid_t groupId, const std::string& name, const std::vector<double>& value, const std::vector<hsize_t>& dims, std::unordered_set<std::string>* names = nullptr);
 
 	static int readGroupValueDimensions(hid_t groupId, std::vector<hsize_t>* dims);
 	static int readGroupValueLength(hid_t groupId, int* length);

@@ -5,7 +5,7 @@
 #include "../h5cgnszone.h"
 
 #include <map>
-#include <set>
+#include <unordered_set>
 
 namespace iRICLib {
 
@@ -52,7 +52,7 @@ public:
 	H5CgnsSolverInformation* m_solverInformation;
 	H5CgnsFile* m_file;
 
-	std::set<std::string> m_names;
+	std::unordered_set<std::string> m_names;
 
 private:
 	H5CgnsBase* m_base;

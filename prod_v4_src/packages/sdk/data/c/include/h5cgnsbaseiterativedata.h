@@ -36,7 +36,7 @@ public:
 	int flush();
 
 	int getResultNames(std::vector<std::string>* names);
-	int getResultNames(std::set<std::string>* names);
+	int getResultNames(std::unordered_set<std::string>* names);
 	int readValueType(const std::string& name, H5Util::DataArrayValueType* type);
 
 	int readTime(std::vector<double>* values);

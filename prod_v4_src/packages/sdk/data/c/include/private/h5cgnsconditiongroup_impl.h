@@ -3,7 +3,7 @@
 
 #include "../h5cgnsconditiongroup.h"
 
-#include <set>
+#include <unordered_set>
 
 namespace iRICLib {
 
@@ -15,7 +15,7 @@ public:
 	std::string m_name;
 	H5CgnsFile::Mode m_mode;
 
-	std::set<std::string> m_names;
+	std::unordered_set<std::string> m_names;
 
 	hid_t m_groupId;
 };

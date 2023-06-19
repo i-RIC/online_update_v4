@@ -4,7 +4,7 @@
 #include "iriclib_global.h"
 #include "h5util.h"
 
-#include <set>
+#include <unordered_set>
 #include <string>
 #include <vector>
 
@@ -19,7 +19,7 @@ public:
 	virtual ~H5CgnsSolutionI() {};
 
 	virtual int readValueNames(std::vector<std::string>* names) const = 0;
-	virtual int readValueNames(std::set<std::string>* names) const = 0;
+	virtual int readValueNames(std::unordered_set<std::string>* names) const = 0;
 	virtual int readValueType(const std::string& name, H5Util::DataArrayValueType *type) const = 0;
 	virtual int readValue(const std::string& name, std::vector<int>* values) const = 0;
 	virtual int readValue(const std::string& name, std::vector<double>* values) const = 0;
