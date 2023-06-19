@@ -3,9 +3,9 @@
 	<DisplayName>Miniconda 3</DisplayName>
 	<Description>Miniconda 3-py38_4.9.2</Description>
 	<Dependencies></Dependencies>
-	<Version>4.9.2</Version>
+	<Version>4.9.2.1</Version>
 	<Default>false</Default>
-	<ReleaseDate>2022-06-01</ReleaseDate>
+	<ReleaseDate>2023-06-19</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<ForcedInstallation>false</ForcedInstallation>
 	<Script>installscript.qs</Script>

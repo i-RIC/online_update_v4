@@ -165,21 +165,6 @@
   <SHA1>e67e467e8ac7156652b3411767c33b2114bd5578</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>miniconda.main</Name>
-  <DisplayName>Miniconda 3</DisplayName>
-  <Description>Miniconda 3-py38_4.9.2</Description>
-  <Dependencies/>
-  <Version>4.9.2</Version>
-  <Default>false</Default>
-  <ReleaseDate>2022-06-01</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="58895034" OS="Any" UncompressedSize="59801695"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>1232b2494e6dd996910ad4a2ab83ef911e988a5f</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>private</Name>
   <DisplayName>Private folders</DisplayName>
   <Description>Private folders to store your original solvers and grid generators</Description>
@@ -527,7 +512,7 @@
   <UpdateFile CompressedSize="5387000" OS="Any" UncompressedSize="39443123"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>10def0bae795918e9dce4d0304a649e1c792c09d</SHA1>
  </PackageUpdate>
@@ -660,5 +645,20 @@
   <UpdateFile CompressedSize="86338222" OS="Any" UncompressedSize="320697997"/>
   <DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives>
   <SHA1>f9ac1f8413d1b643dab03ea3135938b0ad043782</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda.main</Name>
+  <DisplayName>Miniconda 3</DisplayName>
+  <Description>Miniconda 3-py38_4.9.2</Description>
+  <Dependencies/>
+  <Version>4.9.2.1</Version>
+  <Default>false</Default>
+  <ReleaseDate>2023-06-19</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="58895094" OS="Any" UncompressedSize="59801766"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>a91a0ceb246c7d6bb01b98db055c2f6d83aae736</SHA1>
  </PackageUpdate>
 </Updates>
