@@ -28,6 +28,7 @@ roughness = None
 
 manual_func = None
 
+
 def init():
     global v1_name, v2_name
     global output_froude, output_diameter, output_strength
@@ -56,15 +57,17 @@ def init():
         logging.debug('v2_name = {0}'.format(v2_name))
 
         manual_def = iric.cg_iRIC_Read_String(common.write_fid, 'comp_manual')
-        logging.debug('manual_def = {0}'.format(manual_def))
+        # logging.debug('manual_def = {0}'.format(manual_def))
 
-        def_str = 'def f(depth, wse, vx, vy, val1, val2, v):\n'
-        for line in manual_def.split('\n'):
-            def_str += '    ' + line + '\n'
-        def_str += 'tmpf = f'
+        g = globals()
         d = {}
-        exec(def_str, globals(), d)
+
+        exec(manual_def, g, d)
+        for k, v in d.items():
+            g[k] = v
+
         manual_func = d['f']
+
 
 def process_step():
     global result_v1, result_v2
@@ -80,12 +83,13 @@ def process_step():
 
     if output_diameter:
         _process_step_diameter()
-    
+
     if output_strength:
         _process_step_strength()
-    
+
     if output_manual:
-        _process_step_manual()    
+        _process_step_manual()
+
 
 def finalize():
     if output_froude:
@@ -93,17 +97,19 @@ def finalize():
 
     if output_diameter:
         _output_dummy(OUTPUT_DIAMETER_NAME)
-    
+
     if output_strength:
         _output_dummy(OUTPUT_STRENGTH_NAME)
-    
+
     if output_manual:
         _output_dummy(OUTPUT_MANUAL_NAME)
+
 
 def _process_step_froude():
     depth = np.where(common.result_depth > DEPTH_MIN, common.result_depth, DEPTH_MIN)
     fr = common.result_velocity / np.sqrt(depth * G)
     iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_FROUDE_NAME, fr)
+
 
 def _process_step_diameter():
     global roughness
@@ -112,18 +118,19 @@ def _process_step_diameter():
         roughness[:] = n
 
     depth = np.where(common.result_depth > DEPTH_MIN, common.result_depth, DEPTH_MIN)
-    I = roughness * roughness * common.result_velocity / (np.power(depth, 4/3))
+    I = roughness * roughness * common.result_velocity / (np.power(depth, 4 / 3))
     # u2 [cm^2/s^2]
-    u2 = G * depth * I * 10000 # u* = sqrt(ghI)
+    u2 = G * depth * I * 10000  # u* = sqrt(ghI)
     d = np.zeros(u2.shape)
 
     # d [mm]
     d += np.where(u2 < 1.469, u2 / 226.0 * 10, 0)
-    d += np.where((1.469 <= u2) & (u2 < 3.1075), np.power(u2 / 8.41, 32/11) * 10, 0)
+    d += np.where((1.469 <= u2) & (u2 < 3.1075), np.power(u2 / 8.41, 32 / 11) * 10, 0)
     d += np.where((3.1075 <= u2) & (u2 < 6.49), u2 / 55.0 * 10, 0)
-    d += np.where((6.49 <= u2) & (u2 < 24.5127), np.power(u2 / 134.6, 22/31) * 10, 0)
+    d += np.where((6.49 <= u2) & (u2 < 24.5127), np.power(u2 / 134.6, 22 / 31) * 10, 0)
     d += np.where(24.5127 <= u2, u2 / 80.9 * 10, 0)
     iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_DIAMETER_NAME, d)
+
 
 def _process_step_strength():
     h = common.result_depth
@@ -134,6 +141,7 @@ def _process_step_strength():
 
 
 def _process_step_manual():
+    elevation = common.result_elevation
     depth = common.result_depth
     wse = common.result_water_surface_elevation
     vx = common.result_velocityX
@@ -142,12 +150,14 @@ def _process_step_manual():
     v2 = result_v2
     v = np.sqrt(vx * vx + vy * vy)
 
-    result = manual_func(depth, wse, vx, vy, v1, v2, v)
+    result = manual_func(elevation, depth, wse, vx, vy, v1, v2, v)
     iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_MANUAL_NAME, result)
+
 
 def _output_dummy(name):
     zeros = np.zeros(common.result_depth.shape)
     iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, name, zeros)
+
 
 def _setup_roughness():
     global roughness
@@ -168,19 +178,19 @@ def _setup_roughness():
             roughness_cell = roughness_cell.reshape((jsize - 1, isize - 1))
 
             r1 = _build_nan(isize, jsize)
-            r1[:-1,:-1] = roughness_cell[:,:]
+            r1[:-1, :-1] = roughness_cell[:, :]
             r1 = r1.reshape((r1.size))
 
             r2 = _build_nan(isize, jsize)
-            r2[1:, :-1] = roughness_cell[:,:]
+            r2[1:, :-1] = roughness_cell[:, :]
             r2 = r2.reshape((r2.size))
 
             r3 = _build_nan(isize, jsize)
-            r3[:-1, 1:] = roughness_cell[:,:]
+            r3[:-1, 1:] = roughness_cell[:, :]
             r3 = r3.reshape((r3.size))
 
             r4 = _build_nan(isize, jsize)
-            r4[1:, 1:] = roughness_cell[:,:]
+            r4[1:, 1:] = roughness_cell[:, :]
             r4 = r4.reshape((r4.size))
 
             r = np.stack([r1, r2, r3, r4])
@@ -214,9 +224,11 @@ def _setup_roughness():
         pass
 
     # use roughness read from calculation condition
-    logging.info('Manning\'s roughness value not found in input CGNS file, so calculation condition value {0} used.'.format(n))
+    logging.info(
+        'Manning\'s roughness value not found in input CGNS file, so calculation condition value {0} used.'.format(n))
+
 
 def _build_nan(isize, jsize):
     r = np.zeros((jsize, isize))
-    r[:,:] = np.nan
+    r[:, :] = np.nan
     return r

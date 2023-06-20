@@ -6,6 +6,7 @@ import iric
 import classify
 import common
 import compose
+import plants_growth
 import response
 import riffle_pool
 import statistic
@@ -15,6 +16,8 @@ f_statistics = False
 f_classification = False
 f_composition = False
 f_response = False
+f_plants_growth = False
+
 
 def evatrip_init(cgnsName):
     # open CGNS file to write
@@ -27,7 +30,11 @@ def evatrip_init(cgnsName):
     logging.debug('Opening {0}'.format(read_cgnsName))
 
     common.read_fid = iric.cg_iRIC_Open(read_cgnsName, iric.IRIC_MODE_READ)
+    common.read_roughness()
+    logging.debug('roughness value loaded')
 
+    _set_average_time()
+    logging.debug('_set_average_time() finished')
     _set_result_names()
     logging.debug('_set_result_names() finished')
     _load_functions()
@@ -45,7 +52,7 @@ def evatrip_init(cgnsName):
     if f_classification:
         classify.init()
         logging.debug('classify.init() finished')
-    
+
     if f_composition:
         compose.init()
         logging.debug('compose.init() finished')
@@ -53,6 +60,11 @@ def evatrip_init(cgnsName):
     if f_response:
         response.init()
         logging.debug('response.init() finished')
+
+    if f_plants_growth:
+        plants_growth.init()
+        logging.debug('plants_growth.init() finished')
+
 
 def evatrip_process_steps():
     result_steps = iric.cg_iRIC_Read_Sol_Count(common.read_fid)
@@ -66,6 +78,7 @@ def evatrip_process_steps():
 
         # process data for step
         common.read_result()
+        common.write_result()
 
         if f_riffle_pool:
             riffle_pool.process_step()
@@ -74,44 +87,58 @@ def evatrip_process_steps():
         if f_statistics:
             statistic.process_step()
             logging.debug('statistic.process_step() finished')
-        
+
         if f_classification:
             classify.process_step()
             logging.debug('classify.process_step() finished')
-        
+
         if f_composition:
             compose.process_step()
             logging.debug('compose.process_step() finished')
-        
+
         if f_response:
             response.process_step()
             logging.debug('response.process_step() finished')
 
+        if f_plants_growth:
+            plants_growth.process_step()
+            logging.debug('plants_growth.process_step() finished')
+
         logging.info('Processing data at t = {0} finished'.format(t))
 
+
 def evatrip_finalize():
+    common.finalize_result()
+
     _output_final_time()
     logging.debug('_output_final_time() finished')
+
+    common.write_dummy_result()
 
     if f_riffle_pool:
         riffle_pool.finalize()
         logging.debug('riffle_pool.finalize() finished')
-    
+
     if f_statistics:
         statistic.finalize()
         logging.debug('statistic.finalize() finished')
-    
+
     if f_classification:
         classify.finalize()
         logging.debug('classify.finalize() finished')
-    
+
     if f_composition:
         compose.finalize()
         logging.debug('compose.finalize() finished')
-    
+
     if f_response:
         response.finalize()
         logging.debug('response.finalize() finished')
+
+    if f_plants_growth:
+        plants_growth.finalize()
+        logging.debug('plants_growth.finalize() finished')
+
 
 def _output_final_time():
     count = iric.cg_iRIC_Read_Sol_Count(common.read_fid)
@@ -122,10 +149,12 @@ def _output_final_time():
 
     iric.cg_iRIC_Write_Sol_Time(common.write_fid, t)
 
+
 def main(cgnsName):
     evatrip_init(cgnsName)
     evatrip_process_steps()
     evatrip_finalize()
+
 
 def _logging_init():
     log_level = iric.cg_iRIC_Read_Integer(common.write_fid, 'log_level')
@@ -137,7 +166,17 @@ def _logging_init():
 
     logging.debug('Logging configuration setup.')
 
+
+def _set_average_time():
+    common.ave_time_start = iric.cg_iRIC_Read_Real(common.write_fid, 'ave_time_start')
+    logging.debug('ave_time_start = {0}'.format(common.ave_time_start))
+    common.ave_time_end = iric.cg_iRIC_Read_Real(common.write_fid, 'ave_time_end')
+    logging.debug('ave_time_end = {0}'.format(common.ave_time_end))
+
+
 def _set_result_names():
+    common.result_elevation_name = iric.cg_iRIC_Read_String(common.write_fid, 'result_elevation')
+    logging.debug('elevation value read from {0}'.format(common.result_elevation_name))
     common.result_depth_name = iric.cg_iRIC_Read_String(common.write_fid, 'result_depth')
     logging.debug('depth value read from {0}'.format(common.result_depth_name))
     common.result_water_surface_elevation_name = iric.cg_iRIC_Read_String(common.write_fid, 'result_wse')
@@ -147,18 +186,22 @@ def _set_result_names():
     common.result_velocityY_name = iric.cg_iRIC_Read_String(common.write_fid, 'result_vy')
     logging.debug('velocity y value read from {0}'.format(common.result_velocityY_name))
 
+
 def _load_functions():
     global f_riffle_pool
     global f_statistics
     global f_classification
     global f_composition
     global f_response
+    global f_plants_growth
 
     f_riffle_pool = iric.cg_iRIC_Read_Integer(common.write_fid, 'f_riffle_pool')
     f_statistics = iric.cg_iRIC_Read_Integer(common.write_fid, 'f_statistics')
     f_classification = iric.cg_iRIC_Read_Integer(common.write_fid, 'f_classification')
     f_composition = iric.cg_iRIC_Read_Integer(common.write_fid, 'f_composition')
     f_response = iric.cg_iRIC_Read_Integer(common.write_fid, 'f_response')
+    f_plants_growth = iric.cg_iRIC_Read_Integer(common.write_fid, 'f_plants_growth')
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:

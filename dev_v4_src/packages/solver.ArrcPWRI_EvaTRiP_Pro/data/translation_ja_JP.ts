@@ -21,6 +21,10 @@
             <translation>計算結果 設定</translation>
         </message>
         <message>
+            <source>Elevation</source>
+            <translation>標高</translation>
+        </message>
+        <message>
             <source>Depth</source>
             <translation>水深</translation>
         </message>
@@ -35,6 +39,22 @@
         <message>
             <source>Velocity(Y)</source>
             <translation>流速 (Y)</translation>
+        </message>
+        <message>
+            <source>Time</source>
+            <translation>時刻</translation>
+        </message>
+        <message>
+            <source>Average Time Start[s]</source>
+            <translation>平均処理開始時刻[s]</translation>
+        </message>
+        <message>
+            <source>Average Time End[s]</source>
+            <translation>平均処理終了時刻[s]</translation>
+        </message>
+        <message>
+            <source>Used for Plants Growth Evaluation</source>
+            <translation>陸生植物生育可否の評価に使用</translation>
         </message>
         <message>
             <source>Functions</source>
@@ -54,11 +74,15 @@
         </message>
         <message>
             <source>Composition Tool</source>
-            <translation>変数の合成ツール</translation>
+            <translation>変数の合成</translation>
         </message>
         <message>
             <source>Response function Tool</source>
             <translation>応答関数ツール</translation>
+        </message>
+        <message>
+            <source>Plants Growth Evaluation</source>
+            <translation>陸生植物生育可否の評価</translation>
         </message>
         <message>
             <source>Log Level</source>
@@ -121,16 +145,24 @@
             <translation>V2 [m/s]</translation>
         </message>
         <message>
-            <source>Pool (HABITAT_Manual_Pool)</source>
-            <translation>淵 (HABITAT_Manual_Pool)</translation>
+            <source>Manual definition (HABITAT_Manual)</source>
+            <translation>マニュアル定義 (HABITAT_Manual)</translation>
         </message>
         <message>
-            <source>Riffle (HABITAT_Manual_Riffle)</source>
-            <translation>瀬 (HABITAT_Manual_Riffle)</translation>
+            <source>Pool = 1</source>
+            <translation>淵 = 1</translation>
         </message>
         <message>
-            <source>Rapid (HABITAT_Manual_Rapid)</source>
-            <translation>早瀬 (HABITAT_Manual_Rapid)</translation>
+            <source>Riffle = 2</source>
+            <translation>瀬 = 2</translation>
+        </message>
+        <message>
+            <source>Rapid = 3</source>
+            <translation>早瀬 = 3</translation>
+        </message>
+        <message>
+            <source>You can run customized version of manual evaluation from &quot;Composition Tool&quot;.</source>
+            <translation>自分でカスタマイズしたマニュアル定義の評価をしたい場合、&quot;変数の合成&quot;から行えます。</translation>
         </message>
         <message>
             <source>Common</source>
@@ -265,6 +297,10 @@
             <translation>変数の定義</translation>
         </message>
         <message>
+            <source>Elevation = elevation</source>
+            <translation>標高 = elevation</translation>
+        </message>
+        <message>
             <source>Depth = depth</source>
             <translation>水深 = depth</translation>
         </message>
@@ -290,11 +326,23 @@
         </message>
         <message>
             <source>Arbitrary Variable2 = val2</source>
-            <translation>任意の変数1 = val2</translation>
+            <translation>任意の変数2 = val2</translation>
         </message>
         <message>
             <source>Manning's Roughness</source>
             <translation>マニングの粗度係数</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>デフォルト</translation>
+        </message>
+        <message>
+            <source>Riffle and Pool (custom thresholds)</source>
+            <translation>瀬淵分析 (カスタマイズ版)</translation>
+        </message>
+        <message>
+            <source>Riffle and Pool (Hauer et al. 2009)</source>
+            <translation>瀬淵分析 (Hauer et al. 2009)</translation>
         </message>
         <message>
             <source>In manual definition, please use four spaces for indenting.</source>
@@ -365,12 +413,44 @@
             <translation>相乗平均 (RESP_G_Mean)</translation>
         </message>
         <message>
-            <source>Elevation</source>
-            <translation>標高</translation>
+            <source>Depth Limits [m]</source>
+            <translation>水深しきい値 [m]</translation>
+        </message>
+        <message>
+            <source>DLimit 1 (DL1)</source>
+            <translation>水深しきい値1 (DL1)</translation>
+        </message>
+        <message>
+            <source>DLimit 2 (DL2)</source>
+            <translation>水深しきい値2 (DL2)</translation>
+        </message>
+        <message>
+            <source>DLimit 3 (DL3)</source>
+            <translation>水深しきい値3 (DL3)</translation>
+        </message>
+        <message>
+            <source>Estimated Depth</source>
+            <translation>水深－流速の関係式</translation>
+        </message>
+        <message>
+            <source>H&lt;sub&gt;est&lt;/sub&gt; = </source>
+            <translation>H&lt;sub&gt;est&lt;/sub&gt; = </translation>
+        </message>
+        <message>
+            <source> * ln(v) + </source>
+            <translation> * ln(v) + </translation>
         </message>
         <message>
             <source>Area for Statistics Analysis</source>
             <translation>統計分析用の領域</translation>
+        </message>
+        <message>
+            <source>d50 (m)</source>
+            <translation>d50 (m)</translation>
+        </message>
+        <message>
+            <source>d90 (m)</source>
+            <translation>d90 (m)</translation>
         </message>
     </context>
 </TS>

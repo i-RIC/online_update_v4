@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<SolverDefinition 
+<SolverDefinition
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="EvaTRiP" caption="EvaTRiP Pro" version="1.0.0" 
+    name="EvaTRiP" caption="EvaTRiP Pro" version="2.0.0"
 	copyright="Public Works Research Institute Japan"
-    release="2021.4.27" 
+    release="2023.4.1" 
     homepage="http://www.pwri.go.jp/team/kyousei/jpn/index.htm"
     executable="evatrip_pro.py"
     iterationtype="time"
@@ -15,6 +15,9 @@
 				<Definition valueType="cgns_filename" default="Select CGNS file name" />
 			</Item>
 			<GroupBox caption="Result Setting">
+				<Item name="result_elevation" caption="Elevation">
+					<Definition valueType="result_gridNodeReal" cgnsFile="inputfile"/>
+				</Item>
 				<Item name="result_depth" caption="Depth">
 					<Definition valueType="result_gridNodeReal" cgnsFile="inputfile"/>
 				</Item>
@@ -42,6 +45,9 @@
 					<Definition valueType="integer" default="1" checkBox="true" />
 				</Item>
 				<Item name="f_response" caption="Response function Tool">
+					<Definition valueType="integer" default="1" checkBox="true" />
+				</Item>
+				<Item name="f_plants_growth" caption="Plants Growth Evaluation">
 					<Definition valueType="integer" default="1" checkBox="true" />
 				</Item>
 			</GroupBox>
@@ -96,22 +102,18 @@
 					</VBoxLayout>
 				</HBoxLayout>
 				<GroupBox caption="Outputs">
-					<Item name="rp_output_pool" caption="Pool (HABITAT_Manual_Pool)">
-						<Definition valueType="integer" default="1" checkBox="true">
-							<Condition type="isEqual" target="f_riffle_pool" value="1" />
-						</Definition>
-					</Item>
-					<Item name="rp_output_riffle" caption="Riffle (HABITAT_Manual_Riffle)">
-						<Definition valueType="integer" default="1" checkBox="true">
-							<Condition type="isEqual" target="f_riffle_pool" value="1" />
-						</Definition>
-					</Item>
-					<Item name="rp_output_rapid" caption="Rapid (HABITAT_Manual_Rapid)">
+					<Item name="rp_output_manual" caption="Manual definition (HABITAT_Manual)">
 						<Definition valueType="integer" default="1" checkBox="true">
 							<Condition type="isEqual" target="f_riffle_pool" value="1" />
 						</Definition>
 					</Item>
 				</GroupBox>
+				<VBoxLayout>
+					<Label caption="Pool = 1" />
+					<Label caption="Riffle = 2" />
+					<Label caption="Rapid = 3" />
+					<Label caption="You can run customized version of manual evaluation from &quot;Composition Tool&quot;." />
+				</VBoxLayout>
 			</GroupBox>
 		</Tab>
 		<Tab name="statistics" caption="Statistics Analysis">
@@ -280,13 +282,14 @@
 		<Tab name="composition" caption="Composition Tool">
 			<GroupBox caption="Variable Definitions">
 				<GridLayout>
-					<Label row="0" col="0" caption="Depth = depth" />
-					<Label row="1" col="0" caption="Water Surface Elevation = wse" />
-					<Label row="2" col="0" caption="Velocity (X) = vx" />
-					<Label row="3" col="0" caption="Velocity (Y) = vy" />
-					<Label row="4" col="0" caption="Velocity (magnitude) = v" />
-					<Label row="5" col="0" caption="Arbitrary Variable1 = val1" />
-					<Item row="5" col="1" name="comp_v1">
+					<Label row="0" col="0" caption="Elevation = elevation" />
+					<Label row="1" col="0" caption="Depth = depth" />
+					<Label row="2" col="0" caption="Water Surface Elevation = wse" />
+					<Label row="3" col="0" caption="Velocity (X) = vx" />
+					<Label row="4" col="0" caption="Velocity (Y) = vy" />
+					<Label row="5" col="0" caption="Velocity (magnitude) = v" />
+					<Label row="6" col="0" caption="Arbitrary Variable1 = val1" />
+					<Item row="6" col="1" name="comp_v1">
 						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
 							<Condition type="and">
 								<Condition type="isEqual" target="comp_output_manual" value="1" />
@@ -294,8 +297,8 @@
 							</Condition>
 						</Definition>
 					</Item>
-					<Label row="6" col="0" caption="Arbitrary Variable2 = val2" />
-					<Item row="6" col="1" name="comp_v2">
+					<Label row="7" col="0" caption="Arbitrary Variable2 = val2" />
+					<Item row="7" col="1" name="comp_v2">
 						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
 							<Condition type="and">
 								<Condition type="isEqual" target="comp_output_manual" value="1" />
@@ -303,8 +306,8 @@
 							</Condition>
 						</Definition>
 					</Item>
-                    <Label row="7" col="0" caption="Manning's Roughness" />
-                    <Item row="7" col="1" name="comp_n">
+                    <Label row="8" col="0" caption="Manning's Roughness" />
+                    <Item row="8" col="1" name="comp_n">
                         <Definition valueType="real" default="0.03">
                             <Condition type="and">
                                 <Condition type="isEqual" target="comp_output_diameter" value="1" />
@@ -316,7 +319,10 @@
 			</GroupBox>
 			<Label caption="Manual Definition" />
 			<Item name="comp_manual">
-				<Definition valueType="string" multiline="true" default="return depth">
+				<Definition valueType="string" multiline="true">
+					<Source caption="Default" filename="manual_default.py" default="true"/>
+					<Source caption="Riffle and Pool (custom thresholds)" filename="manual_rp_custom.py" />
+					<Source caption="Riffle and Pool (Hauer et al. 2009)" filename="manual_rp_hauer.py"/>
 					<Condition type="and">
 						<Condition type="isEqual" target="comp_output_manual" value="1" />
 						<Condition type="isEqual" target="f_composition" value="1" />
@@ -480,6 +486,53 @@
 				</Item>
 			</GroupBox>
 		</Tab>
+		<Tab name="plants_growth_analysis" caption="Plants Growth Evaluation">
+			<Content layout="custom">
+				<GroupBox caption="Depth Limits [m]">
+					<Item name="limit_depth1" caption="DLimit 1 (DL1)">
+						<Definition valueType="real" default="0.2" >
+						</Definition>
+					</Item>
+					<Item name="limit_depth2" caption="DLimit 2 (DL2)">
+						<Definition valueType="real" default="0.3">
+						</Definition>
+					</Item>
+					<Item name="limit_depth3" caption="DLimit 3 (DL3)">
+						<Definition valueType="real" default="0.4">
+						</Definition>
+					</Item>
+				</GroupBox>
+				<GroupBox caption="Estimated Depth">
+					<HBoxLayout>
+						<Label caption="H&lt;sub&gt;est&lt;/sub&gt; = " />
+						<Item name="hest_param1">
+							<Definition valueType="real" default="-0.1" />
+						</Item>
+						<Label caption=" * ln(v) + " />
+						<Item name="hest_param2">
+							<Definition valueType="real" default="0.05" />
+						</Item>
+					</HBoxLayout>
+				</GroupBox>
+				<GroupBox caption="Time">
+				<VBoxLayout>
+					<GridLayout>
+						<Label caption="Average Time Start[s]" row="1" col="1" />
+						<Item name="ave_time_start" row="1" col="2">
+							<Definition conditionType="constant" valueType="real" default="-1">
+							</Definition>
+						</Item>
+						<Label caption="Average Time End[s]" row="2" col="1" />
+						<Item name="ave_time_end" row="2" col="2">
+							<Definition conditionType="constant" valueType="real" default="-1">
+							</Definition>
+						</Item>
+					</GridLayout>
+					<Label caption="Used for Plants Growth Evaluation" />
+				</VBoxLayout>
+			</GroupBox>
+			</Content>
+		</Tab>
 	</CalculationCondition>
 	<GridRelatedCondition>
 		<Item name="Elevation" caption="Elevation">
@@ -487,6 +540,12 @@
 		</Item>
 		<Item name="stat_area" caption="Area for Statistics Analysis">
 			<Definition position="node" valueType="complex"/>
+		</Item>
+		<Item name="d50" caption="d50 (m)">
+			<Definition position="node" valueType="real" default="0" />
+		</Item>
+		<Item name="d90" caption="d90 (m)">
+			<Definition position="node" valueType="real" default="0" />
 		</Item>
 	</GridRelatedCondition>
 </SolverDefinition>
