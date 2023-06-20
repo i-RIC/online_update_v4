@@ -422,7 +422,31 @@
 	</message>　　　<message>
 		<source>Debris/Mud flow</source>
 		<translation>土石流・泥流</translation>
-	</message>　　　
+	</message>　　　　　<message>
+		<source>Cb</source>
+		<translation>土砂濃度</translation>
+	</message>　　　　　<message>
+		<source>Cb at Upstream</source>
+		<translation>上流端の土砂濃度</translation>
+	</message>　　　　　<message>
+		<source>FixedBedElevationP</source>
+		<translation>固定床高さ条件</translation>
+	</message>　　　　　<message>
+		<source>SurfaceSediment2</source>
+		<translation>表層粒度2</translation>
+	</message>　         <message>
+        <source>Stage at Upstream</source>
+        <translation>上流端水位</translation>
+    </message>　　　　　<message>
+		<source>Original Liquid Density</source>
+		<translation>水の密度（g/cm3）</translation>
+	</message>　　　　　　<message>
+		<source>Sediment Density</source>
+		<translation>土砂の密度（g/cm3）</translation>
+	</message>　　　　　　<message>
+		<source>Degree of Saturation</source>
+		<translation>間隙の水の飽和度</translation>
+	</message>
 
 </context>
 </TS>
