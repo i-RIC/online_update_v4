@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net"
-  name="grigen_nays2dv" caption="Grid Generator for Nays2Dv" version="1.0.22092701" 
-  copyright="Yasuyuki Shimizu" executable="grigen_nays2dv.exe" gridtype="structured2d"  release="2022.09.27"
+  name="grigen_nays2dv" caption="Grid Generator for Nays2Dv" version="1.0.23062301" 
+  copyright="Yasuyuki Shimizu" executable="grigen_nays2dv.exe" gridtype="structured2d"  release="2023.06.23"
 >
 
 <GridGeneratingCondition>
@@ -239,6 +239,9 @@
 	<GroupBox caption="Basic Profile">
 		<Item name="h0" caption="Average Water Depth(m)">
 			<Definition valueType="real" default="0.5">
+				<Dependency>
+						<Condition type="isEqual" target="j_hgive" value="1"/>
+				</Dependency>
 			</Definition>
 		</Item>
 		<Item name="h_down" caption="Downstream Water surface Elevation(m)">

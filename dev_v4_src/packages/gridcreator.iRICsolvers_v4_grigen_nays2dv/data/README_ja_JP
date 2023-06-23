@@ -1,1 +1,11 @@
-﻿Nays2Dv用格子生成ツール
+﻿Nays2Dv 用格子生成ツール
+
+# Release notes
+
+ver 1.0.20230623 update by hoshino
+
+- "definition.xml"を修正.
+
+ver 1.0.20220927 release by hoshino
+
+- v4 対応版をリリース.
