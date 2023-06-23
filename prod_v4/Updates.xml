@@ -581,19 +581,6 @@
   <SHA1>a91a0ceb246c7d6bb01b98db055c2f6d83aae736</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_Morpho2DH</Name>
-  <DisplayName>Morpho2DH v2.0</DisplayName>
-  <Description/>
-  <Version>2.0.23062001</Version>
-  <Default>true</Default>
-  <ReleaseDate>2014-11-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1365075" OS="Any" CompressedSize="366277"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>c12e401f3aa02c330cd1dd49ee888b21fb536aba</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.ArrcPWRI_EvaTRiP_Pro</Name>
   <DisplayName>EvaTRiP Pro</DisplayName>
   <Description/>
@@ -618,7 +605,7 @@
   <UpdateFile UncompressedSize="39603508" OS="Any" CompressedSize="5411837"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>66e9d8f7e85bd374f1d64e6bdf74cdbe12afd931</SHA1>
  </PackageUpdate>
@@ -660,5 +647,18 @@
   <UpdateFile UncompressedSize="566352" OS="Any" CompressedSize="85683"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>013d35f1b0e46be649e6bbd2861d4c22bbabf265</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_Morpho2DH</Name>
+  <DisplayName>Morpho2DH v2.0</DisplayName>
+  <Description/>
+  <Version>2.0.23062001</Version>
+  <Default>true</Default>
+  <ReleaseDate>2014-11-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1365349" OS="Any" CompressedSize="366310"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>b26ed2a4a24affafcf9585f8914c27504f528818</SHA1>
  </PackageUpdate>
 </Updates>

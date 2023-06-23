@@ -446,6 +446,12 @@
 	</message>　　　　　　<message>
 		<source>Degree of Saturation</source>
 		<translation>間隙の水の飽和度</translation>
+	</message>　　　　　　<message>
+		<source>Vegetation Erosion Depth (m)</source>
+		<translation>植生流失浸食深（m）</translation>
+	</message>　　　　　　<message>
+		<source>Fixed Bed Elevation</source>
+		<translation>固定床高さ</translation>
 	</message>
 
 </context>
