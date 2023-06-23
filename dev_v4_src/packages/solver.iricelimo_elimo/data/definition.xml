@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 	xmlns="www.iric.net/SolverDefinition/1.0"
-	name="elimo" caption="Elimo" version="4.3" copyright="Yasunori Watanabe"
+	name="elimo" caption="Elimo" version="4.3.1" copyright="Yasunori Watanabe"
 	release="2020.3.21" homepage="http://i-ric.org"
 	executable="elimo.exe"
 	iterationtype="time"
 	 gridtype="structured2d"
 >
 	<CalculationCondition>
-    <Tab name="FaultC" caption="File Input of Fault Rupture Conditions">
+    <Tab name="FaultC" caption="File Input of Fault Rapture Conditions">
       <Content>
         <Items>
           <Item name="InputManner" caption="Which manner to input fault conditions?">
@@ -26,7 +26,7 @@
         </Items>
       </Content>
     </Tab>
-		<Tab name="Fault" caption="Fault Rupture Conditions (Manual)">
+		<Tab name="Fault" caption="Fault Rapture Conditions (Manual)">
 			<Content>
 				<Items>
 
@@ -38,11 +38,11 @@
 						<Definition conditionType="constant" valueType="real" option="false" default="42.12">
 						</Definition>
 					</Item>
-					<Item name="Length" caption="Rupture length (km)">
+					<Item name="Length" caption="Rapture length (km)">
 						<Definition conditionType="constant" valueType="real" option="false" default="85.7">
 						</Definition>
 					</Item>
-					<Item name="Width" caption="Rupture width (km)">
+					<Item name="Width" caption="Rapture width (km)">
 						<Definition conditionType="constant" valueType="real" option="false" default="41.5">
 						</Definition>
 					</Item>
@@ -62,7 +62,7 @@
 						<Definition conditionType="constant" valueType="real" option="false" default="110.0">
 						</Definition>
 					</Item>
-          <Item name="Depth" caption="Fault Depth (km)">
+          <Item name="Depth" caption="Rpture Depth (km)">
             <Definition conditionType="constant" valueType="real" option="false" default="53.2">
             </Definition>
           </Item>
@@ -145,7 +145,7 @@
 						<Definition conditionType="constant" valueType="real" option="false" default="0">
 						</Definition>
 					</Item>
-					<Item name="CaracteristicL" caption="Characteristic wavelength (km)">
+					<Item name="CaracteristicL" caption="Characteristic wavelength; lambda0 (km)">
 						<Definition conditionType="constant" valueType="real" option="false" default="0">
 						</Definition>
 					</Item>
@@ -153,7 +153,7 @@
 						<Definition conditionType="constant" valueType="real" option="false" default="0">
 						</Definition>
 					</Item>
-					<Item name="Parameter3d2" caption="Parameter Delta (km)">
+					<Item name="Parameter3d2" caption="Parameter Delta x (km)">
 						<Definition conditionType="constant" valueType="real" option="false" default="0">
 						</Definition>
 					</Item>
