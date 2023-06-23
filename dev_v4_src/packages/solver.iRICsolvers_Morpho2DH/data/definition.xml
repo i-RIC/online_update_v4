@@ -2,7 +2,7 @@
 <SolverDefinition xmlns="www.iric.net/SolverDefinition/1.0" 
   name="morpho2d" 
   caption="Morpho2DH v2.0" 
-  version="2.0.23062001" 
+  version="2.0.23062302" 
   copyright="Hiroshi Takebayashi" 
   release="2014.11.01" 
   homepage="http://www.google.co.jp/" 
@@ -128,7 +128,7 @@
       <Content>
         <Items>
           <Item name="concentration_cal" caption="Sediment Concentration">
-            <Definition conditionType="constant" valueType="integer" option="true" default="1">
+            <Definition conditionType="constant" valueType="integer" option="true" default="0">
               <Enumerations>
                 <Enumeration value="0" caption="Change" />
                 <Enumeration value="1" caption="Constant" />
@@ -143,10 +143,10 @@
             </Definition>
           </Item>
           <Item name="original_liquid_density" caption="Original Liquid Density">
-            <Definition conditionType="constant" valueType="real" option="false" default="0.6" min="0" />
+            <Definition conditionType="constant" valueType="real" option="false" default="1.0" min="0" />
           </Item>
           <Item name="sediment_density" caption="Sediment Density">
-            <Definition conditionType="constant" valueType="real" option="false" default="0.6" min="0" />
+            <Definition conditionType="constant" valueType="real" option="false" default="2.65" min="0" />
           </Item>
           <Item name="static_deposition_concentration" caption="Static Deposition Sediment Concentration">
             <Definition conditionType="constant" valueType="real" option="false" default="0.6" min="0" />
@@ -161,7 +161,7 @@
             <Definition conditionType="constant" valueType="real" option="false" default="34" min="0" />
           </Item>
           <Item name="laminar_flow_depth" caption="Laminar Flow Depth">
-            <Definition conditionType="constant" valueType="integer" option="true" default="0">
+            <Definition conditionType="constant" valueType="integer" option="true" default="1">
               <Enumerations>
                 <Enumeration value="0" caption="Change" />
                 <Enumeration value="1" caption="Constant" />
@@ -178,7 +178,7 @@
           <Item name="resistance_coefficient" caption="Resistance Coefficient">
             <Definition conditionType="constant" valueType="real" option="false" default="72" min="0" />
           </Item>
-          <Item name="non_erodable_height2" caption="Non-Erodable Height">
+          <Item name="non_erodable_height2" caption="Fixed Bed Elevation">
             <Definition conditionType="constant" valueType="integer" option="true" default="1">
               <Enumerations>
                 <Enumeration value="0" caption="Enabled" />
@@ -270,7 +270,7 @@
             </Definition>
           </Item>
           <Item name="root_depth" caption="Vegetation Erosion Depth (m)">
-            <Definition conditionType="constant" valueType="real" option="false" default="0.5" min="0" />
+            <Definition conditionType="constant" valueType="real" option="false" default="0.3" min="0" />
           </Item>
         </Items>
       </Content>
