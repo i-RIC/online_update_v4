@@ -1,0 +1,17 @@
+﻿# What is NaysDw2
+naysDw2 is a 2D driftwood tracking tool that reads flow calculation results from iRIC solvers such as Nays2DH and adds and tracks driftwood at arbitrary time intervals.
+2D driftwood is transported and tracked by applying the material transportation function of GELATO (formerly UTT). The principle is the same as GELATO (formerly UTT) in that driftwood is tracked in a Lagrangian manner, but the force applied to the driftwood itself is also taken into account. It also has the features of the discrete element method.
+The sight of the driftwood rotating and drifting away is very soothing.
+
+Check here for case studies.
+https://i-ric.org/yasu/UTT_EN/index.html
+
+# Release notes
+ver.1.0.23060601 update by hoshino
+* Fixed that it was calculating even after the calculation end time
+* Fixed not to copy if the cgns file to be read and the scalar name do not match
+
+ver.1.0.23051601 update by hoshino
+* Updated from iRIC ver.3 compatible solver to iRIC ver.4 compatible.
+* Changed to be able to copy elevation change from read file.
+* Changed output to console from time and number of tracers to number of timesteps, time, number of tracers added at each timestep, and total number of tracers.

@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition 
+    xmlns="www.iric.net/SolverDefinition/1.0"
+    name="NaysDW2" caption="NaysDw2(Simple 2D Driftwood Tracker)" version="1.0.23060601" copyright="Yasuyuki SHIMIZU"
+    release="2023.06.06"
+    homepage="https://i-ric.org/"
+    executable="naysdw2.exe"
+    iterationtype="time"
+    gridtype="structured2d"
+    >
+	<CalculationCondition>
+		<Tab name="basic_setting" caption="Basic Setting">
+			<Item name="inputfile" caption="Input CGND File Name">
+				<Definition conditionType="constant" valueType="filename" default="Select CGNS file name" />
+			</Item>
+			<Item name="maxTracerNumber" caption="Maximum driftwood numbers">
+				<Definition conditionType="constant" valueType="integer" default="1000" max="1000000"/>
+			</Item>
+			<Item name="j_surface" caption="Velocity for driftwood tracking">
+			<Definition conditionType="constant" valueType="integer" default="0">
+				<Enumerations>
+		    			<Enumeration value="0" caption="(0) depth averaged velocity"/>
+		 	   		<Enumeration value="1" caption="(1) surface velocity"/>
+		 	   		<Enumeration value="2" caption="(2) bottom velocity"/>
+				</Enumerations>
+			</Definition>
+			</Item>
+			<Item name="j_rep" caption="Boundary condition">
+			<Definition conditionType="constant" valueType="integer" default="0">
+				<Enumerations>
+		    			<Enumeration value="0" caption="(0) Non-periodic Boundary"/>
+		 	   		<Enumeration value="1" caption="(1) Periodic Boundary"/>
+		 	   		<Enumeration value="2" caption="(2) Closed Channel"/>
+				</Enumerations>
+			</Definition>
+			</Item>
+			<Item name="cr_depth" caption="Minimum depth of driftwood stopping(m)">
+				<Definition conditionType="constant" valueType="real" default="0.003" >
+				</Definition>
+			</Item>
+			<Item name="end_time" caption="Computation finishing time(sec)">
+				<Definition conditionType="constant" valueType="real" default="10" >
+				</Definition>
+			</Item>
+			<Item name="j_wood_obstacle" caption="Driftwood trapping at obstacles">
+			<Definition conditionType="constant" valueType="integer" default="0">
+				<Enumerations>
+		    			<Enumeration value="0" caption="Disable"/>
+		 	   		<Enumeration value="1" caption="Enable"/>
+				</Enumerations>
+			</Definition>
+			</Item>
+		</Tab>
+
+
+		<Tab name="seeds_spread" caption="Driftwood feeding condition">
+
+			<GroupBox caption="Driftwood placement at initial state">
+				<Item name="j_place" caption="Placement">
+				<Definition conditionType="constant" valueType="integer" default="0">
+					<Enumerations>
+		    				<Enumeration value="0" caption="Disable"/>
+		 	   			<Enumeration value="1" caption="Enable"/>
+					</Enumerations>
+				</Definition>
+				</Item>
+
+
+
+				<Item name="initPlace" caption="File name contains initial driftwood placement">
+					<Definition conditionType="constant" valueType="filename" default="Select file name" >
+						<Dependency>
+						<Condition type="and">
+							<Condition type="isEqual" target="j_place" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+			</GroupBox>
+
+			<GroupBox caption="Driftwood releasing location (non-dimensional expression)">
+			<GroupBox caption="Xi (Stream wise) Direction">
+				<Item name="xi_1" caption="xi_1">
+					<Definition conditionType="constant" valueType="real" default="0.1" >
+					</Definition>
+				</Item>
+				<Item name="xi_2" caption="xi_2">
+					<Definition conditionType="constant" valueType="real" default="0.1">
+					</Definition>
+				</Item>
+				<Item name="d_trace_xi" caption="d_trace_xi">
+					<Definition conditionType="constant" valueType="real" default="0.1">
+					</Definition>
+				</Item>
+			</GroupBox>
+			<GroupBox caption="Eta(Transverse) Direction">
+				<Item name="eta_1" caption="eta_1">
+					<Definition conditionType="constant" valueType="real" default="0.5" >
+					</Definition>
+				</Item>
+				<Item name="eta_2" caption="eta_2">
+					<Definition conditionType="constant" valueType="real" default="0.5">
+					</Definition>
+				</Item>
+				<Item name="d_trace_eta" caption="d_trace_eta">
+					<Definition conditionType="constant" valueType="real" default="0.1">
+					</Definition>
+				</Item>
+			</GroupBox>
+			</GroupBox>
+
+			<GroupBox caption="Driftwood releasing time (second)">
+				<Item name="spread_start" caption="spread_start">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+					</Definition>
+				</Item>
+				<Item name="spread_end" caption="spread_end">
+					<Definition conditionType="constant" valueType="real" default="0.0">
+					</Definition>
+				</Item>
+				<Item name="spread_interval" caption="spred_interval">
+					<Definition conditionType="constant" valueType="real" default="0.1">
+					</Definition>
+				</Item>
+			</GroupBox>
+                </Tab>	
+		<Tab name="Flow_Wood" caption="Flow and driftwood condition">
+				<Item name="j_flow" caption="Velocity used for driftwood tracking">
+					<Definition conditionType="constant" valueType="integer" default="0">
+					<Enumerations>
+		    				<Enumeration value="0" caption="Use Simulated Value"/>
+		 	   			<Enumeration value="1" caption="Give Constant Value"/>
+					</Enumerations>
+					</Definition>
+				</Item>
+				<Item name="Ini_Vel_Flow" caption="Background flow velocity(m/s)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+						<Dependency>
+						<Condition type="and">
+							<Condition type="isEqual" target="j_flow" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+<!--
+				<Item name="Vel_Distribution" caption="Velocity Distribution">
+					<Definition conditionType="constant" valueType="real" default="0.05" >
+						<Dependency>
+						<Condition type="and">
+							<Condition type="isEqual" target="j_flow" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+-->
+				<Item name="Ini_Depth" caption="Constant depth(m)">
+					<Definition conditionType="constant" valueType="real" default="0.1" >
+						<Dependency>
+						<Condition type="and">
+							<Condition type="isEqual" target="j_flow" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<Item name="Ini_Vel_Part_x" caption="Initial driftwood velocity-x(m/s)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+					</Definition>
+				</Item>
+				<Item name="Ini_Vel_Part_y" caption="Initial driftwood velocity-y(m/s)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+					</Definition>
+				</Item>
+				<Item name="Ini_Vel_Part_r" caption="Initial driftwood rotation velocity(degree/s)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+					</Definition>
+				</Item>
+				<Item name="j_rnd_phi" caption="Initial driftwood angle">
+					<Definition conditionType="constant" valueType="integer" default="0" >
+					<Enumerations>
+		    				<Enumeration value="0" caption="Random Angle"/>
+		 	   			<Enumeration value="1" caption="Constant Angle"/>
+		 	   			<Enumeration value="2" caption="Cross Stream Angle"/>
+					</Enumerations>
+					</Definition>
+				</Item>
+				<Item name="Ini_phi" caption="Constant angle(degree)">
+					<Definition conditionType="constant" valueType="real" default="90.0" >
+						<Dependency>
+						<Condition type="and">
+							<Condition type="isEqual" target="j_rnd_phi" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<Item name="gx" caption="Additional acceleration in X-direction(m/s**2)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+					</Definition>
+				</Item>
+				<Item name="gy" caption="Additional acceleration in Y-direction(m/s**2)">
+					<Definition conditionType="constant" valueType="real" default="0.0" >
+					</Definition>
+				</Item>
+		</Tab>
+
+		<Tab name="Coefs" caption="DEM Coefficients">
+
+			<GroupBox caption="Parameters on Elements">
+				<Item name="diameter" caption="Diameter of driftwood">
+					<Definition conditionType="constant" valueType="real" default="0.01" >
+					</Definition>
+				</Item>
+				<Item name="length" caption="length of driftwood">
+					<Definition conditionType="constant" valueType="real" default="0.05" >
+					</Definition>
+				</Item>
+				<Item name="ddt" caption="Time step for DEM">
+					<Definition conditionType="constant" valueType="real" default="0.001" >
+					</Definition>
+				</Item>
+			</GroupBox>
+			<GroupBox caption="Parameters on plotting elements">
+				<Item name="m_length" caption="Magnification factor of length">
+					<Definition conditionType="constant" valueType="real" default="1" >
+					</Definition>
+				</Item>
+				<Item name="m_thickness" caption="Magnification factor of Thickness">
+					<Definition conditionType="constant" valueType="real" default="5" >
+					</Definition>
+				</Item>
+			</GroupBox>
+		</Tab>
+<!-- Comment 
+
+		<Tab name="Coefs" caption="DEM Coefficients">
+
+			<GroupBox caption="Parameters on Elements">
+				<Item name="diameter" caption="Diameter of elements">
+					<Definition conditionType="constant" valueType="real" default="0.03" >
+					</Definition>
+				</Item>
+				<Item name="ddt" caption="Delta T for DEM">
+					<Definition conditionType="constant" valueType="real" default="0.0001" >
+					</Definition>
+				</Item>
+				<Item name="k_n" caption="Spring constant in n">
+					<Definition conditionType="constant" valueType="real" default="500000" >
+					</Definition>
+				</Item>
+				<Item name="eta_n" caption="Dashpot constant in n">
+					<Definition conditionType="constant" valueType="real" default="60" >
+					</Definition>
+				</Item>
+				<Item name="k_s" caption="Spring constant in s">
+					<Definition conditionType="constant" valueType="real" default="20000" >
+					</Definition>
+				</Item>
+				<Item name="eta_s" caption="Dashpot constant in s">
+					<Definition conditionType="constant" valueType="real" default="600" >
+					</Definition>
+				</Item>
+				<Item name="nu_p" caption="Particle Friction Coefficient">
+					<Definition conditionType="constant" valueType="real" default="0.45" >
+					</Definition>
+				</Item>
+			</GroupBox>
+
+		</Tab>
+
+-->
+		<Tab name="DEM" caption="Other Parameters on DEM">
+
+			<GroupBox caption="DEM Parameters">
+				<Item name="c_m" caption="Additional Mass Coefficient">
+					<Definition conditionType="constant" valueType="real" default="0.5" >
+					</Definition>
+				</Item>
+				<Item name="c_d" caption="Form Drag Coefficient">
+					<Definition conditionType="constant" valueType="real" default="0.1">
+					</Definition>
+				</Item>
+				<Item name="c_r" caption="Drag coefficient for rotational motion">
+					<Definition conditionType="constant" valueType="real" default="0.05">
+					</Definition>
+				</Item>
+				<Item name="rho" caption="Fluid Density">
+					<Definition conditionType="constant" valueType="real" default="1000">
+					</Definition>
+				</Item>
+				<Item name="sigma" caption="Solid Density">
+					<Definition conditionType="constant" valueType="real" default="1100">
+					</Definition>
+				</Item>
+			</GroupBox>
+			<GroupBox caption="DEM Search Region">
+				<Item name="xi_up" caption="Upstream search region">
+					<Definition conditionType="constant" valueType="real" default="0.05" >
+					</Definition>
+				</Item>
+				<Item name="xi_down" caption="Downstream search region">
+					<Definition conditionType="constant" valueType="real" default="0.1" >
+					</Definition>
+				</Item>
+				<Item name="eta_right" caption="Right-hand side search region">
+					<Definition conditionType="constant" valueType="real" default="0.05" >
+					</Definition>
+				</Item>
+				<Item name="eta_left" caption="Left-hand side search region">
+					<Definition conditionType="constant" valueType="real" default="0.05" >
+					</Definition>
+				</Item>
+			</GroupBox>
+                </Tab>
+	</CalculationCondition>
+	<GridRelatedCondition>
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+		<Item name="Obstacle" caption="Obstacle" option="true">
+			<Definition position="cell" valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="normal"/>
+					<Enumeration value="1" caption="obstacle"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+	</GridRelatedCondition>
+
+</SolverDefinition>
