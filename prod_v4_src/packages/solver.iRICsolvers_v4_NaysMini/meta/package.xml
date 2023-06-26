@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>NaysMini iRIC4.0</DisplayName>
+	<Description></Description>
+	<Version>1.0.23052201</Version>
+	<Default>true</Default>
+	<ReleaseDate>2023-05-22</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
