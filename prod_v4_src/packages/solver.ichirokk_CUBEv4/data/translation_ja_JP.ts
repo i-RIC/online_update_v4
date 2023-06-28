@@ -1860,5 +1860,10 @@
         <source>Water level[m]</source>
         <translation>水位[m]</translation>
     </message>
+
+    <message>
+        <source>Debug code on/off</source>
+        <translation>デバッグ用コードのon/off</translation>
+    </message>
 </context>
 </TS>
