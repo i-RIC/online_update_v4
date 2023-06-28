@@ -1855,5 +1855,10 @@
        <source>Initial driftwood angle[deg]</source>
         <translation>初期流木角度[deg]</translation>
     </message>
+
+    <message>
+        <source>Water level[m]</source>
+        <translation>水位[m]</translation>
+    </message>
 </context>
 </TS>

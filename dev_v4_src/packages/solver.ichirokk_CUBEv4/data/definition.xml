@@ -200,8 +200,8 @@ gridtype="structured2d"
         <Item name="WL_const" caption="Constant outlet water level[m]">
           <Definition conditionType="constant" valueType="real" option="false" default="1.0">
             <Dependency>
-              <Condition type="or">
-                <Condition type="isEqual" target="i_WL_fixedQ" value="2"/>
+              <Condition type="and">
+                <Condition type="isEqual" target="i_HYDRO"     value="1"/>
                 <Condition type="isEqual" target="i_WL_variQ"  value="2"/>
               </Condition>
               <Action type="enable"/>
