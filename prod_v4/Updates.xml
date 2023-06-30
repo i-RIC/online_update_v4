@@ -252,19 +252,6 @@
   <SHA1>370eddd06ca05ccde501aeb03246bedb7a62cb31</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.ichirokk_Nays1Dp</Name>
-  <DisplayName>Nays1Dp v.1.00.8 64bit v4</DisplayName>
-  <Description/>
-  <Version>1.00.8</Version>
-  <Default>true</Default>
-  <ReleaseDate>2019-11-22</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="154850" UncompressedSize="714004" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>ed424db7973cb561fc526649238ac78490f768d0</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.MGAMOU_Mflow_02</Name>
   <DisplayName>Mflow_02 iRIC4 ver1.1</DisplayName>
   <Description/>
@@ -657,7 +644,7 @@
   <UpdateFile CompressedSize="5409773" UncompressedSize="39598388" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>44b4f9b0b0a0a3962b71d84e093a75b7fb8f0340</SHA1>
  </PackageUpdate>
@@ -699,5 +686,18 @@
   <UpdateFile CompressedSize="87144661" UncompressedSize="324037261" OS="Any"/>
   <DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives>
   <SHA1>d7c55b1b270dfad51d4b6de7c9cca05b73e4f8c6</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ichirokk_Nays1Dp</Name>
+  <DisplayName>Nays1Dp v.1.00.8 64bit v4</DisplayName>
+  <Description/>
+  <Version>1.00.8</Version>
+  <Default>true</Default>
+  <ReleaseDate>2019-11-22</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="154448" UncompressedSize="715028" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>0ae5c48f480458c41bd993e2a1c3fbaf90e56a91</SHA1>
  </PackageUpdate>
 </Updates>
