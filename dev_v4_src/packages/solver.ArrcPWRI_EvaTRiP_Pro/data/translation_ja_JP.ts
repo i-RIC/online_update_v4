@@ -452,5 +452,9 @@
             <source>d90 (m)</source>
             <translation>d90 (m)</translation>
         </message>
+        <message>
+            <source>CoverIndex</source>
+            <translation>河道係数</translation>
+        </message>
     </context>
 </TS>

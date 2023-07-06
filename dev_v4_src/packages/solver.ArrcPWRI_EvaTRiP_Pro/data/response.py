@@ -12,15 +12,16 @@ output_arigh = None
 output_geom = None
 
 class ResponseFunction(object):
-    def __init__(self, id, num, other, x, y):
+    def __init__(self, id, num, other, CIndex, x, y):
         self._id = id
         self._num = num
         self._other = other
+        self._CIndex = CIndex
         self._x = x
         self._y = y
 
     def exec(self):
-        result = _get_result(self._num, self._other)
+        result = _get_result(self._num, self._other, self._CIndex)
         x = self._x
         y = self._y
         size = x.size
@@ -53,10 +54,13 @@ def init():
         target_other = None
         if target == 3:
             target_other = iric.cg_iRIC_Read_String(common.write_fid, 'resp_f{0}_target_other'.format(i))
+        target_coverindex = None
+        if target == 4:
+            target_coverindex = iric.cg_iRIC_Read_Grid_Real_Node(common.write_fid, 'CoverIndex')
 
         x, y = iric.cg_iRIC_Read_Functional(common.write_fid, 'resp_f{0}_def'.format(i))
 
-        f = ResponseFunction(i, target, target_other, x, y)
+        f = ResponseFunction(i, target, target_other, target_coverindex, x, y)
         funcs.append(f)
 
     output_sum = iric.cg_iRIC_Read_Integer(common.write_fid, 'resp_comp_output_sum')
@@ -111,7 +115,7 @@ def _output_geometric_mean(vals):
     mean = np.power(mean, 1.0 / len(vals))
     iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_GMEAN_NAME, mean)
 
-def _get_result(num, other):
+def _get_result(num, other, CIndex):
     if num == 0:
         return common.result_depth
     elif num == 1:
@@ -120,3 +124,5 @@ def _get_result(num, other):
         return common.result_velocity
     elif num == 3:
         return iric.cg_iRIC_Read_Sol_Node_Real(common.read_fid, common.step, other)
+    elif num == 4:
+        return iric.cg_iRIC_Read_Grid_Real_Node(common.write_fid, 'CoverIndex')

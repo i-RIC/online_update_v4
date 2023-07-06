@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="EvaTRiP" caption="EvaTRiP Pro" version="2.0.0"
+    name="EvaTRiP" caption="EvaTRiP Pro" version="2.0.1"
 	copyright="Public Works Research Institute Japan"
     release="2023.4.1" 
     homepage="http://www.pwri.go.jp/team/kyousei/jpn/index.htm"
@@ -366,6 +366,7 @@
 						<Enumeration value="1" caption="Water Surface Elevation" />
 						<Enumeration value="2" caption="Velocity" />
 						<Enumeration value="3" caption="Others" />
+						<Enumeration value="4" caption="CoverIndex" />
 						<Condition type="and">
 							<Condition type="isEqual" target="f_response" value="1" />
 							<Condition type="isEqual" target="resp_f1_output" value="1" />
@@ -404,6 +405,7 @@
 						<Enumeration value="1" caption="Water Surface Elevation" />
 						<Enumeration value="2" caption="Velocity" />
 						<Enumeration value="3" caption="Others" />
+						<Enumeration value="4" caption="CoverIndex" />
 						<Condition type="and">
 							<Condition type="isEqual" target="f_response" value="1" />
 							<Condition type="isEqual" target="resp_f2_output" value="1" />
@@ -442,6 +444,7 @@
 						<Enumeration value="1" caption="Water Surface Elevation" />
 						<Enumeration value="2" caption="Velocity" />
 						<Enumeration value="3" caption="Others" />
+						<Enumeration value="4" caption="CoverIndex" />
 						<Condition type="and">
 							<Condition type="isEqual" target="f_response" value="1" />
 							<Condition type="isEqual" target="resp_f3_output" value="1" />
@@ -545,6 +548,9 @@
 			<Definition position="node" valueType="real" default="0" />
 		</Item>
 		<Item name="d90" caption="d90 (m)">
+			<Definition position="node" valueType="real" default="0" />
+		</Item>
+		<Item name="CoverIndex" caption="CoverIndex">
 			<Definition position="node" valueType="real" default="0" />
 		</Item>
 	</GridRelatedCondition>
