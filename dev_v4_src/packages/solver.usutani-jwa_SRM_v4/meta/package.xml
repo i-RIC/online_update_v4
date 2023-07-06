@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>SRM</DisplayName>
 	<Description></Description>
-	<Version>1.0.3</Version>
+	<Version>1.0.4</Version>
 	<Default>true</Default>
-	<ReleaseDate>2021-12-09</ReleaseDate>
+	<ReleaseDate>2023-07-06</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
