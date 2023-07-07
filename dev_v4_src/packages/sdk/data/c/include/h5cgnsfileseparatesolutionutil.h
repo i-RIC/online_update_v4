@@ -19,7 +19,7 @@ public:
 	static int createResultFolderIfNotExists(const std::string& fileName);
 	static int createBackupFile(const std::string& fileName);
 	static int checkFileStatus(const std::string& fileName, Status* status);
-	static int rebuildBaseIterativeData(const std::string& fileName);
+	static int rebuildBaseIterativeData(const std::string& fileName, int stepCount);
 	static int buildFromSeparateResultFiles(const std::string& fileName);
 
 	static int clearResultFolder(const std::string& fileName);
