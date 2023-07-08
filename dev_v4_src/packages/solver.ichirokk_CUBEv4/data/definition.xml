@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <SolverDefinition
-name="NaysCUBE_v3" caption="NaysCUBE v4.43.75" version="4.43.75" copyright="Ichiro Kimura"
-release="2023.6.8" homepage="http://i-ric.org/"
+name="NaysCUBE_v3" caption="NaysCUBE v4.43.76" version="4.43.76" copyright="Ichiro Kimura"
+release="2023.7.6" homepage="http://i-ric.org/"
 executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
@@ -1054,25 +1054,25 @@ gridtype="structured2d"
         </Definition>
       </Item>
 
-			<Item name="dn_diam2" caption="Diameter of element[m]">
-		  	<Definition conditionType="constant" valueType="real" option="false" default="0.1">
-		    	<Dependency>
-            <Condition type="isEqual"        target="i_DRIFT" value="4"/>
-            <Action type="enable"/>
-          </Dependency>
-        </Definition>
-      </Item>
+	<Item name="dn_diam2" caption="Diameter of element[m]">
+		<Definition conditionType="constant" valueType="real" option="false" default="0.1">
+			<Dependency>
+				<Condition type="isEqual"        target="i_DRIFT" value="4"/>
+				<Action type="enable"/>
+			</Dependency>
+   	</Definition>
+	</Item>
 
-			<Item name="rho_dn2" caption="Density of element[kg/m3]">
-		  	<Definition conditionType="constant" valueType="real" option="false" default="900">
-		    	<Dependency>
-            <Condition type="isEqual"        target="i_DRIFT" value="4"/>
-            <Action type="enable"/>
-          </Dependency>
-        </Definition>
-      </Item>
+	<Item name="rho_dn2" caption="Density of element[kg/m3]">
+		<Definition conditionType="constant" valueType="real" option="false" default="900">
+			<Dependency>
+				<Condition type="isEqual"        target="i_DRIFT" value="4"/>
+				<Action type="enable"/>
+			</Dependency>
+		</Definition>
+	</Item>
 
-      <Item name="shape_arbit" caption="Arbitral shape">
+	<Item name="shape_arbit" caption="Arbitral shape">
         <Definition conditionType="functional">
           <Dependency>
             <Condition type="isEqual" target="i_DRIFT"    value="4"/>
@@ -1084,21 +1084,21 @@ gridtype="structured2d"
         </Definition>
       </Item>
 
-      <Item name="i_DRI_set_area" caption="Initial driftwood supply cells">
-        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
-	 <Enumerations>
-           <Enumeration value="0" caption="Specify each cell and number of wood" />
-           <Enumeration value="1" caption="Specify area and total number of wood"/> -->
-        </Enumerations>
-         <Dependency>
-           <Condition type="isGreaterEqual" target="i_DRIFT" value="3"/>
-           <Action type="enable"/>
-         </Dependency>
-       </Definition>
-      </Item>
+	<Item name="i_DRI_set_area" caption="Initial driftwood supply cells">
+		<Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+			<Enumerations>
+				<Enumeration value="0" caption="Specify each cell and number of wood" />
+				<Enumeration value="1" caption="Specify area and total number of wood"/> -->
+			</Enumerations>
+			<Dependency>
+				<Condition type="isGreaterEqual" target="i_DRIFT" value="3"/>
+				<Action type="enable"/>
+			</Dependency>
+		</Definition>
+	</Item>
 
-      <Item name="i_DRI_ini_number" caption="Initial driftwood number">
-        <Definition conditionType="constant" valueType="integer" option="true" default="0" min = "0" max="3000">
+	<Item name="i_DRI_ini_number" caption="Initial driftwood number">
+		<Definition conditionType="constant" valueType="integer" option="true" default="0" min = "0" max="3000">
          <Dependency>
            <Condition type="and">
            <Condition type="isGreaterEqual" target="i_DRIFT"        value="3"/>
@@ -2018,11 +2018,20 @@ gridtype="structured2d"
     <Content>
       <Items>
         <Item name="i_PUMP" caption="Number of pumps">
-          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="5">
-          <!--<Enumerations>
-              <Enumeration value="0" caption="No pump"/>
-              <Enumeration value="1" caption="Consider pump"/>
-             </Enumerations> -->
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="5"/>
+        </Item>
+
+        <Item name="i_PUMP_cycle" caption="Cyclic operation">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="2">
+            <Dependency>
+              <Condition type="isGreaterEqual" target="i_PUMP" value="1"/>
+              <Action type="enable"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="steady operation"/>
+              <Enumeration value="1" caption="stop only"/>
+              <Enumeration value="2" caption="cyclic operation"/>
+            </Enumerations>
           </Definition>
         </Item>
 
@@ -2062,14 +2071,30 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
-        <Item name="PUMP_stop1" caption="Pump 1 stop time [s]">
+
+        <Item name="PUMP_run1" caption="Pump 1 operation time [s]">
           <Definition conditionType="constant" valueType="real" option="false" default="0.0">
-            <Dependency>
-              <Condition type="isGreaterEqual" target="i_PUMP" value="1"/>
+            <Dependency>	
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="1"/>
+              </Condition>
               <Action type="enable"/>
             </Dependency>
           </Definition>
         </Item>
+        <Item name="PUMP_suspend1" caption="Pump 1 suspend time [s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+
 
         <Item name="i_PUMP_xy2" caption="Pump 2 direction">
           <Definition conditionType="constant" valueType="integer" option="true" default="0">
@@ -2107,10 +2132,25 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
-        <Item name="PUMP_stop2" caption="Pump 2 stop time [s]">
+
+        <Item name="PUMP_run2" caption="Pump 2 operation time [s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>	
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="PUMP_suspend2" caption="Pump 2 suspend time [s]">
           <Definition conditionType="constant" valueType="real" option="false" default="0.0">
             <Dependency>
-              <Condition type="isGreaterEqual" target="i_PUMP" value="2"/>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
               <Action type="enable"/>
             </Dependency>
           </Definition>
@@ -2153,10 +2193,25 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
-        <Item name="PUMP_stop3" caption="Pump 3 stop time [s]">
+
+        <Item name="PUMP_run3" caption="Pump 3 operation time [s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>	
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="PUMP_suspend3" caption="Pump 3 suspend time [s]">
           <Definition conditionType="constant" valueType="real" option="false" default="0.0">
             <Dependency>
-              <Condition type="isGreaterEqual" target="i_PUMP" value="3"/>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
               <Action type="enable"/>
             </Dependency>
           </Definition>
@@ -2199,10 +2254,25 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
-        <Item name="PUMP_stop4" caption="Pump 4 stop time [s]">
+
+        <Item name="PUMP_run4" caption="Pump 4 operation time [s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>	
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="PUMP_suspend4" caption="Pump 4 suspend time [s]">
           <Definition conditionType="constant" valueType="real" option="false" default="0.0">
             <Dependency>
-              <Condition type="isGreaterEqual" target="i_PUMP" value="4"/>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
               <Action type="enable"/>
             </Dependency>
           </Definition>
@@ -2245,10 +2315,25 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
-        <Item name="PUMP_stop5" caption="Pump 5 stop time [s]">
+
+        <Item name="PUMP_run5" caption="Pump 5 operation time [s]">
+          <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>	
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="PUMP_suspend5" caption="Pump 5 suspend time [s]">
           <Definition conditionType="constant" valueType="real" option="false" default="0.0">
             <Dependency>
-              <Condition type="isGreaterEqual" target="i_PUMP" value="5"/>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
               <Action type="enable"/>
             </Dependency>
           </Definition>

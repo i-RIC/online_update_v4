@@ -1865,5 +1865,70 @@
         <source>Debug code on/off</source>
         <translation>デバッグ用コードのon/off</translation>
     </message>
+
+    <message>
+        <source>No fence</source>
+        <translation>フェンス無し</translation>
+    </message>
+
+    <message>
+        <source>Cyclic operation</source>
+        <translation>ポンプの周期的運転</translation>
+    </message>
+    <message>
+        <source>steady operation</source>
+        <translation>定常運転</translation>
+    </message>
+    <message>
+        <source>stop only</source>
+        <translation>途中停止のみ考慮</translation>
+    </message>
+    <message>
+        <source>cyclic operation</source>
+        <translation>周期的運転</translation>
+    </message>
+
+    <message>
+       <source>Pump 1 operation time [s]</source>
+        <translation>ポンプ１運転時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 2 operation time [s]</source>
+        <translation>ポンプ２運転時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 3 operation time [s]</source>
+        <translation>ポンプ３運転時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 4 operation time [s]</source>
+        <translation>ポンプ４運転時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 5 operation time [s]</source>
+        <translation>ポンプ５運転時間[s]</translation>
+    </message>
+
+    <message>
+       <source>Pump 1 suspend time [s]</source>
+        <translation>ポンプ１一時停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 2 suspend time [s]</source>
+        <translation>ポンプ２一時停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 3 suspend time [s]</source>
+        <translation>ポンプ３一時停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 4 suspend time [s]</source>
+        <translation>ポンプ４一時停止時間[s]</translation>
+    </message>
+    <message>
+       <source>Pump 5 suspend time [s]</source>
+        <translation>ポンプ５一時停止時間[s]</translation>
+    </message>
+
 </context>
 </TS>

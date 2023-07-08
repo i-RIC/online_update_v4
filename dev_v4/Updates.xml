@@ -10,7 +10,7 @@
   <Default>true</Default>
   <ReleaseDate>2017-04-18</ReleaseDate>
   <SortingPriority>29</SortingPriority>
-  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="0" CompressedSize="0"/>
   <SHA1>de183631dd893caa16813d9b5cfd9dd35931e612</SHA1>
  </PackageUpdate>
  <PackageUpdate>
@@ -22,7 +22,7 @@
   <ReleaseDate>2021-04-28</ReleaseDate>
   <SortingPriority>30</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="34883" CompressedSize="13688" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="34883" CompressedSize="13688"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>db6ecfc93357624d73f4a514771776e20014facb</SHA1>
  </PackageUpdate>
@@ -35,7 +35,7 @@
   <ReleaseDate>2020-02-03</ReleaseDate>
   <SortingPriority>30</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="33353" CompressedSize="13032" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="33353" CompressedSize="13032"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>67bdead28c6e69ac76b8033b46fa1a92a3c27c32</SHA1>
  </PackageUpdate>
@@ -48,7 +48,7 @@
   <ReleaseDate>2020-02-03</ReleaseDate>
   <SortingPriority>30</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="24158" CompressedSize="9866" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="24158" CompressedSize="9866"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>30255cc6bbe81c602940207d0516eb068b719992</SHA1>
  </PackageUpdate>
@@ -61,7 +61,7 @@
   <ReleaseDate>2020-02-03</ReleaseDate>
   <SortingPriority>30</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="22551" CompressedSize="9152" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="22551" CompressedSize="9152"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>615b0a9a22bf10dfc704ef6a9e56dd6b1b3ff6aa</SHA1>
  </PackageUpdate>
@@ -74,7 +74,7 @@
   <ReleaseDate>2020-02-03</ReleaseDate>
   <SortingPriority>30</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="22557" CompressedSize="9139" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="22557" CompressedSize="9139"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>deeb45a9c045e93309e68108b58b7ebcd25a7c2a</SHA1>
  </PackageUpdate>
@@ -86,7 +86,7 @@
   <Default>true</Default>
   <ReleaseDate>2017-04-18</ReleaseDate>
   <SortingPriority>30</SortingPriority>
-  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="0" CompressedSize="0"/>
   <SHA1>7e712bfc6332c2cb427e28e9d87a0306811a2da3</SHA1>
  </PackageUpdate>
  <PackageUpdate>
@@ -98,7 +98,7 @@
   <ReleaseDate>2020-04-17</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="78548" CompressedSize="21107" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="78548" CompressedSize="21107"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>962ec88b0acffac5eb0b54261f0ede1cba4771f3</SHA1>
  </PackageUpdate>
@@ -111,7 +111,7 @@
   <ReleaseDate>2019-11-30</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="37175" CompressedSize="14611" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="37175" CompressedSize="14611"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>16398f2babcebaa2f903f4e16111f27b4342d885</SHA1>
  </PackageUpdate>
@@ -124,7 +124,7 @@
   <ReleaseDate>2015-07-01</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="26946" CompressedSize="10843" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="26946" CompressedSize="10843"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>050481c764fd36981f0bd6b7425354a1782de169</SHA1>
  </PackageUpdate>
@@ -137,7 +137,7 @@
   <ReleaseDate>2015-07-01</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="25956" CompressedSize="10270" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="25956" CompressedSize="10270"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>6b5cf941226754c261e4d6461ea20794f69a481f</SHA1>
  </PackageUpdate>
@@ -148,7 +148,7 @@
   <Version>1.0.0</Version>
   <ReleaseDate>2017-04-18</ReleaseDate>
   <SortingPriority>100</SortingPriority>
-  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="0" CompressedSize="0"/>
   <SHA1>cb647b3e2a8d34967cbf5f868a88b44c6341ab97</SHA1>
  </PackageUpdate>
  <PackageUpdate>
@@ -160,7 +160,7 @@
   <ReleaseDate>2018-05-22</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="102750516" CompressedSize="26581915" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="102750516" CompressedSize="26581915"/>
   <DownloadableArchives>iconengines.7z,imageformats.7z,languages.7z,platforms.7z,styles.7z,translations.7z,content.7z</DownloadableArchives>
   <SHA1>7013a51b57346a7bb5365ec7581b5637df81d4e9</SHA1>
  </PackageUpdate>
@@ -168,14 +168,14 @@
   <Name>miniconda.iriclib</Name>
   <DisplayName>iriclib for Miniconda 3</DisplayName>
   <Description>iriclib for Miniconda 3</Description>
-  <Dependencies />
+  <Dependencies/>
   <Version>4.0.31</Version>
   <Default>false</Default>
   <ReleaseDate>2022-05-20</ReleaseDate>
   <SortingPriority>10</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="6572973" CompressedSize="1402239" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="6572973" CompressedSize="1402239"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>c29b5a013fdf769a003f05c257164b04bb56b899</SHA1>
  </PackageUpdate>
@@ -188,7 +188,7 @@
   <ReleaseDate>2021-09-13</ReleaseDate>
   <SortingPriority>20</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="551" CompressedSize="987" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="551" CompressedSize="987"/>
   <DownloadableArchives>gridcreators.7z,solvers.7z,content.7z</DownloadableArchives>
   <SHA1>fef430ac84baf80ed6b75d5206a1a3cd417088f9</SHA1>
  </PackageUpdate>
@@ -201,7 +201,7 @@
   <SortingPriority>5</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="25167528" CompressedSize="23473550" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="25167528" CompressedSize="23473550"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>fe50b23d6393dbaaedf3f29a3f2168803744a4e8</SHA1>
  </PackageUpdate>
@@ -213,7 +213,7 @@
   <Default>true</Default>
   <ReleaseDate>2017-04-18</ReleaseDate>
   <SortingPriority>20</SortingPriority>
-  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="0" CompressedSize="0"/>
   <SHA1>cca7a6757bd7625e74b1c8b25202865820e84aaf</SHA1>
  </PackageUpdate>
  <PackageUpdate>
@@ -225,33 +225,33 @@
   <ReleaseDate>2022-04-08</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="796557" CompressedSize="254493" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="796557" CompressedSize="254493"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>036a7ce8d2139516033fb9537ca56c26d284f1c2</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.kazutake_SRM_test</Name>
   <DisplayName>SRM</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.3</Version>
   <Default>true</Default>
   <ReleaseDate>2021-12-09</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="492373" CompressedSize="79166" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="492373" CompressedSize="79166"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>406b52d14fafe06ebc3e7ca1d2ff164fb916fe0b</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.ichirokk_Nays1DpV4</Name>
   <DisplayName>Nays1Dp v.1.00.8 64bit v4</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.00.8</Version>
   <Default>true</Default>
   <ReleaseDate>2019-11-22</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="714004" CompressedSize="154860" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="714004" CompressedSize="154860"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>344b419266d253c4f6d04e0c2ff6dad114dc9b26</SHA1>
  </PackageUpdate>
@@ -265,110 +265,110 @@
   <Default>true</Default>
   <ReleaseDate>2017-04-18</ReleaseDate>
   <SortingPriority>20</SortingPriority>
-  <UpdateFile UncompressedSize="0" CompressedSize="0" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="0" CompressedSize="0"/>
   <SHA1>171c4e803be3beecddd262c5b1ee5d8da2283068</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.ichirokk_Uchannel_generator</Name>
   <DisplayName>U-shape channel generator</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.1.0</Version>
   <Default>true</Default>
   <ReleaseDate>2022-02-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="410821" CompressedSize="62220" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="410821" CompressedSize="62220"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>9b8ea861fc16ffbff02784d46029e443def74dff</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gui.iRICsolvers_PamHyr</Name>
   <DisplayName>Pamhyr Solver 1.0</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.0</Version>
   <Default>true</Default>
   <ReleaseDate>2012-04-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="100239720" CompressedSize="24600609" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="100239720" CompressedSize="24600609"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>f5c62279e51c51875a38dcf03096560e9edfa7f0</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.MGAMOU_Mflow_02</Name>
   <DisplayName>Mflow_02 iRIC4 ver1.1</DisplayName>
-  <Description />
+  <Description/>
   <Version>3.2022.1</Version>
   <Default>true</Default>
   <ReleaseDate>2022-07-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1141955" CompressedSize="282994" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1141955" CompressedSize="282994"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>811760ef471c7ce41ae5cfb7a9a828826fdf701f</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_U_nays3dv</Name>
   <DisplayName>u-shape grid generator for Nays3dv</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.22080301</Version>
   <Default>true</Default>
   <ReleaseDate>2022-08-31</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="514318" CompressedSize="74729" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="514318" CompressedSize="74729"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>b139c2a8d56144331e111baaccc407ffc9db57bc</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_arc_grigen</Name>
   <DisplayName>2d arc grid generator</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.22080301</Version>
   <Default>true</Default>
   <ReleaseDate>2022-08-31</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="448920" CompressedSize="71541" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="448920" CompressedSize="71541"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>58c3a8946204eaaaed85cd76ef83b78693bb39ad</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_arc_grigen_cp</Name>
   <DisplayName>2d arc grid generator (Compound Channel)</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.22090201</Version>
   <Default>true</Default>
   <ReleaseDate>2022-09-02</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="537721" CompressedSize="81268" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="537721" CompressedSize="81268"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>fc69455650093d327a2e18bd17d9df19856c91d0</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_grigen_nays3dv</Name>
   <DisplayName>Grid Generator for Nays3Dv</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.1.22100501</Version>
   <Default>true</Default>
   <ReleaseDate>2022-10-06</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="553803" CompressedSize="84142" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="553803" CompressedSize="84142"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>61751a65fcb677038c898775690a278abaf90e49</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.takuyainoue0317_Nays2D_Flood</Name>
   <DisplayName>Nays2D Flood v5.0 64 bit</DisplayName>
-  <Description />
+  <Description/>
   <Version>5.0.22111715</Version>
   <Default>true</Default>
   <ReleaseDate>2022-09-14</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1160331" CompressedSize="259519" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1160331" CompressedSize="259519"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>c0786e50eec04091b80ea8c36ef3e36e083284eb</SHA1>
  </PackageUpdate>
@@ -381,85 +381,85 @@
   <ReleaseDate>2021-11-25</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="23798" CompressedSize="9957" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="23798" CompressedSize="9957"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>7905bc5a034a76a9f6a4e62a646bc7b2c433343f</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_multi_grid_generator</Name>
   <DisplayName>Multifunction Grid Genarator</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.1.23012501</Version>
   <Default>true</Default>
   <ReleaseDate>2023-01-25</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="598016" CompressedSize="96516" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="598016" CompressedSize="96516"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>0a05a8a836b04b6b03be8d58583d6e79f1f51af5</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.MGAMOU_Fbml_flow3</Name>
   <DisplayName>Fbml_flow3_v2023_1_iric4</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.2023.1</Version>
   <Default>true</Default>
   <ReleaseDate>2023-01-24</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="11828027" CompressedSize="1503591" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="11828027" CompressedSize="1503591"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>592cd975373b54e13dc93197212e0d89be94fca3</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_nays3dv</Name>
   <DisplayName>nays3Dv 3D Density Flow Solver</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.7.23021302</Version>
   <Default>true</Default>
   <ReleaseDate>2023-02-13</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1169523" CompressedSize="295860" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1169523" CompressedSize="295860"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>670764f4fb6e7220f68fcdd1e98152a0b26e64f9</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_nays2dp</Name>
   <DisplayName>Nays2d+</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.1.23021301</Version>
   <Default>true</Default>
   <ReleaseDate>2023-02-13</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1392752" CompressedSize="382288" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1392752" CompressedSize="382288"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>eb13d5740afb573c7de2890f78acd32d58d17b08</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_simple_grigen</Name>
   <DisplayName>Simple Straight and Meandering Channel Creator</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.23021601</Version>
   <Default>true</Default>
   <ReleaseDate>2023-02-16</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="601722" CompressedSize="96068" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="601722" CompressedSize="96068"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>4d5c0f557828ce23ae4a19965ecdf9b9d9b67d70</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_CERI1D</Name>
   <DisplayName>CERI1D</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.1.8</Version>
   <Default>true</Default>
   <ReleaseDate>2023-02-17</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="664730" CompressedSize="127212" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="664730" CompressedSize="127212"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>3cbe4d07c9357b41c46727746eb58df6f521ca70</SHA1>
  </PackageUpdate>
@@ -472,7 +472,7 @@
   <ReleaseDate>2023-03-16</ReleaseDate>
   <SortingPriority>30</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="44558" CompressedSize="13855" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="44558" CompressedSize="13855"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>22011819acdc0f0e4239e0052989a3dfae7e6338</SHA1>
  </PackageUpdate>
@@ -485,33 +485,33 @@
   <ReleaseDate>2023-03-16</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="24695" CompressedSize="10552" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="24695" CompressedSize="10552"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>056fae033221cbdfb274616ab40ef33f24f5a3ca</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>colormaps</Name>
   <DisplayName>Standard Colormaps</DisplayName>
-  <Description />
+  <Description/>
   <Version>0.0.3</Version>
   <Default>true</Default>
   <ReleaseDate>2023-04-26</ReleaseDate>
   <SortingPriority>30</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="25477190" CompressedSize="22035203" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="25477190" CompressedSize="22035203"/>
   <DownloadableArchives>Colorbrewer.7z,Inundation depth.7z,LICENSE.7z,matplotlib.7z,content.7z</DownloadableArchives>
   <SHA1>36a2c8afb5a5f497bbeb033abfa042b2cc46ff5a</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_nays2dv</Name>
   <DisplayName>Nays2Dv vertical 2D model </DisplayName>
-  <Description />
+  <Description/>
   <Version>1.6.23050801</Version>
   <Default>true</Default>
   <ReleaseDate>2023-05-08</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="763877" CompressedSize="150257" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="763877" CompressedSize="150257"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>7201778d39e10dbc0e6c87af208df06788db45e2</SHA1>
  </PackageUpdate>
@@ -524,59 +524,59 @@
   <ReleaseDate>2023-05-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1220836" CompressedSize="273105" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1220836" CompressedSize="273105"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>f76ae5c915e17d466b7bf82247b8be3b79cf8b11</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_river2d</Name>
   <DisplayName>River2D 1.0</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.230601</Version>
   <Default>true</Default>
   <ReleaseDate>2023-06-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="192310" CompressedSize="73535" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="192310" CompressedSize="73535"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>20b5073d0f54ae33128f850f164f49f1dc9c0488</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.champon487_Boussinesq2D</Name>
   <DisplayName>Boussinesq2D Tracer Model</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.0</Version>
   <Default>true</Default>
   <ReleaseDate>2023-06-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="11382" CompressedSize="2214" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="11382" CompressedSize="2214"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>c6b31cc97d13c4deb42b42bad5f9b4808765e3df</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_GELATO</Name>
   <DisplayName>GELATO(former UTT)</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.2.23050901</Version>
   <Default>true</Default>
   <ReleaseDate>2023-05-09</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1716071" CompressedSize="207872" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1716071" CompressedSize="207872"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>f2973b95e9ae280b0df5294e771d6af1a6718e62</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_dhabsim</Name>
   <DisplayName>DHABSIM 1.2</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.2.230609</Version>
   <Default>true</Default>
   <ReleaseDate>2023-06-09</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="563055" CompressedSize="87146" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="563055" CompressedSize="87146"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>336aa9e570f0ad4b0c2a8e4f3d5456ef700d5161</SHA1>
  </PackageUpdate>
@@ -584,120 +584,107 @@
   <Name>miniconda.main</Name>
   <DisplayName>Miniconda 3</DisplayName>
   <Description>Miniconda 3-py38_4.9.2</Description>
-  <Dependencies />
+  <Dependencies/>
   <Version>4.9.2.1</Version>
   <Default>false</Default>
   <ReleaseDate>2023-06-19</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="59801766" CompressedSize="58895084" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="59801766" CompressedSize="58895084"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>d62a9d52b37f8e25b66dd0cd298f7d3c117d43c3</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.ArrcPWRI_RiTER_Xsec</Name>
   <DisplayName>RiTER Xsec</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.0</Version>
   <Default>true</Default>
   <ReleaseDate>2023-06-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="6865" CompressedSize="2380" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="6865" CompressedSize="2380"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>dee120726f200f096a139650f9ecc273fb01d68b</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_grigen_nays2dv</Name>
   <DisplayName>Grid Generator for Nays2Dv</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.23062301</Version>
   <Default>true</Default>
   <ReleaseDate>2023-06-23</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="566352" CompressedSize="85688" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="566352" CompressedSize="85688"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>e9ad93ada8d06e492734a87e77c36c2eeb9c1a65</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_Morpho2DH</Name>
   <DisplayName>Morpho2DH v2.0</DisplayName>
-  <Description />
+  <Description/>
   <Version>2.0.23062302</Version>
   <Default>true</Default>
   <ReleaseDate>2014-11-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1365350" CompressedSize="366327" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1365350" CompressedSize="366327"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>0c9fa69132cb38d6d23e91d4a0e096839a311492</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iricelimo_elimo</Name>
   <DisplayName>Elimo</DisplayName>
-  <Description />
+  <Description/>
   <Version>4.3.5</Version>
   <Default>true</Default>
   <ReleaseDate>2020-03-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="608742" CompressedSize="118048" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="608742" CompressedSize="118048"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>4021063655be1467102d47e0157e4391761c3cdf</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_naysdw2</Name>
   <DisplayName>NaysDw2(Simple 2D Driftwood Tracker)</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.23060601</Version>
   <Default>true</Default>
   <ReleaseDate>2023-06-06</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="652794" CompressedSize="108259" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="652794" CompressedSize="108259"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>7775a78a71fe773105fc7b43c4b51a1cb27ceff2</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_NaysMini</Name>
   <DisplayName>NaysMini iRIC4.0</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.0.23052201</Version>
   <Default>true</Default>
   <ReleaseDate>2023-05-22</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="37519" CompressedSize="8115" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="37519" CompressedSize="8115"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>119d8c9136f462eff9789fc082ca25353afb3ae2</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_Nays2DH</Name>
   <DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.6.006</Version>
   <Default>true</Default>
   <ReleaseDate>2022-07-13</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1648009" CompressedSize="430299" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1648009" CompressedSize="430299"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>4707ae4b7e4b4d31934ef2f2c802e81843ee58d0</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.ichirokk_CUBEv4</Name>
-  <DisplayName>NaysCUBE v4.43.75</DisplayName>
-  <Description />
-  <Version>4.43.75</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-06-08</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="12085027" CompressedSize="833324" OS="Any" />
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>4651616d09073bb09f8eea44698c4b05b2ef7f21</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gui.runtime</Name>
@@ -708,33 +695,33 @@
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="324037261" CompressedSize="87145197" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="324037261" CompressedSize="87145197"/>
   <DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives>
   <SHA1>74860d6627fc27b86ad57d0fe8285f69f2a26157</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.ichirokk_Nays1Dp</Name>
   <DisplayName>Nays1Dp v.1.00.8 64bit v4</DisplayName>
-  <Description />
+  <Description/>
   <Version>1.00.8</Version>
   <Default>true</Default>
   <ReleaseDate>2019-11-22</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="715028" CompressedSize="154448" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="715028" CompressedSize="154448"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>315bd186e1e4a464efa43a814dc007a203e5fce6</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.ArrcPWRI_EvaTRiP_Pro</Name>
   <DisplayName>EvaTRiP Pro</DisplayName>
-  <Description />
+  <Description/>
   <Version>2.0.1</Version>
   <Default>true</Default>
   <ReleaseDate>2023-04-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="99027" CompressedSize="20447" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="99027" CompressedSize="20447"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>53965f3a9151f2e43b2042ece98dbfe6ce2056e7</SHA1>
  </PackageUpdate>
@@ -747,10 +734,10 @@
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="39690380" CompressedSize="5419773" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="39690380" CompressedSize="5419773"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License" />
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>a2808372487abbba1bfbf4375ba27baef91e6500</SHA1>
  </PackageUpdate>
@@ -762,7 +749,7 @@
   <Default>false</Default>
   <ReleaseDate>2022-08-19</ReleaseDate>
   <SortingPriority>100</SortingPriority>
-  <UpdateFile UncompressedSize="1674745" CompressedSize="176699" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="1674745" CompressedSize="176699"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>f8c439ada1ae6e2741083a202464267339316551</SHA1>
  </PackageUpdate>
@@ -776,8 +763,21 @@
   <SortingPriority>10</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="25425649" CompressedSize="2696978" OS="Any" />
+  <UpdateFile OS="Any" UncompressedSize="25425649" CompressedSize="2696978"/>
   <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
   <SHA1>51d9935cdc0908afd57a7e09c7a7abf786979755</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ichirokk_CUBEv4</Name>
+  <DisplayName>NaysCUBE v4.43.76</DisplayName>
+  <Description/>
+  <Version>4.43.76</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-07-06</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="12092952" CompressedSize="833139"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>0becf0d1d5d8af5fa2808ceb5b083e4358c09474</SHA1>
  </PackageUpdate>
 </Updates>
