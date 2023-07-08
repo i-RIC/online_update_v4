@@ -2094,6 +2094,17 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
+        <Item name="i_PUMP_repeat1" caption="Pump 1 repeat time">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
+            <Dependency>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
 
 
         <Item name="i_PUMP_xy2" caption="Pump 2 direction">
@@ -2146,6 +2157,17 @@ gridtype="structured2d"
         </Item>
         <Item name="PUMP_suspend2" caption="Pump 2 suspend time [s]">
           <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_PUMP_repeat2" caption="Pump 2 repeat time">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
             <Dependency>
               <Condition type='and'>
                 <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
@@ -2216,6 +2238,17 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
+        <Item name="i_PUMP_repeat3" caption="Pump 3 repeat time">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
+            <Dependency>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
 
 
         <Item name="i_PUMP_xy4" caption="Pump 4 direction">
@@ -2277,6 +2310,17 @@ gridtype="structured2d"
             </Dependency>
           </Definition>
         </Item>
+        <Item name="i_PUMP_repeat4" caption="Pump 4 repeat time">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
+            <Dependency>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
 
 
         <Item name="i_PUMP_xy5" caption="Pump 5 direction">
@@ -2329,6 +2373,17 @@ gridtype="structured2d"
         </Item>
         <Item name="PUMP_suspend5" caption="Pump 5 suspend time [s]">
           <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+            <Dependency>
+              <Condition type='and'>
+                <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
+                <Condition type="isGreaterEqual" target="i_PUMP_cycle" value="2"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item name="i_PUMP_repeat5" caption="Pump 5 repeat time">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0">
             <Dependency>
               <Condition type='and'>
                 <Condition type="isGreaterEqual" target="i_PUMP"       value="1"/>
