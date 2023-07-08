@@ -1931,23 +1931,23 @@
     </message>
 
     <message>
-       <source>Pump 1 repeat time [s]</source>
+       <source>Pump 1 repeat time</source>
         <translation>ポンプ１繰返し回数</translation>
     </message>
     <message>
-       <source>Pump 2 repeat time [s]</source>
+       <source>Pump 2 repeat time</source>
         <translation>ポンプ２繰返し回数</translation>
     </message>
     <message>
-       <source>Pump 3 repeat time [s]</source>
+       <source>Pump 3 repeat time</source>
         <translation>ポンプ３繰返し回数</translation>
     </message>
     <message>
-       <source>Pump 4 repeat time [s]</source>
+       <source>Pump 4 repeat time</source>
         <translation>ポンプ４繰返し回数</translation>
     </message>
     <message>
-       <source>Pump 5 repeat time [s]</source>
+       <source>Pump 5 repeat time</source>
         <translation>ポンプ５繰返し回数</translation>
     </message>
 
