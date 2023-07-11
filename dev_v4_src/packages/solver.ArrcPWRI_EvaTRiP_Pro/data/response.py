@@ -4,11 +4,13 @@ import common
 
 OUTPUT_SUM_NAME = 'RESP_Sum'
 OUTPUT_AMEAN_NAME = 'RESP_A_Mean'
+OUTPUT_MULTIPLICATION_NAME = 'RESP_Mult'
 OUTPUT_GMEAN_NAME = 'RESP_G_Mean'
 
 funcs = list()
 output_sum = None
 output_arigh = None
+output_mult = None
 output_geom = None
 
 class ResponseFunction(object):
@@ -44,7 +46,7 @@ class ResponseFunction(object):
         iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, outName, out)
 
 def init():
-    global funcs, output_sum, output_arigh, output_geom
+    global funcs, output_sum, output_arigh, output_mult, output_geom
 
     for i in range(1, 4):
         out = iric.cg_iRIC_Read_Integer(common.write_fid, 'resp_f{0}_output'.format(i))
@@ -65,6 +67,7 @@ def init():
 
     output_sum = iric.cg_iRIC_Read_Integer(common.write_fid, 'resp_comp_output_sum')
     output_arigh = iric.cg_iRIC_Read_Integer(common.write_fid, 'resp_comp_output_arigh')
+    output_mult = iric.cg_iRIC_Read_Integer(common.write_fid, 'resp_comp_output_mult')
     output_geom = iric.cg_iRIC_Read_Integer(common.write_fid, 'resp_comp_output_geom')
 
 def process_step():
@@ -73,7 +76,7 @@ def process_step():
         result_list.append(f.exec())
 
     _output_sum_and_arighmetic_mean(result_list)
-    _output_geometric_mean(result_list)
+    _output_multiplication_and_geometric_mean(result_list)
 
 def finalize():
     for f in funcs:
@@ -86,6 +89,8 @@ def finalize():
         iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_SUM_NAME, zeros)
     if output_arigh:
         iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_AMEAN_NAME, zeros)
+    if output_mult:
+        iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_MULTIPLICATION_NAME, zeros)   
     if output_geom:
         iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_GMEAN_NAME, zeros)
 
@@ -104,16 +109,20 @@ def _output_sum_and_arighmetic_mean(vals):
         mean = sum / len(vals)
         iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_AMEAN_NAME, mean)
 
-def _output_geometric_mean(vals):
-    if not output_geom: return
+def _output_multiplication_and_geometric_mean(vals):
+    if not (output_mult or output_geom): return
     if len(vals) == 0: return
 
-    mean = np.ones(vals[0].shape)
+    multiplication = np.ones(vals[0].shape)
     for val in vals:
-        mean *= val
+        multiplication *= val
+    
+    if output_mult:
+        iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_MULTIPLICATION_NAME, multiplication)
 
-    mean = np.power(mean, 1.0 / len(vals))
-    iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_GMEAN_NAME, mean)
+    if output_geom:
+        mean = np.power(multiplication, 1.0 / len(vals))
+        iric.cg_iRIC_Write_Sol_Node_Real(common.write_fid, OUTPUT_GMEAN_NAME, mean)
 
 def _get_result(num, other, CIndex):
     if num == 0:

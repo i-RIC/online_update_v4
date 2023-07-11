@@ -713,19 +713,6 @@
   <SHA1>315bd186e1e4a464efa43a814dc007a203e5fce6</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.ArrcPWRI_EvaTRiP_Pro</Name>
-  <DisplayName>EvaTRiP Pro</DisplayName>
-  <Description/>
-  <Version>2.0.1</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-04-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="20447" UncompressedSize="99027"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>53965f3a9151f2e43b2042ece98dbfe6ce2056e7</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (develop)</DisplayName>
   <Description>iRIC Main GUI</Description>
@@ -779,5 +766,18 @@
   <UpdateFile OS="Any" CompressedSize="833214" UncompressedSize="12096299"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>34465e1c5c93ed19a7aad02a454c4efb5cf910e9</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ArrcPWRI_EvaTRiP_Pro</Name>
+  <DisplayName>EvaTRiP Pro</DisplayName>
+  <Description/>
+  <Version>2.0.2</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-04-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" CompressedSize="20538" UncompressedSize="99950"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>642b276ab67042b393c2b0b5258f502157ca307a</SHA1>
  </PackageUpdate>
 </Updates>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="EvaTRiP" caption="EvaTRiP Pro" version="2.0.1"
+    name="EvaTRiP" caption="EvaTRiP Pro" version="2.0.2"
 	copyright="Public Works Research Institute Japan"
     release="2023.4.1" 
     homepage="http://www.pwri.go.jp/team/kyousei/jpn/index.htm"
@@ -478,6 +478,11 @@
 					</Definition>
 				</Item>
 				<Item name="resp_comp_output_arigh" caption="Arighmetic mean (RESP_A_Mean)">
+					<Definition valueType="integer" checkBox="true" default="0">
+						<Condition type="isEqual" target="f_response" value="1" />
+					</Definition>
+				</Item>
+				<Item name="resp_comp_output_mult" caption="Multiplication (RESP_Mult)">
 					<Definition valueType="integer" checkBox="true" default="0">
 						<Condition type="isEqual" target="f_response" value="1" />
 					</Definition>

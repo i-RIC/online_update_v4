@@ -402,11 +402,15 @@
         </message>
         <message>
             <source>Sum (RESP_Sum)</source>
-            <translation>合計値 (RESP_Sum)</translation>
+            <translation>合計 (RESP_Sum)</translation>
         </message>
         <message>
             <source>Arighmetic mean (RESP_A_Mean)</source>
             <translation>相加平均 (RESP_A_Mean)</translation>
+        </message>
+        <message>
+            <source>Multiplication (RESP_Mult)</source>
+            <translation>相乗 (RESP_Mult)</translation>
         </message>
         <message>
             <source>Geometric mean (RESP_G_Mean)</source>
