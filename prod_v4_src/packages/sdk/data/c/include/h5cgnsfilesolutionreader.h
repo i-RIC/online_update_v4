@@ -19,6 +19,7 @@ public:
 	~H5CgnsFileSolutionReader();
 
 	Mode mode() const;
+	void setMode(Mode mode);
 
 	int setSolutionId(int id);
 
