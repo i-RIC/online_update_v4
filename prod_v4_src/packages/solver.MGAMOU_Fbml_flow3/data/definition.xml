@@ -5,7 +5,7 @@
 	caption="Fbml_flow3_v2023_1_iric4"
 	version="1.2023.1"
 	copyright="Mineyuki Gamou"
-	release="2023.01.24"
+	release="2023.07.01"
 	homepage="http://i-ric.org"
 	executable="Fbml_flow3_v2023_1_iric4.exe"
 	iterationtype="time"
@@ -21,7 +21,7 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Control specification" caption="Control specification">
+		<Tab name="Control specifications" caption="Control specifications">
 			<Content>
 				<Items>
 					<Item name="START_TIME" caption="Start time (s)">
@@ -36,32 +36,32 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Layer number" caption="層・圧力">
+		<Tab name="Layer number" caption="Layer/pressure">
 			<Content>
 				<Items>
-					<Item name="LYER_NUMBER" caption="層の数">
+					<Item name="LYER_NUMBER" caption="Number of layers">
 						<Definition conditionType="constant" valueType="integer" option="true" default="1"/>
 					</Item>
-					<Item name="LAY_DEP" caption="各層の層厚">
+					<Item name="LAY_DEP" caption="Layer thickness of each layer">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM2" valueType="real" caption="層"/>
-							<Value name="DEP_INT" valueType="real" caption="層厚(m)"/>
+							<Parameter name="LAY_NM2" valueType="real" caption="Layer"/>
+							<Value name="DEP_INT" valueType="real" caption="Layer thickness (m)"/>
 						</Definition>
 					</Item>
-					<Item name="LAY_FRX" caption="境界層の可動方式">
+					<Item name="LAY_FRX" caption="Boundary layer movement method">
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
 							<Enumerations>
-								<Enumeration value="0" caption="境界層の位置を固定式とする" />
-								<Enumeration value="1" caption="境界層の位置を断面間内挿方式の可動式とする" />
-								<Enumeration value="2" caption="境界層の位置を節点ごとの可動式とする" />
+								<Enumeration value="0" caption="Fixed boundary layer position" />
+								<Enumeration value="1" caption="The position of the boundary layer is made movable by interpolation between cross-sections." />
+								<Enumeration value="2" caption="Movable boundary layer position for each node" />
 							</Enumerations>
 						</Definition>
 					</Item>
-					<Item name="PRSS_FRX" caption="圧力の計算方式">
+					<Item name="PRSS_FRX" caption="Pressure calculation method">
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
 							<Enumerations>
-								<Enumeration value="0" caption="静水圧近似" />
-								<Enumeration value="1" caption="ポアソン方程式より計算" />
+								<Enumeration value="0" caption="Hydrostatic pressure approximation" />
+								<!--<Enumeration value="1" caption="Calculated from Poisson's equation" />-->
 							</Enumerations>
 							<Dependency>
 								<Condition type="or">
@@ -75,18 +75,18 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Initial condition" caption="Initial condition">
+		<Tab name="Initial conditions" caption="Initial conditions">
 			<Content>
 				<Items>
-					<Item name="IBH_00" caption="Data source">
+					<Item name="IBH_00" caption="Data sources">
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
 							<Enumerations>
-								<Enumeration value="0" caption="Without using Area cord"/>
-								<Enumeration value="1" caption="Using Area cord"/>
+								<Enumeration value="0" caption="Without using area cord"/>
+								<Enumeration value="1" caption="Using area cord"/>
 							</Enumerations>
 						</Definition>
 					</Item>
-					<Item name="LATITUDE" caption="地理的緯度（°）">
+					<Item name="LATITUDE" caption="Geographic latitude (°)">
 						<Definition conditionType="constant" valueType="real" option="false" default="0.0"/>
 					</Item>
 				</Items>
@@ -99,24 +99,24 @@
 						<Definition conditionType="constant" valueType="integer" option="true" default="1">
 							<Enumerations>
 								<Enumeration value="1" caption="K-epsilon (simple) model"/>
-								<Enumeration value="2" caption="ゼロ方程式（摩擦速度）モデル"/>
-								<Enumeration value="3" caption="ゼロ方程式（混合長）モデル"/>
-								<Enumeration value="4" caption="Smagorinsky モデル"/>
+								<Enumeration value="2" caption="Zero equation (friction velocity) model"/>
+								<Enumeration value="3" caption="Zero equation (mixing length) model"/>
+								<Enumeration value="4" caption="Smagorinsky model"/>
 								<Enumeration value="5" caption="Specific value of eddy viscosity coefficient"/>
 							</Enumerations>
 						</Definition>
 					</Item>
-					<Item name="EDDY_PAR" caption="渦動粘性係数の設定方法">
+					<Item name="EDDY_PAR" caption="How to set the eddy viscosity">
 						<Definition conditionType="constant" valueType="integer" option="true" default="1">
 							<Enumerations>
-								<Enumeration value="0" caption="各層ごとに一定とする" />
-								<Enumeration value="1" caption="水域ごとに可変とする" />
+								<Enumeration value="0" caption="Constant for each layer" />
+								<Enumeration value="1" caption="Variable for each area" />
 							</Enumerations>
 						</Definition>
 					</Item>
 					<Item name="EDY_PAR_H" caption="     Parameter A">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_PA" valueType="real" caption="層"/>
+							<Parameter name="LAY_PA" valueType="real" caption="Layer"/>
 							<Value name="EDY_PAR_A" valueType="real" caption="Parameter A"/>
 							<Dependency>
 								<Condition type="and">
@@ -133,10 +133,10 @@
 							</Dependency>
 						</Definition>
 					</Item>
-					<Item name="EDY_CO_H" caption="     渦動粘性係数">
+					<Item name="EDY_CO_H" caption="     Eddy viscosity">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_CH" valueType="real" caption="層"/>
-							<Value name="EDY_CO_DI" valueType="real" caption="渦動粘性係数"/>
+							<Parameter name="LAY_CH" valueType="real" caption="Layer"/>
+							<Value name="EDY_CO_DI" valueType="real" caption="Eddy viscosity"/>
 							<Dependency>
 								<Condition type="and">
 							 		<Condition type="isEqual" target="ICON_09" value="5"/>
@@ -265,20 +265,20 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="vegetation / wind" caption="せん断力">
+		<Tab name="Shear stress" caption="Shear stress">
 			<Content>
 				<Items>
-					<GroupBox caption="水面せん断力">
-						<Item name="ICON_14" caption="Wind stress">
+					<GroupBox caption="Water surface shear stress">
+						<Item name="ICON_14" caption="  Wind stress">
 							<Definition conditionType="constant" valueType="integer" option="true" default="0">
 								<Enumerations>
 									<Enumeration value="0" caption="Disabled"/>
-									<Enumeration value="1" caption="一定"/>
-									<Enumeration value="2" caption="時系列データ"/>
+									<Enumeration value="1" caption="Constant"/>
+									<Enumeration value="2" caption="Input with time series data"/>
 								</Enumerations>
 							</Definition>
 						</Item>
-						<Item name="WIND_MAG" caption="     地上 10m での平均風速(m/s)">
+						<Item name="WIND_MAG" caption="     Average wind speed at 10m above the ground (m/s)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_14" value="1"/>
@@ -286,7 +286,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="WIND_DIR" caption="     地上 10m での平均風向">
+						<Item name="WIND_DIR" caption="     Average wind direction at 10m above ground">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_14" value="1"/>
@@ -294,7 +294,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="T_WIND_NUMBER" caption="時系列データの数">
+						<Item name="T_WIND_NUMBER" caption="     Number of time series data">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_14" value="2"/>
@@ -302,11 +302,11 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="TIME_WIND" caption="     地上 10m での時系列風速・風向">
+						<Item name="TIME_WIND" caption="       Time-series wind speed and direction at 10m above the ground">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_NM02" valueType="real" caption="時間(s)"/>
-								<Value name="TIME_WIND_MAG" valueType="real" caption="風速(m/s)"/>
-								<Value name="TIME_WIND_DIR" valueType="real" caption="風向"/>
+								<Parameter name="LAY_NM02" valueType="real" caption="Time (s)"/>
+								<Value name="TIME_WIND_MAG" valueType="real" caption="Wind speed (m/s)"/>
+								<Value name="TIME_WIND_DIR" valueType="real" caption="Wind direction"/>
 								<Dependency>
 									<Condition type="isEqual" target="ICON_14" value="2"/>
 									<Action type="enable"/>
@@ -314,30 +314,30 @@
 							</Definition>
 						</Item>
 	 				</GroupBox>
-					<GroupBox caption="内部せん断力">
-						<Item name="LAY_FRC_PARA" caption="内部せん断力">
+					<GroupBox caption="Internal shear stress">
+						<Item name="LAY_FRC_PARA" caption="  Setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
 									<!--<Enumeration value="0" caption="マニング則より算定" />-->
-									<Enumeration value="1" caption="全領域一定" />
-									<Enumeration value="2" caption="水域ごとに可変" />
+									<Enumeration value="1" caption="Constant for all areas" />
+									<Enumeration value="2" caption="Variable for each area" />
 								</Enumerations>
 							</Definition>
 						</Item>
-						<!--<Item name="LAY_MNG" caption="     マニング粗度係数">
+						<!--<Item name="LAY_MNG" caption="Manning roughness coefficient">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_NM4" valueType="real" caption="層"/>
-								<Value name="FRIC_MNG" valueType="real" caption="マニング粗度係数"/>
+								<Parameter name="LAY_NM4" valueType="real" caption="Layer"/>
+								<Value name="FRIC_MNG" valueType="real" caption="Manning roughness coefficient"/>
 								<Dependency>
 									<Condition type="isEqual" target="LAY_FRC_PARA" value="0"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>-->
-						<Item name="LAY_FRC" caption="     層間の内部せん断力">
+						<Item name="LAY_FRC" caption="     Internal shear stress between layers">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_NM3" valueType="real" caption="層"/>
-								<Value name="FRIC_LAY" valueType="real" caption="内部せん断力"/>
+								<Parameter name="LAY_NM3" valueType="real" caption="Layer"/>
+								<Value name="FRIC_LAY" valueType="real" caption="Internal shear stress"/>
 								<Dependency>
 									<Condition type="isEqual" target="LAY_FRC_PARA" value="1"/>
 									<Action type="enable"/>
@@ -345,18 +345,18 @@
 							</Definition>
 						</Item>
 	 				</GroupBox>
-					<GroupBox caption="底面せん断力">
-						<Item name="ICON_02" caption="底面せん断力">
+					<GroupBox caption="Bottom shear stress">
+						<Item name="ICON_02" caption="  Setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="2">
 								<Enumerations>
-									<Enumeration value="1" caption="マニング粗度係数（全領域一定）" />
-									<Enumeration value="2" caption="マニング粗度係数（水域ごとに可変）" />
-									<Enumeration value="3" caption="底面せん断を直接入力（全領域一定）"/>
-									<Enumeration value="4" caption="底面せん断を直接入力（水域ごとに可変）"/>
+									<Enumeration value="1" caption="Manning roughness coefficient (constant for all areas)" />
+									<Enumeration value="2" caption="Manning roughness coefficient (variable for each area)" />
+									<Enumeration value="3" caption="Direct input of bottom shear stress (constant for all areas)"/>
+									<Enumeration value="4" caption="Direct input of bottom shear stress (variable for each area)"/>
 								</Enumerations>
 							</Definition>
 						</Item>
-						<Item name="ROUGH_CONST_MN" caption="     マニング粗度係数">
+						<Item name="ROUGH_CONST_MN" caption="     Manning roughness coefficient">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.03">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_02" value="1"/>
@@ -364,7 +364,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="ROUGH_CONST_CO" caption="     底面せん断">
+						<Item name="ROUGH_CONST_CO" caption="     Bottom shear stress">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.003">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_02" value="3"/>
@@ -384,22 +384,22 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Dencity" caption="密度計算用パラメーター">
+		<Tab name="Dencity" caption="Parameters for density calculation">
 			<Content>
 				<Items>
-					<Item name="ICON_06" caption="密度計算">
+					<Item name="ICON_06" caption="Density calculation">
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
 							<Enumerations>
-								<Enumeration value="0" caption="密度の拡散計算を行わない" />
-								<Enumeration value="1" caption="密度の拡散計算を行う" />
+								<Enumeration value="0" caption="Do not perform density diffusion calculations" />
+								<Enumeration value="1" caption="Perform density diffusion calculations" />
 							</Enumerations>
 						</Definition>
 					</Item>
-					<GroupBox caption="密度の固定の場合">
-						<Item name="LAY_ROU" caption="     各層ごとの初期密度">
+					<GroupBox caption="For fixed density">
+						<Item name="LAY_ROU" caption="  Initial density for each layer">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_NM1" valueType="real" caption="層"/>
-								<Value name="DEN_INT" valueType="real" caption="初期密度(Kg/m**3)"/>
+								<Parameter name="LAY_NM1" valueType="real" caption="Layer"/>
+								<Value name="DEN_INT" valueType="real" caption="Initial density (Kg/m**3)"/>
 								<Dependency>
 								        <Condition type="isEqual" target="ICON_06" value="0"/>
 									<Action type="enable"/>
@@ -407,12 +407,12 @@
 							</Definition>
 						</Item>
  					</GroupBox>
-					<GroupBox caption="密度の初期条件">
-						<Item name="DEN_INT_P" caption="密度の初期条件設定方法">
+					<GroupBox caption="Initial conditions for density">
+						<Item name="DEN_INT_P" caption="  Density initial condition setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="0" caption="全領域一定とする" />
-									<Enumeration value="1" caption="水域ごとに可変とする" />
+									<Enumeration value="0" caption="Constant for all areas" />
+									<Enumeration value="1" caption="Variable for each area" />
 								</Enumerations>
 								<Dependency>
 								        <Condition type="isEqual" target="ICON_06" value="1"/>
@@ -420,11 +420,11 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="LAY_TTT" caption="     各層ごとの水温・塩素量の初期値">
+						<Item name="LAY_TTT" caption="     Initial values of water temperature and chlorine concentration for each layer">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_NM11" valueType="real" caption="層"/>
-								<Value name="TTT_INT" valueType="real" caption="水温（°）"/>
-								<Value name="SAL_INT" valueType="real" caption="塩素量（‰）"/>
+								<Parameter name="LAY_NM11" valueType="real" caption="Layer"/>
+								<Value name="TTT_INT" valueType="real" caption="Water temperature (°)"/>
+								<Value name="SAL_INT" valueType="real" caption="Chlorine concentration (%)"/>
 								<Dependency>
 									<Condition type="and">
 								  		<Condition type="isEqual" target="ICON_06" value="1"/>
@@ -435,14 +435,14 @@
 							</Definition>
 						</Item>
  					</GroupBox>
-					<GroupBox caption="密度の拡散係数">
-						<Item name="IDH_PARA" caption="密度の水平拡散係数設定方法">
+					<GroupBox caption="Density diffusion coefficient">
+						<Item name="IDH_PARA" caption="  How to set the horizontal diffusion coefficient of density">
 							<Definition conditionType="constant" valueType="integer" option="true" default="0">
 								<Enumerations>
-									<Enumeration value="0" caption="水平拡散係数を直接入力する（全領域一定）" />
-									<Enumeration value="1" caption="水平拡散係数を直接入力する（水域ごとに可変）" />
-									<Enumeration value="2" caption="渦動粘性係数に対する倍率を指定（全領域一定）" />
-									<Enumeration value="3" caption="渦動粘性係数に対する倍率を指定（水域ごとに可変）" />
+									<Enumeration value="0" caption="Directly input the horizontal diffusion coefficient (constant for all areas)" />
+									<Enumeration value="1" caption="Directly input the horizontal diffusion coefficient (variable for each area)" />
+									<Enumeration value="2" caption="Designate a multiplier for the eddy viscosity coefficient (constant for all areas)" />
+									<Enumeration value="3" caption="Specify the multiplier for the eddy viscosity coefficient (variable for each area)" />
 								</Enumerations>
 								<Dependency>
 								        <Condition type="isEqual" target="ICON_06" value="1"/>
@@ -450,10 +450,10 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="IDH_DEN_H" caption="     密度の水平拡散係数">
+						<Item name="IDH_DEN_H" caption="     Horizontal diffusion coefficient of density">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_DEN_H" valueType="real" caption="層"/>
-								<Value name="DEN_CO_DH" valueType="real" caption="水平拡散係数"/>
+								<Parameter name="LAY_DEN_H" valueType="real" caption="Layer"/>
+								<Value name="DEN_CO_DH" valueType="real" caption="Horizontal diffusion coefficient"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isEqual" target="ICON_06" value="1"/>
@@ -463,7 +463,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="IDH_RAT_H" caption="     密度の水平拡散係数（渦動粘性係数に対する倍率）">
+						<Item name="IDH_RAT_H" caption="     Horizontal diffusion coefficient of density (magnification of eddy viscosity coefficient)">
 							<Definition conditionType="constant" valueType="real" option="false" default="1.0">
 								<Dependency>
 									<Condition type="and">
@@ -474,12 +474,12 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="IDV_PARA" caption="密度の鉛直拡散係数設定方法">
+						<Item name="IDV_PARA" caption="  How to set the vertical diffusion coefficient of density">
 							<Definition conditionType="constant" valueType="integer" option="true" default="3">
 								<Enumerations>
-									<Enumeration value="1" caption="水平拡散係数に対する倍率を指定（全領域一定）" />
-									<Enumeration value="2" caption="水平拡散係数に対する倍率を指定（水域ごとに可変）" />
-									<Enumeration value="3" caption="リチャードソン数を用いて設定する" />
+									<Enumeration value="1" caption="Specify magnification for horizontal diffusion coefficient (constant for all areas)" />
+									<Enumeration value="2" caption="Specify the magnification for the horizontal diffusion coefficient (variable for each area)" />
+									<Enumeration value="3" caption="Set using the Richardson number" />
 								</Enumerations>
 								<Dependency>
 								        <Condition type="isEqual" target="ICON_06" value="1"/>
@@ -487,7 +487,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DEN_RAT_V" caption="     密度の鉛直拡散係数（水平拡散係数に対する倍率）">
+						<Item name="DEN_RAT_V" caption="     Vertical diffusion coefficient of density (magnification to horizontal diffusion coefficient)">
 							<Definition conditionType="constant" valueType="real" option="true" default="0.0001">
 								<Dependency>
 									<Condition type="and">
@@ -499,17 +499,17 @@
 							</Definition>
 						</Item>
  					</GroupBox>
-					<GroupBox caption="水面での熱収支">
-						<Item name="QS_PARA" caption="水面での熱収支">
+					<GroupBox caption="Heat balance on surface">
+						<Item name="QS_PARA" caption="  Setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="0">
 								<Enumerations>
-									<Enumeration value="0" caption="一定" />
-									<Enumeration value="1" caption="時系列データで入力" />
+									<Enumeration value="0" caption="Constant" />
+									<Enumeration value="1" caption="Input with time series data" />
 								</Enumerations>
 								<Condition type="isEqual" target="ICON_06" value="1"/>
 							</Definition>
 						</Item>
-						<Item name="QQS_SURF" caption="     完全晴天時の日射量 (cal/cm**2/day)">
+						<Item name="QQS_SURF" caption="     Solar irradiance in clear weather (cal/cm**2/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="and">
@@ -520,7 +520,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="QCL_SURF" caption="     雲量 (%)">
+						<Item name="QCL_SURF" caption="     Cloud cover (%)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="and">
@@ -531,7 +531,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="QTMP_SURF" caption="     接水気層の温度 (℃)">
+						<Item name="QTMP_SURF" caption="     Temperature of wetted air layer (℃)">
 							<Definition conditionType="constant" valueType="real" option="false" >
 								<Dependency>
 									<Condition type="and">
@@ -542,7 +542,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="QSDP_SURF" caption="     接水気層の湿度 (%)">
+						<Item name="QSDP_SURF" caption="     Humidity of wetted air layer (%)">
 							<Definition conditionType="constant" valueType="real" option="false" >
 								<Dependency>
 									<Condition type="and">
@@ -553,7 +553,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="T_Q_SURF_NUMBER" caption="時系列データの数">
+						<Item name="T_Q_SURF_NUMBER" caption="     Number of time series data">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Dependency>
 									<Condition type="and">
@@ -564,13 +564,13 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="TIME_Q_SURF" caption="     時系列での熱収支データ">
+						<Item name="TIME_Q_SURF" caption="       Heat balance data in time series">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_NM03" valueType="real" caption="時間(s)"/>
-								<Value name="TIME_QQS"  valueType="real" caption="日射量 (cal/cm**2/day)"/>
-								<Value name="TIME_QCL"  valueType="real" caption="雲量 (%)"/>
-								<Value name="TIME_QTMP" valueType="real" caption="接水気層の温度 (℃)"/>
-								<Value name="TIME_QSDP" valueType="real" caption="接水気層の湿度 (%)"/>
+								<Parameter name="LAY_NM03" valueType="real" caption="Time (s)"/>
+								<Value name="TIME_QQS"  valueType="real" caption="Solar radiation (cal/cm**2/day)"/>
+								<Value name="TIME_QCL"  valueType="real" caption="Cloud cover (%)"/>
+								<Value name="TIME_QTMP" valueType="real" caption="Temperature of wetted air layer (℃)"/>
+								<Value name="TIME_QSDP" valueType="real" caption="Humidity of wetted air layer (%)"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isEqual" target="ICON_06" value="1"/>
@@ -584,27 +584,27 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition" caption="物質の拡散計算の基本情報">
+		<Tab name="Diffusion condition" caption="Basic information of diffusion calculation of material">
 			<Content>
 				<Items>
-					<Item name="ICON_07" caption="拡散計算">
+					<Item name="ICON_07" caption="Diffusion calculation">
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
 							<Enumerations>
-								<Enumeration value="0" caption="物質の拡散計算を行わない" />
-								<Enumeration value="1" caption="単一物質の拡散計算" />
-								<Enumeration value="2" caption="生態系モデルでの拡散計算（簡易モデル）" />
-								<Enumeration value="3" caption="生態系モデルでの拡散計算（詳細モデル）" />
+								<Enumeration value="0" caption="Do not calculate diffusion of material" />
+								<Enumeration value="1" caption="Diffusion calculation of a single material" />
+								<Enumeration value="2" caption="Diffusion calculation in ecosystem model (simple model)" />
+								<Enumeration value="3" caption="Diffusion calculation in ecosystem model (detailed model)" />
 							</Enumerations>
 						</Definition>
 					</Item>
-					<GroupBox caption="物質拡散の拡散係数">
-						<Item name="IDHP_PARA" caption="  物質拡散の水平拡散係数設定方法">
+					<GroupBox caption="Diffusion coefficient for material diffusion">
+						<Item name="IDHP_PARA" caption="  How to set the horizontal diffusion coefficient for material diffusion">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="0" caption="水平拡散係数を直接入力する（全領域一定）" />
-									<Enumeration value="1" caption="水平拡散係数を直接入力する（水域ごとに可変）" />
-									<Enumeration value="2" caption="渦動粘性係数に対する倍率を指定（全領域一定）" />
-									<Enumeration value="3" caption="渦動粘性係数に対する倍率を指定（水域ごとに可変）" />
+									<Enumeration value="0" caption="Directly input the horizontal diffusion coefficient (constant for all areas)" />
+									<Enumeration value="1" caption="Directly input the horizontal diffusion coefficient (variable for each area)" />
+									<Enumeration value="2" caption="Designate a multiplier for the eddy viscosity coefficient (constant for all areas)" />
+									<Enumeration value="3" caption="Specify the multiplier for the eddy viscosity coefficient (variable for each area)" />
 								</Enumerations>
 								<Dependency>
 									<Condition type="isGreaterThan" target="ICON_07" value="0"/>
@@ -612,10 +612,10 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIFF_CO_H" caption="        物質拡散の水平拡散係数">
+						<Item name="DIFF_CO_H" caption="        Horizontal diffusion coefficient of material diffusion">
 							<Definition conditionType="functional">
-								<Parameter name="LAY_DIF_H" valueType="real" caption="層"/>
-								<Value name="DIF_CNTCO_H" valueType="real" caption="水平拡散係数"/>
+								<Parameter name="LAY_DIF_H" valueType="real" caption="Layer"/>
+								<Value name="DIF_CNTCO_H" valueType="real" caption="Horizontal diffusion coefficient"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isGreaterThan" target="ICON_07" value="0"/>
@@ -625,7 +625,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIFF_CNTRT_H" caption="        物質拡散の水平拡散係数（渦動粘性係数に対する倍率）">
+						<Item name="DIFF_CNTRT_H" caption="        Horizontal diffusion coefficient of material diffusion (magnification to eddy viscosity coefficient)">
 							<Definition conditionType="constant" valueType="real" option="false" default="1.0">
 								<Dependency>
 									<Condition type="and">
@@ -636,12 +636,12 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="IDVP_PARA" caption="  物質拡散の鉛直拡散係数設定方法">
+						<Item name="IDVP_PARA" caption="  How to set the vertical diffusion coefficient of material diffusion">
 							<Definition conditionType="constant" valueType="integer" option="true" default="3">
 								<Enumerations>
-									<Enumeration value="1" caption="水平拡散係数に対する倍率を指定（全領域一定）" />
-									<Enumeration value="2" caption="水平拡散係数に対する倍率を指定（水域ごとに可変）" />
-									<Enumeration value="3" caption="リチャードソン数を用いて設定する" />
+									<Enumeration value="1" caption="Specify magnification for horizontal diffusion coefficient (constant for all areas)" />
+									<Enumeration value="2" caption="Specify the magnification for the horizontal diffusion coefficient (variable for each area)" />
+									<Enumeration value="3" caption="Set using the Richardson number" />
 								</Enumerations>
 								<Dependency>
 									<Condition type="isGreaterThan" target="ICON_07" value="0"/>
@@ -649,7 +649,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIFF_RAT_V" caption="        物質拡散の鉛直拡散係数（水平拡散係数に対する倍率）">
+						<Item name="DIFF_RAT_V" caption="        Vertical diffusion coefficient of material diffusion (magnification to horizontal diffusion coefficient)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0001">
 								<Dependency>
 									<Condition type="and">
@@ -664,15 +664,15 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 1" caption="単一物質(COD)の拡散計算用パラメーター">
+		<Tab name="Diffusion condition 1" caption="Parameters for single material (COD) diffusion calculation">
 			<Content>
 				<Items>
-					<GroupBox caption="単一拡散物質(COD)の初期値">
-						<Item name="DIF_INT1_FIX" caption="     初期条件設定方法">
+					<GroupBox caption="Initial value of single diffusing material (COD)">
+						<Item name="DIF_INT1_FIX" caption="     Initial condition setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="0" caption="全領域一定とする" />
-									<Enumeration value="1" caption="水域ごとに可変とする" />
+									<Enumeration value="0" caption="Constant for all areas" />
+									<Enumeration value="1" caption="Variable for each area" />
 								</Enumerations>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="1"/>
@@ -680,10 +680,10 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="COD_INT1_FIX" caption="     各層ごとの単一拡散物質(COD)の初期値">
+						<Item name="COD_INT1_FIX" caption="     Initial value of single diffusive material (COD) for each layer">
 							<Definition conditionType="functional" >
-								<Parameter name="LAY_FIX11" valueType="real" caption="層"/>
-								<Value name="COD1_FIX" valueType="real" caption="初期値(mg/L)"/>
+								<Parameter name="LAY_FIX11" valueType="real" caption="Layer"/>
+								<Value name="COD1_FIX" valueType="real" caption="Initial value (mg/L)"/>
 								<Dependency>
 									<Condition type="and">
 								  		<Condition type="isEqual" target="ICON_07" value="1"/>
@@ -694,12 +694,12 @@
 							</Definition>
 						</Item>
  					</GroupBox>
-					<GroupBox caption="単一物質(COD)拡散計算の緒係数">
-						<Item name="DIF_PARA1_FIX" caption="     拡散計算の緒係数設定方法">
+					<GroupBox caption="Coefficients for single material (COD) diffusion calculations">
+						<Item name="DIF_PARA1_FIX" caption="     Method of setting coefficients for diffusion calculation">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="0" caption="全領域一定とする" />
-									<Enumeration value="1" caption="水域ごとに可変とする" />
+									<Enumeration value="0" caption="Constant for all areas" />
+									<Enumeration value="1" caption="Variable for each area" />
 								</Enumerations>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="1"/>
@@ -707,12 +707,12 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIF_IPC1_FIX" caption="        内部生産量・分解速度・沈降速度">
+						<Item name="DIF_IPC1_FIX" caption="     Internal production, breakdown rate, sedimentation rate">
 							<Definition conditionType="functional" >
-								<Parameter name="LAY_FIX12" valueType="real" caption="層"/>
-								<Value name="DCY1_FIX" valueType="real" caption="分解速度(1/day)"/>
-								<Value name="PRC1_FIX" valueType="real" caption="内部生産量(mg/m**3/day)"/>
-								<Value name="WSC1_FIX" valueType="real" caption="沈降速度(m/day)"/>
+								<Parameter name="LAY_FIX12" valueType="real" caption="Layer"/>
+								<Value name="DCY1_FIX" valueType="real" caption="Breakdown rate (1/day)"/>
+								<Value name="PRC1_FIX" valueType="real" caption="Internal production (mg/m**3/day)"/>
+								<Value name="WSC1_FIX" valueType="real" caption="Sedimentation velocity (m/day)"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isEqual" target="ICON_07" value="1"/>
@@ -722,7 +722,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="BRG1_FIX" caption="        底面からの溶出量 (mg/m**2/day)">
+						<Item name="BRG1_FIX" caption="     Amount of elution from the bottom (mg/m**2/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="and">
@@ -737,15 +737,15 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 6" caption="生態系（簡易）モデル拡散計算用パラメーター">
+		<Tab name="Diffusion condition 6" caption="Parameters for ecosystem (simple) model diffusion calculation">
 			<Content>
 				<Items>
-					<GroupBox caption="生態系（簡易）モデルの初期値">
-						<Item name="DIF_INT6_FIX" caption="     初期条件設定方法">
+					<GroupBox caption="Initial value of ecosystem (simple) model">
+						<Item name="DIF_INT6_FIX" caption="     Initial condition setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="0" caption="全領域一定とする" />
-									<Enumeration value="1" caption="水域ごとに可変とする" />
+									<Enumeration value="0" caption="Constant for all areas" />
+									<Enumeration value="1" caption="Variable for each area" />
 								</Enumerations>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -753,15 +753,15 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="PARA_INT6_FIX" caption="         各層ごとの COD・リン・窒素・溶存酸素量の初期値 (mg/L)">
+						<Item name="PARA_INT6_FIX" caption="       Initial values of COD, phosphorus, nitrogen and dissolved oxygen in each layer (mg/L)">
 							<Definition conditionType="functional" >
-								<Parameter name="LAY_FIX21" valueType="real" caption="層"/>
+								<Parameter name="LAY_FIX21" valueType="real" caption="Layer"/>
 								<Value name="COD6_FIX" valueType="real" caption="COD"/>
-								<Value name="RIN6_FIX" valueType="real" caption="無機態リン"/>
-								<Value name="RON6_FIX" valueType="real" caption="有機態リン"/>
-								<Value name="TIN6_FIX" valueType="real" caption="無機態窒素"/>
-								<Value name="TON6_FIX" valueType="real" caption="有機態窒素"/>
-								<Value name="DO6_FIX"  valueType="real" caption="溶存酸素量"/>
+								<Value name="RIN6_FIX" valueType="real" caption="Inorganic phosphorus"/>
+								<Value name="RON6_FIX" valueType="real" caption="Organic phosphorus"/>
+								<Value name="TIN6_FIX" valueType="real" caption="Inorganic nitrogen"/>
+								<Value name="TON6_FIX" valueType="real" caption="Organic nitrogen"/>
+								<Value name="DO6_FIX"  valueType="real" caption="Dissolved oxygen"/>
 								<Dependency>
 									<Condition type="and">
 								  		<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -772,8 +772,8 @@
 							</Definition>
 						</Item>
 					</GroupBox>
-					<GroupBox caption="生態系（簡易）モデル拡散計算の緒係数（定数）">
-						<Item name="RAT_TOCOP_FIX6" caption="         全有機物・有機態リン比 (TOC/OP)（無次元）">
+					<GroupBox caption="Coefficients (constants) for ecosystem (simple) model diffusion calculations">
+						<Item name="RAT_TOCOP_FIX6" caption="     Total organic compound/organic phosphorus ratio (TOC/OP) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -781,7 +781,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_TOCON_FIX6" caption="         全有機物・有機態窒素比 (TOC/ON)（無次元）">
+						<Item name="RAT_TOCON_FIX6" caption="     Total organic compound/organic nitrogen ratio (TOC/ON) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -789,7 +789,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_CODTOC_FIX6" caption="         COD・全有機物比 (COD/TOC)（無次元）">
+						<Item name="RAT_CODTOC_FIX6" caption="     COD/total organic compound ratio (COD/TOC) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -797,7 +797,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_DOTOC_FIX6" caption="         DO・全有機物比 (DO/TOC)（無次元）">
+						<Item name="RAT_DOTOC_FIX6" caption="     DO/total organic compound ratio (DO/TOC) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -805,7 +805,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="PADM_DO_FIX6" caption="         溶存酸素量の再曝気係数(1/day)">
+						<Item name="PADM_DO_FIX6" caption="     Reaeration factor for dissolved oxygen concentration (1/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -814,12 +814,12 @@
 							</Definition>
 						</Item>
 					</GroupBox>
-					<GroupBox caption="生態系（一般）モデル拡散計算の緒係数（変数）">
-						<Item name="DIF_PARA6_FIX" caption="     拡散計算の緒係数設定方法">
+					<GroupBox caption="Coefficients (variables) for ecosystem (simple) model diffusion calculations">
+						<Item name="DIF_PARA6_FIX" caption="     Method of setting coefficients for diffusion calculation">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="0" caption="全領域一定とする" />
-									<Enumeration value="1" caption="水域ごとに可変とする" />
+									<Enumeration value="0" caption="Constant for all areas" />
+									<Enumeration value="1" caption="Variable for each area" />
 								</Enumerations>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -827,12 +827,12 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIF_RIN_FIX6" caption="         有機態リンの生産速度・浄化係数・沈降速度">
+						<Item name="DIF_RIN_FIX6" caption="         Production rate, breakdown rate, and sedimentation rate of organic phosphorus">
 							<Definition conditionType="functional" >
-								<Parameter name="LAY_FIX23" valueType="real" caption="層"/>
-								<Value name="PRC_RIN6_FIX" valueType="real" caption="生産速度(1/day)"/>
-								<Value name="DCY_RIN6_FIX" valueType="real" caption="浄化係数(1/day)"/>
-								<Value name="WSC_RIN6_FIX" valueType="real" caption="沈降速度(m/day)"/>
+								<Parameter name="LAY_FIX23" valueType="real" caption="Layer"/>
+								<Value name="PRC_RIN6_FIX" valueType="real" caption="Production speed (1/day)"/>
+								<Value name="DCY_RIN6_FIX" valueType="real" caption="Breakdown rate (1/day)"/>
+								<Value name="WSC_RIN6_FIX" valueType="real" caption="Sedimentation velocity (m/day)"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -842,7 +842,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="BRG_RIN_FIX6" caption="         無機態リンの底面からの溶出量 (mg/m**2/day)">
+						<Item name="BRG_RIN_FIX6" caption="         Elution amount of inorganic phosphorus from the bottom surface (mg/m**2/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="and">
@@ -853,12 +853,12 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIF_TNT_FIX6" caption="         有機態窒素の生産速度・浄化係数・沈降速度">
+						<Item name="DIF_TNT_FIX6" caption="         Production rate, breakdown rate, and sedimentation rate of organic nitrogen">
 							<Definition conditionType="functional" >
-								<Parameter name="LAY_FIX24" valueType="real" caption="層"/>
-								<Value name="PRC_TNT6_FIX" valueType="real" caption="生産速度(1/day)"/>
-								<Value name="DCY_TNT6_FIX" valueType="real" caption="浄化係数(1/day)"/>
-								<Value name="WSC_TNT6_FIX" valueType="real" caption="沈降速度(m/day)"/>
+								<Parameter name="LAY_FIX24" valueType="real" caption="Layer"/>
+								<Value name="PRC_TNT6_FIX" valueType="real" caption="Production speed (1/day)"/>
+								<Value name="DCY_TNT6_FIX" valueType="real" caption="Breakdown rate (1/day)"/>
+								<Value name="WSC_TNT6_FIX" valueType="real" caption="Sedimentation velocity (m/day)"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -868,7 +868,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="BRG_TNT_FIX6" caption="         無機態窒素の底面からの溶出量 (mg/m**2/day)">
+						<Item name="BRG_TNT_FIX6" caption="         Elution amount of inorganic nitrogen from the bottom surface (mg/m**2/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="and">
@@ -879,12 +879,12 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIF_COD_FIX6" caption="         有機態ＣＯＤの・浄化係数・沈降速度">
+						<Item name="DIF_COD_FIX6" caption="         Breakdown rate, Sedimentation velocity of organic COD">
 							<Definition conditionType="functional" >
-								<Parameter name="LAY_FIX25" valueType="real" caption="層"/>
-								<!--<Value name="PRC_COD6_FIX" valueType="real" caption="生産速度(1/day)"/>-->
-								<Value name="DCY_COD6_FIX" valueType="real" caption="浄化係数(1/day)"/>
-								<Value name="WSC_COD6_FIX" valueType="real" caption="沈降速度(m/day)"/>
+								<Parameter name="LAY_FIX25" valueType="real" caption="Layer"/>
+								<!--<Value name="PRC_COD6_FIX" valueType="real" caption="Production speed (1/day)"/>-->
+								<Value name="DCY_COD6_FIX" valueType="real" caption="Breakdown rate (1/day)"/>
+								<Value name="WSC_COD6_FIX" valueType="real" caption="Sedimentation velocity (m/day)"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -894,7 +894,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="BRG_COD_FIX6" caption="         有機態ＣＯＤの底面からの溶出量 (mg/m**2/day)">
+						<Item name="BRG_COD_FIX6" caption="         Elution amount of organic COD from the bottom (mg/m**2/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="and">
@@ -905,11 +905,11 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="CND_DO_FIX6" caption="         溶存酸素量の生産速度・消費（分解）速度">
+						<Item name="CND_DO_FIX6" caption="         Production rate, consumption (breakdown) rate of dissolved oxygen">
 							<Definition conditionType="functional" >
-								<Parameter name="LAY_FIX26" valueType="real" caption="層"/>
-								<Value name="PRC_DO6_FIX" valueType="real" caption="生産速度(1/day)"/>
-								<Value name="DCY_DO6_FIX" valueType="real" caption="消費速度(1/day)"/>
+								<Parameter name="LAY_FIX26" valueType="real" caption="Layer"/>
+								<Value name="PRC_DO6_FIX" valueType="real" caption="Production speed (1/day)"/>
+								<Value name="DCY_DO6_FIX" valueType="real" caption="Consumption speed (1/day)"/>
 								<Dependency>
 									<Condition type="and">
 										<Condition type="isEqual" target="ICON_07" value="2"/>
@@ -919,7 +919,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="CNB_DO_FIX6" caption="         溶存酸素量の底面での消費速度 (mg/m**2/day)">
+						<Item name="CNB_DO_FIX6" caption="         Dissolved oxygen consumption rate at the bottom (mg/m**2/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="and">
@@ -934,17 +934,17 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 10" caption="生態系（詳細）モデル拡散計算用パラメーター">
+		<Tab name="Diffusion condition 10" caption="Parameters for ecosystem (detailed) model diffusion calculation">
 		</Tab>
-		<Tab name="Diffusion condition 11" caption=" + 生態系（詳細）モデルの初期値">
+		<Tab name="Diffusion condition 11" caption="+ Initial value of ecosystem (detailed) model">
 			<Content>
 				<Items>
-					<GroupBox caption="生態系（詳細）モデルの初期値">
-						<Item name="DIF_INT10_FIX" caption="     拡散計算の初期条件設定方法">
+					<GroupBox caption="Initial value of ecosystem (detailed) model">
+						<Item name="DIF_INT10_FIX" caption="     How to set initial conditions for diffusion calculation">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="0" caption="全領域一定とする" />
-									<Enumeration value="1" caption="水域ごとに可変とする" />
+									<Enumeration value="0" caption="Constant for all areas" />
+									<Enumeration value="1" caption="Variable for each area" />
 								</Enumerations>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -952,7 +952,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="MPN_COUNT" caption="     考慮する植物プランクトンの種類数（最大 6種まで）">
+						<Item name="MPN_COUNT" caption="     Number of phytoplankton species to consider (up to 6 species)">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1" max="6">
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -960,7 +960,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="ZPN_COUNT" caption="     考慮する動物プランクトンの種類数（最大 6種まで）">
+						<Item name="ZPN_COUNT" caption="     Number of zooplankton species to consider (up to 6 species)">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1" max="6">
 								<Dependency>
 						  			<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -968,16 +968,16 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<GroupBox caption=" 初期値">
- 							<Item name="DIF_INT_MPN01" caption="     各層ごとの植物プランクトン濃度の初期値 (μg/L)">
+						<GroupBox caption="Initial value">
+ 							<Item name="DIF_INT_MPN01" caption="     Initial value of phytoplankton concentration in each layer (μg/L)">
 								<Definition conditionType="functional" >
-									<Parameter name="MPN_FIX31" valueType="real" caption="層"/>
-									<Value name="MPN01_FIX"  valueType="real" caption="植物プランクトン①"/>
-									<Value name="MPN02_FIX"  valueType="real" caption="植物プランクトン②"/>
-									<Value name="MPN03_FIX"  valueType="real" caption="植物プランクトン③"/>
-									<Value name="MPN04_FIX"  valueType="real" caption="植物プランクトン④"/>
-									<Value name="MPN05_FIX"  valueType="real" caption="植物プランクトン⑤"/>
-									<Value name="MPN06_FIX"  valueType="real" caption="植物プランクトン⑥"/>
+									<Parameter name="MPN_FIX31" valueType="real" caption="Layer"/>
+									<Value name="MPN01_FIX"  valueType="real" caption="Phytoplankton①"/>
+									<Value name="MPN02_FIX"  valueType="real" caption="Phytoplankton②"/>
+									<Value name="MPN03_FIX"  valueType="real" caption="Phytoplankton③"/>
+									<Value name="MPN04_FIX"  valueType="real" caption="Phytoplankton④"/>
+									<Value name="MPN05_FIX"  valueType="real" caption="Phytoplankton⑤"/>
+									<Value name="MPN06_FIX"  valueType="real" caption="Phytoplankton⑥"/>
 									<Dependency>
 										<Condition type="and">
 							  				<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -987,15 +987,15 @@
 									</Dependency>
 								</Definition>
 							</Item>
-							<Item name="DIF_INT_ZPN01" caption="     各層ごとの動物プランクトン濃度の初期値 (μg/L)">
+							<Item name="DIF_INT_ZPN01" caption="     Initial value of zooplankton concentration in each layer  (μg/L)">
 								<Definition conditionType="functional" >
-									<Parameter name="ZPN_FIX32" valueType="real" caption="層"/>
-									<Value name="ZPN01_FIX"  valueType="real" caption="動物プランクトン①"/>
-									<Value name="ZPN02_FIX"  valueType="real" caption="動物プランクトン②"/>
-									<Value name="ZPN03_FIX"  valueType="real" caption="動物プランクトン③"/>
-									<Value name="ZPN04_FIX"  valueType="real" caption="動物プランクトン④"/>
-									<Value name="ZPN05_FIX"  valueType="real" caption="動物プランクトン⑤"/>
-									<Value name="ZPN06_FIX"  valueType="real" caption="動物プランクトン⑥"/>
+									<Parameter name="ZPN_FIX32" valueType="real" caption="Layer"/>
+									<Value name="ZPN01_FIX"  valueType="real" caption="Zooplankton①"/>
+									<Value name="ZPN02_FIX"  valueType="real" caption="Zooplankton②"/>
+									<Value name="ZPN03_FIX"  valueType="real" caption="Zooplankton③"/>
+									<Value name="ZPN04_FIX"  valueType="real" caption="Zooplankton④"/>
+									<Value name="ZPN05_FIX"  valueType="real" caption="Zooplankton⑤"/>
+									<Value name="ZPN06_FIX"  valueType="real" caption="Zooplankton⑥"/>
 									<Dependency>
 										<Condition type="and">
 								  			<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1005,17 +1005,25 @@
 									</Dependency>
 								</Definition>
 							</Item>
-							<Item name="PARA_INT10_FIX" caption="     各層ごとのリン・窒素・溶存酸素量・浮遊物質濃度の初期値 (mg/L)">
+							<Item name="PARA_INT10_FIX" caption="     Initial values of phosphorus, nitrogen, dissolved oxygen, and suspended solids concentration for each layer (mg/L)">
 								<Definition conditionType="functional" >
-									<Parameter name="LAY_FIX33" valueType="real" caption="層"/>
-									<Value name="PIN10_FIX"  valueType="real" caption="無機態リン"/>
-									<Value name="PDO10_FIX"  valueType="real" caption="溶存態有機リン"/>
-									<Value name="PPO10_FIX"  valueType="real" caption="懸濁態有機リン"/>
-									<Value name="TNI10_FIX"  valueType="real" caption="無機態窒素"/>
-									<Value name="TNDO10_FIX" valueType="real" caption="溶存態有機窒素"/>
-									<Value name="TNPO10_FIX" valueType="real" caption="懸濁態有機窒素"/>
-									<Value name="DO10_FIX"   valueType="real" caption="溶存酸素量"/>
-									<Value name="SS10_FIX"   valueType="real" caption="浮遊物質(SS)"/>
+									<Parameter name="LAY_FIX33" valueType="real" caption="Layer"/>
+									<Value name="PIN10_FIX"  valueType="real" caption="DIP"/>
+									<Value name="PDO10_FIX"  valueType="real" caption="DOP"/>
+									<Value name="PPO10_FIX"  valueType="real" caption="POP"/>
+									<Value name="TNI10_FIX"  valueType="real" caption="DIN"/>
+									<Value name="TNDO10_FIX" valueType="real" caption="DON"/>
+									<Value name="TNPO10_FIX" valueType="real" caption="PON"/>
+									<Value name="DO10_FIX"   valueType="real" caption="DO"/>
+									<Value name="SS10_FIX"   valueType="real" caption="SS"/>
+									<!--<Value name="PIN10_FIX"  valueType="real" caption="inorganic phosphorus"/>
+									<Value name="PDO10_FIX"  valueType="real" caption="Dissolved organic phosphorus"/>
+									<Value name="PPO10_FIX"  valueType="real" caption="Particulate organic phosphorus"/>
+									<Value name="TNI10_FIX"  valueType="real" caption="Inorganic nitrogen"/>
+									<Value name="TNDO10_FIX" valueType="real" caption="Dissolved organic nitrogen"/>
+									<Value name="TNPO10_FIX" valueType="real" caption="Particulate organic nitrogen"/>
+									<Value name="DO10_FIX"   valueType="real" caption="Dissolved oxygen"/>
+									<Value name="SS10_FIX"   valueType="real" caption="Suspended solids (SS)"/>-->
 									<Dependency>
 										<Condition type="and">
 									  		<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1030,75 +1038,75 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 12" caption=" + 植物プランクトンのパラメーター">
+		<Tab name="Diffusion condition 12" caption="+ Phytoplankton parameters">
 			<Content>
 				<Items>
- 					<GroupBox caption=" 植物プランクトンのパラメーター">
-						<Item name="PARA_PRC_MPN10" caption="     生物増殖速度">
+ 					<GroupBox caption="Phytoplankton parameters">
+						<Item name="PARA_PRC_MPN10" caption="     Biological growth rate">
 							<Definition conditionType="functional" >
-								<Parameter name="MPN_FIX41" valueType="real" caption="植物プランクトン種"/>
-								<Value name="PRCA10_CHL_FIX" valueType="real" caption="０度における生物増殖速度(1/day)"/>
-								<Value name="PRCB10_CHL_FIX" valueType="real" caption="生物増殖速度の温度係数(1/℃)"/>
+								<Parameter name="MPN_FIX41" valueType="real" caption="Phytoplankton species"/>
+								<Value name="PRCA10_CHL_FIX" valueType="real" caption="Biological growth rate at 0 degrees (1/day)"/>
+								<Value name="PRCB10_CHL_FIX" valueType="real" caption="Temperature coefficient of biological growth rate (1/℃)"/>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="PARA_DTC_MPN10" caption="     枯死速度">
+						<Item name="PARA_DTC_MPN10" caption="     Mortality rate">
 							<Definition conditionType="functional" >
-								<Parameter name="MPN_FIX42" valueType="real" caption="植物プランクトン種"/>
-								<Value name="DTCA10_CHL_FIX" valueType="real" caption="20 度における枯死速度(1/day)"/>
-								<Value name="DTCB10_CHL_FIX" valueType="real" caption="枯死速度の温度係数(1/℃)"/>
+								<Parameter name="MPN_FIX42" valueType="real" caption="Phytoplankton species"/>
+								<Value name="DTCA10_CHL_FIX" valueType="real" caption="Mortality rate at 20 degrees (1/day)"/>
+								<Value name="DTCB10_CHL_FIX" valueType="real" caption="Temperature coefficient of mortality rate (1/℃)"/>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="PARA_BRT_MPN10" caption="     呼吸速度">
+						<Item name="PARA_BRT_MPN10" caption="     Respiration rate">
 							<Definition conditionType="functional" >
-								<Parameter name="MPN_FIX43" valueType="real" caption="植物プランクトン種"/>
-								<Value name="BRTA10_CHL_FIX" valueType="real" caption="20 度における呼吸速度(1/day)"/>
-								<Value name="BRTB10_CHL_FIX" valueType="real" caption="呼吸速度の温度係数(1/℃)"/>
+								<Parameter name="MPN_FIX43" valueType="real" caption="Phytoplankton species"/>
+								<Value name="BRTA10_CHL_FIX" valueType="real" caption="Respiration rate at 20 degrees (1/day)"/>
+								<Value name="BRTB10_CHL_FIX" valueType="real" caption="Temperature coefficient of respiration rate (1/℃)"/>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="PARA_BMT_MPN10" caption="     最適水温・最適日射量">
+						<Item name="PARA_BMT_MPN10" caption="     Optimum water temperature/Optimum amount of solar radiation">
 							<Definition conditionType="functional" >
-								<Parameter name="MPN_FIX44" valueType="real" caption="植物プランクトン種"/>
-								<Value name="BTM10_CHL_FIX" valueType="real" caption="最適水温(℃)"/>
-								<Value name="FIS10_CHL_FIX" valueType="real" caption="最適日射量(cal/cm**2/day)"/>
+								<Parameter name="MPN_FIX44" valueType="real" caption="Phytoplankton species"/>
+								<Value name="BTM10_CHL_FIX" valueType="real" caption="Optimum water temperature(℃)"/>
+								<Value name="FIS10_CHL_FIX" valueType="real" caption="Optimal solar radiation (cal/cm**2/day)"/>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="PARA_WSC_MPN10" caption="     沈降速度">
+						<Item name="PARA_WSC_MPN10" caption="     Sedimentation velocity">
 							<Definition conditionType="functional" >
-								<Parameter name="MPN_FIX45" valueType="real" caption="植物プランクトン種"/>
-								<Value name="WSC10_CHL_FIX" valueType="real" caption="沈降速度(m/day)"/>
+								<Parameter name="MPN_FIX45" valueType="real" caption="Phytoplankton species"/>
+								<Value name="WSC10_CHL_FIX" valueType="real" caption="Sedimentation velocity (m/day)"/>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="PARA_GCA_MPN10" caption="     細胞外分泌">
+						<Item name="PARA_GCA_MPN10" caption="     Extracellular release">
 							<Definition conditionType="functional" >
-								<Parameter name="MPN_FIX46" valueType="real" caption="植物プランクトン種"/>
-								<Value name="EXR10_CHL_FIX" valueType="real" caption="植物プランクトンの細胞外分泌(%)"/>
+								<Parameter name="MPN_FIX46" valueType="real" caption="Phytoplankton species"/>
+								<Value name="EXR10_CHL_FIX" valueType="real" caption="Extracellular release of phytoplankton (%)"/>
 								<Dependency>
 							  		<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTCL10_CHL_FIX" caption="     植物プランクトン・クロロフィルα比 (C/Chl_a)">
+						<Item name="RTCL10_CHL_FIX" caption="     Phytoplankton to chlorophyll α ratio (C/Chl_a)">
 							<Definition conditionType="constant" valueType="real" option="false" default="50.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1107,11 +1115,11 @@
 							</Definition>
 						</Item>
 						<!--<GroupBox caption=" 水面での光量">
-							<Item name="DIF_PARA10_FIX" caption="     設定方法">
+							<Item name="DIF_PARA10_FIX" caption="     Setting method">
 								<Definition conditionType="constant" valueType="integer" option="true" default="1">
 									<Enumerations>
-										<Enumeration value="0" caption="全領域一定とする" />
-										<Enumeration value="1" caption="水域ごとに可変とする" />
+										<Enumeration value="0" caption="Constant for all areas" />
+										<Enumeration value="1" caption="Variable for each area" />
 									</Enumerations>
 									<Dependency>
 								  		<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1136,11 +1144,11 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 13" caption=" + 動物プランクトンのパラメーター">
+		<Tab name="Diffusion condition 13" caption="+ Zooplankton parameters">
 			<Content>
 				<Items>
-					<GroupBox caption=" 動物プランクトン">
-						<Item name="DIF_ZPN_IVL" caption="     捕食に関する Ivlev定数(1/(mg/m**3))">
+					<GroupBox caption="Zooplankton">
+						<Item name="DIF_ZPN_IVL" caption="     Ivlev constant for ingestion (1/(mg/m**3))">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.01">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1148,7 +1156,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIF_ZPN_ZSC" caption="     捕食に関する摂食閾値(mg/m**3)">
+						<Item name="DIF_ZPN_ZSC" caption="     Ingestion threshold for ingestion (mg/m**3)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1156,29 +1164,29 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIF_ZPN_FIX11" caption="     摂食速度">
+						<Item name="DIF_ZPN_FIX11" caption="     Ingestion rate">
 							<Definition conditionType="functional" >
-								<Parameter name="ZPN_FIX51" valueType="real" caption="動物プランクトン種"/>
-								<Value name="ALZE_ZPN10_FIX" valueType="real" caption="20 度における摂食速度(1/day)"/>
-								<Value name="BTZE_ZPN10_FIX" valueType="real" caption="摂食速度の温度係数(1/℃)"/>
+								<Parameter name="ZPN_FIX51" valueType="real" caption="Zooplankton species"/>
+								<Value name="ALZE_ZPN10_FIX" valueType="real" caption="Ingestion rate at 20 degrees (1/day)"/>
+								<Value name="BTZE_ZPN10_FIX" valueType="real" caption="Temperature coefficient of ingestion rate (1/℃)"/>
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIF_ZPN_FIX12" caption="     死亡速度">
+						<Item name="DIF_ZPN_FIX12" caption="     Mortality rate ">
 							<Definition conditionType="functional" >
-								<Parameter name="ZPN_FIX52" valueType="real" caption="動物プランクトン種"/>
-								<Value name="ALZD_ZPN10_FIX" valueType="real" caption="20 度における死亡速度(1/day)"/>
-								<Value name="BTZD_ZPN10_FIX" valueType="real" caption="死亡速度の温度係数(1/℃)"/>
+								<Parameter name="ZPN_FIX52" valueType="real" caption="Zooplankton species"/>
+								<Value name="ALZD_ZPN10_FIX" valueType="real" caption="Mortality rate at 20 degrees (1/day) "/>
+								<Value name="BTZD_ZPN10_FIX" valueType="real" caption="Temperature coefficient of mortality rate (1/℃) "/>
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="ZPE_ZPN10_FIX" caption="     同化効率">
+						<Item name="ZPE_ZPN10_FIX" caption="     Assimilation efficiency">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.7">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1186,7 +1194,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="ZPG_ZPN10_FIX" caption="     成長効率">
+						<Item name="ZPG_ZPN10_FIX" caption="     Growth efficiency">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.3">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1198,12 +1206,12 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 14" caption=" + リンのパラメーター">
+		<Tab name="Diffusion condition 14" caption="+ Phosphorus parameters">
 			<Content>
 				<Items>
-					<GroupBox caption="リンのパラメーター">
-						<GroupBox caption="  懸濁態有機リンの分解速度">
-							<Item name="PCYA_RIN10_FIX" caption="     20 度における分解速度(1/day)">
+					<GroupBox caption="Phosphorus parameters">
+						<GroupBox caption="  Breakdown rate of particulate organic phosphorus">
+							<Item name="PCYA_RIN10_FIX" caption="     Breakdown rate at 20 degrees (1/day)">
 								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 									<Dependency>
 										<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1211,7 +1219,7 @@
 									</Dependency>
 								</Definition>
 							</Item>
-							<Item name="PCYB_RIN10_FIX" caption="     分解速度の温度係数(1/℃)">
+							<Item name="PCYB_RIN10_FIX" caption="     Temperature coefficient of breakdown rate (1/℃)">
 								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 									<Dependency>
 										<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1219,25 +1227,7 @@
 									</Dependency>
 								</Definition>
 							</Item>
-							<Item name="PCYE_RIN10_FIX" caption="     余剰物生成の割合(％)">
-								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
-									<Dependency>
-										<Condition type="isEqual" target="ICON_07" value="3"/>
-										<Action type="enable"/>
-									</Dependency>
-								</Definition>
-							</Item>
-						</GroupBox>
-						<GroupBox caption="  溶存態有機リンの分解速度">
-							<Item name="DCYA_RIN10_FIX" caption="     20 度における分解速度(1/day)">
-								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
-									<Dependency>
-										<Condition type="isEqual" target="ICON_07" value="3"/>
-										<Action type="enable"/>
-									</Dependency>
-								</Definition>
-							</Item>
-							<Item name="DCYB_RIN10_FIX" caption="     分解速度の温度係数(1/℃)">
+							<Item name="PCYE_RIN10_FIX" caption="     Percentage of surplus formation (%)">
 								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 									<Dependency>
 										<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1246,7 +1236,25 @@
 								</Definition>
 							</Item>
 						</GroupBox>
-						<Item name="WSCD_RIN10_FIX" caption="    懸濁態有機リンの沈降速度(m/day)">
+						<GroupBox caption="  Breakdown rate of dissolved organic phosphorus">
+							<Item name="DCYA_RIN10_FIX" caption="     Breakdown rate at 20 degrees (1/day)">
+								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
+									<Dependency>
+										<Condition type="isEqual" target="ICON_07" value="3"/>
+										<Action type="enable"/>
+									</Dependency>
+								</Definition>
+							</Item>
+							<Item name="DCYB_RIN10_FIX" caption="     Temperature coefficient of breakdown rate (1/℃)">
+								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
+									<Dependency>
+										<Condition type="isEqual" target="ICON_07" value="3"/>
+										<Action type="enable"/>
+									</Dependency>
+								</Definition>
+							</Item>
+						</GroupBox>
+						<Item name="WSCD_RIN10_FIX" caption="    Sedimentation velocity of particulate organic phosphorus (m/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1254,13 +1262,13 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<GroupBox caption="  リンの底面溶出量・巻き上げ量">
-							<GroupBox caption="可変データ">
-								<Item name="DIF_PARA11_FIX" caption="     設定方法">
+						<GroupBox caption="  Amount of phosphorus eluted from bottom surface and amount of lifting up">
+							<GroupBox caption="  Variable data">
+								<Item name="DIF_PARA11_FIX" caption="     Setting method">
 									<Definition conditionType="constant" valueType="integer" option="true" default="1">
 										<Enumerations>
-											<Enumeration value="0" caption="全領域一定とする" />
-											<Enumeration value="1" caption="水域ごとに可変とする" />
+											<Enumeration value="0" caption="Constant for all areas" />
+											<Enumeration value="1" caption="Variable for each area" />
 										</Enumerations>
 										<Dependency>
 								  			<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1268,7 +1276,7 @@
 										</Dependency>
 									</Definition>
 								</Item>
-								<Item name="SPO_RIN10_FIX" caption="       巻き上がった SS 量に含まれる懸濁態有機リンの割合 (％)">
+								<Item name="SPO_RIN10_FIX" caption="       Percentage of particulate organic phosphorus contained in the amount of SS wound up (%)">
 									<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 										<Dependency>
 											<Condition type="and">
@@ -1279,7 +1287,7 @@
 										</Dependency>
 									</Definition>
 								</Item>
-								<Item name="BRGAR_RIN10_FIX" caption="       0 ℃における無機態リンの底面からの溶出速度 (mg/m**2/day)">
+								<Item name="BRGAR_RIN10_FIX" caption="       Elution rate of inorganic phosphorus from the bottom at 0℃ (mg/m**2/day)">
 									<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 										<Dependency>
 											<Condition type="and">
@@ -1291,8 +1299,8 @@
 									</Definition>
 								</Item>
 							</GroupBox>
-							<GroupBox caption="固定データ">
-								<Item name="BRGBT_RIN10_FIX" caption="       無機態リンの底面溶出に関する温度係数 (1/℃)">
+							<GroupBox caption="  Fixed data">
+								<Item name="BRGBT_RIN10_FIX" caption="       Temperature coefficient for bottom elution of inorganic phosphorus (1/℃)">
 									<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 										<Dependency>
 											<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1302,7 +1310,7 @@
 								</Item>
 							</GroupBox>
 						</GroupBox>
-						<Item name="SAT_RIN_FIX10" caption="    無機態リンの半飽和定数(g/m**3)">
+						<Item name="SAT_RIN_FIX10" caption="    Half saturation constant of inorganic phosphorus (g/m**3)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1310,7 +1318,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTPC_RIN10_FIX" caption="    植物プランクトン・リン比(Chl/P)（無次元）">
+						<Item name="RTPC_RIN10_FIX" caption="    Phytoplankton phosphorus ratio (Chl/P) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="20.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1318,7 +1326,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTPZ_RIN10_FIX" caption="    動物プランクトン・リン比(Zp/P)（無次元）">
+						<Item name="RTPZ_RIN10_FIX" caption="    Zooplankton phosphorus ratio (Zp/P) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="30.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1326,7 +1334,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTPCP_RIN10_FIX" caption="    全懸濁態有機物・懸濁態有機リン比(POC/POP)（無次元）">
+						<Item name="RTPCP_RIN10_FIX" caption="    Total particulate organic compound/particulate organic phosphorus ratio (POC/POP) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="100.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1334,7 +1342,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTDCP_RIN10_FIX" caption="    全溶存態有機物・溶存態有機リン比(DOC/DOP)（無次元）">
+						<Item name="RTDCP_RIN10_FIX" caption="    Total dissolved organic compound/dissolved organic phosphorus ratio (DOC/DOP) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="100.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1346,12 +1354,12 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 15" caption=" + 窒素のパラメーター">
+		<Tab name="Diffusion condition 15" caption="+ Nitrogen parameters">
 			<Content>
 				<Items>
-					<GroupBox caption="窒素のパラメーター">
-						<GroupBox caption="  懸濁態有機窒素の分解速度">
-							<Item name="PCYA_TNT10_FIX" caption="     20 度における分解速度(1/day)">
+					<GroupBox caption="Nitrogen parameters">
+						<GroupBox caption="  Breakdown rate of particulate organic nitrogen">
+							<Item name="PCYA_TNT10_FIX" caption="     Breakdown rate at 20 degrees (1/day)">
 								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 									<Dependency>
 										<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1359,7 +1367,7 @@
 									</Dependency>
 								</Definition>
 							</Item>
-							<Item name="PCYB_TNT10_FIX" caption="     分解速度の温度係数(1/℃)">
+							<Item name="PCYB_TNT10_FIX" caption="     Temperature coefficient of breakdown rate (1/℃)">
 								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 									<Dependency>
 										<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1367,25 +1375,7 @@
 									</Dependency>
 								</Definition>
 							</Item>
-							<Item name="PCYE_TNT10_FIX" caption="     余剰物生成の割合(％)">
-								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
-									<Dependency>
-										<Condition type="isEqual" target="ICON_07" value="3"/>
-										<Action type="enable"/>
-									</Dependency>
-								</Definition>
-							</Item>
-						</GroupBox>
-						<GroupBox caption="  溶存態有機窒素の分解速度">
-							<Item name="DCYA_TNT10_FIX" caption="     20 度における分解速度(1/day)">
-								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
-									<Dependency>
-										<Condition type="isEqual" target="ICON_07" value="3"/>
-										<Action type="enable"/>
-									</Dependency>
-								</Definition>
-							</Item>
-							<Item name="DCYB_TNT10_FIX" caption="     分解速度の温度係数(1/℃)">
+							<Item name="PCYE_TNT10_FIX" caption="     Percentage of surplus formation (%)">
 								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 									<Dependency>
 										<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1394,7 +1384,25 @@
 								</Definition>
 							</Item>
 						</GroupBox>
-						<Item name="WSCD_TNT10_FIX" caption="     懸濁態有機窒素の沈降速度(m/day)">
+						<GroupBox caption="  Breakdown rate of dissolved organic nitrogen">
+							<Item name="DCYA_TNT10_FIX" caption="     Breakdown rate at 20 degrees (1/day)">
+								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
+									<Dependency>
+										<Condition type="isEqual" target="ICON_07" value="3"/>
+										<Action type="enable"/>
+									</Dependency>
+								</Definition>
+							</Item>
+							<Item name="DCYB_TNT10_FIX" caption="     Temperature coefficient of breakdown rate (1/℃)">
+								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
+									<Dependency>
+										<Condition type="isEqual" target="ICON_07" value="3"/>
+										<Action type="enable"/>
+									</Dependency>
+								</Definition>
+							</Item>
+						</GroupBox>
+						<Item name="WSCD_TNT10_FIX" caption="     Sedimentation velocity of particulate organic nitrogen (m/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1402,13 +1410,13 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<GroupBox caption="  窒素の底面溶出量・巻き上げ量">
-							<GroupBox caption="可変データ">
-								<Item name="DIF_PARA12_FIX" caption="     設定方法">
+						<GroupBox caption="  Amount of nitrogen eluted from the bottom and rolled up">
+							<GroupBox caption="  Variable data">
+								<Item name="DIF_PARA12_FIX" caption="     Setting method">
 									<Definition conditionType="constant" valueType="integer" option="true" default="1">
 										<Enumerations>
-											<Enumeration value="0" caption="全領域一定とする" />
-											<Enumeration value="1" caption="水域ごとに可変とする" />
+											<Enumeration value="0" caption="Constant for all areas" />
+											<Enumeration value="1" caption="Variable for each area" />
 										</Enumerations>
 										<Dependency>
 							  				<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1416,7 +1424,7 @@
 										</Dependency>
 									</Definition>
 								</Item>
-								<Item name="SPO_TNT10_FIX" caption="       巻き上がった SS 量に含まれる懸濁態有機窒素の割合 (％)">
+								<Item name="SPO_TNT10_FIX" caption="       Percentage of particulate organic nitrogen contained in the amount of SS wound up (%)">
 									<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 										<Dependency>
 											<Condition type="and">
@@ -1427,7 +1435,7 @@
 										</Dependency>
 									</Definition>
 								</Item>
-								<Item name="BRGAR_TNT10_FIX" caption="       0 ℃におけるアンモニア態窒素の底面からの溶出速度 (mg/m**2/day)">
+								<Item name="BRGAR_TNT10_FIX" caption="       Elution rate of ammonium nitrogen from the bottom at 0 ℃(mg/m**2/day)">
 									<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 										<Dependency>
 											<Condition type="and">
@@ -1439,8 +1447,8 @@
 									</Definition>
 								</Item>
 							</GroupBox>
-							<GroupBox caption="固定データ">
-								<Item name="BRGBT_TNT10_FIX" caption="       アンモニア態窒素の底面溶出に関する温度係数 (1/℃)">
+							<GroupBox caption="  Fixed data">
+								<Item name="BRGBT_TNT10_FIX" caption="       Temperature coefficient for bottom elution of ammonium nitrogen (1/℃)">
 					　				<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 										<Dependency>
 											<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1450,7 +1458,7 @@
 								</Item>
 							</GroupBox>
 						</GroupBox>
-						<Item name="SAT_TNT_FIX10" caption="    無機態窒素の半飽和定数(g/m**3)">
+						<Item name="SAT_TNT_FIX10" caption="    Half saturation constant of inorganic nitrogen (g/m**3)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.5">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1458,7 +1466,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTPC_TNT10_FIX" caption="    植物プランクトン・窒素比(Chl/N)（無次元）">
+						<Item name="RTPC_TNT10_FIX" caption="    Phytoplankton to nitrogen ratio (Chl/N) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="5.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1466,7 +1474,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTPZ_TNT10_FIX" caption="    動物プランクトン・窒素比(Zp/N)（無次元）">
+						<Item name="RTPZ_TNT10_FIX" caption="    Zooplankton to nitrogen ratio (Zp/N) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="4.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1474,7 +1482,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTPCN_TNT10_FIX" caption="    全懸濁態有機物・懸濁態有機窒素比(POC/PON)（無次元）">
+						<Item name="RTPCN_TNT10_FIX" caption="    Total particulate organic compound/particulate organic nitrogen ratio (POC/PON) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="30.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1482,7 +1490,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RTDCN_TNT10_FIX" caption="    全溶存態有機物・溶存態有機窒素比(DOC/DON)（無次元）">
+						<Item name="RTDCN_TNT10_FIX" caption="    Total dissolved organic compound/dissolved organic nitrogen ratio (DOC/DON) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="30.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1494,16 +1502,16 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 16" caption=" + 溶存酸素量のパラメーター">
+		<Tab name="Diffusion condition 16" caption="+ Dissolved oxygen parameter">
 			<Content>
 				<Items>
-					<GroupBox caption="溶存酸素量のパラメーター">
-						<GroupBox caption="  溶存酸素量の消費速度">
-							<Item name="DIF_PARA13_FIX" caption="     設定方法">
+					<GroupBox caption="Dissolved oxygen parameter">
+						<GroupBox caption="  Dissolved oxygen consumption rate">
+							<Item name="DIF_PARA13_FIX" caption="     Setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 									<Enumerations>
-										<Enumeration value="0" caption="全領域一定とする" />
-										<Enumeration value="1" caption="水域ごとに可変とする" />
+										<Enumeration value="0" caption="Constant for all areas" />
+										<Enumeration value="1" caption="Variable for each area" />
 									</Enumerations>
 									<Dependency>
 						  				<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1511,7 +1519,7 @@
 									</Dependency>
 								</Definition>
 							</Item>
-							<Item name="CNB_DO_FIX10" caption="        溶存酸素量の底面での消費速度 (mg/m**2/day)">
+							<Item name="CNB_DO_FIX10" caption="        Dissolved oxygen consumption rate at the bottom (mg/m**2/day)">
 								<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 									<Dependency>
 										<Condition type="and">
@@ -1523,7 +1531,7 @@
 								</Definition>
 							</Item>
 						</GroupBox>
-						<Item name="PADM_DO_FIX10" caption="     溶存酸素量の再曝気係数(1/day)">
+						<Item name="PADM_DO_FIX10" caption="     Reaeration factor for dissolved oxygen concentration (1/day)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.5">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1531,7 +1539,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="SAT_DO_FIX10" caption="     溶存酸素量の半飽和定数(mg/L)">
+						<Item name="SAT_DO_FIX10" caption="     Half saturation constant of dissolved oxygen (mg/L)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.5">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1539,7 +1547,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_DOCHL_FIX10" caption="     DO・植物プランクトン比 (DO/Chl)（無次元）">
+						<Item name="RAT_DOCHL_FIX10" caption="     DO/phytoplankton ratio (DO/Chl) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="10.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1547,7 +1555,7 @@
 								</Dependency>
 							</Definition>
 						</Item>							
-						<Item name="RAT_DOZP_FIX10" caption="     DO・動物プランクトン比 (DO/Zp)（無次元）">
+						<Item name="RAT_DOZP_FIX10" caption="     DO/zooplankton ratio (DO/Zp) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="3.5">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1555,7 +1563,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_DOPOP_FIX10" caption="     DO・懸濁態有機物比 (DO/Cpoc)（無次元）">
+						<Item name="RAT_DOPOP_FIX10" caption="     DO/particulate organic compound ratio (DO/Cpoc) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="3.5">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1563,7 +1571,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_DODOP_FIX10" caption="     DO・溶存態有機物比 (DO/Cdoc)（無次元）">
+						<Item name="RAT_DODOP_FIX10" caption="     DO/dissolved organic compound ratio (DO/Cdoc) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="3.5">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1575,11 +1583,11 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 17" caption=" + CODのパラメーター">
+		<Tab name="Diffusion condition 17" caption="+ COD parameters">
 			<Content>
 				<Items>
-					<GroupBox caption="CODのパラメーター">
-						<Item name="RAT_CDCHL_FIX10" caption="     COD・植物プランクトン比 (COD/Chl)（無次元）">
+					<GroupBox caption="COD parameters">
+						<Item name="RAT_CDCHL_FIX10" caption="     COD/phytoplankton ratio (COD/Chl) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="1.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1587,7 +1595,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_CDZP_FIX10" caption="     COD・動物プランクトン比 (COD/Zp)（無次元）">
+						<Item name="RAT_CDZP_FIX10" caption="     COD/zooplankton ratio (COD/Zp) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="1.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1595,7 +1603,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_CDPOP_FIX10" caption="     COD・懸濁態有機物比 (COD/Cpoc)（無次元）">
+						<Item name="RAT_CDPOP_FIX10" caption="     COD/particulate organic compound ratio (COD/Cpoc) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="1.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1603,7 +1611,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="RAT_CDDOP_FIX10" caption="     COD・溶存態有機物比 (COD/Cdoc)（無次元）">
+						<Item name="RAT_CDDOP_FIX10" caption="     COD/dissolved organic compound ratio (COD/Cdoc) (dimensionless)">
 							<Definition conditionType="constant" valueType="real" option="false" default="1.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
@@ -1615,27 +1623,27 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 18" caption=" + 浮遊物質(SS)のパラメーター">
+		<Tab name="Diffusion condition 18" caption="+ Suspended solids (SS) parameters">
 			<Content>
 				<Items>
-					<GroupBox caption="SSのパラメーター">
-						<Item name="DIF_SS_FORM" caption="     沈降速度式">
+					<GroupBox caption="SS parameters">
+						<Item name="DIF_SS_FORM" caption="     Sedimentation velocity formula">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
-									<Enumeration value="1" caption="Stokes の式" />
-									<Enumeration value="2" caption="Rubey の式" />
+									<Enumeration value="1" caption="Stokes formula" />
+									<Enumeration value="2" caption="Rubey formula" />
 								</Enumerations>
 					  			<Condition type="isEqual" target="ICON_07" value="3"/>
 							</Definition>
 						</Item>
-						<Item name="CNB_SS_DPAI10" caption="     細粒土粒子の平均粒径 (mm)">
+						<Item name="CNB_SS_DPAI10" caption="     Average particle size of fine soil particles (mm)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0">
 								<Dependency>
 									<Condition type="isEqual" target="ICON_07" value="3"/>
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="CNB_SS_SGM10" caption="     細粒土粒子の密度 (kg/m**3)">
+						<Item name="CNB_SS_SGM10" caption="     Density of fine soil particles (kg/m**3)">
 							<Definition conditionType="constant" valueType="real" option="false" default="2650.0">
 								<Condition type="isEqual" target="ICON_07" value="3"/>
 							</Definition>
@@ -1668,7 +1676,7 @@
 		</Item>
 		<Item name="AREA_CORD" caption="Area code">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<Item name="IAREA" caption="Data source of initial condition">
+				<Item name="IAREA" caption="Data sources of initial condition">
 					<Definition conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
@@ -1680,7 +1688,7 @@
 				</Item>
 				<GroupBox caption="River survey file">
 					<HBoxLayout>
-						<Label row="0" col="0" caption="     River survey file name"/>
+						<Label row="0" col="0" caption="River survey file name"/>
 						<Item row="0" col="1" name="SURVEY_FILE" >
 							<Definition conditionType="constant" valueType="filename" option="false" default="Select File" keepOrder="true">
 							<Condition type="or">
@@ -1692,7 +1700,7 @@
 						</Item>
 					</HBoxLayout>
 					<HBoxLayout>
-						<Label row="0" col="0" caption="     Initial water-elevation at downstream"/>
+						<Label row="0" col="0" caption="Initial water-elevation at downstream"/>
 						<Item row="1" col="0" name="HQ_00" >
 							<Definition conditionType="constant" valueType="real" option="true" default="0" keepOrder="true">
 							<Condition type="or">
@@ -1702,7 +1710,7 @@
 								<Action type="enable" />
 							</Definition>
 						</Item>
-						<Label row="0" col="1" caption="     Initial water-surface slope"/>
+						<Label row="0" col="1" caption="Initial water-surface gradient"/>
 						<Item row="1" col="1" name="DSX_00" >
 							<Definition conditionType="constant" valueType="real" option="true" default="0" keepOrder="true">
 							<Condition type="or">
@@ -1715,7 +1723,7 @@
 					</HBoxLayout>
 				</GroupBox>
 				<GroupBox caption="Water surface elevation (flat)">
-					<Item name="WATER_S" caption="     Water surface elevation">
+					<Item name="WATER_S" caption="Water surface elevation">
 						<Definition conditionType="constant" valueType="real" option="true" default="0" keepOrder="true">
 							<Condition type="isEqual" target="IAREA" value="3"/>
 							<Action type="enable" />
@@ -1724,26 +1732,26 @@
 				</GroupBox>
 			</Definition>
 		</Item>
-		<Item name="LAY_AREA" caption="可変境界層設定範囲">
+		<Item name="LAY_AREA" caption="Flexible boundary layer setting range">
 			<Definition position="node" valueType="real" default="0" keepOrder="true"/>
 		</Item>
-		<Item name="LAY_LEVEL" caption="可変境界層基準断面　平均水位考慮範囲">
+		<Item name="LAY_LEVEL" caption="Reference section of flexible boundary layer average water level consideration range">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<Item name="LAY_GROUP_NO" caption="可変境界層設定範囲">
+				<Item name="LAY_GROUP_NO" caption="Flexible boundary layer setting range">
 					<Definition position="node" valueType="real" default="0.0" keepOrder="true"/>
 				</Item>
-				<Item name="LAY_DM_NO" caption="断面番号">
+				<Item name="LAY_DM_NO" caption="Section number">
 					<Definition position="node" valueType="real" default="0.0" keepOrder="true"/>
 				</Item>
-				<Item name="LAY_DM_PAR" caption="固定 or 可変">
+				<Item name="LAY_DM_PAR" caption="Fixed or variable">
 					<Definition position="node" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
-							<Enumeration value="0" caption="境界面高さ可変"/>
-							<Enumeration value="1" caption="境界面高さ固定"/>
+							<Enumeration value="0" caption="Boundary surface height variable"/>
+							<Enumeration value="1" caption="Fixed interface height"/>
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="LAY_DM_LV" caption="基準水位">
+				<Item name="LAY_DM_LV" caption="Reference water level">
 					<Definition position="node" valueType="real" default="0.0" keepOrder="true">
 						<Condition type="isEqual" target="LAY_DM_PAR" value="1"/>
 						<Action type="enable" />
@@ -1751,41 +1759,41 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="LAY_LEVEL_L" caption="可変境界層基準断面　左岸基点節点">
+		<Item name="LAY_LEVEL_L" caption="Flexible boundary layer reference cross section left bank reference node">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<Item name="LAY_GROUP_NO_L" caption="可変境界層設定範囲">
+				<Item name="LAY_GROUP_NO_L" caption="Flexible boundary layer setting range">
 					<Definition position="node" valueType="real" default="0.0" keepOrder="true"/>
 				</Item>
-				<Item name="LAY_DM_NO_L" caption="断面番号">
+				<Item name="LAY_DM_NO_L" caption="Section number">
 					<Definition position="node" valueType="real" default="0.0" keepOrder="true"/>
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="LAY_LEVEL_R" caption="可変境界層基準断面　右岸基点節点">
+		<Item name="LAY_LEVEL_R" caption="Flexible boundary layer reference cross section right bank reference node">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<Item name="LAY_GROUP_NO_R" caption="可変境界層設定範囲">
+				<Item name="LAY_GROUP_NO_R" caption="Flexible boundary layer setting range">
 					<Definition position="node" valueType="real" default="0.0" keepOrder="true"/>
 				</Item>
-				<Item name="LAY_DM_NO_R" caption="断面番号">
+				<Item name="LAY_DM_NO_R" caption="Section number">
 					<Definition position="node" valueType="real" default="0.0" keepOrder="true"/>
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DEN_INT_PARA" caption="密度の初期条件">
+		<Item name="DEN_INT_PARA" caption="Initial conditions for density">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<Item name="DEN_INT_FX" caption="初期条件設定" >
+				<Item name="DEN_INT_FX" caption="  Initial condition setting" >
 					<Definition position="node" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
-							<Enumeration value="1" caption="水温・塩素量の初期値設定" />
+							<Enumeration value="1" caption="Initial value setting of water temperature and chlorine concentration" />
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="DEN_INT_SET" caption="     各層ごとの水温・塩素量の初期値">
+				<Item name="DEN_INT_SET" caption="  Initial values of water temperature and chlorine concentration for each layer">
 					<Definition position="node" conditionType="functional" keepOrder="true">
-						<Parameter name="LAY_DEN1" valueType="real" caption="層"/>
-						<Value name="TMP1_INT" valueType="real" caption="水温（°）"/>
-						<Value name="SAL1_INT" valueType="real" caption="塩素量（‰）"/>
+						<Parameter name="LAY_DEN1" valueType="real" caption="Layer"/>
+						<Value name="TMP1_INT" valueType="real" caption="Water temperature (°)"/>
+						<Value name="SAL1_INT" valueType="real" caption="Chlorine concentration (%)"/>
 						<Dependency>
 							<Condition type="isEqual" target="DEN_INT_FX" value="1"/>
 							<Action type="enable" />
@@ -1794,83 +1802,91 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DIF_INT" caption="拡散物質の初期値">
+		<Item name="DIF_INT" caption="Initial value of diffusion material">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<Item name="DIF_INT_P" caption="   初期値設定" >
+				<Item name="DIF_INT_P" caption="Initial value setting" >
 					<Definition position="node" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
-							<Enumeration value="1" caption="単一拡散物質の初期値" />
-							<Enumeration value="2" caption="生態系（簡易）モデルでの拡散物質の初期値" />
-							<Enumeration value="3" caption="生態系（詳細）モデルでの拡散物質の初期値" />
+							<Enumeration value="1" caption="Initial value of single diffusing material" />
+							<Enumeration value="2" caption="Initial value of diffusion material in ecosystem (simple) model" />
+							<Enumeration value="3" caption="Initial value of diffusion material in ecosystem (detailed) model" />
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="COD_INT1_SET" caption="       各層ごとの単一拡散物質(COD)の初期値(mg/L)">
+				<Item name="COD_INT1_SET" caption="     Initial value of single diffusion material (COD) for each layer (mg/L)">
 					<Definition position="node" conditionType="functional" keepOrder="true">
-						<Parameter name="LAY_NM21" valueType="real" caption="層"/>
-						<Value name="COD1_INT" valueType="real" caption="初期値(mg/L)"/>
+						<Parameter name="LAY_NM21" valueType="real" caption="Layer"/>
+						<Value name="COD1_INT" valueType="real" caption="Initial value (mg/L)"/>
 						<Condition type="isEqual" target="DIF_INT_P" value="1"/>
 						<Action type="enable" />
 					</Definition>
 				</Item>
-				<GroupBox caption="    生態系（簡易）モデルでの拡散物質の初期値">
-					<Item name="PARA_INT6_SET" caption="         各層ごとの CDO・リン・窒素・溶存酸素量の初期値 (mg/L)">
+				<GroupBox caption="Initial value of diffusion material in ecosystem (simple) model">
+					<Item name="PARA_INT6_SET" caption="     Initial values of CDO, phosphorus, nitrogen and dissolved oxygen in each layer (mg/L)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
-							<Parameter name="LAY_NM22" valueType="real" caption="層"/>
+							<Parameter name="LAY_NM22" valueType="real" caption="Layer"/>
 							<Value name="COD6_INT" valueType="real" caption="COD"/>
-							<Value name="RIN6_INT" valueType="real" caption="無機態リン"/>
-							<Value name="RON6_INT" valueType="real" caption="有機態リン"/>
-							<Value name="TIN6_INT" valueType="real" caption="無機態窒素"/>
-							<Value name="TON6_INT" valueType="real" caption="有機態窒素"/>
-							<Value name="DO6_INT"  valueType="real" caption="溶存酸素量"/>
+							<Value name="RIN6_INT" valueType="real" caption="Inorganic phosphorus"/>
+							<Value name="RON6_INT" valueType="real" caption="Organic phosphorus"/>
+							<Value name="TIN6_INT" valueType="real" caption="Inorganic nitrogen"/>
+							<Value name="TON6_INT" valueType="real" caption="Organic nitrogen"/>
+							<Value name="DO6_INT"  valueType="real" caption="Dissolved oxygen"/>
 							<Condition type="isEqual" target="DIF_INT_P" value="2"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
 				</GroupBox>
-				<GroupBox caption="    生態系（詳細）モデルでの拡散物質の初期値">
-					<Item name="PARA_MPN10_SET" caption="        各層ごとの植物プランクトン濃度の初期値 (μg/L)">
+				<GroupBox caption="Initial value of diffusion material in ecosystem (detailed) model">
+					<Item name="PARA_MPN10_SET" caption="     Initial value of phytoplankton concentration in each layer (μg/L)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
-							<Parameter name="MPN_NM23" valueType="real" caption="層"/>
-							<Value name="CHL10_INT_01" valueType="real" caption="植物プランクトン①"/>
-							<Value name="CHL10_INT_02" valueType="real" caption="植物プランクトン②"/>
-							<Value name="CHL10_INT_03" valueType="real" caption="植物プランクトン③"/>
-							<Value name="CHL10_INT_04" valueType="real" caption="植物プランクトン④"/>
-							<Value name="CHL10_INT_05" valueType="real" caption="植物プランクトン⑤"/>
-							<Value name="CHL10_INT_06" valueType="real" caption="植物プランクトン⑥"/>
+							<Parameter name="MPN_NM23" valueType="real" caption="Layer"/>
+							<Value name="CHL10_INT_01" valueType="real" caption="Phytoplankton①"/>
+							<Value name="CHL10_INT_02" valueType="real" caption="Phytoplankton②"/>
+							<Value name="CHL10_INT_03" valueType="real" caption="Phytoplankton③"/>
+							<Value name="CHL10_INT_04" valueType="real" caption="Phytoplankton④"/>
+							<Value name="CHL10_INT_05" valueType="real" caption="Phytoplankton⑤"/>
+							<Value name="CHL10_INT_06" valueType="real" caption="Phytoplankton⑥"/>
 							<Dependency>
 								<Condition type="isEqual" target="DIF_INT_P" value="3"/>
 								<Action type="enable"/>
 							</Dependency>
 						</Definition>
 					</Item>
-					<Item name="PARA_ZPN10_SET" caption="        各層ごとの動物プランクトン濃度の初期値 (μg/L)">
+					<Item name="PARA_ZPN10_SET" caption="     Initial value of zooplankton concentration in each layer (μg/L)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
-							<Parameter name="ZPN_NM24" valueType="real" caption="層"/>
-							<Value name="ZPN10_INT_01" valueType="real" caption="動物プランクトン①"/>
-							<Value name="ZPN10_INT_02" valueType="real" caption="動物プランクトン②"/>
-							<Value name="ZPN10_INT_03" valueType="real" caption="動物プランクトン③"/>
-							<Value name="ZPN10_INT_04" valueType="real" caption="動物プランクトン④"/>
-							<Value name="ZPN10_INT_05" valueType="real" caption="動物プランクトン⑤"/>
-							<Value name="ZPN10_INT_06" valueType="real" caption="動物プランクトン⑥"/>
+							<Parameter name="ZPN_NM24" valueType="real" caption="Layer"/>
+							<Value name="ZPN10_INT_01" valueType="real" caption="Zooplankton①"/>
+							<Value name="ZPN10_INT_02" valueType="real" caption="Zooplankton②"/>
+							<Value name="ZPN10_INT_03" valueType="real" caption="Zooplankton③"/>
+							<Value name="ZPN10_INT_04" valueType="real" caption="Zooplankton④"/>
+							<Value name="ZPN10_INT_05" valueType="real" caption="Zooplankton⑤"/>
+							<Value name="ZPN10_INT_06" valueType="real" caption="Zooplankton⑥"/>
 							<Dependency>
 								<Condition type="isEqual" target="DIF_INT_P" value="3"/>
 								<Action type="enable"/>
 							</Dependency>
 						</Definition>
 					</Item>
-					<Item name="PARA_INT10_SET" caption="        各層ごとのリン・窒素・溶存酸素量・浮遊物質濃度の初期値 (mg/L)">
+					<Item name="PARA_INT10_SET" caption="     Initial values of phosphorus, nitrogen, dissolved oxygen, and suspended solids concentration for each layer (mg/L)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
-							<Parameter name="LAY_NM25" valueType="real" caption="層"/>
-							<Value name="RIN10_INT"  valueType="real" caption="無機態リン"/>
-							<Value name="RDO10_INT"  valueType="real" caption="溶存態有機リン"/>
-							<Value name="RPO10_INT"  valueType="real" caption="懸濁態有機リン"/>
-							<Value name="TNI10_INT"  valueType="real" caption="無機態窒素"/>
-							<Value name="TNDO10_INT" valueType="real" caption="溶存態有機窒素"/>
-							<Value name="TNPO10_INT" valueType="real" caption="懸濁態有機窒素"/>
-							<Value name="DO10_INT"   valueType="real" caption="溶存酸素量(DO)"/>
-							<Value name="SS10_INT"   valueType="real" caption="浮遊物質(SS)"/>
+							<Parameter name="LAY_NM25" valueType="real" caption="Layer"/>
+							<Value name="RIN10_INT"  valueType="real" caption="DIP"/>
+							<Value name="RDO10_INT"  valueType="real" caption="DOP"/>
+							<Value name="RPO10_INT"  valueType="real" caption="POP"/>
+							<Value name="TNI10_INT"  valueType="real" caption="DIN"/>
+							<Value name="TNDO10_INT" valueType="real" caption="DON"/>
+							<Value name="TNPO10_INT" valueType="real" caption="PON"/>
+							<Value name="DO10_INT"   valueType="real" caption="DO"/>
+							<Value name="SS10_INT"   valueType="real" caption="SS"/>
+							<!--<Value name="RIN10_INT"  valueType="real" caption="inorganic phosphorus"/>
+							<Value name="RDO10_INT"  valueType="real" caption="Dissolved organic phosphorus"/>
+							<Value name="RPO10_INT"  valueType="real" caption="Particulate organic phosphorus"/>
+							<Value name="TNI10_INT"  valueType="real" caption="Inorganic nitrogen"/>
+							<Value name="TNDO10_INT" valueType="real" caption="Dissolved organic nitrogen"/>
+							<Value name="TNPO10_INT" valueType="real" caption="Particulate organic nitrogen"/>
+							<Value name="DO10_INT"   valueType="real" caption="Dissolved oxygen concentration (DO)"/>
+							<Value name="SS10_INT"   valueType="real" caption="Suspended solids (SS)"/>-->
 							<Dependency>
 								<Condition type="isEqual" target="DIF_INT_P" value="3"/>
 								<Action type="enable"/>
@@ -1880,19 +1896,19 @@
 				</GroupBox>
 			</Definition>
 		</Item>
-		<Item name="IN_OUT_FLOW_CB" caption="指定する陸境界上節点からの流入量・負荷量">
+		<Item name="IN_OUT_FLOW_CB" caption="Inflow and load from specified land boundary nodes">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<GroupBox caption="陸域からの流入出量">
-					<Item name="ICB_PRT" caption="  流入出量設定" >
+				<GroupBox caption="Inflow and outflow from land">
+					<Item name="ICB_PRT" caption="Inflow/outflow volume setting" >
 						<Definition position="node" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 							<Enumerations>
 								<Enumeration value="0" caption="No setting" />
-								<Enumeration value="1" caption="流量のみ設定" />
-								<Enumeration value="2" caption="流量・水温・塩素量を設定" />
+								<Enumeration value="1" caption="Set flow only" />
+								<Enumeration value="2" caption="Set the flow, water temperature, and amount of chlorine" />
 							</Enumerations>
 						</Definition>
 					</Item>
-					<Item name="ETCBQQ_00" caption="      流入出流量(m**3/s)">
+					<Item name="ETCBQQ_00" caption="      Inflow/outflow flow (m**3/s)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
 							<Parameter name="ETSUT_01" valueType="real" caption="Time (s)"/>
 							<Value name="ETSUQ_01" valueType="real" caption="Flow (m3/s)"/>
@@ -1905,100 +1921,107 @@
 							</Dependency>
 						</Definition>
 					</Item>
-					<Item name="ETSCT_02" caption="      水温（°）">
+					<Item name="ETSCT_02" caption="      Water temperature (°)">
 						<Definition position="node" valueType="real" default="0" keepOrder="true">
 			  				<Condition type="isEqual" target="ICB_PRT" value="2"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="ETSCC_02" caption="      塩素量（‰）">
+					<Item name="ETSCC_02" caption="      Chlorine concentration (%)">
 						<Definition position="node" valueType="real" default="0" keepOrder="true">
 			  				<Condition type="isEqual" target="ICB_PRT" value="2"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
 				</GroupBox>
-				<GroupBox caption="陸域からの負荷量">
-					<Item name="INCOD_PRT" caption="  負荷量設定" >
+				<GroupBox caption="Load from land">
+					<Item name="INCOD_PRT" caption="Load amount setting" >
 						<Definition position="node" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 							<Enumerations>
 								<Enumeration value="0" caption="No setting" />
-								<Enumeration value="1" caption="単一物質の負荷量" />
-								<Enumeration value="2" caption="生態系（簡易）モデルでの拡散物質の負荷量" />
-								<Enumeration value="3" caption="生態系（詳細）モデルでの拡散物質の負荷量" />
+								<Enumeration value="1" caption="Single material loading" />
+								<Enumeration value="2" caption="Loading of diffuse materials in ecosystem (simple) model" />
+								<Enumeration value="3" caption="Loading of diffuse materials in the ecosystem (detailed) model" />
 							</Enumerations>
 						</Definition>
 					</Item>
-					<Item name="COD_CB_IN1" caption="      単一物質(COD)の負荷量 (g/s)">
+					<Item name="COD_CB_IN1" caption="Single material (COD) loading (g/s)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
 							<Parameter name="CODIN_T1" valueType="real" caption="Time (s)"/>
-							<Value name="CODIN_1" valueType="real" caption="負荷量"/>
+							<Value name="CODIN_1" valueType="real" caption="Amount of load"/>
 							<Dependency>
 								<Condition type="isEqual" target="INCOD_PRT" value="1"/>
 								<Action type="enable"/>
 							</Dependency>
 						</Definition>
 					</Item>
-					<GroupBox caption="    生態系（簡易）モデル拡散物質の負荷量・濃度">
- 						<Item name="MRT_CB_IN6" caption="        CDO・リン・窒素の負荷量 (g/s)">
+					<GroupBox caption="Ecosystem (simplified) model load and concentration of diffused materials">
+ 						<Item name="MRT_CB_IN6" caption="COD/phosphorus/nitrogen load (g/s)">
 							<Definition position="node" conditionType="functional" keepOrder="true">
 								<Parameter name="MRTIN_T6" valueType="real" caption="Time (s)"/>
 								<Value name="CODIN_6" valueType="real" caption="COD"/>
-								<Value name="PIIN_6" valueType="real" caption="無機態リン"/>
-								<Value name="POIN_6" valueType="real" caption="有機態リン"/>
-								<Value name="TNIIN_6" valueType="real" caption="無機態窒素"/>
-								<Value name="TNOIN_6" valueType="real" caption="有機態窒素"/>
+								<Value name="PIIN_6"  valueType="real" caption="Inorganic phosphorus"/>
+								<Value name="POIN_6"  valueType="real" caption="Organic phosphorus"/>
+								<Value name="TNIIN_6" valueType="real" caption="Inorganic nitrogen"/>
+								<Value name="TNOIN_6" valueType="real" caption="Organic nitrogen"/>
 								<Dependency>
 									<Condition type="isEqual" target="INCOD_PRT" value="2"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
- 						<Item name="MRT_DO_IN6" caption="        溶存酸素量濃度 (mg/L)">
+ 						<Item name="MRT_DO_IN6" caption="Dissolved oxygen concentration (mg/L)">
 							<Definition position="node" valueType="real" default="0" keepOrder="true">
 								<Condition type="isEqual" target="INCOD_PRT" value="2"/>
 								<Action type="enable" />
 							</Definition>
 						</Item>
 					</GroupBox>
-					<GroupBox caption="    生態系（詳細）モデル拡散物質の負荷量・濃度">
-	 					<Item name="MPN_CB_IN10" caption="        植物プランクトンの濃度 (μg/L)">
+					<GroupBox caption="Ecosystem (detailed) model load and concentration of diffused materials">
+	 					<Item name="MPN_CB_IN10" caption="Concentration of phytoplankton (μg/L)">
 							<Definition position="node" conditionType="functional" keepOrder="true">
-								<Parameter name="MPNIN_T10" valueType="real" caption="植物プランクトン種"/>
-								<Value name="CHLIN_01"  valueType="real" caption="濃度"/>
+								<Parameter name="MPNIN_T10" valueType="real" caption="Phytoplankton species"/>
+								<Value name="CHLIN_01"  valueType="real" caption="Concentration"/>
 								<Dependency>
 									<Condition type="isEqual" target="INCOD_PRT" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
- 						<Item name="ZPN_CB_IN10" caption="        動物プランクトンの濃度 (μg/L)">
+ 						<Item name="ZPN_CB_IN10" caption="Concentration of zooplankton (μg/L)">
 							<Definition position="node" conditionType="functional" keepOrder="true">
-								<Parameter name="ZPNIN_T10" valueType="real" caption="動物プランクトン種"/>
-								<Value name="ZPNIN_01"  valueType="real" caption="濃度"/>
+								<Parameter name="ZPNIN_T10" valueType="real" caption="Zooplankton species"/>
+								<Value name="ZPNIN_01"  valueType="real" caption="Concentration"/>
 								<Dependency>
 									<Condition type="isEqual" target="INCOD_PRT" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
- 						<Item name="MRT_CB_IN10" caption="        リン・窒素・浮遊物質の負荷量 (g/s)">
+ 						<Item name="MRT_CB_IN10" caption="Phosphorus/Nitrogen/Suspended Solid Load (g/s)">
 							<Definition position="node" conditionType="functional" keepOrder="true">
 								<Parameter name="MRTIN_T10" valueType="real" caption="Time (s)"/>
-								<Value name="PIIN_10"   valueType="real" caption="無機態リン"/>
-								<Value name="PDOIN_10"  valueType="real" caption="溶存態有機リン"/>
-								<Value name="PPOIN_10"  valueType="real" caption="懸濁態有機リン"/>
-								<Value name="TNIIN_10"  valueType="real" caption="無機態窒素"/>
-								<Value name="TNDOIN_10" valueType="real" caption="溶存態有機窒素"/>
-								<Value name="TNPOIN_10" valueType="real" caption="懸濁態有機窒素"/>
-								<Value name="SSIN_10"   valueType="real" caption="浮遊物質(SS)"/>
+								<Value name="PIIN_10"   valueType="real" caption="DIP"/>
+								<Value name="PDOIN_10"  valueType="real" caption="DOP"/>
+								<Value name="PPOIN_10"  valueType="real" caption="POP"/>
+								<Value name="TNIIN_10"  valueType="real" caption="DIN"/>
+								<Value name="TNDOIN_10" valueType="real" caption="DON"/>
+								<Value name="TNPOIN_10" valueType="real" caption="PON"/>
+								<Value name="SSIN_10"   valueType="real" caption="SS"/>
+								<!--<Value name="PIIN_10"   valueType="real" caption="inorganic phosphorus"/>
+								<Value name="PDOIN_10"  valueType="real" caption="Dissolved organic phosphorus"/>
+								<Value name="PPOIN_10"  valueType="real" caption="Particulate organic phosphorus"/>
+								<Value name="TNIIN_10"  valueType="real" caption="Inorganic nitrogen"/>
+								<Value name="TNDOIN_10" valueType="real" caption="Dissolved organic nitrogen"/>
+								<Value name="TNPOIN_10" valueType="real" caption="Particulate organic nitrogen"/>
+								<Value name="SSIN_10"   valueType="real" caption="Suspended solids (SS)"/>-->
 								<Dependency>
 									<Condition type="isEqual" target="INCOD_PRT" value="3"/>
 									<Action type="enable"/>
 								</Dependency>
 							</Definition>
 						</Item>
- 						<Item name="MRT_DO_IN10" caption="        溶存酸素量濃度 (mg/L)">
+ 						<Item name="MRT_DO_IN10" caption="Dissolved oxygen concentration (mg/L)">
 							<Definition position="node" valueType="real" default="0" keepOrder="true">
 								<Condition type="isEqual" target="INCOD_PRT" value="3"/>
 								<Action type="enable" />
@@ -2008,9 +2031,9 @@
 				</GroupBox>
 			</Definition>
 		</Item>
-		<!--<Item name="SURF_STRESS" caption="水面せん断力">
+		<!--<Item name="SURF_STRESS" caption="water surface shear stress">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<Item name="SURF_CO_PARA" caption="水面せん断力（風抵抗）">
+				<Item name="SURF_CO_PARA" caption="Water surface shear stress（風抵抗）">
 					<Definition conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
@@ -2032,9 +2055,9 @@
 				</Item>
 			</Definition>
 		</Item>-->
-		<Item name="INTER_STRESS" caption="内部せん断力">
+		<Item name="INTER_STRESS" caption="Internal shear stress">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<Item name="INTER_STRESS_PARA" caption="内部せん断力">
+				<Item name="INTER_STRESS_PARA" caption="Internal shear stress">
 					<Definition position="cell" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
@@ -2042,10 +2065,10 @@
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="INTER_STRESS_SET" caption="     各層間の内部せん断力">
+				<Item name="INTER_STRESS_SET" caption="     Internal shear stress between layers">
 					<Definition position="cell" conditionType="functional" keepOrder="true">
-						<Parameter name="LAY_STR" valueType="real" caption="層"/>
-						<Value name="INTER_STR" valueType="real" caption="層間の内部せん断力"/>
+						<Parameter name="LAY_STR" valueType="real" caption="Layer"/>
+						<Value name="INTER_STR" valueType="real" caption="Internal shear stress between layers"/>
 						<Dependency>
 							<Condition type="isEqual" target="INTER_STRESS_PARA" value="1"/>
 							<Action type="enable" />
@@ -2054,24 +2077,24 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="ROUGH_MN" caption="底面せん断力">
+		<Item name="ROUGH_MN" caption="Bottom shear stress">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<Item name="ROUGH_CO_PARA" caption="底面せん断力定方法">
+				<Item name="ROUGH_CO_PARA" caption="Bottom shear stress determination method">
 					<Definition position="cell" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
-							<Enumeration value="1" caption="マニング粗度係数" />
-							<Enumeration value="2" caption="底面せん断を直接入力"/>
+							<Enumeration value="1" caption="Manning roughness coefficient" />
+							<Enumeration value="2" caption="Direct input of bottom shear stress"/>
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="ROUGH_CO_MN" caption="     マニング粗度係数">
+				<Item name="ROUGH_CO_MN" caption="     Manning roughness coefficient">
 					<Definition position="cell" valueType="real" default="0.03" keepOrder="true">
 						<Condition type="isEqual" target="ROUGH_CO_PARA" value="1"/>
 						<Action type="enable" />
 					</Definition>
 				</Item>
-				<Item name="ROUGH_CO_STR" caption="     底面せん断力">
+				<Item name="ROUGH_CO_STR" caption="     Bottom shear stress">
 					<Definition position="cell" valueType="real" default="0.003" keepOrder="true">
 						<Condition type="isEqual" target="ROUGH_CO_PARA" value="2"/>
 						<Action type="enable" />
@@ -2079,7 +2102,7 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="TR_EFCT" caption="植生抵抗">
+		<Item name="TR_EFCT" caption="Vegetation resistance">
 			<Definition position="cell" valueType="complex" keepOrder="true">
 				<Item name="TR_COD" caption="Vegetation">
 					<Definition conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
@@ -2102,7 +2125,7 @@
 						<Action type="enable" />
 					</Definition>
 				</Item>
-				<Item name="VEG_HT" caption="     Vegetation height (m)" >
+				<Item name="VEG_HT" caption="Vegetation height (m)" >
 					<Definition position="cell" valueType="real" option="true" default="0" keepOrder="true">
 						<Condition type="or">
 					  		<Condition type="isEqual" target="TR_COD" value="1"/>
@@ -2113,31 +2136,31 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="EDY_CO" caption="渦動粘性係数">
+		<Item name="EDY_CO" caption="Eddy viscosity">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<Item name="EDY_CO_PARA" caption="渦動粘性係数設定方法">
+				<Item name="EDY_CO_PARA" caption="Eddy viscosity setting method">
 					<Definition position="cell" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
-							<Enumeration value="1" caption="Eddy viscosity coefficient(paramter A)" />
-							<Enumeration value="2" caption="Eddy viscosity coefficient(Specific value)" />
+							<Enumeration value="1" caption="Eddy viscosity coefficient (paramter A)" />
+							<Enumeration value="2" caption="Eddy viscosity coefficient (Specific value)" />
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="EDY_CO_PAA" caption="     Paramter Ａ">
+				<Item name="EDY_CO_PAA" caption="     Parameter A">
 					<Definition position="cell" conditionType="functional" keepOrder="true">
-						<Parameter name="LAY_CPA1" valueType="real" caption="層"/>
-						<Value name="EDY_CO_CPA1" valueType="real" caption="Paramter Ａ"/>
+						<Parameter name="LAY_CPA1" valueType="real" caption="Layer"/>
+						<Value name="EDY_CO_CPA1" valueType="real" caption="Parameter A"/>
 						<Dependency>
 							<Condition type="isEqual" target="EDY_CO_PARA" value="1"/>
 							<Action type="enable" />
 						</Dependency>
 					</Definition>
 				</Item>
-				<Item name="EDY_CO_DIN" caption="     渦動粘性係数">
+				<Item name="EDY_CO_DIN" caption="     Eddy viscosity">
 					<Definition position="cell" conditionType="functional" keepOrder="true">
-						<Parameter name="LAY_CDIN1" valueType="real" caption="層"/>
-						<Value name="EDY_CO_DIN1" valueType="real" caption="渦動粘性係数"/>
+						<Parameter name="LAY_CDIN1" valueType="real" caption="Layer"/>
+						<Value name="EDY_CO_DIN1" valueType="real" caption="Eddy viscosity"/>
 						<Dependency>
 							<Condition type="isEqual" target="EDY_CO_PARA" value="2"/>
 							<Action type="enable" />
@@ -2146,28 +2169,28 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DEN_DIFF_CO" caption="密度の拡散係数">
+		<Item name="DEN_DIFF_CO" caption="Density diffusion coefficient">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<Item name="DEN_DIFF_CO_PARA" caption="密度の水平拡散係数設定" >
+				<Item name="DEN_DIFF_CO_PARA" caption="Density horizontal diffusion coefficient setting" >
 					<Definition position="cell" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
-							<Enumeration value="1" caption="水平拡散係数を直接入力する" />
-							<Enumeration value="2" caption="渦動粘性係数に対する倍率を指定" />
+							<Enumeration value="1" caption="Direct input the horizontal diffusion coefficient" />
+							<Enumeration value="2" caption="Specifies magnification for the eddy viscosity coefficient" />
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="DFC_DEN_H" caption="     密度の水平拡散係数（直接入力）">
+				<Item name="DFC_DEN_H" caption="     Horizontal diffusion coefficient of density (direct input)">
 					<Definition position="cell" conditionType="functional" keepOrder="true">
-						<Parameter name="LAY_CO_DEN" valueType="real" caption="層"/>
-						<Value name="DIF_COH_DEN" valueType="real" caption="水平拡散係数"/>
+						<Parameter name="LAY_CO_DEN" valueType="real" caption="Layer"/>
+						<Value name="DIF_COH_DEN" valueType="real" caption="Horizontal diffusion coefficient"/>
 						<Dependency>
 							<Condition type="isEqual" target="DEN_DIFF_CO_PARA" value="1"/>
 							<Action type="enable" />
 						</Dependency>
 					</Definition>
 				</Item>
-				<Item name="DIF_RATH_DEN" caption="     密度の水平拡散係数（渦動粘性係数に対する倍率）">
+				<Item name="DIF_RATH_DEN" caption="     Horizontal diffusion coefficient of density (magnification of eddy viscosity coefficient)">
 					<Definition position="cell" valueType="real" default="1.0" keepOrder="true">
 						<Dependency>
 							<Condition type="isEqual" target="DEN_DIFF_CO_PARA" value="2"/>
@@ -2175,7 +2198,7 @@
 						</Dependency>
 					</Definition>
 				</Item>
-				<Item name="DIF_RATV_DEN" caption="密度の鉛直拡散係数（水平拡散係数に対する倍率）">
+				<Item name="DIF_RATV_DEN" caption="     Vertical diffusion coefficient of density (magnification to horizontal diffusion coefficient)">
 					<Definition position="cell" valueType="real" default="0.001" keepOrder="true">
 						<Condition type="or">
 							<Condition type="isEqual" target="DEN_DIFF_CO_PARA" value="1"/>
@@ -2186,34 +2209,34 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DIFF_CO" caption="物質拡散の拡散係数">
+		<Item name="DIFF_CO" caption="Diffusion coefficient for material diffusion">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<Item name="DIFF_CO_PARA" caption="物質拡散の水平拡散係数設定" >
+				<Item name="DIFF_CO_PARA" caption="Horizontal diffusion coefficient setting for material diffusion" >
 					<Definition position="cell" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
-							<Enumeration value="1" caption="拡散係数を直接入力する" />
-							<Enumeration value="2" caption="渦動粘性係数に対する倍率を指定" />
+							<Enumeration value="1" caption="Direct input the diffusion coefficient" />
+							<Enumeration value="2" caption="Specifies magnification for the eddy viscosity coefficient" />
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="DFC_DIFF_H" caption="     水平拡散係数（直接入力）">
+				<Item name="DFC_DIFF_H" caption="Horizontal diffusion coefficient (direct input)">
 					<Definition position="cell" conditionType="functional" keepOrder="true">
-						<Parameter name="LAY_CO_DIF" valueType="real" caption="層"/>
-						<Value name="DIFF_FRX_H" valueType="real" caption="水平拡散係数"/>
+						<Parameter name="LAY_CO_DIF" valueType="real" caption="Layer"/>
+						<Value name="DIFF_FRX_H" valueType="real" caption="Horizontal diffusion coefficient"/>
 						<Dependency>
 							<Condition type="isEqual" target="DIFF_CO_PARA" value="1"/>
 							<Action type="enable" />
 						</Dependency>
 					</Definition>
 				</Item>
-				<Item name="DIFF_RAT_H_P" caption="     水平拡散係数（渦動粘性係数に対する倍率）">
+				<Item name="DIFF_RAT_H_P" caption="Horizontal diffusion coefficient (magnification for eddy dynamic viscosity coefficient)">
 					<Definition position="cell" valueType="real" default="1.0" keepOrder="true">
 						<Condition type="isEqual" target="DIFF_CO_PARA" value="2"/>
 						<Action type="enable" />
 					</Definition>
 				</Item>
-				<Item name="DIFF_RAT_V_P" caption="鉛直拡散係数（水平拡散係数に対する倍率）">
+				<Item name="DIFF_RAT_V_P" caption="Vertical diffusion coefficient (magnification for horizontal diffusion coefficient)">
 					<Definition position="cell" valueType="real" default="0.001" keepOrder="true">
 						<Condition type="or">
 							<Condition type="isEqual" target="DIFF_CO_PARA" value="1"/>
@@ -2224,19 +2247,19 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DIF_PARA_1" caption="物質拡散の緒係数（単一物質）">
+		<Item name="DIF_PARA_1" caption="Material diffusion coefficient (single material)">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<GroupBox caption=" 単一物質(COD)拡散計算の緒係数">
-					<Item name="DIF_IPC1_00" caption="     内部生産量・分解速度・沈降速度">
+				<GroupBox caption="Coefficients for single material (COD) diffusion calculations">
+					<Item name="DIF_IPC1_00" caption="     Internal production, breakdown rate, sedimentation rate">
 						<Definition position="cell" conditionType="functional" keepOrder="true">
-							<Parameter name="LAY_NM31" valueType="real" caption="層"/>
-							<Value name="DCY1_INT" valueType="real" caption="分解速度(1/day)"/>
-							<Value name="PRC1_INT" valueType="real" caption="内部生産量(mg/m**3/day)"/>
-							<Value name="WSC1_INT" valueType="real" caption="沈降速度(m/day)"/>
+							<Parameter name="LAY_NM31" valueType="real" caption="Layer"/>
+							<Value name="DCY1_INT" valueType="real" caption="Breakdown rate (1/day)"/>
+							<Value name="PRC1_INT" valueType="real" caption="Internal production (mg/m**3/day)"/>
+							<Value name="WSC1_INT" valueType="real" caption="Sedimentation velocity (m/day)"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="BRG1_INT" caption="     底面からの溶出量 (mg/m**2/day)">
+					<Item name="BRG1_INT" caption="     Amount of elution from the bottom (mg/m**2/day)">
 						<Definition position="cell" valueType="real" default="0" keepOrder="true">
 							<Action type="enable" />
 						</Definition>
@@ -2244,60 +2267,60 @@
 				</GroupBox>
 			</Definition>
 		</Item>
-		<Item name="DIF_PARA_6" caption="物質拡散の緒係数（生態系（簡易）モデル）">
+		<Item name="DIF_PARA_6" caption="Material diffusion coefficient (ecosystem (simple) model)">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<GroupBox caption=" 生態系（簡易）モデルの拡散計算の緒係数">
-					<Item name="DIF_RIN_PARA6" caption="     有機態リンの生産速度・浄化係数・沈降速度">
+				<GroupBox caption="Diffusion calculation coefficients of ecosystem (simple) model">
+					<Item name="DIF_RIN_PARA6" caption="         Production rate, breakdown rate, and sedimentation rate of organic phosphorus">
 						<Definition position="cell" conditionType="functional" keepOrder="true">
-							<Parameter name="LAY_NM33" valueType="real" caption="層"/>
-							<Value name="PRC_RIN6_INT" valueType="real" caption="生産速度(1/day)"/>
-							<Value name="DCY_RIN6_INT" valueType="real" caption="浄化係数(1/day)"/>
-							<Value name="WSC_RIN6_INT" valueType="real" caption="沈降速度(m/day)"/>
+							<Parameter name="LAY_NM33" valueType="real" caption="Layer"/>
+							<Value name="PRC_RIN6_INT" valueType="real" caption="Production speed (1/day)"/>
+							<Value name="DCY_RIN6_INT" valueType="real" caption="Breakdown rate (1/day)"/>
+							<Value name="WSC_RIN6_INT" valueType="real" caption="Sedimentation velocity (m/day)"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="BRG_RIN_6" caption="     無機態リンの底面からの溶出量 (mg/m**2/day)">
+					<Item name="BRG_RIN_6" caption="         Elution amount of inorganic phosphorus from the bottom surface (mg/m**2/day)">
 						<Definition position="cell" valueType="real" default="0" keepOrder="true">
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="DIF_TNT_PARA6" caption="     有機態窒素の生産速度・浄化係数・沈降速度">
+					<Item name="DIF_TNT_PARA6" caption="         Production rate, breakdown rate, and sedimentation rate of organic nitrogen">
 						<Definition position="cell" conditionType="functional" keepOrder="true">
-							<Parameter name="LAY_NM34" valueType="real" caption="層"/>
-							<Value name="PRC_TNT6_INT" valueType="real" caption="生産速度(1/day)"/>
-							<Value name="DCY_TNT6_INT" valueType="real" caption="浄化係数(1/day)"/>
-							<Value name="WSC_TNT6_INT" valueType="real" caption="沈降速度(m/day)"/>
+							<Parameter name="LAY_NM34" valueType="real" caption="Layer"/>
+							<Value name="PRC_TNT6_INT" valueType="real" caption="Production speed (1/day)"/>
+							<Value name="DCY_TNT6_INT" valueType="real" caption="Breakdown rate (1/day)"/>
+							<Value name="WSC_TNT6_INT" valueType="real" caption="Sedimentation velocity (m/day)"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="BRG_TNT_6" caption="     無機態窒素の底面からの溶出量 (mg/m**2/day)">
+					<Item name="BRG_TNT_6" caption="         Elution amount of inorganic nitrogen from the bottom surface (mg/m**2/day)">
 						<Definition position="cell" valueType="real" default="0" keepOrder="true">
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="DIF_COD_PARA6" caption="     有機態 CODの浄化係数・沈降速度">
+					<Item name="DIF_COD_PARA6" caption="         Breakdown rate and sedimentation velocity of organic COD">
 						<Definition position="cell" conditionType="functional" keepOrder="true">
-							<Parameter name="LAY_NM35" valueType="real" caption="層"/>
-							<!--<Value name="PRC_COD6_INT" valueType="real" caption="生産速度(1/day)"/>-->
-							<Value name="DCY_COD6_INT" valueType="real" caption="浄化係数(1/day)"/>
-							<Value name="WSC_COD6_INT"    valueType="real" caption="沈降速度(m/day)"/>
+							<Parameter name="LAY_NM35" valueType="real" caption="Layer"/>
+							<!--<Value name="PRC_COD6_INT" valueType="real" caption="Production speed (1/day)"/>-->
+							<Value name="DCY_COD6_INT" valueType="real" caption="Breakdown rate (1/day)"/>
+							<Value name="WSC_COD6_INT"    valueType="real" caption="Sedimentation velocity (m/day)"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="BRG_COD_6" caption="     有機態 CODの底面からの溶出量 (mg/m**2/day)">
+					<Item name="BRG_COD_6" caption="         Elution amount of organic COD from the bottom (mg/m**2/day)">
 						<Definition position="cell" valueType="real" default="0" keepOrder="true">
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="CND_DO_PARA6" caption="     溶存酸素量の生産速度・消費（分解）速度">
+					<Item name="CND_DO_PARA6" caption="         Production rate, consumption (breakdown) rate of dissolved oxygen">
 						<Definition position="cell" conditionType="functional" keepOrder="true">
-							<Parameter name="LAY_NM36" valueType="real" caption="層"/>
-							<Value name="PRC_DO6_INT" valueType="real" caption="生産速度(1/day)"/>
-							<Value name="CND_DO6_INT" valueType="real" caption="消費速度(1/day)"/>
+							<Parameter name="LAY_NM36" valueType="real" caption="Layer"/>
+							<Value name="PRC_DO6_INT" valueType="real" caption="Production speed (1/day)"/>
+							<Value name="CND_DO6_INT" valueType="real" caption="Consumption speed (1/day)"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="CNB_DO_6" caption="     溶存酸素量の底面での消費速度 (mg/m**2/day)">
+					<Item name="CNB_DO_6" caption="         Dissolved oxygen consumption rate at the bottom (mg/m**2/day)">
 						<Definition position="cell" valueType="real" default="0" keepOrder="true">
 							<Action type="enable" />
 						</Definition>
@@ -2305,35 +2328,35 @@
 				</GroupBox>
 			</Definition>
 		</Item>
-		<Item name="DIF_PARA_10" caption="物質拡散の緒係数（生態系（詳細）モデル）">
+		<Item name="DIF_PARA_10" caption="Material diffusion coefficient (ecosystem (detailed) model)">
 			<Definition position="node" valueType="complex" keepOrder="true">
-				<GroupBox caption=" 生態系（詳細）モデルの拡散計算の緒係数">
+				<GroupBox caption="Diffusion coefficients for ecosystem (detailed) model">
 					<!--<Item name="FIS_CHL_FRX" caption="     水面での光量(cal/m**2/day)">
 						<Definition position="node" conditionType="constant" valueType="real" option="false" default="0.0">
 							<Action type="enable"/>
 						</Definition>
 					</Item>-->
-					<Item name="SPOP_RIN_PARA10" caption="     巻き上がった SS 量に含まれる懸濁態有機リンの割合 (％)">
+					<Item name="SPOP_RIN_PARA10" caption="       Percentage of particulate organic phosphorus contained in the amount of SS wound up (%)">
 						<Definition position="node" conditionType="constant" valueType="real" option="false" default="0.0">
 							<Action type="enable"/>
 						</Definition>
 					</Item>
-					<Item name="SPON_TNT_PARA10" caption="     巻き上がった SS 量に含まれる懸濁態有機窒素の割合 (％)">
+					<Item name="SPON_TNT_PARA10" caption="       Percentage of particulate organic nitrogen contained in the amount of SS wound up (%)">
 						<Definition position="node" conditionType="constant" valueType="real" option="false" default="0.0">
 							<Action type="enable"/>
 						</Definition>
 					</Item>
-					<Item name="BRG_RIN_PARA10" caption="     0 ℃における無機態リンの底面からの溶出速度 (mg/m**2/day)">
+					<Item name="BRG_RIN_PARA10" caption="       Elution rate of inorganic phosphorus from the bottom at 0℃ (mg/m**2/day)">
 						<Definition position="node" conditionType="constant" valueType="real" option="false" default="0.0">
 							<Action type="enable"/>
 						</Definition>
 					</Item>
-					<Item name="BRG_TNT_PARA10" caption="     0 ℃におけるアンモニア態窒素の底面からの溶出速度 (mg/m**2/day)">
+					<Item name="BRG_TNT_PARA10" caption="       Elution rate of ammonium nitrogen from the bottom at 0 ℃(mg/m**2/day)">
 						<Definition position="node" conditionType="constant" valueType="real" option="false" default="0.0">
 							<Action type="enable"/>
 						</Definition>
 					</Item>
-					<Item name="CNB_DO_10" caption="     溶存酸素量の底面での消費速度 (mg/m**2/day)">
+					<Item name="CNB_DO_10" caption="       Dissolved oxygen consumption rate at the bottom (mg/m**2/day)">
 						<Definition position="node" valueType="real" default="0" keepOrder="true">
 							<Action type="enable" />
 						</Definition>
@@ -2342,46 +2365,46 @@
 			</Definition>
 		</Item>
 	</GridRelatedCondition>
-	<BoundaryCondition name="IPON_PARM" caption="Boundary condition" position="node">
+	<BoundaryCondition name="IPON_PARM" caption="Boundary conditions" position="node">
 		<GroupBox caption="Type of boundary condition">
-			<Item name="IBCON_06" caption="     密度の境界条件">
+			<Item name="IBCON_06" caption="Density boundary condition">
 				<Definition conditionType="constant" valueType="integer" option="true" default="0">
 					<Enumerations>
-						<Enumeration value="0" caption="設定なし" />
-						<Enumeration value="1" caption="密度の境界条件として水温・塩素量を設定" />
-						<Enumeration value="2" caption="密度の境界条件として希釈係数を設定" />
+						<Enumeration value="0" caption="No setting" />
+						<Enumeration value="1" caption="Set water temperature and chlorine concentration as boundary conditions for density" />
+						<Enumeration value="2" caption="Set the dilution factor as a density boundary condition" />
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="IBCON_07" caption="     物質の拡散計算の境界条件">
+			<Item name="IBCON_07" caption="Boundary conditions for material diffusion calculations">
 				<Definition conditionType="constant" valueType="integer" option="true" default="0">
 					<Enumerations>
-						<Enumeration value="0" caption="設定なし" />
-						<Enumeration value="1" caption="単一物資(COD)の濃度を設定" />
-						<Enumeration value="2" caption="単一物資(COD)の負荷量を設定" />
-						<Enumeration value="3" caption="生態系（簡易）モデルの濃度を設定" />
-						<Enumeration value="4" caption="生態系（簡易）モデルの負荷量を設定" />
-						<Enumeration value="5" caption="生態系（詳細）モデルの濃度を設定" />
-						<Enumeration value="6" caption="生態系（詳細）モデルの負荷量を設定" />
-						<Enumeration value="7" caption="希釈係数を設定" />
+						<Enumeration value="0" caption="No setting" />
+						<Enumeration value="1" caption="Set concentration of single material (COD)" />
+						<Enumeration value="2" caption="Set load of single material (COD) load" />
+						<Enumeration value="3" caption="Set concentration for ecosystem (simple) model" />
+						<Enumeration value="4" caption="Set load of the ecosystem (simple) model" />
+						<Enumeration value="5" caption="Set concentration for ecosystem (detailed) model" />
+						<Enumeration value="6" caption="Set load of the ecosystem (detailed) model" />
+						<Enumeration value="7" caption="Set dilution factor" />
 					</Enumerations>
 				</Definition>
 			</Item>
 		</GroupBox>
 		<HBoxLayout>
-			<GroupBox caption="流れと密度の境界条件">
-				<GroupBox caption="流れの境界条件">
-					<Item name="IPON_IN" caption="     境界条件設定方法">
+			<GroupBox caption="Flow and density boundary conditions">
+				<GroupBox caption="Boundary condition of flow">
+					<Item name="IPON_IN" caption="     Boundary condition setting method">
 						 <Definition valueType="integer" default="3" >
-							<Enumeration value="1" caption="Tidal condition" />
-							<Enumeration value="2" caption="Time varying elevation" />
-							<Enumeration value="3" caption="Time varying discharge" />
-							<Enumeration value="4" caption="H - Q distributioin (restart only)" />
-							<Enumeration value="5" caption="Time varying elevation and discharge" />
+							<Enumeration value="1" caption="Tidal conditions" />
+							<Enumeration value="2" caption="Time series elevation" />
+							<Enumeration value="3" caption="Time series discharge" />
+							<Enumeration value="4" caption="H-Q distribution (restart only)" />
+							<Enumeration value="5" caption="Time series elevation and discharge" />
 						</Definition>
 					</Item>
-					<GroupBox caption="　    　潮汐">
-						<Item name="TIDE_COUNT" caption="           考慮する分潮数（最大10分潮まで）">
+					<GroupBox caption="        Tide">
+						<Item name="TIDE_COUNT" caption="            Number of constituent to consider (up to 10 constituents)">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1" max="10">
 								<Dependency>
 									<Condition type="isEqual" target="IPON_IN" value="1"/>
@@ -2389,20 +2412,20 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="TIDAL_C" caption="          潮汐条件">
+						<Item name="TIDAL_C" caption="            Tidal conditions">
 							<Definition conditionType="functional">
-								<Parameter name="TIDE_NO" valueType="real" caption="分潮"/>
-								<Value name="T_PERIOD"  valueType="real" caption="周期 (時間)"/>
-								<Value name="AMPLITUDE" valueType="real" caption="振幅 (m)"/>
-								<Value name="PHASE_S"   valueType="real" caption="位相差（起点）（秒）"/>
-								<Value name="PHASE_N"   valueType="real" caption="位相差（終点）（秒）"/>
-								<Value name="AVRG_WELE" valueType="real" caption="平均潮位（m）"/>
+								<Parameter name="TIDE_NO" valueType="real" caption="Constituent"/>
+								<Value name="T_PERIOD"  valueType="real" caption="Period (time)"/>
+								<Value name="AMPLITUDE" valueType="real" caption="Amplitude (m)"/>
+								<Value name="PHASE_S"   valueType="real" caption="Phase difference (origin) (sec)"/>
+								<Value name="PHASE_N"   valueType="real" caption="Phase difference (end point) (sec)"/>
+								<Value name="AVRG_WELE" valueType="real" caption="Mean tide level (m)"/>
 								<Condition type="isEqual" target="IPON_IN" value="1"/>
 								<Action type="enable" />
 							</Definition>
 						</Item>
 					</GroupBox>
-					<Item name="HYDOR_ELV_OUT" caption="          時系列水位">
+					<Item name="HYDOR_ELV_OUT" caption="          Time series water level">
 						<Definition conditionType="functional">
 							<Parameter name="TIME_EL_OUT" valueType="real" caption="Time (s)"/>
 							<Value name="ELV_OUT" valueType="real" caption="Water level (m)"/>
@@ -2410,7 +2433,7 @@
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="HYDOR_Q" caption="          流量ハイドロ">
+					<Item name="HYDOR_Q" caption="          Time series discharge">
 						<Definition conditionType="functional">
 							<Parameter name="HYDRO_TIME" valueType="real" caption="Time (s)"/>
 							<Value name="HYDRO_QQ" valueType="real" caption="Discharge (m3/s)"/>
@@ -2418,17 +2441,17 @@
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="H_Q_PARM_A" caption="          H - Q parameter [A] (Q=A*(H+B)**2)">
+					<Item name="H_Q_PARM_A" caption="          H-Q parameter [A] (Q=A*(H+B)**2)">
 						<Definition position="node" valueType="real" default="0.0" option="false">
 							<Condition type="isEqual" target="IPON_IN" value="4"/>
 						</Definition>
 					</Item>
-					<Item name="H_Q_PARM_B" caption="          H - Q parameter [B] (Q=A*(H+B)**2)">
+					<Item name="H_Q_PARM_B" caption="          H-Q parameter [B] (Q=A*(H+B)**2)">
 						<Definition position="node" valueType="real" default="0.0" option="false">
 							<Condition type="isEqual" target="IPON_IN" value="4"/>
 						</Definition>
 					</Item>
-					<Item name="HYDOR_Q_E" caption="          Time varying elevation and discharge">
+					<Item name="HYDOR_Q_E" caption="          Time series elevation and discharge">
 						<Definition conditionType="functional">
 							<Parameter name="TIME_Q_E" valueType="real" caption="Time (s)"/>
 							<Value name="HYD_Q_E" valueType="real" caption="Water level (m)"/>
@@ -2437,7 +2460,7 @@
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<!--<Item name="HYDOR_ELV_IN" caption="          Time varying elevation (inflow)">
+					<!--<Item name="HYDOR_ELV_IN" caption="          Time series elevation (inflow)">
 						<Definition conditionType="functional">
 							<Parameter name="TIME_EL_IN" valueType="real" caption="Time (s)"/>
 							<Value name="ELE_IN" valueType="real" caption="Water level (m)"/>
@@ -2446,17 +2469,17 @@
 						</Definition>
 					</Item>-->
 				</GroupBox>
-				<GroupBox caption="密度の境界条件">
-					<Item name="TMP_SAL_SET" caption="          各層ごとの水温・塩素量">
+				<GroupBox caption="Density boundary condition ">
+					<Item name="TMP_SAL_SET" caption="     Temperature and chlorine concentration for each layer">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM41" valueType="real" caption="層"/>
-							<Value name="TMP_BND" valueType="real" caption="水温（°）"/>
-							<Value name="SAL_BND" valueType="real" caption="塩素量（‰）"/>
+							<Parameter name="LAY_NM41" valueType="real" caption="Layer"/>
+							<Value name="TMP_BND" valueType="real" caption="Water temperature (°)"/>
+							<Value name="SAL_BND" valueType="real" caption="Chlorine concentration (%)"/>
 					  		<Condition type="isEqual" target="IBCON_06" value="1"/>
 							<Action type="enable" />
 						</Definition>
 					</Item>
-					<Item name="DEN_RATE" caption="　　　　　希釈係数">
+					<Item name="DEN_RATE" caption="     Dilution factor">
 						<Definition valueType="real" default="0.9" >
 					  		<Condition type="isEqual" target="IBCON_06" value="2"/>
 							<Action type="enable"/>
@@ -2464,146 +2487,160 @@
 					</Item>
 				</GroupBox>
 			</GroupBox>
-			<GroupBox caption="物質の拡散計算の境界条件">
-				<GroupBox caption="単一物資(COD)の境界条件">
-					<Item name="IPON_COD_C1" caption="     単一物資(COD)の濃度 (mg/L)">
+			<GroupBox caption="Boundary conditions for material diffusion calculations">
+				<GroupBox caption="Single material (COD) boundary conditions">
+					<Item name="IPON_COD_C1" caption="Single material (COD) concentration (mg/L)">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM42" valueType="real" caption="層"/>
-							<Value name="COD_C1_BND" valueType="real" caption="濃度(mg/L)"/>
+							<Parameter name="LAY_NM42" valueType="real" caption="Layer"/>
+							<Value name="COD_C1_BND" valueType="real" caption="Concentration (mg/L)"/>
 					  		<Condition type="isEqual" target="IBCON_07" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="IPON_COD_N1" caption="     単一物資(COD)の負荷量 (g/s)">
+					<Item name="IPON_COD_N1" caption="Single material (COD) Loading (g/s)">
 						<Definition conditionType="functional">
 							<Parameter name="IPON_COD_T1" valueType="real" caption="Time (s)"/>
-							<Value name="COD_N1_BND" valueType="real" caption="負荷量(g/s)"/>
+							<Value name="COD_N1_BND" valueType="real" caption="Load (g/s)"/>
 					  		<Condition type="isEqual" target="IBCON_07" value="2"/>
 						</Definition>
 					</Item>
 				</GroupBox>
-				<GroupBox caption="生態系（簡易）モデルの境界条件">
-					<Item name="IPON_MTR_C6" caption="     CDO・リン・窒素の濃度 (mg/L)">
+				<GroupBox caption="Boundary conditions for ecosystem (simple) model">
+					<Item name="IPON_MTR_C6" caption="Concentration of CDO, Phosphorus and Nitrogen (mg/L)">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM43" valueType="real" caption="層"/>
+							<Parameter name="LAY_NM43" valueType="real" caption="Layer"/>
 							<Value name="VCOD_C6_BND" valueType="real" caption="COD"/>
-							<Value name="VPI_C6_BND" valueType="real" caption="無機態リン"/>
-							<Value name="VPO_C6_BND" valueType="real" caption="有機態リン"/>
-							<Value name="VNI_C6_BND" valueType="real" caption="無機態窒素"/>
-							<Value name="VNO_C6_BND" valueType="real" caption="有機態窒素"/>
+							<Value name="VPI_C6_BND" valueType="real" caption="Inorganic phosphorus"/>
+							<Value name="VPO_C6_BND" valueType="real" caption="Organic phosphorus"/>
+							<Value name="VNI_C6_BND" valueType="real" caption="Inorganic nitrogen"/>
+							<Value name="VNO_C6_BND" valueType="real" caption="Organic nitrogen"/>
 				  			<Condition type="isEqual" target="IBCON_07" value="3"/>
 						</Definition>
 					</Item>
-					<Item name="IPON_MTR_D6" caption="     溶存酸素量濃度 (mg/L)">
+					<Item name="IPON_MTR_D6" caption="Dissolved oxygen concentration (mg/L)">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM44" valueType="real" caption="層"/>
-							<Value name="VDO_C6_BND" valueType="real" caption="溶存酸素量"/>
+							<Parameter name="LAY_NM44" valueType="real" caption="Layer"/>
+							<Value name="VDO_C6_BND" valueType="real" caption="Dissolved oxygen"/>
 							<Condition type="or">
 					  			<Condition type="isEqual" target="IBCON_07" value="3"/>
 			  					<Condition type="isEqual" target="IBCON_07" value="4"/>
 							</Condition>
 						</Definition>
 					</Item>
-					<Item name="IPON_MTR_N6" caption="     CDO・リン・窒素の負荷量 (g/s)">
+					<Item name="IPON_MTR_N6" caption="COD/phosphorus/nitrogen load (g/s)">
 						<Definition conditionType="functional">
 							<Parameter name="IPON_MTR_T6" valueType="real" caption="Time (s)"/>
 							<Value name="BCDL_N6_BND" valueType="real" caption="COD"/>
-							<Value name="BPIL_N6_BND" valueType="real" caption="無機態リン"/>
-							<Value name="BPOL_N6_BND" valueType="real" caption="有機態リン"/>
-							<Value name="BNIL_N6_BND" valueType="real" caption="無機態窒素"/>
-							<Value name="BNOL_N6_BND" valueType="real" caption="有機態窒素"/>
+							<Value name="BPIL_N6_BND" valueType="real" caption="Inorganic phosphorus"/>
+							<Value name="BPOL_N6_BND" valueType="real" caption="Organic phosphorus"/>
+							<Value name="BNIL_N6_BND" valueType="real" caption="Inorganic nitrogen"/>
+							<Value name="BNOL_N6_BND" valueType="real" caption="Organic nitrogen"/>
 					  		<Condition type="isEqual" target="IBCON_07" value="4"/>
 						</Definition>
 					</Item>
 				</GroupBox>
-				<GroupBox caption="生態系（詳細）モデルの境界条件">
-					<Item name="IPON_MTR_CM10" caption="     植物プランクトンの濃度 (μg/L)">
+				<GroupBox caption="Boundary conditions for the ecosystem (detailed) model">
+					<Item name="IPON_MTR_CM10" caption="Concentration of phytoplankton (μg/L)">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM51" valueType="real" caption="層"/>
-							<Value name="VCHL_CM10_BND01" valueType="real" caption="植物プランクトン①"/>
-							<Value name="VCHL_CM10_BND02" valueType="real" caption="植物プランクトン②"/>
-							<Value name="VCHL_CM10_BND03" valueType="real" caption="植物プランクトン③"/>
-							<Value name="VCHL_CM10_BND04" valueType="real" caption="植物プランクトン④"/>
-							<Value name="VCHL_CM10_BND05" valueType="real" caption="植物プランクトン⑤"/>
-							<Value name="VCHL_CM10_BND06" valueType="real" caption="植物プランクトン⑥"/>
+							<Parameter name="LAY_NM51" valueType="real" caption="Layer"/>
+							<Value name="VCHL_CM10_BND01" valueType="real" caption="Phytoplankton①"/>
+							<Value name="VCHL_CM10_BND02" valueType="real" caption="Phytoplankton②"/>
+							<Value name="VCHL_CM10_BND03" valueType="real" caption="Phytoplankton③"/>
+							<Value name="VCHL_CM10_BND04" valueType="real" caption="Phytoplankton④"/>
+							<Value name="VCHL_CM10_BND05" valueType="real" caption="Phytoplankton⑤"/>
+							<Value name="VCHL_CM10_BND06" valueType="real" caption="Phytoplankton⑥"/>
 							<Condition type="or">
 					  			<Condition type="isEqual" target="IBCON_07" value="5"/>
 			  					<Condition type="isEqual" target="IBCON_07" value="6"/>
 							</Condition>
 						</Definition>
 					</Item>
-					<Item name="IPON_MTR_CZ10" caption="     動物プランクトンの濃度 (μg/L)">
+					<Item name="IPON_MTR_CZ10" caption="Concentration of zooplankton (μg/L)">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM52" valueType="real" caption="層"/>
-							<Value name="VZPN_CZ10_BND01" valueType="real" caption="動物プランクトン①"/>
-							<Value name="VZPN_CZ10_BND02" valueType="real" caption="動物プランクトン②"/>
-							<Value name="VZPN_CZ10_BND03" valueType="real" caption="動物プランクトン③"/>
-							<Value name="VZPN_CZ10_BND04" valueType="real" caption="動物プランクトン④"/>
-							<Value name="VZPN_CZ10_BND05" valueType="real" caption="動物プランクトン⑤"/>
-							<Value name="VZPN_CZ10_BND06" valueType="real" caption="動物プランクトン⑥"/>
+							<Parameter name="LAY_NM52" valueType="real" caption="Layer"/>
+							<Value name="VZPN_CZ10_BND01" valueType="real" caption="Zooplankton①"/>
+							<Value name="VZPN_CZ10_BND02" valueType="real" caption="Zooplankton②"/>
+							<Value name="VZPN_CZ10_BND03" valueType="real" caption="Zooplankton③"/>
+							<Value name="VZPN_CZ10_BND04" valueType="real" caption="Zooplankton④"/>
+							<Value name="VZPN_CZ10_BND05" valueType="real" caption="Zooplankton⑤"/>
+							<Value name="VZPN_CZ10_BND06" valueType="real" caption="Zooplankton⑥"/>
 							<Condition type="or">
 					  			<Condition type="isEqual" target="IBCON_07" value="5"/>
 			  					<Condition type="isEqual" target="IBCON_07" value="6"/>
 							</Condition>
 						</Definition>
 					</Item>
-					<Item name="IPON_MTR_C10" caption="     リン・窒素・浮遊物質の濃度 (mg/L)">
+					<Item name="IPON_MTR_C10" caption="Concentration of phosphorus, nitrogen and suspended solids (mg/L)">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM53" valueType="real" caption="層"/>
-							<Value name="VIP_C10_BND"  valueType="real" caption="無機態リン"/>
-							<Value name="VNOP_C10_BND" valueType="real" caption="溶存態有機リン"/>
-							<Value name="VDOP_C10_BND" valueType="real" caption="懸濁態有機リン"/>
-							<Value name="VIN_C10_BND"  valueType="real" caption="無機態窒素"/>
-							<Value name="VNON_C10_BND" valueType="real" caption="溶存態有機窒素"/>
-							<Value name="VPON_C10_BND" valueType="real" caption="懸濁態有機窒素"/>
-							<Value name="VSS_C10_BND"  valueType="real" caption="浮遊物質(SS)"/>
+							<Parameter name="LAY_NM53" valueType="real" caption="Layer"/>
+							<Value name="VIP_C10_BND"  valueType="real" caption="DIP"/>
+							<Value name="VNOP_C10_BND" valueType="real" caption="DOP"/>
+							<Value name="VDOP_C10_BND" valueType="real" caption="POP"/>
+							<Value name="VIN_C10_BND"  valueType="real" caption="DIN"/>
+							<Value name="VNON_C10_BND" valueType="real" caption="DON"/>
+							<Value name="VPON_C10_BND" valueType="real" caption="PON"/>
+							<Value name="VSS_C10_BND"  valueType="real" caption="SS"/>
+							<!--<Value name="VIP_C10_BND"  valueType="real" caption="Iinorganic phosphorus"/>
+							<Value name="VNOP_C10_BND" valueType="real" caption="Dissolved organic phosphorus"/>
+							<Value name="VDOP_C10_BND" valueType="real" caption="Particulate organic phosphorus"/>
+							<Value name="VIN_C10_BND"  valueType="real" caption="Inorganic nitrogen"/>
+							<Value name="VNON_C10_BND" valueType="real" caption="Dissolved organic nitrogen"/>
+							<Value name="VPON_C10_BND" valueType="real" caption="Particulate organic nitrogen"/>
+							<Value name="VSS_C10_BND"  valueType="real" caption="Suspended solids (SS)"/>-->
 				  			<Condition type="isEqual" target="IBCON_07" value="5"/>
 						</Definition>
 					</Item>
-					<Item name="IPON_MTR_D10" caption="     溶存酸素量濃度 (mg/L)">
+					<Item name="IPON_MTR_D10" caption="Dissolved oxygen concentration (mg/L)">
 						<Definition conditionType="functional">
-							<Parameter name="LAY_NM54" valueType="real" caption="層"/>
-							<Value name="VDO_C10_BND" valueType="real" caption="溶存酸素量"/>
+							<Parameter name="LAY_NM54" valueType="real" caption="Layer"/>
+							<Value name="VDO_C10_BND" valueType="real" caption="Dissolved oxygen"/>
 							<Condition type="or">
 					  			<Condition type="isEqual" target="IBCON_07" value="5"/>
 			  					<Condition type="isEqual" target="IBCON_07" value="6"/>
 							</Condition>
 						</Definition>
 					</Item>
-					<!--<Item name="IPON_MTR_NM10" caption="     植物プランクトンの負荷量 (g/s)">
+					<!--<Item name="IPON_MTR_NM10" caption="     植物プランクトンのamount of load (g/s)">
 						<Definition conditionType="functional">
 							<Parameter name="IPON_MPN_T10" valueType="real" caption="Time (s)"/>
-							<Value name="BCHL_N10_BND01"  valueType="real" caption="植物プランクトン①"/>
-							<Value name="BCHL_N10_BND02"  valueType="real" caption="植物プランクトン②"/>
-							<Value name="BCHL_N10_BND03"  valueType="real" caption="植物プランクトン③"/>
-							<Value name="BCHL_N10_BND04"  valueType="real" caption="植物プランクトン④"/>
-							<Value name="BCHL_N10_BND05"  valueType="real" caption="植物プランクトン⑤"/>
-							<Value name="BCHL_N10_BND06"  valueType="real" caption="植物プランクトン⑥"/>
+							<Value name="BCHL_N10_BND01"  valueType="real" caption="Phytoplankton①"/>
+							<Value name="BCHL_N10_BND02"  valueType="real" caption="Phytoplankton②"/>
+							<Value name="BCHL_N10_BND03"  valueType="real" caption="Phytoplankton③"/>
+							<Value name="BCHL_N10_BND04"  valueType="real" caption="Phytoplankton④"/>
+							<Value name="BCHL_N10_BND05"  valueType="real" caption="Phytoplankton⑤"/>
+							<Value name="BCHL_N10_BND06"  valueType="real" caption="Phytoplankton⑥"/>
 					  		<Condition type="isEqual" target="IBCON_07" value="6"/>
 						</Definition>
 					</Item>
-					<Item name="IPON_MTR_NZ10" caption="     動物プランクトンの負荷量 (g/s)">
+					<Item name="IPON_MTR_NZ10" caption="    zooplanktonのamount of load (g/s)">
 						<Definition conditionType="functional">
 							<Parameter name="IPON_ZPN_T10" valueType="real" caption="Time (s)"/>
 							<Value name="BZPL_N10_BND01"  valueType="real" caption="動物プランクトン"/>
 					  		<Condition type="isEqual" target="IBCON_07" value="6"/>
 						</Definition>
 					</Item>-->
-					<Item name="IPON_MTR_N10" caption="     リン・窒素・浮遊物質の負荷量 (g/s)">
+					<Item name="IPON_MTR_N10" caption="Phosphorus/Nitrogen/Suspended Solid Load (g/s)">
 						<Definition conditionType="functional">
 							<Parameter name="IPON_MTR_T10" valueType="real" caption="Time (s)"/>
-							<Value name="BIP_N10_BND"  valueType="real" caption="無機態リン"/>
-							<Value name="BNOP_N10_BND" valueType="real" caption="溶存態有機リン"/>
-							<Value name="BPOP_N10_BND" valueType="real" caption="懸濁態有機リン"/>
-							<Value name="BIN_N10_BND"  valueType="real" caption="無機態窒素"/>
-							<Value name="BNON_N10_BND" valueType="real" caption="溶存態有機窒素"/>
-							<Value name="BDON_N10_BND" valueType="real" caption="懸濁態有機窒素"/>
-							<Value name="BSS_N10_BND"  valueType="real" caption="浮遊物質(SS)"/>
+							<Value name="BIP_N10_BND"  valueType="real" caption="DIP"/>
+							<Value name="BNOP_N10_BND" valueType="real" caption="DOP"/>
+							<Value name="BPOP_N10_BND" valueType="real" caption="POP"/>
+							<Value name="BIN_N10_BND"  valueType="real" caption="DIN"/>
+							<Value name="BNON_N10_BND" valueType="real" caption="DON"/>
+							<Value name="BDON_N10_BND" valueType="real" caption="PON"/>
+							<Value name="BSS_N10_BND"  valueType="real" caption="SS"/>
+							<!--<Value name="BIP_N10_BND"  valueType="real" caption="inorganic phosphorus"/>
+							<Value name="BNOP_N10_BND" valueType="real" caption="Dissolved organic phosphorus"/>
+							<Value name="BPOP_N10_BND" valueType="real" caption="Particulate organic phosphorus"/>
+							<Value name="BIN_N10_BND"  valueType="real" caption="Inorganic nitrogen"/>
+							<Value name="BNON_N10_BND" valueType="real" caption="Dissolved organic nitrogen"/>
+							<Value name="BDON_N10_BND" valueType="real" caption="Particulate organic nitrogen"/>
+							<Value name="BSS_N10_BND"  valueType="real" caption="Suspended solids (SS)"/>-->
 					  		<Condition type="isEqual" target="IBCON_07" value="6"/>
 						</Definition>
 					</Item>
 				</GroupBox>
-				<GroupBox caption="希釈係数の設定">
-					<Item name="IPON_RATE" caption="     希釈係数">
+				<GroupBox caption="Setting the dilution factor">
+					<Item name="IPON_RATE" caption="     Dilution factor">
 						<Definition valueType="real" default="0.9" >
 					  		<Condition type="isEqual" target="IBCON_07" value="7"/>
 							<Action type="enable"/>

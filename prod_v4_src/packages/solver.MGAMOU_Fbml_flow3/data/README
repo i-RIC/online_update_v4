@@ -1,4 +1,13 @@
-﻿【今までこのようなプログラムがあればいいなと思っていたプログラムをようやく作ることができました。】
+﻿【 I was finally able to create a program that I thought would be nice to have something like this.】
+ It is americal analysis model that has been likely but not available until now. Based on an orthodox
+planar twodimensional multi-level model, it can move boundary layers up and down according to the water
+surface fluctuations, and at the same time, increase and decrease the number of boundary layers, and also
+tilt boundary layers to match the slope of the river. It is a multi-level numerical analysis model that
+can handle not only density flows, but also diffusion caluculation in ecosystem models. I believe that
+this will allow us to perform a three-dimensional analysis of water areas with large variations in water
+depth, from the coast to estuaries and mid-stream areas including river floodplains.
+
+【今までこのようなプログラムがあればいいなと思っていたプログラムをようやく作ることができました。】
 　オーソドックスな平面２次元多層レベルモデルをベースとして水面変動にあわせて境界層を上下に変動させる、
 同時に境界層の数も増えたり減ったりさせることができる、河川の勾配にあわせて境界層を傾けることができる
 今までありそうであまりなかった数値解析モデル。そして、密度流はもちろんのこと生態系モデルでの拡散解散
