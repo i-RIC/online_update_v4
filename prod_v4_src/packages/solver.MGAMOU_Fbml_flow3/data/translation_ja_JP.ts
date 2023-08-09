@@ -94,7 +94,7 @@
             <translation>乱流モデル</translation>
         </message>
         <message>
-            <source>K-epsilon (simple) model</source>
+            <source>κ－ε(simple) model</source>
             <translation>簡易型κ－εモデル</translation>
         </message>
         <message>
@@ -190,7 +190,7 @@
             <translation>     計算結果のIRICファイルへの出力時間間隔（秒）</translation>
         </message>
         <message>
-            <source>External text file</source>
+            <source>External text file (only japanese)</source>
             <translation>外部出力ファイル（テキストファイル）</translation>
         </message>
         <message>

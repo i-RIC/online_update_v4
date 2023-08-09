@@ -98,7 +98,7 @@
 					<Item name="ICON_09" caption="Turbulent model">
 						<Definition conditionType="constant" valueType="integer" option="true" default="1">
 							<Enumerations>
-								<Enumeration value="1" caption="K-epsilon (simple) model"/>
+								<Enumeration value="1" caption="κ－ε(simple) model"/>
 								<Enumeration value="2" caption="Zero equation (friction velocity) model"/>
 								<Enumeration value="3" caption="Zero equation (mixing length) model"/>
 								<Enumeration value="4" caption="Smagorinsky model"/>
@@ -194,7 +194,7 @@
 							<Definition conditionType="constant" valueType="real" option="false" default="10"/>
 						</Item>
  					</GroupBox>
-					<GroupBox caption="External text file">
+					<GroupBox caption="External text file (only japanese)">
 						<Item name="ICON_01" caption="     Output to external file">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
