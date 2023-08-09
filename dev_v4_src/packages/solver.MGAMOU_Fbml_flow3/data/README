@@ -1,9 +1,9 @@
-﻿【 I was finally able to create a program that I thought would be nice to have something like this.】
- It is americal analysis model that has been likely but not available until now. Based on an orthodox
-planar twodimensional multi-level model, it can move boundary layers up and down according to the water
+﻿ I was finally able to create a program that I thought would be nice to have something like this.
+ It is numerical analysis model that has been likely but not available until now. Based on an orthodox
+planar two-dimensional multi-level model, it can move boundary layers up and down according to the water
 surface fluctuations, and at the same time, increase and decrease the number of boundary layers, and also
 tilt boundary layers to match the slope of the river. It is a multi-level numerical analysis model that
-can handle not only density flows, but also diffusion caluculation in ecosystem models. I believe that
+can handle not only density flows, but also diffusion calculation in ecosystem models. I believe that
 this will allow us to perform a three-dimensional analysis of water areas with large variations in water
 depth, from the coast to estuaries and mid-stream areas including river floodplains.
 
