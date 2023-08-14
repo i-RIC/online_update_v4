@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <SolverDefinition
-name="NaysCUBE_v3" caption="NaysCUBE v4.43.77" version="4.43.77" copyright="Ichiro Kimura"
-release="2023.7.10" homepage="http://i-ric.org/"
+name="NaysCUBE_v3" caption="NaysCUBE v4.43.78" version="4.43.78" copyright="Ichiro Kimura"
+release="2023.8.14" homepage="http://i-ric.org/"
 executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
@@ -200,9 +200,15 @@ gridtype="structured2d"
         <Item name="WL_const" caption="Constant outlet water level[m]">
           <Definition conditionType="constant" valueType="real" option="false" default="1.0">
             <Dependency>
-              <Condition type="and">
-                <Condition type="isEqual" target="i_HYDRO"     value="1"/>
-                <Condition type="isEqual" target="i_WL_variQ"  value="2"/>
+              <Condition type="or">
+                <Condition type="and">
+                  <Condition type="isEqual" target="i_HYDRO"     value="1"/>
+                  <Condition type="isEqual" target="i_WL_variQ"  value="2"/>
+                </Condition>
+                <Condition type="and">
+                  <Condition type="isEqual" target="i_HYDRO"     value="0"/>
+                  <Condition type="isEqual" target="i_WL_fixedQ" value="2"/>
+                </Condition>
               </Condition>
               <Action type="enable"/>
             </Dependency>
