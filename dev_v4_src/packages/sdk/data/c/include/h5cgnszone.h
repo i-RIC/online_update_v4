@@ -39,6 +39,7 @@ public:
 
 	H5CgnsZone(const std::string& name, hid_t groupId, H5CgnsBase* base);	// for reading
 	H5CgnsZone(const std::string& name, Type type, const std::vector<int>& size, hid_t groupId, H5CgnsBase* base);	// for creating
+	H5CgnsZone(const std::string& name, Type type, const std::vector<int>& size, H5CgnsBase* base); // for creating memory only
 	~H5CgnsZone();
 
 	hid_t groupId() const;

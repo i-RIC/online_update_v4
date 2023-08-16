@@ -38,6 +38,7 @@ public:
 
 	void loadZones();
 	H5CgnsZone* createZone(const std::string& name, H5CgnsZone::Type type, const std::vector<int>& size);
+	void addZone(H5CgnsZone* zone);
 
 	int m_dimension;
 	std::string m_name;

@@ -26,6 +26,7 @@ public:
 	static std::string label();
 
 	H5CgnsBase(int dimension, const std::string& name, hid_t groupId, H5CgnsFile* file);
+	H5CgnsBase(int dimension, const std::string& name, H5CgnsFile* file); // memory only
 	~H5CgnsBase();
 
 	int dimension() const;
@@ -48,6 +49,7 @@ public:
 
 	H5CgnsZone* createDefaultZone(H5CgnsZone::Type type, const std::vector<int>& size);
 	H5CgnsZone* createZone(const std::string& name, H5CgnsZone::Type type, const std::vector<int>& size);
+	void addZone(H5CgnsZone* zone);
 	std::string nextDefaultName();
 
 	int setSolutionId(int solutionId);

@@ -23,6 +23,7 @@ public:
 
 	void loadBases();
 	H5CgnsBase* createBase(int dimension);
+	H5CgnsBase* createMemoryOnlyBase(int dimension);
 	static std::string baseName(int dimension);
 
 	void loadZones();
