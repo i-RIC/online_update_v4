@@ -139,19 +139,6 @@
   <SHA1>cb647b3e2a8d34967cbf5f868a88b44c6341ab97</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gui.rivmaker</Name>
-  <DisplayName>Rivmaker</DisplayName>
-  <Description>Riv file maker. You can create *.riv files from survey data.</Description>
-  <Version>1.0.5</Version>
-  <Default>true</Default>
-  <ReleaseDate>2018-05-22</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="102750516" OS="Any" CompressedSize="26581915"/>
-  <DownloadableArchives>iconengines.7z,imageformats.7z,languages.7z,platforms.7z,styles.7z,translations.7z,content.7z</DownloadableArchives>
-  <SHA1>7013a51b57346a7bb5365ec7581b5637df81d4e9</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>miniconda.iriclib</Name>
   <DisplayName>iriclib for Miniconda 3</DisplayName>
   <Description>iriclib for Miniconda 3</Description>
@@ -779,5 +766,18 @@
   <UpdateFile UncompressedSize="11865459" OS="Any" CompressedSize="1509907"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>7be5f6049f25ffd029ff24b6a3d2c5ce7ad83eb7</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.rivmaker</Name>
+  <DisplayName>Rivmaker</DisplayName>
+  <Description>Riv file maker. You can create *.riv files from survey data.</Description>
+  <Version>2.0.3</Version>
+  <Default>true</Default>
+  <ReleaseDate>2021-04-28</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="102750773" OS="Any" CompressedSize="26582177"/>
+  <DownloadableArchives>iconengines.7z,imageformats.7z,languages.7z,platforms.7z,styles.7z,translations.7z,content.7z</DownloadableArchives>
+  <SHA1>15e72d5ef1a4c7efdf2870142e6977861a37aa75</SHA1>
  </PackageUpdate>
 </Updates>

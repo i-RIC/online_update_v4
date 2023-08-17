@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Rivmaker</DisplayName>
 	<Description>Riv file maker. You can create *.riv files from survey data.</Description>
-	<Version>1.0.5</Version>
+	<Version>2.0.3</Version>
 	<Default>true</Default>
-	<ReleaseDate>2018-05-22</ReleaseDate>
+	<ReleaseDate>2021-04-28</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
