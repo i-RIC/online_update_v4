@@ -584,21 +584,21 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition" caption="Basic information of diffusion calculation of material">
+		<Tab name="Diffusion condition" caption="Basic information of diffusion calculation of substance">
 			<Content>
 				<Items>
 					<Item name="ICON_07" caption="Diffusion calculation">
 						<Definition conditionType="constant" valueType="integer" option="true" default="0">
 							<Enumerations>
-								<Enumeration value="0" caption="Do not calculate diffusion of material" />
-								<Enumeration value="1" caption="Diffusion calculation of a single material" />
+								<Enumeration value="0" caption="Do not calculate diffusion of substance" />
+								<Enumeration value="1" caption="Diffusion calculation of a single substance" />
 								<Enumeration value="2" caption="Diffusion calculation in ecosystem model (simple model)" />
 								<Enumeration value="3" caption="Diffusion calculation in ecosystem model (detailed model)" />
 							</Enumerations>
 						</Definition>
 					</Item>
-					<GroupBox caption="Diffusion coefficient for material diffusion">
-						<Item name="IDHP_PARA" caption="  How to set the horizontal diffusion coefficient for material diffusion">
+					<GroupBox caption="Diffusion coefficient for substance diffusion">
+						<Item name="IDHP_PARA" caption="  How to set the horizontal diffusion coefficient for substance diffusion">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
 									<Enumeration value="0" caption="Directly input the horizontal diffusion coefficient (constant for all areas)" />
@@ -612,7 +612,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIFF_CO_H" caption="        Horizontal diffusion coefficient of material diffusion">
+						<Item name="DIFF_CO_H" caption="        Horizontal diffusion coefficient of substance diffusion">
 							<Definition conditionType="functional">
 								<Parameter name="LAY_DIF_H" valueType="real" caption="Layer"/>
 								<Value name="DIF_CNTCO_H" valueType="real" caption="Horizontal diffusion coefficient"/>
@@ -625,7 +625,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIFF_CNTRT_H" caption="        Horizontal diffusion coefficient of material diffusion (magnification to eddy viscosity coefficient)">
+						<Item name="DIFF_CNTRT_H" caption="        Horizontal diffusion coefficient of substance diffusion (magnification to eddy viscosity coefficient)">
 							<Definition conditionType="constant" valueType="real" option="false" default="1.0">
 								<Dependency>
 									<Condition type="and">
@@ -636,7 +636,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="IDVP_PARA" caption="  How to set the vertical diffusion coefficient of material diffusion">
+						<Item name="IDVP_PARA" caption="  How to set the vertical diffusion coefficient of substance diffusion">
 							<Definition conditionType="constant" valueType="integer" option="true" default="3">
 								<Enumerations>
 									<Enumeration value="1" caption="Specify magnification for horizontal diffusion coefficient (constant for all areas)" />
@@ -649,7 +649,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="DIFF_RAT_V" caption="        Vertical diffusion coefficient of material diffusion (magnification to horizontal diffusion coefficient)">
+						<Item name="DIFF_RAT_V" caption="        Vertical diffusion coefficient of substance diffusion (magnification to horizontal diffusion coefficient)">
 							<Definition conditionType="constant" valueType="real" option="false" default="0.0001">
 								<Dependency>
 									<Condition type="and">
@@ -664,10 +664,10 @@
 				</Items>
 			</Content>
 		</Tab>
-		<Tab name="Diffusion condition 1" caption="Parameters for single material (COD) diffusion calculation">
+		<Tab name="Diffusion condition 1" caption="Parameters for single substance (COD) diffusion calculation">
 			<Content>
 				<Items>
-					<GroupBox caption="Initial value of single diffusing material (COD)">
+					<GroupBox caption="Initial value of single diffusing substance (COD)">
 						<Item name="DIF_INT1_FIX" caption="     Initial condition setting method">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
@@ -680,7 +680,7 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="COD_INT1_FIX" caption="     Initial value of single diffusive material (COD) for each layer">
+						<Item name="COD_INT1_FIX" caption="     Initial value of single diffusive substance (COD) for each layer">
 							<Definition conditionType="functional" >
 								<Parameter name="LAY_FIX11" valueType="real" caption="Layer"/>
 								<Value name="COD1_FIX" valueType="real" caption="Initial value (mg/L)"/>
@@ -694,7 +694,7 @@
 							</Definition>
 						</Item>
  					</GroupBox>
-					<GroupBox caption="Coefficients for single material (COD) diffusion calculations">
+					<GroupBox caption="Coefficients for single substance (COD) diffusion calculations">
 						<Item name="DIF_PARA1_FIX" caption="     Method of setting coefficients for diffusion calculation">
 							<Definition conditionType="constant" valueType="integer" option="true" default="1">
 								<Enumerations>
@@ -1802,19 +1802,19 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DIF_INT" caption="Initial value of diffusion material">
+		<Item name="DIF_INT" caption="Initial value of diffusion substance">
 			<Definition position="node" valueType="complex" keepOrder="true">
 				<Item name="DIF_INT_P" caption="Initial value setting" >
 					<Definition position="node" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
-							<Enumeration value="1" caption="Initial value of single diffusing material" />
-							<Enumeration value="2" caption="Initial value of diffusion material in ecosystem (simple) model" />
-							<Enumeration value="3" caption="Initial value of diffusion material in ecosystem (detailed) model" />
+							<Enumeration value="1" caption="Initial value of single diffusing substance" />
+							<Enumeration value="2" caption="Initial value of diffusion substance in ecosystem (simple) model" />
+							<Enumeration value="3" caption="Initial value of diffusion substance in ecosystem (detailed) model" />
 						</Enumerations>
 					</Definition>
 				</Item>
-				<Item name="COD_INT1_SET" caption="     Initial value of single diffusion material (COD) for each layer (mg/L)">
+				<Item name="COD_INT1_SET" caption="     Initial value of single diffusion substance (COD) for each layer (mg/L)">
 					<Definition position="node" conditionType="functional" keepOrder="true">
 						<Parameter name="LAY_NM21" valueType="real" caption="Layer"/>
 						<Value name="COD1_INT" valueType="real" caption="Initial value (mg/L)"/>
@@ -1822,7 +1822,7 @@
 						<Action type="enable" />
 					</Definition>
 				</Item>
-				<GroupBox caption="Initial value of diffusion material in ecosystem (simple) model">
+				<GroupBox caption="Initial value of diffusion substance in ecosystem (simple) model">
 					<Item name="PARA_INT6_SET" caption="     Initial values of CDO, phosphorus, nitrogen and dissolved oxygen in each layer (mg/L)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
 							<Parameter name="LAY_NM22" valueType="real" caption="Layer"/>
@@ -1837,7 +1837,7 @@
 						</Definition>
 					</Item>
 				</GroupBox>
-				<GroupBox caption="Initial value of diffusion material in ecosystem (detailed) model">
+				<GroupBox caption="Initial value of diffusion substance in ecosystem (detailed) model">
 					<Item name="PARA_MPN10_SET" caption="     Initial value of phytoplankton concentration in each layer (μg/L)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
 							<Parameter name="MPN_NM23" valueType="real" caption="Layer"/>
@@ -1939,13 +1939,13 @@
 						<Definition position="node" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 							<Enumerations>
 								<Enumeration value="0" caption="No setting" />
-								<Enumeration value="1" caption="Single material loading" />
-								<Enumeration value="2" caption="Loading of diffuse materials in ecosystem (simple) model" />
-								<Enumeration value="3" caption="Loading of diffuse materials in the ecosystem (detailed) model" />
+								<Enumeration value="1" caption="Single substance loading" />
+								<Enumeration value="2" caption="Loading of diffuse substances in ecosystem (simple) model" />
+								<Enumeration value="3" caption="Loading of diffuse substances in the ecosystem (detailed) model" />
 							</Enumerations>
 						</Definition>
 					</Item>
-					<Item name="COD_CB_IN1" caption="Single material (COD) loading (g/s)">
+					<Item name="COD_CB_IN1" caption="Single substance (COD) loading (g/s)">
 						<Definition position="node" conditionType="functional" keepOrder="true">
 							<Parameter name="CODIN_T1" valueType="real" caption="Time (s)"/>
 							<Value name="CODIN_1" valueType="real" caption="Amount of load"/>
@@ -1955,7 +1955,7 @@
 							</Dependency>
 						</Definition>
 					</Item>
-					<GroupBox caption="Ecosystem (simplified) model load and concentration of diffused materials">
+					<GroupBox caption="Ecosystem (simplified) model load and concentration of diffused substances">
  						<Item name="MRT_CB_IN6" caption="COD/phosphorus/nitrogen load (g/s)">
 							<Definition position="node" conditionType="functional" keepOrder="true">
 								<Parameter name="MRTIN_T6" valueType="real" caption="Time (s)"/>
@@ -1977,7 +1977,7 @@
 							</Definition>
 						</Item>
 					</GroupBox>
-					<GroupBox caption="Ecosystem (detailed) model load and concentration of diffused materials">
+					<GroupBox caption="Ecosystem (detailed) model load and concentration of diffused substances">
 	 					<Item name="MPN_CB_IN10" caption="Concentration of phytoplankton (μg/L)">
 							<Definition position="node" conditionType="functional" keepOrder="true">
 								<Parameter name="MPNIN_T10" valueType="real" caption="Phytoplankton species"/>
@@ -2209,9 +2209,9 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DIFF_CO" caption="Diffusion coefficient for material diffusion">
+		<Item name="DIFF_CO" caption="Diffusion coefficient for substance diffusion">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<Item name="DIFF_CO_PARA" caption="Horizontal diffusion coefficient setting for material diffusion" >
+				<Item name="DIFF_CO_PARA" caption="Horizontal diffusion coefficient setting for substance diffusion" >
 					<Definition position="cell" conditionType="constant" valueType="integer" option="true" default="0" keepOrder="true">
 						<Enumerations>
 							<Enumeration value="0" caption="No setting" />
@@ -2230,7 +2230,7 @@
 						</Dependency>
 					</Definition>
 				</Item>
-				<Item name="DIFF_RAT_H_P" caption="Horizontal diffusion coefficient (magnification for eddy dynamic viscosity coefficient)">
+				<Item name="DIFF_RAT_H_P" caption="Horizontal diffusion coefficient (magnification for eddy viscosity coefficient)">
 					<Definition position="cell" valueType="real" default="1.0" keepOrder="true">
 						<Condition type="isEqual" target="DIFF_CO_PARA" value="2"/>
 						<Action type="enable" />
@@ -2247,9 +2247,9 @@
 				</Item>
 			</Definition>
 		</Item>
-		<Item name="DIF_PARA_1" caption="Material diffusion coefficient (single material)">
+		<Item name="DIF_PARA_1" caption="Substance diffusion coefficient (single substance)">
 			<Definition position="cell" valueType="complex" keepOrder="true">
-				<GroupBox caption="Coefficients for single material (COD) diffusion calculations">
+				<GroupBox caption="Coefficients for single substance (COD) diffusion calculations">
 					<Item name="DIF_IPC1_00" caption="     Internal production, breakdown rate, sedimentation rate">
 						<Definition position="cell" conditionType="functional" keepOrder="true">
 							<Parameter name="LAY_NM31" valueType="real" caption="Layer"/>
@@ -2267,7 +2267,7 @@
 				</GroupBox>
 			</Definition>
 		</Item>
-		<Item name="DIF_PARA_6" caption="Material diffusion coefficient (ecosystem (simple) model)">
+		<Item name="DIF_PARA_6" caption="Substance diffusion coefficient (ecosystem (simple) model)">
 			<Definition position="cell" valueType="complex" keepOrder="true">
 				<GroupBox caption="Diffusion calculation coefficients of ecosystem (simple) model">
 					<Item name="DIF_RIN_PARA6" caption="         Production rate, breakdown rate, and sedimentation rate of organic phosphorus">
@@ -2328,7 +2328,7 @@
 				</GroupBox>
 			</Definition>
 		</Item>
-		<Item name="DIF_PARA_10" caption="Material diffusion coefficient (ecosystem (detailed) model)">
+		<Item name="DIF_PARA_10" caption="Substance diffusion coefficient (ecosystem (detailed) model)">
 			<Definition position="node" valueType="complex" keepOrder="true">
 				<GroupBox caption="Diffusion coefficients for ecosystem (detailed) model">
 					<!--<Item name="FIS_CHL_FRX" caption="     水面での光量(cal/m**2/day)">
@@ -2376,12 +2376,12 @@
 					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="IBCON_07" caption="Boundary conditions for material diffusion calculations">
+			<Item name="IBCON_07" caption="Boundary conditions for substance diffusion calculations">
 				<Definition conditionType="constant" valueType="integer" option="true" default="0">
 					<Enumerations>
 						<Enumeration value="0" caption="No setting" />
-						<Enumeration value="1" caption="Set concentration of single material (COD)" />
-						<Enumeration value="2" caption="Set load of single material (COD) load" />
+						<Enumeration value="1" caption="Set concentration of single substance (COD)" />
+						<Enumeration value="2" caption="Set load of single substance (COD) load" />
 						<Enumeration value="3" caption="Set concentration for ecosystem (simple) model" />
 						<Enumeration value="4" caption="Set load of the ecosystem (simple) model" />
 						<Enumeration value="5" caption="Set concentration for ecosystem (detailed) model" />
@@ -2487,16 +2487,16 @@
 					</Item>
 				</GroupBox>
 			</GroupBox>
-			<GroupBox caption="Boundary conditions for material diffusion calculations">
-				<GroupBox caption="Single material (COD) boundary conditions">
-					<Item name="IPON_COD_C1" caption="Single material (COD) concentration (mg/L)">
+			<GroupBox caption="Boundary conditions for substance diffusion calculations">
+				<GroupBox caption="Single substance (COD) boundary conditions">
+					<Item name="IPON_COD_C1" caption="Single substance (COD) concentration (mg/L)">
 						<Definition conditionType="functional">
 							<Parameter name="LAY_NM42" valueType="real" caption="Layer"/>
 							<Value name="COD_C1_BND" valueType="real" caption="Concentration (mg/L)"/>
 					  		<Condition type="isEqual" target="IBCON_07" value="1"/>
 						</Definition>
 					</Item>
-					<Item name="IPON_COD_N1" caption="Single material (COD) Loading (g/s)">
+					<Item name="IPON_COD_N1" caption="Single substance (COD) Loading (g/s)">
 						<Definition conditionType="functional">
 							<Parameter name="IPON_COD_T1" valueType="real" caption="Time (s)"/>
 							<Value name="COD_N1_BND" valueType="real" caption="Load (g/s)"/>

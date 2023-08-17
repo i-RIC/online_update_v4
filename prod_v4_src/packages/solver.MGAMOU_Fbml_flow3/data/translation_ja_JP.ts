@@ -494,7 +494,7 @@
             <translation>接水気層の湿度 (%)</translation>
         </message>
         <message>
-            <source>Basic information of diffusion calculation of material</source>
+            <source>Basic information of diffusion calculation of substance</source>
             <translation>物質の拡散計算の基本情報</translation>
         </message>
         <message>
@@ -502,11 +502,11 @@
             <translation>拡散計算</translation>
         </message>
         <message>
-            <source>Do not calculate diffusion of material</source>
+            <source>Do not calculate diffusion of substance</source>
             <translation>物質の拡散計算を行わない</translation>
         </message>
         <message>
-            <source>Diffusion calculation of a single material</source>
+            <source>Diffusion calculation of a single substance</source>
             <translation>単一物質の拡散計算</translation>
         </message>
         <message>
@@ -518,35 +518,35 @@
             <translation>生態系モデルでの拡散計算（詳細モデル）</translation>
         </message>
         <message>
-            <source>Diffusion coefficient for material diffusion</source>
+            <source>Diffusion coefficient for substance diffusion</source>
             <translation>物質拡散の拡散係数</translation>
         </message>
         <message>
-            <source>  How to set the horizontal diffusion coefficient for material diffusion</source>
+            <source>  How to set the horizontal diffusion coefficient for substance diffusion</source>
             <translation>  物質拡散の水平拡散係数設定方法</translation>
         </message>
         <message>
-            <source>        Horizontal diffusion coefficient of material diffusion</source>
+            <source>        Horizontal diffusion coefficient of substance diffusion</source>
             <translation>        物質拡散の水平拡散係数</translation>
         </message>
         <message>
-            <source>        Horizontal diffusion coefficient of material diffusion (magnification to eddy viscosity coefficient)</source>
+            <source>        Horizontal diffusion coefficient of substance diffusion (magnification to eddy viscosity coefficient)</source>
             <translation>        物質拡散の水平拡散係数（渦動粘性係数に対する倍率）</translation>
         </message>
         <message>
-            <source>  How to set the vertical diffusion coefficient of material diffusion</source>
+            <source>  How to set the vertical diffusion coefficient of substance diffusion</source>
             <translation>  物質拡散の鉛直拡散係数設定方法</translation>
         </message>
         <message>
-            <source>        Vertical diffusion coefficient of material diffusion (magnification to horizontal diffusion coefficient)</source>
+            <source>        Vertical diffusion coefficient of substance diffusion (magnification to horizontal diffusion coefficient)</source>
             <translation>        物質拡散の鉛直拡散係数（水平拡散係数に対する倍率）</translation>
         </message>
         <message>
-            <source>Parameters for single material (COD) diffusion calculation</source>
+            <source>Parameters for single substance (COD) diffusion calculation</source>
             <translation>単一物質(COD)の拡散計算用パラメーター</translation>
         </message>
         <message>
-            <source>Initial value of single diffusing material (COD)</source>
+            <source>Initial value of single diffusing substance (COD)</source>
             <translation>単一拡散物質(COD)の初期値</translation>
         </message>
         <message>
@@ -554,7 +554,7 @@
             <translation>     初期条件設定方法</translation>
         </message>
         <message>
-            <source>     Initial value of single diffusive material (COD) for each layer</source>
+            <source>     Initial value of single diffusive substance (COD) for each layer</source>
             <translation>     各層ごとの単一拡散物質(COD)の初期値</translation>
         </message>
         <message>
@@ -562,7 +562,7 @@
             <translation>初期値(mg/L)</translation>
         </message>
         <message>
-            <source>Coefficients for single material (COD) diffusion calculations</source>
+            <source>Coefficients for single substance (COD) diffusion calculations</source>
             <translation> 単一物質(COD)拡散計算の緒係数</translation>
         </message>
         <message>
@@ -1286,7 +1286,7 @@
             <translation>  各層ごとの水温・塩素量の初期値</translation>
         </message>
         <message>
-            <source>Initial value of diffusion material</source>
+            <source>Initial value of diffusion substance</source>
             <translation>拡散物質の初期値</translation>
         </message>
         <message>
@@ -1294,19 +1294,19 @@
             <translation>   初期値設定</translation>
         </message>
         <message>
-            <source>Initial value of single diffusing material</source>
+            <source>Initial value of single diffusing substance</source>
             <translation>単一物質拡散の初期値</translation>
         </message>
         <message>
-            <source>Initial value of diffusion material in ecosystem (simple) model</source>
+            <source>Initial value of diffusion substance in ecosystem (simple) model</source>
             <translation>生態系（簡易）モデルでの拡散物質の初期値</translation>
         </message>
         <message>
-            <source>Initial value of diffusion material in ecosystem (detailed) model</source>
+            <source>Initial value of diffusion substance in ecosystem (detailed) model</source>
             <translation>生態系（詳細）モデルでの拡散物質の初期値</translation>
         </message>
         <message>
-            <source>     Initial value of single diffusion material (COD) for each layer (mg/L)</source>
+            <source>     Initial value of single diffusion substance (COD) for each layer (mg/L)</source>
             <translation>     各層ごとの単一拡散物質(COD)の初期値(mg/L)</translation>
         </message>
         <message>
@@ -1374,19 +1374,19 @@
             <translation>  負荷量設定</translation>
         </message>
         <message>
-            <source>Single material loading</source>
+            <source>Single substance loading</source>
             <translation>単一物質の負荷量</translation>
         </message>
         <message>
-            <source>Loading of diffuse materials in ecosystem (simple) model</source>
+            <source>Loading of diffuse substances in ecosystem (simple) model</source>
             <translation>生態系（簡易）モデルでの拡散物質の負荷量</translation>
         </message>
         <message>
-            <source>Loading of diffuse materials in the ecosystem (detailed) model</source>
+            <source>Loading of diffuse substances in the ecosystem (detailed) model</source>
             <translation>生態系（詳細）モデルでの拡散物質の負荷量</translation>
         </message>
         <message>
-            <source>Single material (COD) loading (g/s)</source>
+            <source>Single substance (COD) loading (g/s)</source>
             <translation>      単一物質(COD)の負荷量 (g/s)</translation>
         </message>
         <message>
@@ -1394,7 +1394,7 @@
             <translation>負荷量</translation>
         </message>
         <message>
-            <source>Ecosystem (simplified) model load and concentration of diffused materials</source>
+            <source>Ecosystem (simplified) model load and concentration of diffused substances</source>
             <translation>    生態系（簡易）モデル拡散物質の負荷量・濃度</translation>
         </message>
         <message>
@@ -1406,7 +1406,7 @@
             <translation>     溶存酸素量濃度 (mg/L)</translation>
         </message>
         <message>
-            <source>Ecosystem (detailed) model load and concentration of diffused materials</source>
+            <source>Ecosystem (detailed) model load and concentration of diffused substances</source>
             <translation>    生態系（詳細）モデル拡散物質の負荷量・濃度</translation>
         </message>
         <message>
@@ -1494,7 +1494,7 @@
             <translation>     密度の水平拡散係数（直接入力）</translation>
         </message>
         <message>
-            <source>Horizontal diffusion coefficient setting for material diffusion</source>
+            <source>Horizontal diffusion coefficient setting for substance diffusion</source>
             <translation>物質拡散の水平拡散係数設定</translation>
         </message>
         <message>
@@ -1506,7 +1506,7 @@
             <translation>     水平拡散係数（直接入力）</translation>
         </message>
         <message>
-            <source>Horizontal diffusion coefficient (magnification for eddy dynamic viscosity coefficient)</source>
+            <source>Horizontal diffusion coefficient (magnification for eddy viscosity coefficient)</source>
             <translation>     水平拡散係数（渦動粘性係数に対する倍率）</translation>
         </message>
         <message>
@@ -1514,11 +1514,11 @@
             <translation>　　 鉛直拡散係数（水平拡散係数に対する倍率）</translation>
         </message>
         <message>
-            <source>Material diffusion coefficient (single material)</source>
+            <source>Substance diffusion coefficient (single substance)</source>
             <translation>物質拡散の緒係数（単一物質）</translation>
         </message>
         <message>
-            <source>Material diffusion coefficient (ecosystem (simple) model)</source>
+            <source>Substance diffusion coefficient (ecosystem (simple) model)</source>
             <translation>物質拡散の緒係数（生態系（簡易）モデル）</translation>
         </message>
         <message>
@@ -1530,7 +1530,7 @@
             <translation>         有機態ＣＯＤの分解速度・沈降速度</translation>
         </message>
         <message>
-            <source>Material diffusion coefficient (ecosystem (detailed) model)</source>
+            <source>Substance diffusion coefficient (ecosystem (detailed) model)</source>
             <translation>物質拡散の緒係数（生態系（詳細）モデル）</translation>
         </message>
         <message>
@@ -1562,16 +1562,16 @@
             <translation>密度の境界条件として希釈係数を設定</translation>
         </message>
         <message>
-            <source>Boundary conditions for material diffusion calculations</source>
+            <source>Boundary conditions for substance diffusion calculations</source>
             <translation>     物質の拡散計算の境界条件</translation>
         </message>
         <message>
-            <source>Set concentration of single material (COD)</source>
-            <translation>単一物資(COD)の濃度を設定</translation>
+            <source>Set concentration of single substance (COD)</source>
+            <translation>単一物質(COD)の濃度を設定</translation>
         </message>
         <message>
-            <source>Set load of single material (COD) load</source>
-            <translation>単一物資(COD)の負荷量を設定</translation>
+            <source>Set load of single substance (COD) load</source>
+            <translation>単一物質(COD)の負荷量を設定</translation>
         </message>
         <message>
             <source>Set concentration for ecosystem (simple) model</source>
@@ -1702,20 +1702,20 @@
             <translation>     希釈係数</translation>
         </message>
         <message>
-            <source>Single material (COD) boundary conditions</source>
-            <translation>単一物資(COD)の境界条件</translation>
+            <source>Single substance (COD) boundary conditions</source>
+            <translation>単一物質(COD)の境界条件</translation>
         </message>
         <message>
-            <source>Single material (COD) concentration (mg/L)</source>
-            <translation>     単一物資(COD)の濃度 (mg/L)</translation>
+            <source>Single substance (COD) concentration (mg/L)</source>
+            <translation>     単一物質(COD)の濃度 (mg/L)</translation>
         </message>
         <message>
             <source>Concentration (mg/L)</source>
             <translation>濃度(mg/L)</translation>
         </message>
         <message>
-            <source>Single material (COD) Loading (g/s)</source>
-            <translation>     単一物資(COD)の負荷量 (g/s)</translation>
+            <source>Single substance (COD) Loading (g/s)</source>
+            <translation>     単一物質(COD)の負荷量 (g/s)</translation>
         </message>
         <message>
             <source>Load (g/s)</source>
