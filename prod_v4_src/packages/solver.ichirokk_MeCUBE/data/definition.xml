@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SolverDefinition
+name="MeCUBE" caption="MeCUBE v1.000.001" version="1.000.001" copyright="Ichiro Kimura"
+release="2023.8.10" homepage="http://i-ric.org/"
+executable="MeCUBE.exe"
+iterationtype="time"
+igridtype="structured2d"
+>
+
+<!-- 計算条件の定義 -->
+<CalculationCondition>
+
+  <Tab name="Setting_Parameters" caption="Setting Parameters">
+    <Content>
+      <Items>
+
+		  <Item name="inputfile" caption="Input File Name">
+        <Definition conditionType="constant" valueType="filename" option="false" default="Case1.cgn">
+        </Definition>
+		  </Item>
+
+      <Item name="stime" caption="Start Time[s]">
+        <Definition conditionType="constant" valueType="real" option="false" default="0.0">
+        </Definition>
+      </Item>
+
+      <Item name="etime" caption="End Time[s]">
+        <Definition conditionType="constant" valueType="real" option="false" default="72000.0">
+        </Definition>
+     </Item>
+     </Items>
+    </Content>
+  </Tab>
+
+</CalculationCondition>
+
+</SolverDefinition>

@@ -618,7 +618,7 @@
   <UpdateFile UncompressedSize="39712231" OS="Any" CompressedSize="5427086"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>a5daed8b69ec74d584abbda2204f681a625670af</SHA1>
  </PackageUpdate>
@@ -686,5 +686,18 @@
   <UpdateFile UncompressedSize="12097652" OS="Any" CompressedSize="833564"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>6c44ffa635fe34a4fd1c711fd7570ff68be10d5a</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ichirokk_MeCUBE</Name>
+  <DisplayName>MeCUBE v1.000.001</DisplayName>
+  <Description/>
+  <Version>1.000.001</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-08-10</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="631398" OS="Any" CompressedSize="84944"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>49e0bac29277fe626af1b6c76974822aa603c237</SHA1>
  </PackageUpdate>
 </Updates>
