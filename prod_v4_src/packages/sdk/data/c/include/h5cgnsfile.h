@@ -36,7 +36,7 @@ public:
 	int baseNum() const;
 
 	H5CgnsBase* base();
-	H5CgnsBase* base(int dim);
+	H5CgnsBase* base(int dim, bool forceCreate = false);
 	H5CgnsBase* baseById(int bid);
 
 	H5CgnsBase* ccBase() const;
