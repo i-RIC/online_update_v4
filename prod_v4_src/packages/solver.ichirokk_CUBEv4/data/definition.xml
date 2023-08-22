@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <SolverDefinition
-name="NaysCUBE_v3" caption="NaysCUBE v4.43.78" version="4.43.78" copyright="Ichiro Kimura"
-release="2023.8.14" homepage="http://i-ric.org/"
+name="NaysCUBE_v3" caption="NaysCUBE v4.43.79" version="4.43.79" copyright="Ichiro Kimura"
+release="2023.8.22" homepage="http://i-ric.org/"
 executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
@@ -1331,6 +1331,19 @@ gridtype="structured2d"
     	    </Dependency>
         </Definition>
 	    </Item>
+
+      <Item name="i_dri_slope" caption="Consider slope effect on wood movement?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+          <Dependency>
+            <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+            <Action type="enable"/>
+          </Dependency>
+          <Enumerations>
+            <Enumeration value="0" caption="No"/>
+            <Enumeration value="1" caption="Yes"/>
+          </Enumerations>
+        </Definition>
+      </Item>
 
       <Item name="i_random_walk" caption="Consider turbulence by random walk">
         <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
