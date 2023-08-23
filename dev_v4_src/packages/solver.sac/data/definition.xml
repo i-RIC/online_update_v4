@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition 
+    xmlns="www.iric.net/SolverDefinition/1.0"
+    name="sac" caption="Slope-Area Computation Program" version="2.0.1" copyright="USGS"
+    release="2017.12.28" 
+    homepage="http://water.usgs.gov/software/SAC/"
+    executable="SAC.exe"
+    iterationtype="time"
+    gridtype="1.5d_withcrosssection"
+    >
+	<CalculationCondition>
+		<Tab name="project_info" caption="Project Info">
+			<HBoxLayout>
+				<VBoxLayout>
+					<GroupBox caption="Stream and Flood">
+						<Item name="id" caption="ID">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="streamName" caption="Stream">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="location" caption="Location">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="street_road" caption="Stream/Road">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="flood_date" caption="Flood Date">
+							<Definition valueType="string" />
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Authorship">
+						<Item name="computed_by" caption="Computed By">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="checked_by" caption="Checked By">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="reviewed_by" caption="Reviewed By">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="remarks" caption="Remarks">
+							<Definition valueType="string" multiline="true" />
+						</Item>
+					</GroupBox>
+				</VBoxLayout>
+				<VBoxLayout withSpacer="true">
+					<GroupBox caption="Unit Conversion (Input / Output)">
+						<Item name="units" caption="Units (SICODE)">
+							<Definition valueType="integer" option="true" default="0">
+								<Enumerations>
+									<Enumeration value="0" caption="English / English"/>
+									<Enumeration value="1" caption="SI / SI"/>
+									<Enumeration value="2" caption="English / SI"/>
+									<Enumeration value="3" caption="SI / English"/>
+								</Enumerations>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Type of weighing">
+						<Item name="SLPCODE" caption="The type of weighing (SLPCODE)">
+							<Definition valueType="integer" option="true" default="0">
+								<Enumerations>
+									<Enumeration value="0" caption="No weighing (blank)"/>
+									<Enumeration value="1" caption="Conveyance weighing (1)"/>
+								</Enumerations>
+							</Definition>
+						</Item>
+					</GroupBox>
+					<GroupBox caption="Survey Information">
+						<Item name="flagged_by" caption="Flagged By">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="flagging_date" caption="Flagging Date">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="surveyed_by" caption="Surveyed By">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="survey_date" caption="Survey Date">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="instrument_type" caption="Instrument Type">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="model" caption="Model">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="serial_num" caption="Serial Number">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="horizontal_datum" caption="Horizontal Datum">
+							<Definition valueType="string" />
+						</Item>
+						<Item name="vertical_datum" caption="Vertical Datum">
+							<Definition valueType="string" />
+						</Item>
+					</GroupBox>
+				</VBoxLayout>
+			</HBoxLayout>
+		</Tab>
+		<Tab name="wse" caption="Water Surface Elevation">
+			<Item name="wse" caption="Water Surface Elevation">
+				<Definition conditionType="functional" noSort="true">
+					<Parameter caption="Distance Upstream" valueType="real" />
+					<Value caption="Elevation" valueType="real" />
+				</Definition>
+			</Item>
+		</Tab>
+	</CalculationCondition>
+	<GridRelatedCondition>
+		<Item name="Elevation" caption="Elevation">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+		<Item name="Crosssection" caption="Cross-section">
+			<Definition position="node" valueType="complex" grouped="false">
+				<GroupBox caption="Name">
+					<Item name="name" caption="Name">
+						<Definition valueType="string" default="" />
+					</Item>
+				</GroupBox>
+				<GroupBox caption="Crosssection and Roughness">
+					<Item name="n_type" caption="Type">
+						<Definition valueType="integer" option="true" default="0">
+							<Enumerations>
+								<Enumeration value="0" caption="Simple"/>
+								<Enumeration value="1" caption="Horizontal distribution"/>
+								<Enumeration value="2" caption="Horizontal + vertical distribution"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<Item name="appr_xs" caption="Simple: Cross Section (X, Y)">
+						<Definition conditionType="functional">
+							<Parameter caption="X" valueType="real" />
+							<Value caption="Y" valueType="real" />
+							<Condition type="isEqual" target="n_type" value="0"/>
+						</Definition>
+					</Item>
+					<Item name="n_simple" caption="Simple: Roughness  (NVAL(1))">
+						<Definition valueType="real" default="0">
+							<Condition type="isEqual" target="n_type" value="0"/>
+						</Definition>
+					</Item>
+					<Item name="n_h" caption="Horizontal distribution: (X, Y, NVAL)">
+						<Definition conditionType="functional" noSort="true">
+							<Parameter name="X" caption="X" valueType="real" />
+							<Value name="Y" caption="Y" valueType="real" />
+							<Value name="NVAL" caption="NVAL" valueType="real" span="true" />
+							<Condition type="isEqual" target="n_type" value="1"/>
+						</Definition>
+					</Item>
+					<Item name="n_h_v" caption="Horizontal + vertical distribution (X, Y, BOTD, TOPD, BOTN, TOPN)">
+						<Definition conditionType="functional" noSort="true">
+							<Parameter name="X" caption="X" valueType="real" />
+							<Value name="Y" caption="Y" valueType="real" axis="left" />
+							<Value name="BOTD" caption="BOTD" valueType="real" axis="right" span="true" />
+							<Value name="TOPD" caption="TOPD" valueType="real" axis="right" span="true" />
+							<Value name="BOTN" caption="BOTN" valueType="real" axis="right" span="true" />
+							<Value name="TOPN" caption="TOPN" valueType="real" axis="right" span="true" />
+							<Condition type="isEqual" target="n_type" value="2"/>
+						</Definition>
+					</Item>
+				</GroupBox>
+			</Definition>
+		</Item>
+	</GridRelatedCondition>
+</SolverDefinition>
