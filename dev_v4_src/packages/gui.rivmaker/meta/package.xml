@@ -4,7 +4,7 @@
 	<Description>Riv file maker. You can create *.riv files from survey data.</Description>
 	<Version>2.0.4</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023.08.28</ReleaseDate>
+	<ReleaseDate>2023-08-28</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
