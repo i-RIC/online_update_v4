@@ -633,19 +633,6 @@
   <SHA1>21e54349302a6fc7854787b24ecf99c7b13e0655</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.MGAMOU_Fbml_flow3</Name>
-  <DisplayName>Fbml_flow3_v2023_1_iric4</DisplayName>
-  <Description/>
-  <Version>1.2023.1</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="8781810" CompressedSize="1235091"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>4dd974122e9ae387db9da0f93942260b0dd4082c</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (release)</DisplayName>
   <Description>iRIC Main GUI</Description>
@@ -709,8 +696,21 @@
   <ReleaseDate>2023-08-29</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="103418941" OS="Any" CompressedSize="26802132"/>
+  <UpdateFile OS="Any" UncompressedSize="103418941" CompressedSize="26802132"/>
   <DownloadableArchives>iconengines.7z,imageformats.7z,languages.7z,platforms.7z,styles.7z,translations.7z,content.7z</DownloadableArchives>
   <SHA1>9875cefe769ed00116783cecb54c5cc12d63e842</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.MGAMOU_Fbml_flow3</Name>
+  <DisplayName>Fbml_flow3_v2023_1_iric4</DisplayName>
+  <Description/>
+  <Version>1.2023.1</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-08-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="9191410" CompressedSize="1169877"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>a48db11c0fada445c3b270290780666c5daa1e1f</SHA1>
  </PackageUpdate>
 </Updates>
