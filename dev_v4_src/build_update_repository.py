@@ -8,7 +8,7 @@ this script.
 
 import subprocess
 import re
-##from qt_ifw_path import QT_IFW_PATH
+from qt_ifw_path import QT_IFW_PATH
 
 # Qt installer framework path
 
@@ -36,6 +36,6 @@ updated_packages = updated_package_list()
 print('Following packages are updated:')
 print("\r\n".join(updated_packages))
 
-##repogen = QT_IFW_PATH + '\\bin\\repogen.exe'
-##cmd = repogen + ' -p packages --update --include ' + ','.join(updated_packages)+ ' ..\dev_v4'
-##subprocess.check_output(cmd)
+repogen = QT_IFW_PATH + '\\bin\\repogen.exe'
+cmd = repogen + ' -p packages --update --include ' + ','.join(updated_packages)+ ' ..\dev_v4'
+subprocess.check_output(cmd)
