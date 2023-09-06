@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition
+
+	name="Nays1Dp_mi" caption="Nays1Dp v.1.1.0 64bit v4 with iRIC-MI" version="1.1" copyright="Ichiro Kimura"
+	release="2023.09.06" homepage="http://i-ric.org/"
+	executable="nays1dp_v4.exe"
+	iterationtype="time"
+	gridtype="structured2d"
+>
+
+<!-- 計算条件の定義 -->
+<CalculationCondition>
+ <Tab name="channel_conditions" caption="Channel Conditions">
+  <Content>
+   <Items>
+    <Item name="i_UNST" caption="UnSteady or NonUniform">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+      <Enumerations>
+       <Enumeration value="0" caption="NonUniform flow model"/>
+       <Enumeration value="1" caption="UnSteady flow model"/>
+      </Enumerations>
+     </Definition>
+    </Item>
+    <Item name="m_bed" caption="Fixed or Movable Bed">
+     <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+      <Enumerations>
+       <Enumeration value="0" caption="Fixed bed"/>
+       <Enumeration value="1" caption="Movable bed"/>
+      </Enumerations>
+     </Definition>
+    </Item>
+    <Item name="i_MIX" caption="Uniform or Mixture Grain">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+      <Dependency>
+       <Condition type="isEqual" target="m_bed" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+      <Enumerations>
+       <Enumeration value="0" caption="Uniform Grain"/>
+       <Enumeration value="1" caption="Mixture Grain"/>
+      </Enumerations>
+     </Definition>
+    </Item>
+
+<!-- <Item name="i_GEO_DATA" caption="Geological Data Type"> -->
+<!-- <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1"> -->
+<!-- <Enumerations> -->
+<!-- <Enumeration value="0" caption="text data"/> -->
+<!-- <Enumeration value="1" caption="riv file"/> -->
+<!-- </Enumerations> -->
+<!-- </Definition> -->
+<!-- </Item> -->
+<!-- <Item name="i_MANN_bed" caption="How to set Manning roughness on bed?"> -->
+<!--     <Definition conditionType="constant" valueType="integer" option="true" default="1" max="3"> -->
+<!--      <Enumerations> -->
+<!--       <Enumeration value="1" caption="Directly set n value"/> -->
+<!--       <Enumeration value="2" caption="Calculate from grain size"/> -->
+<!--       <Enumeration value="3" caption="Given from section data"/> -->
+<!--      </Enumerations> -->
+<!--     </Definition> -->
+<!--    </Item> -->
+
+    <Item name="DD_av" caption="Average Grain Size[m]">
+     <Definition conditionType="constant" valueType="real" option="false" default="0.0001" max="100.0">
+<!--      <Condition type="or"> -->
+         <Condition type="and">
+           <Condition type="isEqual" target="m_bed" value="1"/>
+           <Condition type="isEqual" target="i_MIX" value="0"/>
+         </Condition>
+<!--         <Condition type="isEqual" target="i_MANN_bed" value="2"/>
+      </Condition> -->
+      <Action type="enable"/>
+     </Definition>
+    </Item>
+
+<!--    <Item name="rough" caption="Manning n for bed">
+     <Definition conditionType="constant" valueType="real" option="false" default="0.02" max="0.2">
+      <Dependency>
+       <Condition type="isEqual" target="i_MANN_bed" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item> -->
+
+    <Item name="dl_mix" caption="Mixing Layer Thickness[m]">
+     <Definition conditionType="constant" valueType="real" option="false" default="0.1" >
+      <Dependency>
+			 <Condition type="and">
+         <Condition type="isEqual" target="m_bed" value="1"/>
+         <!-- <Condition type="isEqual" target="i_MIX" value="1" />-->
+			 </Condition>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+
+<!-- <Item name="sec_file" caption="Input Geological Data Name">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File"> -->
+<!--      <Dependency> -->
+<!--       <Condition type="isEqual" target="i_GEO_DATA" value="0"/> -->
+<!--       <Action type="enable"/> -->
+<!--      </Dependency> -->
+<!--  </Definition>
+    </Item> -->
+
+    <Item name="Func_Dmix" caption="Grain Seize Distribution Curve">
+     <Definition conditionType="functional">
+      <Dependency>
+			 <Condition type="and">
+         <Condition type="isEqual" target="m_bed" value="1"/>
+         <Condition type="isEqual" target="i_MIX" value="1" />
+			 </Condition>
+       <Action type="enable"/>
+      </Dependency>
+      <Parameter name="diam" valueType="real" caption="Diameter[mm]"/>
+      <Value name="rate" valueType="real" caption="Accumulation Rate"/>
+     </Definition>
+    </Item>
+
+   </Items>
+  </Content>
+ </Tab>
+
+ <Tab name="Discharge_and_Waterlevel" caption="Discharge and Waterlevel">
+  <Content>
+   <Items>
+    <GroupBox caption="Upstream Discharge">
+      <Item name="i_HYDRO" caption="Input Type">
+        <Definition valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="0" caption="Constant"/>
+          <Enumeration value="1" caption="Time Dependent"/>
+        </Enumerations>
+      </Definition>
+      </Item>
+      <Item name="q_const" caption="Constant Value[m3/s]">
+        <SubCaption caption="Inital Value[m3/s]">
+          <Condition type="isEqual" target="i_HYDRO" value="1"/>
+        </SubCaption>
+        <Definition valueType="real" default="1.0" />
+      </Item>
+      <Item name="Q" caption="Time Dependent Value">
+      <Definition conditionType="functional">
+        <Dependency>
+          <Condition type="isEqual" target="i_HYDRO" value="1"/>
+        </Dependency>
+        <Parameter name="time" valueType="real" caption="Time[s]" />
+        <Value name="discharge" valueType="real" caption="Discharge[m3/s]"/>
+      </Definition>
+      </Item>
+    </GroupBox>
+    <GroupBox caption="Downstream Water Level">
+      <Item name="i_WLd" caption="Input Type">
+        <Definition valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="2" caption="Constant"/>
+          <Enumeration value="1" caption="Time Dependent"/>
+          <Enumeration value="0" caption="Calculate from uniform flow condition"/>
+        </Enumerations>
+      </Definition>
+      </Item>
+      <Item name="wl_const" caption="Constant Value[m]">
+        <SubCaption caption="Inital Value[m3/s]">
+          <Condition type="isEqual" target="i_WLd" value="1"/>
+        </SubCaption>
+        <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+          <Dependency>
+            <Condition type="or">
+              <Condition type="isEqual" target="i_WLd" value="1"/>
+              <Condition type="isEqual" target="i_WLd" value="2"/>
+            </Condition>
+          </Dependency>
+        </Definition>
+      </Item>
+      <Item name="WL" caption="Time Dependent Value">
+        <Definition conditionType="functional">
+          <Dependency>
+            <Condition type="isEqual" target="i_WLd" value="1" />
+          </Dependency>
+          <Parameter name="time" valueType="real" caption="Time[s]" />
+          <Value name="water_level" valueType="real" caption="Water level[m]"/>
+        </Definition>
+      </Item>
+      <GroupBox caption="Slope for uniform flow calculation">
+        <Item name="i_SLP" caption="Input Type">
+          <Definition valueType="integer" option="true" default="0">
+            <Dependency>
+              <Condition type="isEqual" target="i_WLd" value="0"/>
+            </Dependency>
+            <Enumerations>
+              <Enumeration value="0" caption="Mean slope of bed height data"/>
+              <Enumeration value="1" caption="Given directly"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+        <Item name="slope_ave" caption="Bed slope">
+        <Definition conditionType="constant" valueType="real" option="false" default="0.00001" max="0.1">
+          <Dependency>
+            <Condition type="and">
+              <Condition type="isEqual" target="i_WLd"   value="0"/>
+              <Condition type="isEqual" target="i_SLP"   value="1"/>
+            </Condition>
+          </Dependency>
+        </Definition>
+        </Item>
+      </GroupBox>
+    </GroupBox>
+
+
+
+
+    <Item name="i_INI_nonuni" caption="Initial water level condition">
+     <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+      <Dependency>
+          <Condition type="isEqual" target="i_UNST"   value="1"/>
+        <Action type="enable"/>
+      </Dependency>
+      <Enumerations>
+       <Enumeration value="0" caption="parallel to bed"/>
+       <Enumeration value="1" caption="solve non-uniform flow eq."/>
+      </Enumerations>
+     </Definition>
+    </Item>
+
+   </Items>
+  </Content>
+ </Tab>
+
+ <Tab name="Tributaries" caption="Tributary conditions">
+  <Content>
+   <Items>
+    <Item name="n_trib" caption="Number of tributaries">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="9">
+     </Definition>
+    </Item>
+
+    <Item name="tbt_file1" caption="Hydrograph of tributary 1">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file2" caption="Hydrograph of tributary 2">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="2"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file3" caption="Hydrograph of tributary 3">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="3"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file4" caption="Hydrograph of tributary 4">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="4"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file5" caption="Hydrograph of tributary 5">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="5"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file6" caption="Hydrograph of tributary 6">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="6"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file7" caption="Hydrograph of tributary 7">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="7"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file8" caption="Hydrograph of tributary 8">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="8"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="tbt_file9" caption="Hydrograph of tributary 9">
+     <Definition conditionType="constant" valueType="filename" option="false" default="Select File">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="9"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+
+    <Item name="itb_cell1" caption="Inlet cell number of tributary 1">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell2" caption="Inlet cell number of tributary 2">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="2"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell3" caption="Inlet cell number of tributary 3">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="3"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell4" caption="Inlet cell number of tributary 4">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="4"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell5" caption="Inlet cell number of tributary 5">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="5"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell6" caption="Inlet cell number of tributary 6">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="6"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell7" caption="Inlet cell number of tributary 7">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="7"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell8" caption="Inlet cell number of tributary 8">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="8"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="itb_cell9" caption="Inlet cell number of tributary 9">
+     <Definition conditionType="constant" valueType="integer" option="false" default="0" max="9999">
+      <Dependency>
+       <Condition type="isGreaterEqual" target="n_trib" value="9"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+
+   </Items>
+  </Content>
+ </Tab>
+
+ <Tab name="Time_Conditions" caption="Time Conditions">
+  <Content>
+   <Items>
+    <Item name="i_sec_hour" caption="Unit of time">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="3">
+      <Enumerations>
+       <Enumeration value="0" caption="second"/>
+       <Enumeration value="1" caption="hour"/>
+       <Enumeration value="2" caption="day"/>
+       <Enumeration value="3" caption="year"/>
+      </Enumerations>
+     </Definition>
+    </Item>
+    <Item name="etime" caption="Total Computational Time[second / hour / day / year]">
+     <Definition conditionType="constant" valueType="real" option="false" >
+     </Definition>
+    </Item>
+    <Item name="ftime" caption="File Output Time[second / hour / day / year]">
+     <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+     </Definition>
+    </Item>
+    <Item name="dt" caption="Time Step[s]">
+     <Definition conditionType="constant" valueType="real" option="false" default="0.1">
+     </Definition>
+    </Item>
+    <Item name="ster" caption="Start Time of Bed Move[second / hour / day / year]">
+     <Definition conditionType="constant" valueType="real" option="false" default="1.0">
+      <Dependency>
+       <Condition type="isEqual" target="m_bed" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+    <Item name="KSHOW" caption="Time Step for Display Output">
+     <Definition conditionType="constant" valueType="integer" option="false" default="100" max="9999999">
+     </Definition>
+    </Item>
+   </Items>
+  </Content>
+ </Tab>
+
+ <Tab name="Other_Settings" caption="Other Settings">
+  <Content>
+   <Items>
+    <Item name="c_relax" caption="Relaxation coefficient">
+     <Definition conditionType="constant" valueType="real" default="0.0001" max="2" ></Definition>
+    </Item>
+    <Item name="i_AM_KP" caption="Bedload model">
+      <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+      <Dependency>
+       <Condition type="isEqual" target="m_bed" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+      <Enumerations>
+       <Enumeration value="0" caption="Ashida Michiue Model"/>
+       <Enumeration value="1" caption="Kovacs Parker Model"/>
+      </Enumerations>
+     </Definition>
+	</Item>
+		
+<!--    <Item name="i_BEDUP" caption="Spatial scheme for bedload">
+      <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+      <Dependency>
+       <Condition type="isEqual" target="m_bed" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+      <Enumerations>
+       <Enumeration value="0" caption="Central scheme"/>
+       <Enumeration value="1" caption="Upwind scheme"/>
+      </Enumerations>
+     </Definition>
+    </Item> -->
+    <Item name="i_UPEL" caption="Upstream cell index for starting bed change">
+      <Definition conditionType="constant" valueType="integer" option="false" default="1" max="9999">
+      <Dependency>
+       <Condition type="isEqual" target="m_bed" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+     </Definition>
+    </Item>
+
+    <Item name="fac_qbup" caption="Rate of sediment supply from inlet">
+      <Definition valueType="real" default="1" min="0" >
+      <Dependency>
+       <Condition type="isEqual" target="m_bed" value="1"/>
+       <Action type="enable"/>
+      </Dependency>
+      </Definition>
+    </Item>
+
+		<Item name="fac_tsc" caption="固定床上の無限限界掃流力の係数">
+			<Definition valueType="real" default="1" min="0" max="1">
+				<Dependency>
+					<Condition type="isEqual" target="m_bed" value="1"/>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+
+		<Item name="i_fixbed_height_setting" caption="固定床高さの設定">
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="設定しない"/>
+					<Enumeration value="1" caption="設定する"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+		<Item name="fixbed_height_setting" caption="固定床高さ">
+			<Definition conditionType="functional">
+				<Parameter name="n_index" valueType="integer" caption="縦断NodeIndex"/>
+				<Value name="fixbed_height" valueType="real" caption="固定床高[m]"/>
+			
+				<Dependency>
+					<Condition type="isEqual" target="i_fixbed_height_setting" value="1"/>
+					<Action type="enable"/>
+				</Dependency>
+			</Definition>
+		</Item>
+	   
+   </Items>
+  </Content>
+ </Tab>
+</CalculationCondition>
+
+<GridRelatedCondition>
+  <Item name="Elevation" caption="Bed elevation">
+      <Definition position="node" valueType="real" default="max" />
+  </Item>
+  <Item name="Obstacle" caption="Obstacle cell">
+      <Definition position="cell" valueType="integer" default="0" option="true">
+        <Enumerations>
+          <Enumeration value="0"   caption="Normal cell" />
+          <Enumeration value="1"   caption="Obstacle" />
+        </Enumerations>
+      </Definition>
+  </Item>
+  <Item name="UnErodable" caption="UnErodable cell">
+      <Definition position="cell" valueType="integer" default="0" option="true">
+        <Enumerations>
+          <Enumeration value="0"   caption="Erodable" />
+          <Enumeration value="1"   caption="UnErodable" />
+        </Enumerations>
+      </Definition>
+  </Item>
+  <Item name="Roughness" caption="Manning roughness">
+      <Definition position="cell" valueType="real" default="0.03" />
+  </Item>
+  <Item name="Structure" caption="Structure">
+      <Definition position="cell" valueType="real" default="0.0" />
+  </Item>
+  <Output name="discharge" caption="Discharge">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="velocityX" caption="velocityX">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="velocityY" caption="velocityY">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="depth" caption="Depth">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="water_elevation" caption="Water Elevation">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="water_surface_width" caption="Water Surface Width">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="bed_height" caption="Bed Height">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="bed_deviation" caption="Bed Deviation">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="friction_velocity" caption="Friction Velocity">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="bedload_flux" caption="Bedload Flux">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="tributary_Q" caption="Tributary Q">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="manning_n" caption="Manning n">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="structure" caption="Structure">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="obstacle" caption="Obstacle">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="unerodable_region" caption="Unerodable Region">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="d_mean" caption="mean d[mm]">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="d_10" caption="d10[mm]">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="d_50" caption="d50[mm]">
+      <Definition position="node" valueType="real" />
+  </Output>
+  <Output name="d_90" caption="d90[mm]">
+      <Definition position="node" valueType="real" />
+  </Output>
+</GridRelatedCondition>
+  <BoundaryCondition name="outpoint" caption="Output Point" position="node">
+    <Output name="discharge" caption="Discharge">
+      <Definition valueType="real" />
+    </Output>
+    <Output name="wse" caption="Water Elevation">
+      <Definition valueType="real" />
+    </Output>
+  </BoundaryCondition>
+	<GlobalOutput>
+		<Output name="upstream_discharge" caption="Upstream Discharge">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="downstream_discharge" caption="Downstream Discharge">
+			<Definition valueType="real" />
+		</Output>
+	</GlobalOutput>
+</SolverDefinition>

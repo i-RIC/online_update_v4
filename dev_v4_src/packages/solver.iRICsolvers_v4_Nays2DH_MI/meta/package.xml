@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Nays2DH iRIC 4.x 64bit with iRIC-MI</DisplayName>
+	<Description></Description>
+	<Version>1.5.300</Version>
+	<Default>true</Default>
+	<ReleaseDate>2023-09-06</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>

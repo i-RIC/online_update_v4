@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Nays1Dp v.1.1 64bit v4 with iRIC-MI</DisplayName>
+	<Description></Description>
+	<Version>1.1.0</Version>
+	<Default>true</Default>
+	<ReleaseDate>2023-09-06</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Nays2D Flood v5.0 64 bit with iRIC-MI</DisplayName>
+	<Description></Description>
+	<Version>5.0.1509</Version>
+	<Default>true</Default>
+	<ReleaseDate>2023-09-06</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
