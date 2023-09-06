@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <Package>
 	<DisplayName>Runtime libraries</DisplayName>
-	<Description>Visual C++ runtime libraries needed to run iRIC system</Description>
-	<Version>14.29.30133</Version>
-	<ReleaseDate>2021-07-27</ReleaseDate>
+	<Description>Visual C++ runtime library and Microsoft MPI that are needed to run iRIC system</Description>
+	<Version>14.29.30134</Version>
+	<ReleaseDate>2023-09-06</ReleaseDate>
 	<SortingPriority>5</SortingPriority>
 	<ForcedInstallation>true</ForcedInstallation>
 	<Script>installscript.qs</Script>

@@ -38,6 +38,10 @@ function install_runtime(major, build)
 		console.log("Installing " + runtime + ": " + executable + " /quiet");
 		component.addOperation("Execute", executable, "/quiet");
 	}
+
+	// install msmpi
+	var executable = "@TargetDir@\\msmpisetup.exe";
+	component.addElevatedOperation("Execute", executable, "-unattend", "-force");
 }
 
 function delete_runtime()
