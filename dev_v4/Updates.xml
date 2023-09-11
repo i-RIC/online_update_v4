@@ -646,19 +646,6 @@
   <SHA1>c9d5cea03f1ecad72c42ab7e2de666d5e2a809ed</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.ichirokk_MeCUBE</Name>
-  <DisplayName>MeCUBE v1.000.001</DisplayName>
-  <Description/>
-  <Version>1.000.001</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-08-10</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="84944" UncompressedSize="631398" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>8f8ab1999169c3a5acc81e35766217a154b6c769</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.ichirokk_CUBEv4</Name>
   <DisplayName>NaysCUBE v4.43.79</DisplayName>
   <Description/>
@@ -802,19 +789,6 @@
   <UpdateFile CompressedSize="418498" UncompressedSize="1493873" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>9bdc651027af0e8e6c615548aa689ede8224a535</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_RRI_MI</Name>
-  <DisplayName>Rainfall-Runoff-Inundation v1.4.2.2 64 bit with iRIC-MI</DisplayName>
-  <Description/>
-  <Version>1.4.2.2</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-09-06</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="174457" UncompressedSize="791074" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>fa25feb92501777efbeedf6a514c30c464afa73c</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.takuyainoue0317_Nays2D_Flood_MI</Name>
