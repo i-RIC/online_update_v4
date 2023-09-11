@@ -594,19 +594,6 @@
   <SHA1>0ae5c48f480458c41bd993e2a1c3fbaf90e56a91</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.ichirokk_MeCUBE</Name>
-  <DisplayName>MeCUBE v1.000.001</DisplayName>
-  <Description/>
-  <Version>1.000.001</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-08-10</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="84944" OS="Any" UncompressedSize="631398"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>49e0bac29277fe626af1b6c76974822aa603c237</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.ichirokk_CUBEv4</Name>
   <DisplayName>NaysCUBE v4.43.79</DisplayName>
   <Description/>
