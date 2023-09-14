@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>SRM</DisplayName>
 	<Description></Description>
-	<Version>4.0.0.3</Version>
+	<Version>4.0.0.4</Version>
 	<Default>true</Default>
 	<ReleaseDate>2023-07-07</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
