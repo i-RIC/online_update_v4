@@ -819,17 +819,4 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>5ed3885fcb714b69b5214d58ea2b55432beabef1</SHA1>
  </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.kazutake_SRM_test</Name>
-  <DisplayName>SRM version4</DisplayName>
-  <Description/>
-  <Version>1.0.5</Version>
-  <Default>true</Default>
-  <ReleaseDate>2021-12-09</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="496698" OS="Any" CompressedSize="79193"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>879c20d2d1ed574863620b9fbce0df58860c1594</SHA1>
- </PackageUpdate>
 </Updates>
