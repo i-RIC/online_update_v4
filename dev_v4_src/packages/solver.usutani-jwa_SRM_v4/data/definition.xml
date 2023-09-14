@@ -2,7 +2,7 @@
 <SolverDefinition
 	name="SRM"
 	caption="SRM"
-	version="4.0.0.1"
+	version="4.0.0.2"
 	copyright="Makoto Nakatsugawa, Japan Weather Association and Civil Engineering Research Institute for Cold Region, Japan"
 	release="2023.07.07"
 	homepage="http://i-ric.org"
