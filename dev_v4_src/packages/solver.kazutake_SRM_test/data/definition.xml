@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 	name="SRM"
-	caption="SRM"
-	version="1.0.3"
+	caption="SRM version4"
+	version="1.0.5"
 	copyright="Makoto Nakatsugawa, Japan Weather Association and Civil Engineering Research Institute for Cold Region, Japan"
 	release="2021.12.09"
 	homepage="http://i-ric.org"

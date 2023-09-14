@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Package>
-	<DisplayName>SRM</DisplayName>
+	<DisplayName>SRM version4</DisplayName>
 	<Description></Description>
-	<Version>1.0.3</Version>
+	<Version>1.0.5</Version>
 	<Default>true</Default>
 	<ReleaseDate>2021-12-09</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
