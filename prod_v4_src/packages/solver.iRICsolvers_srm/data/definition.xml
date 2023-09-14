@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition
+	name="SRM"
+	caption="SRM"
+	version="4.0.0.4"
+	copyright="Makoto Nakatsugawa, Japan Weather Association and Civil Engineering Research Institute for Cold Region, Japan"
+	release="2023.07.07"
+	homepage="http://i-ric.org"
+	executable="srm.exe"
+	iterationtype="time"
+>
+<CalculationCondition>
+	<Tab name="condition" caption="Calculation Conditions">
+		<Content>
+			<Items>
+				<Item name="edition" caption="Select Solver Type">
+					<Definition conditionType="constant" valueType="integer" option="true" default="0">
+						<Enumerations>
+							<Enumeration value="0" caption="Runoff Calculation"/>
+							<Enumeration value="1" caption="Optimization and Runoff Calculation"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<Item name="model" caption="Select Calculation Model">
+					<Definition conditionType="constant" valueType="integer" option="true" default="0">
+						<Enumerations>
+							<Enumeration value="0" caption="Synthetic Storage Routing Model"/>
+							<Enumeration value="1" caption="Two Cascade Storage Routing Model"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+
+				<Item name="FloodName" caption="Name of Calculation">
+					<Definition valueType="string" default="Example 1"/>
+				</Item>
+
+				<Item name="area" caption="Catchment Area (km2)">
+					<Definition valueType="real" default="100.0"/>
+				</Item>
+
+				<Item name="iniQ" caption="Initial Discharge (m3/s)">
+					<Definition valueType="real" default="1.0">
+					<Condition type="isEqual" target="edition" value="0"/>
+					</Definition>
+				</Item>
+
+				<GroupBox caption="Model Parameters of Synthetic Storage Routing Model">
+				<GridLayout>
+					<Label row="0" col="0" caption="c1"/>
+					<Item row="1" col="0" name="oc1">
+						<Definition valueType="real" default="12.501">
+						<Condition type="isEqual" target="model" value="0"/>
+						</Definition>
+					</Item>
+					<Label row="0" col="1" caption="c2"/>
+					<Item row="1" col="1" name="oc2">
+						<Definition valueType="real" default="0.134">
+						<Condition type="isEqual" target="model" value="0"/>
+						</Definition>
+					</Item>
+					<Label row="0" col="2" caption="c3"/>
+					<Item row="1" col="2" name="oc3">
+						<Definition valueType="real" default="1.752">
+						<Condition type="isEqual" target="model" value="0"/>
+						</Definition>
+					</Item>
+					<Label row="0" col="3" caption="Lambda"/>
+					<Item row="1" col="3" name="lambda">
+						<Definition valueType="real" default="0.019">
+						<Condition type="isEqual" target="model" value="0"/>
+						</Definition>
+					</Item>
+				</GridLayout>
+				</GroupBox>
+
+				<GroupBox caption="Model Parameters of Two Cascade Storage Routing Model">
+				<GridLayout>
+					<Label row="0" col="0" caption="c1"/>
+					<Item row="1" col="0" name="tc1">
+						<Definition valueType="real" default="8.803">
+						<Condition type="isEqual" target="model" value="1"/>
+						</Definition>
+					</Item>
+					<Label row="0" col="1" caption="c2"/>
+					<Item row="1" col="1" name="tc2">
+						<Definition valueType="real" default="0.304">
+						<Condition type="isEqual" target="model" value="1"/>
+						</Definition>
+					</Item>
+					<Label row="0" col="2" caption="c3"/>
+					<Item row="1" col="2" name="tc3">
+						<Definition valueType="real" default="2.499">
+						<Condition type="isEqual" target="model" value="1"/>
+						</Definition>
+					</Item>
+					<Label row="0" col="3" caption="Tc"/>
+					<Item row="1" col="3" name="tc">
+						<Definition valueType="real" default="61.7">
+						<Condition type="isEqual" target="model" value="1"/>
+						</Definition>
+					</Item>
+				</GridLayout>
+				</GroupBox>
+
+				<Item name="inf_R" caption="Input File (Rainfall Data)">
+					<Definition valueType="functional">
+						<Parameter name="time" valueType="real" caption="Time (h)"/>
+						<Value name="rainf" valueType="real" caption="Rainfall (mm/h)" step="true" axisreverse="true"/>
+						<Condition type="isEqual" target="edition" value="0"/>
+					</Definition>
+				</Item>
+
+				<Item name="inf_RQ" caption="Input File (Rainfall and Discharge Data)">
+					<Definition valueType="functional">
+					<Parameter name="time" valueType="real" caption="Time (h)"/>
+					<Value name="rainf" valueType="real" caption="Rainfall (mm/h)" step="true" axisreverse="true"/>
+					<Value name="disch" valueType="real" caption="Discharge (m3/s)"/>
+					<Condition type="isEqual" target="edition" value="1"/>
+					</Definition>
+				</Item>
+
+			</Items>
+		</Content>
+	</Tab>
+</CalculationCondition>
+</SolverDefinition>
