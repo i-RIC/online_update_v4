@@ -2,12 +2,12 @@
 <SolverDefinition 
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="Mvl_flow_level1"
-	caption="Fbml_flow3_v2023_1_iric4"
-	version="1.2023.1"
+	caption="Fbml_flow3_v2023_2_iric4"
+	version="1.2023.2"
 	copyright="Mineyuki Gamou"
 	release="2023.08.01"
 	homepage="http://i-ric.org"
-	executable="Fbml_flow3_v2023_1_iric4.exe"
+	executable="Fbml_flow3_v2023_2_iric4.exe"
 	iterationtype="time"
 	gridtype="unstructured2d"
 >
