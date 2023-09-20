@@ -390,11 +390,11 @@
 								</Dependency>
 							</Definition>
 						</Item>
-						<Item name="I_STRESS"  caption="     摩擦速度">
+						<Item name="I_STRESS"  caption="     Friction velocity">
 							<Definition conditionType="constant" valueType="integer" option="true" default="0">
 								<Enumerations>
-									<Enumeration value="0" caption="水面勾配より求める" />
-									<Enumeration value="1" caption="相当粗度高さより求める" />
+									<Enumeration value="0" caption="Calculated from water-surface gradient" />
+									<Enumeration value="1" caption="Calculated from equivalent roughness height" />
 								</Enumerations>
 								<Dependency>
 									<Condition type="and">

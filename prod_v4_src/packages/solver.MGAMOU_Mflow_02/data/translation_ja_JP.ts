@@ -1294,5 +1294,17 @@
         <source>     Shelter effect</source>
         <translation>     遮蔽効果</translation>
     </message>
+    <message>
+        <source>     Friction velocity</source>
+        <translation>     摩擦速度</translation>
+    </message>
+    <message>
+        <source>Calculated from water-surface gradient</source>
+        <translation>水面勾配より算出する</translation>
+    </message>
+    <message>
+        <source>Calculated from equivalent roughness height</source>
+        <translation>相当粗度高さより算出する</translation>
+    </message>
 </context>
 </TS>
