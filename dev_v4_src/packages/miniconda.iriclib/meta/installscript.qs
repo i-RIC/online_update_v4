@@ -31,6 +31,13 @@ Component.prototype.createOperations = function()
 	component.addOperation("SimpleMoveFile", "@TargetDir@/iricmi_run.bat", "@TargetDir@/Miniconda3/envs/iric/Library/bin/iricmi_run.bat");
 	component.addOperation("SimpleMoveFile", "@TargetDir@/iricmi_server.exe", "@TargetDir@/Miniconda3/envs/iric/Library/bin/iricmi_server.exe");
 
+	component.addOperation("SimpleMoveFile", "@TargetDir@/libifcoremd.dll", "@TargetDir@/Miniconda3/envs/iric/Library/bin/libifcoremd.dll");
+	component.addOperation("SimpleMoveFile", "@TargetDir@/libifcorert.dll", "@TargetDir@/Miniconda3/envs/iric/Library/bin/libifcorert.dll");
+	component.addOperation("SimpleMoveFile", "@TargetDir@/libifportmd.dll", "@TargetDir@/Miniconda3/envs/iric/Library/bin/libifportmd.dll");
+	component.addOperation("SimpleMoveFile", "@TargetDir@/libiomp5md.dll", "@TargetDir@/Miniconda3/envs/iric/Library/bin/libiomp5md.dll");
+	component.addOperation("SimpleMoveFile", "@TargetDir@/libmmd.dll", "@TargetDir@/Miniconda3/envs/iric/Library/bin/libmmd.dll");
+	component.addOperation("SimpleMoveFile", "@TargetDir@/svml_dispmd.dll", "@TargetDir@/Miniconda3/envs/iric/Library/bin/svml_dispmd.dll");
+
 	component.addOperation("EnvironmentVariable", "IRICMI_ROOT_PATH", "@TargetDir@", true);
 	component.addOperation("EnvironmentVariable", "IRICMI_LOG_LEVEL", "WARNING", true);
 	component.addOperation("EnvironmentVariable", "IRIC_LOG_LEVEL", "ERROR", true);
