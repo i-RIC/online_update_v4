@@ -10,6 +10,10 @@ IRIC_PATH = os.environ["IRICMI_ROOT_PATH"]
 MPI_BIN_PATH = "C:/Program Files/Microsoft MPI/Bin"
 IRICMI_SERVER_PATH = IRIC_PATH + "/bin/iricmi_server.exe"
 
+def _get_version(v: str) -> list:
+    frags = v.split('.')
+    return [int(n) for n in frags]
+
 def get_solver_info(fname):
     tree = ET.parse(fname)
     root = tree.getroot()
@@ -21,7 +25,7 @@ def get_solver_info(fname):
 
     n = atts['solverName']
     v = atts['solverVersion']
-    return (n, v)
+    return (n, _get_version(v))
 
 def get_executable_args(fname):
     name, version = get_solver_info(fname)
@@ -37,7 +41,7 @@ def get_executable_args(fname):
         root = t.getroot()
         atts = root.attrib
         n = atts['name']
-        v = atts['version']
+        v = _get_version(atts['version'])
 
         if not (name == n and version == v):
             continue
@@ -93,7 +97,7 @@ def run_mi_project():
     # add models
     for m in models:
         args += [':', '-n', str(m.nodes)] + m.exec_args
-    
+
     proc = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     p = re.compile(r"^\[([0-9]+)\](.*)$")
 
@@ -102,24 +106,21 @@ def run_mi_project():
     while True:
         line = proc.stdout.readline()
         if line:
-            try:
-                l = line.decode('utf-8')
+            l = line.decode('utf-8')
 
-                print(l.strip())
+            print(l.strip())
 
-                m = p.search(l)
-                if m is None: continue
+            m = p.search(l)
+            if m is None: continue
 
-                groups = m.groups()
-                rank = int(groups[0])
-                msg = groups[1]
-                if not rank == 0:
-                    m = rankmap[rank]
-                    m.log.write(msg)
-                else:
-                    server_log.write(msg)
-            except:
-                continue
+            groups = m.groups()
+            rank = int(groups[0])
+            msg = groups[1]
+            if not rank == 0:
+                m = rankmap[rank]
+                m.log.write(msg)
+            else:
+                server_log.write(msg)
 
         if not line and proc.poll() is not None:
             break
@@ -134,13 +135,10 @@ def run_iric_project():
     while True:
         line = proc.stdout.readline()
         if line:
-            try:
-                l = line.decode('utf-8')
-                log.write(l)
+            l = line.decode('utf-8')
+            log.write(l)
 
-                print(l.strip())
-            except:
-                continue
+            print(l.strip())
 
         if not line and proc.poll() is not None:
             break
