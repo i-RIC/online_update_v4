@@ -3,9 +3,9 @@
 	<DisplayName>iriclib and iRIC-MI for Miniconda 3</DisplayName>
 	<Description>iriclib and iRIC-MI for Miniconda 3</Description>
 	<Dependencies></Dependencies>
-	<Version>4.0.46</Version>
+	<Version>4.0.48</Version>
 	<Default>false</Default>
-	<ReleaseDate>2023-08-16</ReleaseDate>
+	<ReleaseDate>2023-09-22</ReleaseDate>
 	<SortingPriority>10</SortingPriority>
 	<ForcedInstallation>false</ForcedInstallation>
 	<Script>installscript.qs</Script>

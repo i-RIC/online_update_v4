@@ -61,7 +61,6 @@ class _SwigNonDynamicMeta(type):
     """Meta class to enforce nondynamic attributes (no new attributes) for a class"""
     __setattr__ = _swig_setattr_nondynamic_class_variable(type.__setattr__)
 
-
 def _checkErrorCode(ier):
     if ier == 0: return
 
@@ -80,8 +79,6 @@ class IntContainer(object):
     def setValue(self, v):
         return _iricmi.IntContainer_setValue(self, v)
 
-    def pointer(self):
-        return _iricmi.IntContainer_pointer(self)
     __swig_destroy__ = _iricmi.delete_IntContainer
 
 # Register IntContainer in _iricmi:
@@ -100,8 +97,6 @@ class RealContainer(object):
     def setValue(self, v):
         return _iricmi.RealContainer_setValue(self, v)
 
-    def pointer(self):
-        return _iricmi.RealContainer_pointer(self)
     __swig_destroy__ = _iricmi.delete_RealContainer
 
 # Register RealContainer in _iricmi:
@@ -123,9 +118,6 @@ class IntArrayContainer(object):
 
     def setValue(self, index, v):
         return _iricmi.IntArrayContainer_setValue(self, index, v)
-
-    def pointer(self):
-        return _iricmi.IntArrayContainer_pointer(self)
 
     def get(self):
         ret = np.zeros(self.size(), dtype=np.int32)
@@ -157,9 +149,6 @@ class RealArrayContainer(object):
     def setValue(self, index, v):
         return _iricmi.RealArrayContainer_setValue(self, index, v)
 
-    def pointer(self):
-        return _iricmi.RealArrayContainer_pointer(self)
-
     def get(self):
         ret = np.zeros(self.size(), dtype=np.float64)
         for i in range(self.size()):
@@ -173,409 +162,1399 @@ class RealArrayContainer(object):
 # Register RealArrayContainer in _iricmi:
 _iricmi.RealArrayContainer_swigregister(RealArrayContainer)
 
-
-def iricmi_check_cancel():
-    ier, canceled = _iricmi.iricmi_check_cancel()
-    _checkErrorCode(ier)
-
-    return canceled
-
-def iricmi_model_init():
-    ier = _iricmi.iricmi_model_init()
-    _checkErrorCode(ier)
-
-def iricmi_model_terminate():
-    ier = _iricmi.iricmi_model_terminate()
-    _checkErrorCode(ier)
-
-def iricmi_model_sync():
-    ier = _iricmi.iricmi_model_sync()
-    _checkErrorCode(ier)
-
-def iricmi_model_dump():
-    ier = _iricmi.iricmi_model_dump()
-    _checkErrorCode(ier)
-
-def iricmi_calc_init():
-    ier = _iricmi.iricmi_calc_init()
-    _checkErrorCode(ier)
-
-def iricmi_calc_terminate():
-    ier = _iricmi.iricmi_calc_terminate()
-    _checkErrorCode(ier)
-
-def iricmi_calc_sync_receive():
-    ier = _iricmi.iricmi_calc_sync_receive()
-    _checkErrorCode(ier)
-
-def iricmi_calc_sync_send():
-    ier = _iricmi.iricmi_calc_sync_send()
-    _checkErrorCode(ier)
-
-def iricmi_calc_dump():
-    ier = _iricmi.iricmi_calc_dump()
-    _checkErrorCode(ier)
-
-def iricmi_error_print():
-    _iricmi.iricmi_error_print()
-
-def iricmi_error_print_and_exit():
-    _iricmi.iricmi_error_print_and_exit()
-
-def iricmi_read_integer(name):
-    ier, value = _iricmi.iricmi_read_integer(name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_real(name):
-    ier, value = _iricmi.iricmi_read_real(name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_string(name):
-    ier, value = _iricmi.iricmi_read_string(name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_functional_size(name):
-    ier, value = _iricmi.iricmi_read_functional_size(name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_functional_vals(name):
-    size = iricmi_read_functional_size(name)
-
-    x = RealArrayContainer(size)
-    y = RealArrayContainer(size)
-
-    ier = _iricmi.iricmi_read_functional_vals(name, x, y)
-    _checkErrorCode(ier)
-
-    return (x.get(), y.get())
-
-def iricmi_read_functional_valwithname(name, paramname):
-    size = iricmi_read_functional_size(name)
-
-    val = RealArrayContainer(size)
-
-    ier = _iricmi.iricmi_read_functional_valwithname(name, paramname, val)
-    _checkErrorCode(ier)
-
-    return val.get()
-
-def iricmi_read_grid_node_count():
-    ier, value = _iricmi.iricmi_read_grid_node_count()
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_grid_cell_count():
-    ier, value = _iricmi.iricmi_read_grid_cell_count()
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_grid2d_str_size():
-    ier, isize, jsize = _iricmi.iricmi_read_grid2d_str_size()
-    _checkErrorCode(ier)
-
-    return (isize, jsize)
-
-def iricmi_read_grid2d_unstr_size():
-    ier, value = _iricmi.iricmi_read_grid2d_unstr_size()
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_grid2d_unstr_cellsize():
-    ier, value = _iricmi.iricmi_read_grid2d_unstr_cellsize()
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_grid2d_unstr_cells(cells):
-    ier, value = _iricmi.iricmi_read_grid2d_unstr_cells(cells)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_grid2d_coords():
-    count = iricmi_read_grid_node_count()
-
-    x = RealArrayContainer(count)
-    y = RealArrayContainer(count)
-    ier = _iricmi.iricmi_read_grid2d_coords(x, y)
-    _checkErrorCode(ier)
-
-    return x.get(), y.get()
-
-def iricmi_read_grid2d_integer_node(name):
-    count = iricmi_read_grid_node_count()
-
-    vals = IntArrayContainer(count)
-    ier = _iricmi.iricmi_read_grid2d_integer_node(name, vals)
-    _checkErrorCode(ier)
-
-    return vals.get()
-
-def iricmi_read_grid2d_real_node(name):
-    count = iricmi_read_grid_node_count()
-
-    vals = RealArrayContainer(count)
-    ier = _iricmi.iricmi_read_grid2d_real_node(name, vals)
-    _checkErrorCode(ier)
-
-    return vals.get()
-
-def iricmi_read_grid2d_complex_node(name):
-    count = iricmi_read_grid_node_count()
-
-    vals = IntArrayContainer(count)
-    ier = _iricmi.iricmi_read_grid2d_complex_node(name, vals)
-    _checkErrorCode(ier)
-
-    return vals.get()
-
-def iricmi_read_grid2d_integer_cell(name):
-    count = iricmi_read_grid_cell_count()
-
-    vals = IntArrayContainer(count)
-    ier = _iricmi.iricmi_read_grid2d_integer_cell(name, vals)
-    _checkErrorCode(ier)
-
-    return vals.get()
-
-def iricmi_read_grid2d_real_cell(name):
-    count = iricmi_read_grid_cell_count()
-
-    vals = RealArrayContainer(count)
-    ier = _iricmi.iricmi_read_grid2d_real_cell(name, vals)
-    _checkErrorCode(ier)
-
-    return vals.get()
-
-def iricmi_read_grid2d_complex_cell(name):
-    count = iricmi_read_grid_cell_count()
-
-    vals = IntArrayContainer(count)
-    ier = _iricmi.iricmi_read_grid2d_complex_cell(name, vals)
-    _checkErrorCode(ier)
-
-    return vals.get()
-
-def iricmi_read_bc_count(type):
-    ier, value = _iricmi.iricmi_read_bc_count(type)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_bc_indicessize(type, num):
-    ier, value = _iricmi.iricmi_read_bc_indicessize(type, num)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_bc_indices(type, num, indices):
-    count = iricmi_read_bc_indicessize(type, num)
-
-    vals = IntArrayContainer(count)
-    ier = _iricmi.iricmi_read_bc_indices(type, num, vals)
-    _checkErrorCode(ier)
-
-    return vals.get()
-
-def iricmi_read_bc_integer(type, num, name):
-    ier, value = _iricmi.iricmi_read_bc_integer(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_bc_real(type, num, name):
-    ier, value = _iricmi.iricmi_read_bc_real(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_bc_string(type, num, name):
-    ier, value = _iricmi.iricmi_read_bc_string(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_bc_functional_size(type, num, name):
-    ier, value = _iricmi.iricmi_read_bc_functional_size(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_bc_functional_vals(type, num, name):
-    size = iricmi_read_bc_functional_size(type, num, name)
-    x = RealArrayContainer(size)
-    y = RealArrayContainer(size)
-
-    ier = _iricmi.iricmi_read_bc_functional_vals(type, num, name, x, y)
-    _checkErrorCode(ier)
-
-    return (x.get(), y.get())
-
-def iricmi_read_bc_functional_valwithname(type, num, name, paramname):
-    size = iricmi_read_bc_functional_size(type, num, name)
-    val = RealArrayContainer(size)
-
-    ier = _iricmi.iricmi_read_bc_functional_valwithname(type, num, name, paramname, val)
-    _checkErrorCode(ier)
-
-    return val.get()
-
-def iricmi_read_complex_count(type):
-    ier, value = _iricmi.iricmi_read_complex_count(type)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_complex_integer(type, num, name):
-    ier, value = _iricmi.iricmi_read_complex_integer(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_complex_real(type, num, name):
-    ier, value = _iricmi.iricmi_read_complex_real(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_complex_string(type, num, name):
-    ier, value = _iricmi.iricmi_read_complex_string(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_complex_functional_size(type, num, name):
-    ier, value = _iricmi.iricmi_read_complex_functional_size(type, num, name)
-    _checkErrorCode(ier)
-
-    return value
-
-def iricmi_read_complex_functional_vals(type, num, name):
-    size = iricmi_read_complex_functional_size(type, num, name)
-    x = RealArrayContainer(size)
-    y = RealArrayContainer(size)
-
-    ier = _iricmi.iricmi_read_complex_functional_vals(type, num, name, x, y)
-    _checkErrorCode(ier)
-
-    return (x.get(), y.get())
-
-def iricmi_read_complex_functional_valwithname(type, num, name, paramname, val):
-    size = iricmi_read_complex_functional_size(type, num, name)
-    val = RealArrayContainer(size)
-
-    ier = _iricmi.iricmi_read_complex_functional_valwithname(type, num, name, paramname, val)
-    _checkErrorCode(ier)
-
-    return val.get()
-
-def iricmi_rin_time(t):
-    ier = _iricmi.iricmi_rin_time(t)
-    _checkErrorCode(ier)
-
-def iricmi_rin_dump_interval(interval):
-    ier = _iricmi.iricmi_rin_dump_interval(interval)
-    _checkErrorCode(ier)
-
-def iricmi_rin_integer(name, val):
-    ier = _iricmi.iricmi_rin_integer(name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rin_real(name, val):
-    ier = _iricmi.iricmi_rin_real(name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rin_bc_integer(type, index, name, val):
-    ier = _iricmi.iricmi_rin_bc_integer(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rin_bc_real(type, index, name, val):
-    ier = _iricmi.iricmi_rin_bc_real(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rin_complex_integer(type, index, name, val):
-    ier = _iricmi.iricmi_rin_complex_integer(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rin_complex_real(type, index, name, val):
-    ier = _iricmi.iricmi_rin_complex_real(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rin_grid2d_integer_node(name, vals):
-    ier = _iricmi.iricmi_rin_grid2d_integer_node(name, vals)
-    _checkErrorCode(ier)
-
-def iricmi_rin_grid2d_real_node(name, vals):
-    ier = _iricmi.iricmi_rin_grid2d_real_node(name, vals)
-    _checkErrorCode(ier)
-
-def iricmi_rin_grid2d_integer_cell(name, vals):
-    ier = _iricmi.iricmi_rin_grid2d_integer_cell(name, vals)
-    _checkErrorCode(ier)
-
-def iricmi_rin_grid2d_real_cell(name, vals):
-    ier = _iricmi.iricmi_rin_grid2d_real_cell(name, vals)
-    _checkErrorCode(ier)
-
-def iricmi_rout_time(t):
-    ier = _iricmi.iricmi_rout_time(t)
-    _checkErrorCode(ier)
-
-def iricmi_rout_exchange_interval(interval):
-    ier = _iricmi.iricmi_rout_exchange_interval(interval)
-    _checkErrorCode(ier)
-
-def iricmi_rout_dump_interval(interval):
-    ier = _iricmi.iricmi_rout_dump_interval(interval)
-    _checkErrorCode(ier)
-
-def iricmi_rout_integer(name, val):
-    ier = _iricmi.iricmi_rout_integer(name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rout_real(name, val):
-    ier = _iricmi.iricmi_rout_real(name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rout_bc_integer(type, index, name, val):
-    ier = _iricmi.iricmi_rout_bc_integer(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rout_bc_real(type, index, name, val):
-    ier = _iricmi.iricmi_rout_bc_real(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rout_complex_integer(type, index, name, val):
-    ier = _iricmi.iricmi_rout_complex_integer(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rout_complex_real(type, index, name, val):
-    ier = _iricmi.iricmi_rout_complex_real(type, index, name, val)
-    _checkErrorCode(ier)
-
-def iricmi_rout_grid2d_integer_node(name, vals):
-    ier = _iricmi.iricmi_rout_grid2d_integer_node(name, vals)
-    _checkErrorCode(ier)
-
-def iricmi_rout_grid2d_real_node(name, vals):
-    ier = _iricmi.iricmi_rout_grid2d_real_node(name, vals)
-    _checkErrorCode(ier)
-
-def iricmi_rout_grid2d_integer_cell(name, vals):
-    ier = _iricmi.iricmi_rout_grid2d_integer_cell(name, vals)
-    _checkErrorCode(ier)
-
-def iricmi_rout_grid2d_real_cell(name, vals):
-    ier = _iricmi.iricmi_rout_grid2d_real_cell(name, vals)
-    _checkErrorCode(ier)
+# from iricmi_bc.h
+def iRICMI_Read_BC_Count_WithGridId(gid, type):
+	ier, num = _iricmi.iRICMI_Read_BC_Count_WithGridId(gid, type)
+	_checkErrorCode(ier)
+	return num
+
+def iRICMI_Read_BC_IndicesSize_WithGridId(gid, type, num):
+	ier, size = _iricmi.iRICMI_Read_BC_IndicesSize_WithGridId(gid, type, num)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_BC_IndicesSize2_WithGridId(gid, type, num):
+	ier, size = _iricmi.iRICMI_Read_BC_IndicesSize2_WithGridId(gid, type, num)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_BC_Integer_WithGridId(gid, type, num, name):
+	ier, value = _iricmi.iRICMI_Read_BC_Integer_WithGridId(gid, type, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_BC_Real_WithGridId(gid, type, num, name):
+	ier, value = _iricmi.iRICMI_Read_BC_Real_WithGridId(gid, type, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_BC_String_WithGridId(gid, type, num, name):
+	ier, strvalue = _iricmi.iRICMI_Read_BC_String_WithGridId(gid, type, num, name)
+	_checkErrorCode(ier)
+	return strvalue
+
+def iRICMI_Read_BC_FunctionalSize_WithGridId(gid, type, num, name):
+	ier, size = _iricmi.iRICMI_Read_BC_FunctionalSize_WithGridId(gid, type, num, name)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_BC_FunctionalWithName_String_WithGridId(gid, type, num, name, paramname):
+	ier, strvalue = _iricmi.iRICMI_Read_BC_FunctionalWithName_String_WithGridId(gid, type, num, name, paramname)
+	_checkErrorCode(ier)
+	return strvalue
+
+
+# from iricmi_calc.h
+def iRICMI_Calc_Init():
+	ier = _iricmi.iRICMI_Calc_Init()
+	_checkErrorCode(ier)
+
+def iRICMI_Calc_Terminate():
+	ier = _iricmi.iRICMI_Calc_Terminate()
+	_checkErrorCode(ier)
+
+def iRICMI_Calc_Sync_Receive():
+	ier = _iricmi.iRICMI_Calc_Sync_Receive()
+	_checkErrorCode(ier)
+
+def iRICMI_Calc_Sync_Send():
+	ier = _iricmi.iRICMI_Calc_Sync_Send()
+	_checkErrorCode(ier)
+
+def iRICMI_Calc_Dump():
+	ier = _iricmi.iRICMI_Calc_Dump()
+	_checkErrorCode(ier)
+
+
+# from iricmi_cc.h
+def iRICMI_Read_Integer(name):
+	ier, value = _iricmi.iRICMI_Read_Integer(name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_Real(name):
+	ier, value = _iricmi.iRICMI_Read_Real(name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_String(name):
+	ier, strvalue = _iricmi.iRICMI_Read_String(name)
+	_checkErrorCode(ier)
+	return strvalue
+
+def iRICMI_Read_FunctionalSize(name):
+	ier, size = _iricmi.iRICMI_Read_FunctionalSize(name)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_FunctionalWithName_String(name, paramname):
+	ier, strvalue = _iricmi.iRICMI_Read_FunctionalWithName_String(name, paramname)
+	_checkErrorCode(ier)
+	return strvalue
+
+
+# from iricmi_complex.h
+def iRICMI_Read_Complex_Count_WithBaseId(bid, groupname):
+	ier, num = _iricmi.iRICMI_Read_Complex_Count_WithBaseId(bid, groupname)
+	_checkErrorCode(ier)
+	return num
+
+def iRICMI_Read_Complex_Integer_WithBaseId(bid, groupname, num, name):
+	ier, value = _iricmi.iRICMI_Read_Complex_Integer_WithBaseId(bid, groupname, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_Complex_Real_WithBaseId(bid, groupname, num, name):
+	ier, value = _iricmi.iRICMI_Read_Complex_Real_WithBaseId(bid, groupname, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_Complex_String_WithBaseId(bid, groupname, num, name):
+	ier, strvalue = _iricmi.iRICMI_Read_Complex_String_WithBaseId(bid, groupname, num, name)
+	_checkErrorCode(ier)
+	return strvalue
+
+def iRICMI_Read_Complex_FunctionalSize_WithBaseId(bid, groupname, num, name):
+	ier, size = _iricmi.iRICMI_Read_Complex_FunctionalSize_WithBaseId(bid, groupname, num, name)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_Complex_FunctionalWithName_String_WithBaseId(bid, groupname, num, name, paramname):
+	ier, strvalue = _iricmi.iRICMI_Read_Complex_FunctionalWithName_String_WithBaseId(bid, groupname, num, name, paramname)
+	_checkErrorCode(ier)
+	return strvalue
+
+
+# from iricmi_geo.h
+def iRICMI_Geo_RiverSurvey_Open(filename):
+	ier, id = _iricmi.iRICMI_Geo_RiverSurvey_Open(filename)
+	_checkErrorCode(ier)
+	return id
+
+def iRICMI_Geo_RiverSurvey_Read_Count(id):
+	ier, count = _iricmi.iRICMI_Geo_RiverSurvey_Read_Count(id)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Geo_RiverSurvey_Read_Position(id, pointid):
+	ier, x, y = _iricmi.iRICMI_Geo_RiverSurvey_Read_Position(id, pointid)
+	_checkErrorCode(ier)
+	return x, y
+
+def iRICMI_Geo_RiverSurvey_Read_Direction(id, pointid):
+	ier, vx, vy = _iricmi.iRICMI_Geo_RiverSurvey_Read_Direction(id, pointid)
+	_checkErrorCode(ier)
+	return vx, vy
+
+def iRICMI_Geo_RiverSurvey_Read_Name(id, pointid):
+	ier, strvalue = _iricmi.iRICMI_Geo_RiverSurvey_Read_Name(id, pointid)
+	_checkErrorCode(ier)
+	return strvalue
+
+def iRICMI_Geo_RiverSurvey_Read_RealName(id, pointid):
+	ier, name = _iricmi.iRICMI_Geo_RiverSurvey_Read_RealName(id, pointid)
+	_checkErrorCode(ier)
+	return name
+
+def iRICMI_Geo_RiverSurvey_Read_LeftShift(id, pointid):
+	ier, shift = _iricmi.iRICMI_Geo_RiverSurvey_Read_LeftShift(id, pointid)
+	_checkErrorCode(ier)
+	return shift
+
+def iRICMI_Geo_RiverSurvey_Read_AltitudeCount(id, pointid):
+	ier, count = _iricmi.iRICMI_Geo_RiverSurvey_Read_AltitudeCount(id, pointid)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Geo_RiverSurvey_Read_FixedPointL(id, pointid):
+	ier, set, directionX, directionY, index = _iricmi.iRICMI_Geo_RiverSurvey_Read_FixedPointL(id, pointid)
+	_checkErrorCode(ier)
+	return set, directionX, directionY, index
+
+def iRICMI_Geo_RiverSurvey_Read_FixedPointR(id, pointid):
+	ier, set, directionX, directionY, index = _iricmi.iRICMI_Geo_RiverSurvey_Read_FixedPointR(id, pointid)
+	_checkErrorCode(ier)
+	return set, directionX, directionY, index
+
+def iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation(id, pointid):
+	ier, set, value = _iricmi.iRICMI_Geo_RiverSurvey_Read_WaterSurfaceElevation(id, pointid)
+	_checkErrorCode(ier)
+	return set, value
+
+def iRICMI_Geo_RiverSurvey_Close(id):
+	ier = _iricmi.iRICMI_Geo_RiverSurvey_Close(id)
+	_checkErrorCode(ier)
+
+
+# from iricmi_geoutil.h
+def iRICMI_Read_Geo_Count(name):
+	ier, count = _iricmi.iRICMI_Read_Geo_Count(name)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Geo_Filename(name, geoid):
+	ier, strvalue, type = _iricmi.iRICMI_Read_Geo_Filename(name, geoid)
+	_checkErrorCode(ier)
+	return strvalue, type
+
+
+# from iricmi_grid.h
+def iRICMI_Read_Grid2d_Str_Size_WithGridId(gid):
+	ier, isize, jsize = _iricmi.iRICMI_Read_Grid2d_Str_Size_WithGridId(gid)
+	_checkErrorCode(ier)
+	return isize, jsize
+
+def iRICMI_Read_Grid3d_Str_Size_WithGridId(gid):
+	ier, isize, jsize, ksize = _iricmi.iRICMI_Read_Grid3d_Str_Size_WithGridId(gid)
+	_checkErrorCode(ier)
+	return isize, jsize, ksize
+
+def iRICMI_Read_Grid_TriangleElementsSize_WithGridId(gid):
+	ier, size = _iricmi.iRICMI_Read_Grid_TriangleElementsSize_WithGridId(gid)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_Grid_TriangleElementsSize2_WithGridId(gid):
+	ier, size = _iricmi.iRICMI_Read_Grid_TriangleElementsSize2_WithGridId(gid)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_Grid_NodeCount_WithGridId(gid):
+	ier, count = _iricmi.iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_CellCount_WithGridId(gid):
+	ier, count = _iricmi.iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_IFaceCount_WithGridId(gid):
+	ier, count = _iricmi.iRICMI_Read_Grid_IFaceCount_WithGridId(gid)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_JFaceCount_WithGridId(gid):
+	ier, count = _iricmi.iRICMI_Read_Grid_JFaceCount_WithGridId(gid)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_KFaceCount_WithGridId(gid):
+	ier, count = _iricmi.iRICMI_Read_Grid_KFaceCount_WithGridId(gid)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_FunctionalDimensionSize_WithGridId(gid, name, dimname):
+	ier, count = _iricmi.iRICMI_Read_Grid_FunctionalDimensionSize_WithGridId(gid, name, dimname)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_FunctionalTimeSize_WithGridId(gid, name):
+	ier, count = _iricmi.iRICMI_Read_Grid_FunctionalTimeSize_WithGridId(gid, name)
+	_checkErrorCode(ier)
+	return count
+
+
+# from iricmi_grid_solverlib.h
+def iRICMI_Read_Grid2d_Open_WithGridId(gid):
+	ier, grid_handle = _iricmi.iRICMI_Read_Grid2d_Open_WithGridId(gid)
+	_checkErrorCode(ier)
+	return grid_handle
+
+def iRICMI_Read_Grid2d_Close(grid_handle):
+	ier = _iricmi.iRICMI_Read_Grid2d_Close(grid_handle)
+	_checkErrorCode(ier)
+
+def iRICMI_Read_Grid2d_CellArea(grid_handle, cellId):
+	ier, area = _iricmi.iRICMI_Read_Grid2d_CellArea(grid_handle, cellId)
+	_checkErrorCode(ier)
+	return area
+
+def iRICMI_Read_Grid2d_FindCell(grid_handle, x, y):
+	ier, cellId = _iricmi.iRICMI_Read_Grid2d_FindCell(grid_handle, x, y)
+	_checkErrorCode(ier)
+	return cellId
+
+def iRICMI_Read_Grid2d_CellNodeCount(grid_handle, cellId):
+	ier, count = _iricmi.iRICMI_Read_Grid2d_CellNodeCount(grid_handle, cellId)
+	_checkErrorCode(ier)
+	return count
+
+
+# from iricmi_gui_coorp.h
+def iRICMI_Check_Cancel():
+	ier = _iricmi.iRICMI_Check_Cancel()
+	return ier
+
+def iRICMI_Check_Update():
+	ier = _iricmi.iRICMI_Check_Update()
+	return ier
+
+
+# from iricmi_model.h
+def iRICMI_Model_Init():
+	ier = _iricmi.iRICMI_Model_Init()
+	_checkErrorCode(ier)
+
+def iRICMI_Model_Terminate():
+	ier = _iricmi.iRICMI_Model_Terminate()
+	_checkErrorCode(ier)
+
+def iRICMI_Model_Sync():
+	ier = _iricmi.iRICMI_Model_Sync()
+	_checkErrorCode(ier)
+
+def iRICMI_Model_Dump():
+	ier = _iricmi.iRICMI_Model_Dump()
+	_checkErrorCode(ier)
+
+
+# from iricmi_not_withbaseid.h
+def iRICMI_Read_Complex_Count(groupname):
+	ier, num = _iricmi.iRICMI_Read_Complex_Count(groupname)
+	_checkErrorCode(ier)
+	return num
+
+def iRICMI_Read_Complex_Integer(groupname, num, name):
+	ier, value = _iricmi.iRICMI_Read_Complex_Integer(groupname, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_Complex_Real(groupname, num, name):
+	ier, value = _iricmi.iRICMI_Read_Complex_Real(groupname, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_Complex_String(groupname, num, name):
+	ier, strvalue = _iricmi.iRICMI_Read_Complex_String(groupname, num, name)
+	_checkErrorCode(ier)
+	return strvalue
+
+def iRICMI_Read_Complex_FunctionalSize(groupname, num, name):
+	ier, size = _iricmi.iRICMI_Read_Complex_FunctionalSize(groupname, num, name)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_Complex_FunctionalWithName_String(groupname, num, name, paramname):
+	ier, strvalue = _iricmi.iRICMI_Read_Complex_FunctionalWithName_String(groupname, num, name, paramname)
+	_checkErrorCode(ier)
+	return strvalue
+
+
+# from iricmi_not_withgridid.h
+def iRICMI_Read_BC_Count(type):
+	ier, num = _iricmi.iRICMI_Read_BC_Count(type)
+	_checkErrorCode(ier)
+	return num
+
+def iRICMI_Read_BC_IndicesSize(type, num):
+	ier, size = _iricmi.iRICMI_Read_BC_IndicesSize(type, num)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_BC_IndicesSize2(type, num):
+	ier, size = _iricmi.iRICMI_Read_BC_IndicesSize2(type, num)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_BC_Integer(type, num, name):
+	ier, value = _iricmi.iRICMI_Read_BC_Integer(type, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_BC_Real(type, num, name):
+	ier, value = _iricmi.iRICMI_Read_BC_Real(type, num, name)
+	_checkErrorCode(ier)
+	return value
+
+def iRICMI_Read_BC_String(type, num, name):
+	ier, strvalue = _iricmi.iRICMI_Read_BC_String(type, num, name)
+	_checkErrorCode(ier)
+	return strvalue
+
+def iRICMI_Read_BC_FunctionalSize(type, num, name):
+	ier, size = _iricmi.iRICMI_Read_BC_FunctionalSize(type, num, name)
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_BC_FunctionalWithName_String(type, num, name, paramname):
+	ier, strvalue = _iricmi.iRICMI_Read_BC_FunctionalWithName_String(type, num, name, paramname)
+	_checkErrorCode(ier)
+	return strvalue
+
+def iRICMI_Read_Grid2d_Str_Size():
+	ier, isize, jsize = _iricmi.iRICMI_Read_Grid2d_Str_Size()
+	_checkErrorCode(ier)
+	return isize, jsize
+
+def iRICMI_Read_Grid3d_Str_Size():
+	ier, isize, jsize, ksize = _iricmi.iRICMI_Read_Grid3d_Str_Size()
+	_checkErrorCode(ier)
+	return isize, jsize, ksize
+
+def iRICMI_Read_Grid_TriangleElementsSize():
+	ier, size = _iricmi.iRICMI_Read_Grid_TriangleElementsSize()
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_Grid_TriangleElementsSize2():
+	ier, size = _iricmi.iRICMI_Read_Grid_TriangleElementsSize2()
+	_checkErrorCode(ier)
+	return size
+
+def iRICMI_Read_Grid_NodeCount():
+	ier, count = _iricmi.iRICMI_Read_Grid_NodeCount()
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_CellCount():
+	ier, count = _iricmi.iRICMI_Read_Grid_CellCount()
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_IFaceCount():
+	ier, count = _iricmi.iRICMI_Read_Grid_IFaceCount()
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_JFaceCount():
+	ier, count = _iricmi.iRICMI_Read_Grid_JFaceCount()
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_KFaceCount():
+	ier, count = _iricmi.iRICMI_Read_Grid_KFaceCount()
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_FunctionalDimensionSize(name, dimname):
+	ier, count = _iricmi.iRICMI_Read_Grid_FunctionalDimensionSize(name, dimname)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid_FunctionalTimeSize(name):
+	ier, count = _iricmi.iRICMI_Read_Grid_FunctionalTimeSize(name)
+	_checkErrorCode(ier)
+	return count
+
+def iRICMI_Read_Grid2d_Open():
+	ier, grid_handle = _iricmi.iRICMI_Read_Grid2d_Open()
+	_checkErrorCode(ier)
+	return grid_handle
+
+
+# from iricmi_sol_cell.h
+
+# from iricmi_sol_gridcoord.h
+
+# from iricmi_sol_iface.h
+
+# from iricmi_sol_jface.h
+
+# from iricmi_sol_kface.h
+
+# from iricmi_sol_node.h
+
+# from iricmi_time.h
+
+# from iricmi_wrapper.h
+def iRICMI_Read_BC_Indices_WithGridId(gid, type, num):
+	size = iRICMI_Read_BC_IndicesSize2_WithGridId(gid, type, num)
+	idx = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_BC_Indices_WithGridId(gid, type, num, idx)
+	_checkErrorCode(ier)
+	return idx.get()
+
+def iRICMI_Read_BC_Functional_WithGridId(gid, type, num, name):
+	size = iRICMI_Read_BC_FunctionalSize_WithGridId(gid, type, num, name)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_BC_Functional_WithGridId(gid, type, num, name, x, y)
+	_checkErrorCode(ier)
+	return x.get(), y.get()
+
+def iRICMI_Read_BC_FunctionalWithName_WithGridId(gid, type, num, name, paramname):
+	size = iRICMI_Read_BC_FunctionalSize_WithGridId(gid, type, num, name)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_BC_FunctionalWithName_WithGridId(gid, type, num, name, paramname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_RIn_BC_Integer_WithGridId(gid, type, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_RIn_BC_Integer_WithGridId(gid, type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_RIn_BC_Real_WithGridId(gid, type, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_RIn_BC_Real_WithGridId(gid, type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_BC_Integer_WithGridId(gid, type, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_ROut_BC_Integer_WithGridId(gid, type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_BC_Real_WithGridId(gid, type, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_ROut_BC_Real_WithGridId(gid, type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_Read_Functional(name):
+	size = iRICMI_Read_FunctionalSize(name)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Functional(name, x, y)
+	_checkErrorCode(ier)
+	return x.get(), y.get()
+
+def iRICMI_Read_FunctionalWithName(name, paramname):
+	size = iRICMI_Read_FunctionalSize(name)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_FunctionalWithName(name, paramname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_RIn_Integer(name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_RIn_Integer(name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_RIn_Real(name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_RIn_Real(name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_Integer(name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_ROut_Integer(name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_Real(name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_ROut_Real(name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_Read_Complex_Functional_WithBaseId(bid, groupname, num, name):
+	size = iRICMI_Read_Complex_FunctionalSize_WithBaseId(bid, groupname, num, name)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Complex_Functional_WithBaseId(bid, groupname, num, name, x, y)
+	_checkErrorCode(ier)
+	return x.get(), y.get()
+
+def iRICMI_Read_Complex_FunctionalWithName_WithBaseId(bid, groupname, num, name, paramname):
+	size = iRICMI_Read_Complex_FunctionalSize_WithBaseId(bid, groupname, num, name)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Complex_FunctionalWithName_WithBaseId(bid, groupname, num, name, paramname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Complex_Node_WithGridId(gid, groupname):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Complex_Node_WithGridId(gid, groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Complex_Cell_WithGridId(gid, groupname):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Complex_Cell_WithGridId(gid, groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_RIn_Complex_Integer_WithBaseId(bid, groupname, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_RIn_Complex_Integer_WithBaseId(bid, groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_RIn_Complex_Real_WithBaseId(bid, groupname, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_RIn_Complex_Real_WithBaseId(bid, groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_Complex_Integer_WithBaseId(bid, groupname, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_ROut_Complex_Integer_WithBaseId(bid, groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_Complex_Real_WithBaseId(bid, groupname, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_ROut_Complex_Real_WithBaseId(bid, groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_Geo_RiverSurvey_Read_Altitudes(id, pointid):
+	size = iRICMI_Geo_RiverSurvey_Read_AltitudeCount(id, pointid)
+	position = RealArrayContainer(size)
+	height = RealArrayContainer(size)
+	active = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Geo_RiverSurvey_Read_Altitudes(id, pointid, position, height, active)
+	_checkErrorCode(ier)
+	return position.get(), height.get(), active.get()
+
+def iRICMI_Read_Grid2d_Coords_WithGridId(gid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid2d_Coords_WithGridId(gid, x, y)
+	_checkErrorCode(ier)
+	return x.get(), y.get()
+
+def iRICMI_Read_Grid3d_Coords_WithGridId(gid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	z = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid3d_Coords_WithGridId(gid, x, y, z)
+	_checkErrorCode(ier)
+	return x.get(), y.get(), z.get()
+
+def iRICMI_Read_Grid_TriangleElements_WithGridId(gid):
+	size = iRICMI_Read_Grid_TriangleElementsSize2_WithGridId(gid)
+	id = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_TriangleElements_WithGridId(gid, id)
+	_checkErrorCode(ier)
+	return id.get()
+
+def iRICMI_Read_Grid_Real_Node_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Real_Node_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Integer_Node_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Integer_Node_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Real_Cell_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Real_Cell_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Integer_Cell_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Integer_Cell_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_FunctionalDimension_Integer_WithGridId(gid, name, dimname):
+	size = iRICMI_Read_Grid_FunctionalDimensionSize_WithGridId(gid, name, dimname)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_FunctionalDimension_Integer_WithGridId(gid, name, dimname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_FunctionalDimension_Real_WithGridId(gid, name, dimname):
+	size = iRICMI_Read_Grid_FunctionalDimensionSize_WithGridId(gid, name, dimname)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_FunctionalDimension_Real_WithGridId(gid, name, dimname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_FunctionalTime_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_FunctionalTimeSize_WithGridId(gid, name)
+	time = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_FunctionalTime_WithGridId(gid, name, time)
+	_checkErrorCode(ier)
+	return time.get()
+
+def iRICMI_Read_Grid_Functional_Integer_Node_WithGridId(gid, name, dimid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Integer_Node_WithGridId(gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Functional_Real_Node_WithGridId(gid, name, dimid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Real_Node_WithGridId(gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Functional_Integer_Cell_WithGridId(gid, name, dimid):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Integer_Cell_WithGridId(gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Functional_Real_Cell_WithGridId(gid, name, dimid):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Real_Cell_WithGridId(gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Write_Grid1d_Coords_WithGridId(isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier, gid = _iricmi.iRICMI_Write_Grid1d_Coords_WithGridId(isize, x)
+	_checkErrorCode(ier)
+	return gid
+
+def iRICMI_Write_Grid2d_Coords_WithGridId(isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier, gid = _iricmi.iRICMI_Write_Grid2d_Coords_WithGridId(isize, jsize, x, y)
+	_checkErrorCode(ier)
+	return gid
+
+def iRICMI_Write_Grid3d_Coords_WithGridId(isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier, gid = _iricmi.iRICMI_Write_Grid3d_Coords_WithGridId(isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+	return gid
+
+def iRICMI_Write_NamedGrid1d_Coords_WithGridId(name, isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier, gid = _iricmi.iRICMI_Write_NamedGrid1d_Coords_WithGridId(name, isize, x)
+	_checkErrorCode(ier)
+	return gid
+
+def iRICMI_Write_NamedGrid2d_Coords_WithGridId(name, isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier, gid = _iricmi.iRICMI_Write_NamedGrid2d_Coords_WithGridId(name, isize, jsize, x, y)
+	_checkErrorCode(ier)
+	return gid
+
+def iRICMI_Write_NamedGrid3d_Coords_WithGridId(name, isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier, gid = _iricmi.iRICMI_Write_NamedGrid3d_Coords_WithGridId(name, isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+	return gid
+
+def iRICMI_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId):
+	size = iRICMI_Read_Grid2d_CellNodeCount(grid_handle, cellId)
+	nodeids = IntArrayContainer(size)
+	weights = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId, nodeids, weights)
+	_checkErrorCode(ier)
+	return nodeids.get(), weights.get()
+
+def iRICMI_Read_Complex_Functional(groupname, num, name):
+	size = iRICMI_Read_Complex_FunctionalSize(groupname, num, name)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Complex_Functional(groupname, num, name, x, y)
+	_checkErrorCode(ier)
+	return x.get(), y.get()
+
+def iRICMI_Read_Complex_FunctionalWithName(groupname, num, name, paramname):
+	size = iRICMI_Read_Complex_FunctionalSize(groupname, num, name)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Complex_FunctionalWithName(groupname, num, name, paramname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_RIn_Complex_Integer(groupname, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_RIn_Complex_Integer(groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_RIn_Complex_Real(groupname, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_RIn_Complex_Real(groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_Complex_Integer(groupname, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_ROut_Complex_Integer(groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_Complex_Real(groupname, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_ROut_Complex_Real(groupname, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_Read_BC_Indices(type, num):
+	size = iRICMI_Read_BC_IndicesSize2(type, num)
+	idx = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_BC_Indices(type, num, idx)
+	_checkErrorCode(ier)
+	return idx.get()
+
+def iRICMI_Read_BC_Functional(type, num, name):
+	size = iRICMI_Read_BC_FunctionalSize(type, num, name)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_BC_Functional(type, num, name, x, y)
+	_checkErrorCode(ier)
+	return x.get(), y.get()
+
+def iRICMI_Read_BC_FunctionalWithName(type, num, name, paramname):
+	size = iRICMI_Read_BC_FunctionalSize(type, num, name)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_BC_FunctionalWithName(type, num, name, paramname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_RIn_BC_Integer(type, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_RIn_BC_Integer(type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_RIn_BC_Real(type, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_RIn_BC_Real(type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_BC_Integer(type, num, name):
+	val = IntContainer()
+	ier = _iricmi.iRICMI_ROut_BC_Integer(type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_ROut_BC_Real(type, num, name):
+	val = RealContainer()
+	ier = _iricmi.iRICMI_ROut_BC_Real(type, num, name, val)
+	_checkErrorCode(ier)
+	return val
+
+def iRICMI_Read_Grid_Complex_Node(groupname):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Complex_Node(groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Complex_Cell(groupname):
+	size = iRICMI_Read_Grid_CellCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Complex_Cell(groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid2d_Coords():
+	size = iRICMI_Read_Grid_NodeCount()
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid2d_Coords(x, y)
+	_checkErrorCode(ier)
+	return x.get(), y.get()
+
+def iRICMI_Read_Grid3d_Coords():
+	size = iRICMI_Read_Grid_NodeCount()
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	z = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid3d_Coords(x, y, z)
+	_checkErrorCode(ier)
+	return x.get(), y.get(), z.get()
+
+def iRICMI_Read_Grid_TriangleElements():
+	size = iRICMI_Read_Grid_TriangleElementsSize2()
+	id = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_TriangleElements(id)
+	_checkErrorCode(ier)
+	return id.get()
+
+def iRICMI_Read_Grid_Real_Node(name):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Real_Node(name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Integer_Node(name):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Integer_Node(name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Real_Cell(name):
+	size = iRICMI_Read_Grid_CellCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Real_Cell(name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Integer_Cell(name):
+	size = iRICMI_Read_Grid_CellCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Integer_Cell(name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_FunctionalDimension_Integer(name, dimname):
+	size = iRICMI_Read_Grid_FunctionalDimensionSize(name, dimname)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_FunctionalDimension_Integer(name, dimname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_FunctionalDimension_Real(name, dimname):
+	size = iRICMI_Read_Grid_FunctionalDimensionSize(name, dimname)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_FunctionalDimension_Real(name, dimname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_FunctionalTime(name):
+	size = iRICMI_Read_Grid_FunctionalTimeSize(name)
+	time = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_FunctionalTime(name, time)
+	_checkErrorCode(ier)
+	return time.get()
+
+def iRICMI_Read_Grid_Functional_Integer_Node(name, dimid):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Integer_Node(name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Functional_Real_Node(name, dimid):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Real_Node(name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Functional_Integer_Cell(name, dimid):
+	size = iRICMI_Read_Grid_CellCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Integer_Cell(name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Read_Grid_Functional_Real_Cell(name, dimid):
+	size = iRICMI_Read_Grid_CellCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_Read_Grid_Functional_Real_Cell(name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def iRICMI_Write_Grid1d_Coords(isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier = _iricmi.iRICMI_Write_Grid1d_Coords(isize, x)
+	_checkErrorCode(ier)
+
+def iRICMI_Write_Grid2d_Coords(isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier = _iricmi.iRICMI_Write_Grid2d_Coords(isize, jsize, x, y)
+	_checkErrorCode(ier)
+
+def iRICMI_Write_Grid3d_Coords(isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier = _iricmi.iRICMI_Write_Grid3d_Coords(isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+
+def iRICMI_Write_NamedGrid1d_Coords(name, isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier = _iricmi.iRICMI_Write_NamedGrid1d_Coords(name, isize, x)
+	_checkErrorCode(ier)
+
+def iRICMI_Write_NamedGrid2d_Coords(name, isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier = _iricmi.iRICMI_Write_NamedGrid2d_Coords(name, isize, jsize, x, y)
+	_checkErrorCode(ier)
+
+def iRICMI_Write_NamedGrid3d_Coords(name, isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier = _iricmi.iRICMI_Write_NamedGrid3d_Coords(name, isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+
+def iRICMI_RIn_Grid_Cell_Integer(name):
+	size = iRICMI_Read_Grid_CellCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Cell_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_Cell_Real(name):
+	size = iRICMI_Read_Grid_CellCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Cell_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Cell_Integer(name):
+	size = iRICMI_Read_Grid_CellCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Cell_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Cell_Real(name):
+	size = iRICMI_Read_Grid_CellCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Cell_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid2d_Coords():
+	size = iRICMI_Read_Grid_NodeCount()
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid2d_Coords(x, y)
+	_checkErrorCode(ier)
+	return x, y
+
+def iRICMI_RIn_Grid3d_Coords():
+	size = iRICMI_Read_Grid_NodeCount()
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	z = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid3d_Coords(x, y, z)
+	_checkErrorCode(ier)
+	return x, y, z
+
+def iRICMI_ROut_Grid2d_Coords():
+	size = iRICMI_Read_Grid_NodeCount()
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid2d_Coords(x, y)
+	_checkErrorCode(ier)
+	return x, y
+
+def iRICMI_ROut_Grid3d_Coords():
+	size = iRICMI_Read_Grid_NodeCount()
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	z = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid3d_Coords(x, y, z)
+	_checkErrorCode(ier)
+	return x, y, z
+
+def iRICMI_RIn_Grid_IFace_Integer(name):
+	size = iRICMI_Read_Grid_IFaceCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_IFace_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_IFace_Real(name):
+	size = iRICMI_Read_Grid_IFaceCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_IFace_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_IFace_Integer(name):
+	size = iRICMI_Read_Grid_IFaceCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_IFace_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_IFace_Real(name):
+	size = iRICMI_Read_Grid_IFaceCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_IFace_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_JFace_Integer(name):
+	size = iRICMI_Read_Grid_JFaceCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_JFace_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_JFace_Real(name):
+	size = iRICMI_Read_Grid_JFaceCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_JFace_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_JFace_Integer(name):
+	size = iRICMI_Read_Grid_JFaceCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_JFace_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_JFace_Real(name):
+	size = iRICMI_Read_Grid_JFaceCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_JFace_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_KFace_Integer(name):
+	size = iRICMI_Read_Grid_KFaceCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_KFace_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_KFace_Real(name):
+	size = iRICMI_Read_Grid_KFaceCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_KFace_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_KFace_Integer(name):
+	size = iRICMI_Read_Grid_KFaceCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_KFace_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_KFace_Real(name):
+	size = iRICMI_Read_Grid_KFaceCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_KFace_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_Node_Integer(name):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Node_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_Node_Real(name):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Node_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Node_Integer(name):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Node_Integer(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Node_Real(name):
+	size = iRICMI_Read_Grid_NodeCount()
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Node_Real(name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_Cell_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Cell_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_Cell_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Cell_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Cell_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Cell_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Cell_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_CellCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Cell_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid2d_Coords_WithGridId(gid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid2d_Coords_WithGridId(gid, x, y)
+	_checkErrorCode(ier)
+	return x, y
+
+def iRICMI_RIn_Grid3d_Coords_WithGridId(gid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	z = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid3d_Coords_WithGridId(gid, x, y, z)
+	_checkErrorCode(ier)
+	return x, y, z
+
+def iRICMI_ROut_Grid2d_Coords_WithGridId(gid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid2d_Coords_WithGridId(gid, x, y)
+	_checkErrorCode(ier)
+	return x, y
+
+def iRICMI_ROut_Grid3d_Coords_WithGridId(gid):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	z = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid3d_Coords_WithGridId(gid, x, y, z)
+	_checkErrorCode(ier)
+	return x, y, z
+
+def iRICMI_RIn_Grid_IFace_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_IFaceCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_IFace_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_IFace_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_IFaceCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_IFace_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_IFace_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_IFaceCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_IFace_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_IFace_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_IFaceCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_IFace_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_JFace_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_JFaceCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_JFace_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_JFace_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_JFaceCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_JFace_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_JFace_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_JFaceCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_JFace_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_JFace_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_JFaceCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_JFace_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_KFace_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_KFaceCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_KFace_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_KFace_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_KFaceCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_KFace_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_KFace_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_KFaceCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_KFace_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_KFace_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_KFaceCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_KFace_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_Node_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Node_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Grid_Node_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_RIn_Grid_Node_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Node_Integer_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = IntArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Node_Integer_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_ROut_Grid_Node_Real_WithGridId(gid, name):
+	size = iRICMI_Read_Grid_NodeCount_WithGridId(gid)
+	v = RealArrayContainer(size)
+	ier = _iricmi.iRICMI_ROut_Grid_Node_Real_WithGridId(gid, name, v)
+	_checkErrorCode(ier)
+	return v
+
+def iRICMI_RIn_Time():
+	t = RealContainer()
+	ier = _iricmi.iRICMI_RIn_Time(t)
+	_checkErrorCode(ier)
+	return t
+
+def iRICMI_RIn_Dump_Interval():
+	interval = RealContainer()
+	ier = _iricmi.iRICMI_RIn_Dump_Interval(interval)
+	_checkErrorCode(ier)
+	return interval
+
+def iRICMI_ROut_Time():
+	t = RealContainer()
+	ier = _iricmi.iRICMI_ROut_Time(t)
+	_checkErrorCode(ier)
+	return t
+
+def iRICMI_ROut_Exchange_Interval():
+	interval = RealContainer()
+	ier = _iricmi.iRICMI_ROut_Exchange_Interval(interval)
+	_checkErrorCode(ier)
+	return interval
+
+def iRICMI_ROut_Dump_Interval():
+	interval = RealContainer()
+	ier = _iricmi.iRICMI_ROut_Dump_Interval(interval)
+	_checkErrorCode(ier)
+	return interval
+
+
+def iRICMI_Read_Grid2d_Interpolate(grid_handle, x, y):
+    cellId = iRICMI_Read_Grid2d_FindCell(grid_handle, x, y)
+    return iRICMI_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId)
