@@ -529,19 +529,6 @@
   <SHA1>0ae5c48f480458c41bd993e2a1c3fbaf90e56a91</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.ichirokk_CUBEv4</Name>
-  <DisplayName>NaysCUBE v4.43.79</DisplayName>
-  <Description/>
-  <Version>4.43.79</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-08-22</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="833523" UncompressedSize="12097652" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>21e54349302a6fc7854787b24ecf99c7b13e0655</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.sac</Name>
   <DisplayName>SAC</DisplayName>
   <Description>Slope Area Computation Program</Description>
@@ -644,7 +631,7 @@
   <UpdateFile CompressedSize="5438520" UncompressedSize="39851206" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>bb2b3b295059bdfe5706602f7f266500de6fc171</SHA1>
  </PackageUpdate>
@@ -712,5 +699,18 @@
   <UpdateFile CompressedSize="283063" UncompressedSize="1142452" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>e0cbfc224fa05c84a6784aab3099ee665a8cf7b2</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ichirokk_CUBEv4</Name>
+  <DisplayName>NaysCUBE v4.43.79</DisplayName>
+  <Description/>
+  <Version>4.43.79</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-08-22</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="833569" UncompressedSize="12097652" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>027524258a04a07e9e53544afd7682c1687f4294</SHA1>
  </PackageUpdate>
 </Updates>
