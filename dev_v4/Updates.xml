@@ -254,19 +254,6 @@
   <SHA1>58c3a8946204eaaaed85cd76ef83b78693bb39ad</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gridcreator.iRICsolvers_v4_arc_grigen_cp</Name>
-  <DisplayName>2d arc grid generator (Compound Channel)</DisplayName>
-  <Description/>
-  <Version>1.0.22090201</Version>
-  <Default>true</Default>
-  <ReleaseDate>2022-09-02</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="81268" OS="Any" UncompressedSize="537721"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>fc69455650093d327a2e18bd17d9df19856c91d0</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator.iRICsolvers_v4_grigen_nays3dv</Name>
   <DisplayName>Grid Generator for Nays3Dv</DisplayName>
   <Description/>
@@ -761,7 +748,7 @@
   <UpdateFile CompressedSize="5687135" OS="Any" UncompressedSize="41430109"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>fea3c46b2f93348fb3f383bfea48a7156f7caff8</SHA1>
  </PackageUpdate>
@@ -831,5 +818,18 @@
   <UpdateFile CompressedSize="833569" OS="Any" UncompressedSize="12097652"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>a8ba1225ccd399ee82c129c4218707473b12c6a1</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gridcreator.iRICsolvers_v4_arc_grigen_cp</Name>
+  <DisplayName>2d arc grid generator (Compound Channel)</DisplayName>
+  <Description/>
+  <Version>1.0.22090201</Version>
+  <Default>true</Default>
+  <ReleaseDate>2022-09-02</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="81276" OS="Any" UncompressedSize="537721"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>2459536288a37126f90f4c1c1183c85cb3195d3f</SHA1>
  </PackageUpdate>
 </Updates>
