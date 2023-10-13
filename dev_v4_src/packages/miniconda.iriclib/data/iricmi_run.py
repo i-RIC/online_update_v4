@@ -8,7 +8,7 @@ import subprocess
 # Edit the values here.
 IRIC_PATH = os.environ["IRICMI_ROOT_PATH"]
 MPI_BIN_PATH = "C:/Program Files/Microsoft MPI/Bin"
-IRICMI_SERVER_PATH = IRIC_PATH + "/bin/iricmi_server.exe"
+IRICMI_SERVER_PATH = "iricmi_server.exe"
 
 def _get_version(v: str) -> list:
     frags = v.split('.')
@@ -30,28 +30,30 @@ def get_solver_info(fname):
 def get_executable_args(fname):
     name, version = get_solver_info(fname)
 
-    solver_path = IRIC_PATH + "/solvers"
-    p = pathlib.Path(solver_path)
-    for subp in p.iterdir():
-        def_name = str(subp) + "\\definition.xml"
-        if not os.path.exists(def_name):
-            continue
-        
-        t = ET.parse(def_name)
-        root = t.getroot()
-        atts = root.attrib
-        n = atts['name']
-        v = _get_version(atts['version'])
+    solver_paths = [IRIC_PATH + "/solvers", IRIC_PATH + "/private/solvers"]
+    
+    for solver_path in solver_paths:
+        p = pathlib.Path(solver_path)
+        for subp in p.iterdir():
+            def_name = str(subp) + "\\definition.xml"
+            if not os.path.exists(def_name):
+                continue
+            
+            t = ET.parse(def_name)
+            root = t.getroot()
+            atts = root.attrib
+            n = atts['name']
+            v = _get_version(atts['version'])
 
-        if not (name == n and version == v):
-            continue
+            if not (name == n and version == v):
+                continue
 
-        exe = atts["executable"]
-        full_exe = str(subp) + "\\" + exe
-        if ".py" in full_exe:
-            return ['python', '-u', full_exe]
-        else:
-            return [full_exe]
+            exe = atts["executable"]
+            full_exe = str(subp) + "\\" + exe
+            if ".py" in full_exe:
+                return ['python', '-u', full_exe]
+            else:
+                return [full_exe]
     
     exit("Error: solver with name " + name + " not found.")
 
