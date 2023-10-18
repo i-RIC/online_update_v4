@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition
+    xmlns="www.iric.net/SolverDefinition/1.0"
+    name="RiTER_Xsec" caption="RiTER Xsec" version="1.0.0"
+	copyright="Public Works Research Institute Japan"
+    release="2023.6.21" 
+    homepage="http://www.pwri.go.jp/team/kyousei/jpn/index.htm"
+    executable="riter_xsection.py"
+    iterationtype="time"
+    gridtype="structured2d"
+    >
+	<CalculationCondition>
+		<Tab name="basic_setting" caption="Basic Setting">
+			<Item name="output_xsec_csv" caption="Output csv for cross-section">
+				<Definition valueType="integer" default="0" checkBox="true" />
+			</Item>
+			<Item name="csv_fname" caption="CSV file name">
+				<Definition valueType="filename_all" default="Select CSV file name">
+					<Condition type="isEqual" target="output_xsec_csv" value="1" />
+				</Definition>
+			</Item>
+		</Tab>
+	</CalculationCondition>
+	<GridRelatedCondition>
+		<Item name="Elevation_before" caption="Elevation (before)">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+		<Item name="Elevation_after" caption="Elevation (after)">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+		<Item name="Target" caption="Target Area">
+			<Definition position="node" valueType="integer" default="0">
+				<Enumeration value="0" caption="Not Target" />
+				<Enumeration value="1" caption="Target" />
+			</Definition>
+		</Item>
+	</GridRelatedCondition>
+</SolverDefinition>
