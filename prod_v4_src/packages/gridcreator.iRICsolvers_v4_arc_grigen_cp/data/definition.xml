@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridGeneratorDefinition 
   xmlns="www.iric.net"
-  name="Arc_gridgen_cp" caption="2d arc grid generator (Compound Channel)" version="1.0.22090201" 
-  copyright="Yasuyuki Shimizu" executable="arc_grigen_cp.exe" gridtype="structured2d" release="2022.09.02">
+  name="Arc_gridgen_cp" caption="2d arc grid generator (Compound Channel)" version="1.0.23110901" 
+  copyright="Yasuyuki Shimizu" executable="arc_grigen_cp.exe" gridtype="structured2d" release="2023.11.09">
 
 <GridGeneratingCondition>
 <Tab name="Channel(1)" caption="Channel shape">
@@ -70,7 +70,7 @@
 		</Definition>
 	</Item>
 	<Item name="rf_width" caption="Right flood plane width">
-		<Definition valueType="real" default="1">
+		<Definition valueType="real" default="1" min="0.001">
 			<Dependency>
 				<Condition type="and">
 					<Condition type="isEqual" target="j_sect" value="1"/>
@@ -90,7 +90,7 @@
 		</Definition>
 	</Item>
 		<Item name="lf_width" caption="Left flood plane width">
-		<Definition valueType="real" default="1">
+		<Definition valueType="real" default="1" min="0.001">
 			<Dependency>
 				<Condition type="and">
 					<Condition type="isEqual" target="j_sect" value="1"/>
@@ -198,7 +198,8 @@
 
 </GridGeneratingCondition>
 <ErrorCodes>
-    <ErrorCode value="1" caption="IMax * JMax must be smaller than 100,000." />
-  </ErrorCodes>
+    <ErrorCode value="1" caption="The total width of the floodplain should be equal to or less than the Channel width." />
+</ErrorCodes>
+
 </GridGeneratorDefinition >
 

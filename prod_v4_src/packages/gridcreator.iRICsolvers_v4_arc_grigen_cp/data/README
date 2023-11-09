@@ -1,5 +1,7 @@
-Arc shape channel grid creator.   Arc length can be specified by degree with
-straight channel inlet nd outlet.   
+Arc shape channel grid creator.   Arc length can be specified by degree with straight channel inlet nd outlet.   
+
+v1.0.23110901　release:2023.11.9　Keita Hoshino
+・Fixed the issue where iRIC would crash when the total width of the floodplain on both banks exceeded the channel width, regardless of the presence of compound channels.
 
 v1.0.22090201　release:2022.9.2　Keita Hoshino
 ・Fixed a bug related to Compound Channel creation.

@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>2d arc grid generator (Compound Channel)</DisplayName>
 	<Description></Description>
-	<Version>1.0.22090201</Version>
+	<Version>1.0.23110901</Version>
 	<Default>true</Default>
-	<ReleaseDate>2022-09-02</ReleaseDate>
+	<ReleaseDate>2023-11-09</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

@@ -165,8 +165,8 @@
             <translation>河岸および低水路・高水敷境界固定</translation>
         </message>
         <message>
-            <source>IMax * JMax must be smaller than 100,000.</source>
-            <translation></translation>
+            <source>The total width of the floodplain should be equal to or less than the Channel width.</source>
+            <translation>高水敷幅の合計は水路幅以下である必要があります。</translation>
         </message>
     </context>
 </TS>
