@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Unstructured grid VTK importer</DisplayName>
 	<Description>Unstructured grid VTK file importer</Description>
-	<Version>1.0.0</Version>
+	<Version>1.0.1</Version>
 	<Default>true</Default>
-	<ReleaseDate>2021-11-25</ReleaseDate>
+	<ReleaseDate>2023-11-09</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

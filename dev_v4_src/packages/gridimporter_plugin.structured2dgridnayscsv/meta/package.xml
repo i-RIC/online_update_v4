@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Structured grid Nays CSV file importer</DisplayName>
 	<Description>Structured grid Nays CSV file importer</Description>
-	<Version>1.1.0</Version>
+	<Version>1.1.1</Version>
 	<Default>true</Default>
-	<ReleaseDate>2019-11-30</ReleaseDate>
+	<ReleaseDate>2023-11-09</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

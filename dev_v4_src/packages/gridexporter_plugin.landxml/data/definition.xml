@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridExporterPluginDefinition 
   xmlns="www.iric.net/GridExporterPluginDefinition/1.0"
-  name="landxmlgridexporter" caption="Grid LandXML exporter" version="1.0.3" release="2023.03.16"
+  name="landxmlgridexporter" caption="Grid LandXML exporter" version="1.0.4" release="2023.11.09"
   copyright="iRIC Organization"
 >
 </GridExporterPluginDefinition>
