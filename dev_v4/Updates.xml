@@ -832,16 +832,16 @@
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (develop)</DisplayName>
   <Description>iRIC Main GUI</Description>
-  <Version>4.0.0.6993</Version>
+  <Version>4.0.0.6994</Version>
   <ReleaseDate>2023-11-14</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" CompressedSize="5748040" UncompressedSize="41852275"/>
+  <UpdateFile OS="Any" CompressedSize="5748048" UncompressedSize="41854323"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
    <License name="MIT License" file="LICENSE"/>
   </Licenses>
-  <SHA1>0a8e5ea5d6a4274a09cc55601a1526516defd98f</SHA1>
+  <SHA1>dbd44460e1d84cdb618a7be42e6023dcd0b8019f</SHA1>
  </PackageUpdate>
 </Updates>
