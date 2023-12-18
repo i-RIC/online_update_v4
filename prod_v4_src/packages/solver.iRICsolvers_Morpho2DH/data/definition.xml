@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SolverDefinition xmlns="www.iric.net/SolverDefinition/1.0" 
   name="morpho2d" 
-  caption="Morpho2DH v2.0" 
-  version="2.0.23062302" 
+  caption="Morpho2DH v2.1" 
+  version="2.0.23121801" 
   copyright="Hiroshi Takebayashi" 
   release="2014.11.01" 
   homepage="http://www.google.co.jp/" 
@@ -212,7 +212,7 @@
               <Parameter name="Diameter" valueType="real" caption="Diameter (m)" />
               <Value name="Surface_Fraction" valueType="real" caption="Fraction" />
               <Value name="Subsurface_Fraction" valueType="real" caption="Fraction" />
-			  <Value name="Surface_Fraction2" valueType="real" caption="Fraction" />
+!			  <Value name="Surface_Fraction2" valueType="real" caption="Fraction" />
               <Dependency>
                 <Condition type="isEqual" target="bed_material_type" value="1" />
               </Dependency>
@@ -289,7 +289,30 @@
         </Items>
       </Content>
     </Tab>
-    <Tab name="hot_start" caption="Hot Start">
+	  <Tab name="building" caption="Building">
+		  <Content>
+			  <Items>
+				  <Item name="building_switch" caption="Building destruction">
+					  <Definition conditionType="constant" valueType="integer" option="true" default="0">
+						  <Enumerations>
+							  <Enumeration value="0" caption="Disabled" />
+							  <Enumeration value="1" caption="Enabled" />
+						  </Enumerations>
+					  </Definition>
+				  </Item>
+				  <Item name="critecal_destruction_force" caption="Critecal destruction force">
+					  <Definition conditionType="functional">
+						  <Parameter name="Code" valueType="integer" caption="Code" />
+						  <Value name="C_Force" valueType="real" caption="Critical force (N/m2)" />
+						  <Dependency>
+							  <Condition type="isEqual" target="building_switch" value="1" />
+						  </Dependency>
+					  </Definition>
+				  </Item>
+			  </Items>
+    </Content>
+	  </Tab>
+	  <Tab name="hot_start" caption="Hot Start">
       <Content>
         <Items>
           <Item name="hot_start" caption="Hot Start">
@@ -350,6 +373,18 @@
     </Item>
     <Item name="SurfaceSediment2" caption="SurfaceSediment2">
       <Definition position="node" valueType="real" default="0" />
+    </Item>
+    <Item name="BuildingYear" caption="Building Year">
+		<Definition position="node" valueType="integer" default="2000" />
+	</Item>
+    <Item name="BuildingStructure" caption="Building Structure">
+		  <Definition position="node" valueType="integer" default="1" />
+     </Item>
+    <Item name="BuildingStory" caption="Building Story">
+		  <Definition position="node" valueType="integer" default="2" />
+    </Item>
+    <Item name="BuildingHeight" caption="Building Height (m)">
+		<Definition position="node" valueType="real" default="0" />
     </Item>
   </GridRelatedCondition>
   <BoundaryCondition name="inflow" caption="Inflow" position="node">

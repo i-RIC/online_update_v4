@@ -452,6 +452,33 @@
 	</message>　　　　　　<message>
 		<source>Fixed Bed Elevation</source>
 		<translation>固定床高さ</translation>
+	</message>　　　　　　<message>
+		<source>Building Year</source>
+		<translation>建物建設年</translation>
+	</message>　　　　　　<message>
+		<source>Building Structure</source>
+		<translation>建物構造</translation>
+	</message>　　　　　　<message>
+		<source>Building Story</source>
+		<translation>建物階数</translation>
+	</message>　　　　　　<message>
+		<source>Building Height (m)</source>
+		<translation>建物高さ（m）</translation>
+	</message>　　　　　　<message>
+		<source>Building destruction</source>
+		<translation>建物破壊</translation>
+	</message>　　　　　　<message>
+		<source>Critecal destruction force</source>
+		<translation>建物破壊応力</translation>
+	</message>　　　　　　<message>
+		<source>Critical force (N/m2)</source>
+		<translation>限界破壊応力（N/m2）</translation>
+	</message>　　　　　　<message>
+		<source>Code</source>
+		<translation>コード</translation>
+	</message>　　　　　　<message>
+		<source>Building</source>
+		<translation>建物</translation>
 	</message>
 
 </context>
