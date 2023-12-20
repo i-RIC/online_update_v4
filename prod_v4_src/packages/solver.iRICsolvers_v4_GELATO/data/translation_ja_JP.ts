@@ -6,7 +6,7 @@
     <context>
         <message>
             <source>GELATO(former UTT)</source>
-            <translation>GELATE(旧 UTT)</translation>
+            <translation>GELATO(旧 UTT)</translation>
         </message>
         <message>
             <source>Basic Settings</source>

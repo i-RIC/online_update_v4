@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="UTT" caption="GELATO(former UTT)" version="1.2.23050901" copyright="Yasuyuki SHIMIZU"
+    name="UTT" caption="GELATO(former UTT)" version="1.2.23122001" copyright="Yasuyuki SHIMIZU"
     release="2023.05.09"
     homepage="http://ws3-er.eng.hokudai.ac.jp/yasu/"
     executable="GELATO.exe"
