@@ -221,10 +221,6 @@
             <translation>サインカーブによる振動</translation>
         </message>
         <message>
-            <source>Time Series Data Input</source>
-            <translation>時系列データーを与える</translation>
-        </message>
-        <message>
             <source>Downstream(East) Water Surface Elevation(m)</source>
             <translation>下流端(東側境界)の水位(m)</translation>
         </message>
@@ -247,14 +243,6 @@
         <message>
             <source>Time to reach full oscillation(sec)</source>
             <translation>フル振動に至るまでの時間(秒)</translation>
-        </message>
-        <message>
-            <source>Time series of downstream water surface elevation</source>
-            <translation>水位時系列データを与える</translation>
-        </message>
-        <message>
-            <source>Stage(m)</source>
-            <translation>水位(m)</translation>
         </message>
         <message>
             <source>Initial Water Surface Condition</source>
@@ -442,7 +430,7 @@
         </message>
         <message>
             <source>Obstacle Top Elevation(m)</source>
-            <translation>障害物頂部の高(m)</translation>
+            <translation>障害物頂部の高さ(m)</translation>
         </message>
         <message>
             <source>C_Bound</source>

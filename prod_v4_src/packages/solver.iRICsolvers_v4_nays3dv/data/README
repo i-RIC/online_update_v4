@@ -5,6 +5,11 @@ Density currents occured due to density differences, arise from temperature vari
 Check here for case studies.
 https://i-ric.org/yasu/Nays3dv/index.html
 
+
+# Release notes
+ver.1.7.24011001
+* Addressed the issue where it was possible to select features that are not available due to being in development.
+
 ver.1.7.23021302
 * Add case study link to README.
 

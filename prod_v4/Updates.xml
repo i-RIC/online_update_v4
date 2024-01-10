@@ -708,7 +708,7 @@
   <UpdateFile CompressedSize="5454770" UncompressedSize="39968428" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>99b0e92f8607d45b772d2cc50d2e07c43cd8d66f</SHA1>
  </PackageUpdate>
@@ -742,13 +742,13 @@
   <Name>solver.iRICsolvers_v4_nays3dv</Name>
   <DisplayName>nays3Dv 3D Density Flow Solver</DisplayName>
   <Description/>
-  <Version>1.7.23021302</Version>
+  <Version>1.7.24011001</Version>
   <Default>true</Default>
-  <ReleaseDate>2023-02-13</ReleaseDate>
+  <ReleaseDate>2024-01-10</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="295855" UncompressedSize="1169523" OS="Any"/>
+  <UpdateFile UncompressedSize="1171189" CompressedSize="296333" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>597dc59c2184e8fffc219aa875ed9d8bf9e85795</SHA1>
+  <SHA1>058f319b3c0cae512c73877db848d7d11872c124</SHA1>
  </PackageUpdate>
 </Updates>

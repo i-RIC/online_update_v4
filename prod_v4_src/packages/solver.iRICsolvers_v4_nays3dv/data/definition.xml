@@ -1,714 +1,750 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
-	xmlns="www.iric.net/SolverDefinition/1.0"
+	xmlns="www.iric.net/SolverDefinition/1.0" 
 	name="nays3dv" 
 	caption="nays3Dv 3D Density Flow Solver" 
-	version="1.7.23021302"
-	copyright="Yasuyuki SHIMIZU"
-	release="2023.02.13"
-	homepage="http://i-ric.org"
-	executable="nays3dv.exe"
-	iterationtype="time"
+	version="1.7.24011001" 
+	copyright="Yasuyuki SHIMIZU" 
+	release="2024.01.10" 
+	homepage="http://i-ric.org" 
+	executable="nays3dv.exe" 
+	iterationtype="time" 
 	gridtype="structured2d"
 >
-<CalculationCondition>
-<Tab name="Geometry" caption="Computational Parameters">
-	<GroupBox caption="Finite Differential Method">
-		<Item name="j_dens" caption="Density Flow Simulation">
-			<Definition conditionType="constant" valueType="integer" option="true" default="0">
-				<Enumerations>
-					<Enumeration value="0" caption="No(Water Only)"/>
-					<Enumeration value="1" caption="Yes(Density Flow)"/>
-				</Enumerations>
-			</Definition>
-		</Item>
-		<Item name="st_dens" caption="Starting Time of Density Computation">
-			<Definition valueType="real" default="0">
-				<Dependency>
-					<Condition type="isEqual" target="j_dens" value="1"/>
-				</Dependency>
-			</Definition>
-		</Item>
-		<Item name="j_uadvec" caption="Velocity Advection Term">
-			<Definition conditionType="constant" valueType="integer" option="true" default="1">
-				<Enumerations>
-					<Enumeration value="1" caption="CIP Method"/>
-					<Enumeration value="2" caption="Upwind Method"/>
-					<Enumeration value="3" caption="3rd Order Upwind Method"/>
-				</Enumerations>
-			</Definition>
-		</Item>
-		<Item name="j_cadvec" caption="Concentration Advection Term">
-			<Definition conditionType="constant" valueType="integer" option="true" default="1">
-				<Dependency>
-					<Condition type="isEqual" target="j_dens" value="1"/>
-				</Dependency>
-				<Enumerations>
-					<Enumeration value="1" caption="CIP Method"/>
-					<Enumeration value="2" caption="Upwind Method"/>
-					<Enumeration value="3" caption="3rd Order Upwind Method"/>
-				</Enumerations>
-			</Definition>
-		</Item>
-	</GroupBox>
-	<GroupBox caption="Computational Domain">
-	<Item name="nz" caption="Numbers of Grid in Z-direction(0-nz)">
-		<Definition valueType="integer" default="20">
-		</Definition>
-	</Item>
-	<Item name="j_zgrid" caption="vertical grid dividing method">
-		<Definition conditionType="constant" valueType="integer" option="true" default="1">
-			<Enumerations>
-				<Enumeration value="1" caption="Equal spacing"/>
-				<Enumeration value="2" caption="Specify bottom grid size"/>
-			</Enumerations>
-		</Definition>
-	</Item>
-	<Item name="dz1" caption="Relative Grid Length to Average Depth at Bottom">
-		<Definition valueType="real" default="0.05">
-			<Dependency>
-				<Condition type="isEqual" target="j_zgrid" value="2"/>
-			</Dependency>
-		</Definition>
-	</Item>
-	<Item name="diam" caption="Roughness Size(Gain Size)(m)">
-		<Definition valueType="real" default="0.01">
-		</Definition>
-	</Item>
-        <Item name="j_snu" caption="Eddy Viscosity">
-			<Definition conditionType="constant" valueType="integer" default="2">
-				<Enumerations>
-					<Enumeration value="0" caption="Constant"/>
-					<Enumeration value="1" caption="Depth Constant(alpha*Kappa/6*usta*h)"/>
-					<Enumeration value="2" caption="Parabolic (alpha*Kappa*usta*h*xi(1-xi))"/>
-				</Enumerations>
-			</Definition>
-	</Item>
-	<Item name="al_ep" caption="Coefficient for Eddy Viscosity">
-		<Definition valueType="real" default="0.8">
-		</Definition>
-	</Item>
-<!--
-	<Item name="qp" caption="Discharge(m**3/s)">
-		<Definition valueType="real" default="0.001">
-		</Definition>
-	</Item>
--->
-	<GroupBox caption="Plane Boundary Condition">
-        <Item name="j_west" caption="West Boundary(i=1)">
-		<Definition conditionType="constant" valueType="integer" default="1">
-			<Enumerations>
-				<Enumeration value="1" caption="Closed"/>
-				<Enumeration value="2" caption="Open"/>
-				<Enumeration value="3" caption="Periodic"/>
-			</Enumerations>
-		</Definition>
-	</Item>
-<!--
-	<Item name="jp_west" caption="Pressure Boundary Condition">
-		<Definition conditionType="constant" valueType="integer" default="0">
-			<Enumerations>
-				<Enumeration value="0" caption="p=0"/>
-				<Enumeration value="1" caption="dp/dx=0"/>
-			</Enumerations>
-			<Dependency>
-				<Condition type="isEqual" target="j_west" value="2"/>
-			</Dependency>
-		</Definition>
-	</Item>
--->
 
-        <Item name="j_east" caption="East Boundary(i=ni)">
-		<Definition conditionType="constant" valueType="integer" default="1">
-			<Dependency>
-				<Condition type="isLessEqual" target="j_west" value="2"/>
-			</Dependency>
-			<Enumerations>
-				<Enumeration value="1" caption="Closed"/>
-				<Enumeration value="2" caption="Open"/>
-			</Enumerations>
-		</Definition>
-	</Item>
-<!--
-	<Item name="jp_east" caption="Pressure Boundary Condition">
-		<Definition conditionType="constant" valueType="integer" default="0">
-			<Enumerations>
-				<Enumeration value="0" caption="p=0"/>
-				<Enumeration value="1" caption="dp/dx=0"/>
-			</Enumerations>
-			<Dependency>
-				<Condition type="isEqual" target="j_east" value="2"/>
-			</Dependency>
-		</Definition>
-	</Item>
--->
-	
-        <Item name="j_south" caption="South Boundary(j=1)">
-		<Definition conditionType="constant" valueType="integer" default="1">
-			<Enumerations>
-				<Enumeration value="1" caption="Closed"/>
-				<Enumeration value="2" caption="Open"/>
-				<Enumeration value="3" caption="Periodic"/>
-			</Enumerations>
-		</Definition>
-	</Item>
-        <Item name="j_north" caption="North Boundary(j=nj)">
-		<Definition conditionType="constant" valueType="integer" default="1">
-			<Dependency>
-				<Condition type="isLessEqual" target="j_south" value="2"/>
-			</Dependency>
-			<Enumerations>
-				<Enumeration value="1" caption="Closed"/>
-				<Enumeration value="2" caption="Open"/>
-			</Enumerations>
-		</Definition>
-	</Item>
+	<CalculationCondition>
 
-	</GroupBox>
-	</GroupBox>
-	
+		<Tab name="Geometry" caption="Computational Parameters">
+			<!-- 計算方式 -->
+			<GroupBox caption="Finite Differential Method">
+				<!-- 密度流の計算 -->
+				<Item name="j_dens" caption="Density Flow Simulation">
+					<Definition conditionType="constant" valueType="integer" option="true" default="0">
+						<Enumerations>
+							<!-- 無し(水のみ) -->
+							<Enumeration value="0" caption="No(Water Only)"/>
+							<!-- 有り(密度流) -->
+							<Enumeration value="1" caption="Yes(Density Flow)"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<!-- 密度流の計算開始時間 -->
+				<Item name="st_dens" caption="Starting Time of Density Computation">
+					<Definition valueType="real" default="0">
+						<Dependency>
+							<Condition type="isEqual" target="j_dens" value="1"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 流速移流項の計算方式 -->
+				<Item name="j_uadvec" caption="Velocity Advection Term">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1">
+						<Enumerations>
+							<!-- CIP法 -->
+							<Enumeration value="1" caption="CIP Method"/>
+							<!-- 風上差分法 -->
+							<Enumeration value="2" caption="Upwind Method"/>
+							<!-- 3次精度風上差分法 -->
+							<Enumeration value="3" caption="3rd Order Upwind Method"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<!-- 濃度連続式の移流項 -->
+				<Item name="j_cadvec" caption="Concentration Advection Term">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1">
+						<Dependency>
+							<Condition type="isEqual" target="j_dens" value="1"/>
+						</Dependency>
+						<Enumerations>
+							<!-- CIP法 -->
+							<Enumeration value="1" caption="CIP Method"/>
+							<!-- 風上差分法 -->
+							<Enumeration value="2" caption="Upwind Method"/>
+							<!-- 3次精度風上差分法 -->
+							<Enumeration value="3" caption="3rd Order Upwind Method"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+			</GroupBox>
 
-</Tab>
+			<!-- 計算領域 -->
+			<GroupBox caption="Computational Domain">
+				<!-- Z(鉛直)方向の格子分割数(0～nz) -->
+				<Item name="nz" caption="Numbers of Grid in Z-direction(0-nz)">
+					<Definition valueType="integer" default="20">
+					</Definition>
+				</Item>
+				<!-- 鉛直方向の格子分割方式 -->
+				<Item name="j_zgrid" caption="vertical grid dividing method">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1">
+						<Enumerations>
+							<!-- 均等分割 -->
+							<Enumeration value="1" caption="Equal spacing"/>
+							<!-- 底面格子サイズを指定 -->
+							<Enumeration value="2" caption="Specify bottom grid size"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<!-- 平均水深に対する格子サイズの比長 -->
+				<Item name="dz1" caption="Relative Grid Length to Average Depth at Bottom">
+					<Definition valueType="real" default="0.05">
+						<Dependency>
+							<Condition type="isEqual" target="j_zgrid" value="2"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 底面の粗度高さ(m) -->
+				<Item name="diam" caption="Roughness Size(Gain Size)(m)">
+					<Definition valueType="real" default="0.01">
+					</Definition>
+				</Item>
+				<!-- 渦動粘性係数 -->
+				<Item name="j_snu" caption="Eddy Viscosity">
+					<Definition conditionType="constant" valueType="integer" default="2">
+						<Enumerations>
+							<!-- 一定 -->
+							<Enumeration value="0" caption="Constant"/>
+							<!-- 水深方向に一定(alpha*Kappa/6*usta*h) -->
+							<Enumeration value="1" caption="Depth Constant(alpha*Kappa/6*usta*h)"/>
+							<!-- 放物線分布(alpha*Kappa*usta*h*xi(1-xi)) -->
+							<Enumeration value="2" caption="Parabolic (alpha*Kappa*usta*h*xi(1-xi))"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<!-- 渦動粘性係数に対する割増係数 -->
+				<Item name="al_ep" caption="Coefficient for Eddy Viscosity">
+					<Definition valueType="real" default="0.8">
+					</Definition>
+				</Item>
 
+				<!-- 平面上の境界条件 -->
+				<GroupBox caption="Plane Boundary Condition">
+					<!-- 西側(上流側)(i=1) -->
+					<Item name="j_west" caption="West Boundary(i=1)">
+						<Definition conditionType="constant" valueType="integer" default="1">
+							<Enumerations>
+								<!-- 閉鎖 -->
+								<Enumeration value="1" caption="Closed"/>
+								<!-- 開放 -->
+								<Enumeration value="2" caption="Open"/>
+								<!-- 周期境界 -->
+								<Enumeration value="3" caption="Periodic"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<!-- 東側(下流側)(i=ni) -->
+					<Item name="j_east" caption="East Boundary(i=ni)">
+						<Definition conditionType="constant" valueType="integer" default="1">
+							<Dependency>
+								<Condition type="isLessEqual" target="j_west" value="2"/>
+							</Dependency>
+							<Enumerations>
+								<!-- 閉鎖 -->
+								<Enumeration value="1" caption="Closed"/>
+								<!-- 開放 -->
+								<Enumeration value="2" caption="Open"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<!-- 南側(右岸側)(j=1) -->
+					<Item name="j_south" caption="South Boundary(j=1)">
+						<Definition conditionType="constant" valueType="integer" default="1">
+							<Enumerations>
+								<!-- 閉鎖 -->
+								<Enumeration value="1" caption="Closed"/>
+								<!-- 開放 -->
+								<Enumeration value="2" caption="Open"/>
+								<!-- 周期境界 -->
+								<Enumeration value="3" caption="Periodic"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+					<!-- 北側(左岸側)(j=nj) -->
+					<Item name="j_north" caption="North Boundary(j=nj)">
+						<Definition conditionType="constant" valueType="integer" default="1">
+							<Dependency>
+								<Condition type="isLessEqual" target="j_south" value="2"/>
+							</Dependency>
+							<Enumerations>
+								<!-- 閉鎖 -->
+								<Enumeration value="1" caption="Closed"/>
+								<!-- 開放 -->
+								<Enumeration value="2" caption="Open"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+				</GroupBox>
+			</GroupBox>
 
-<Tab name="HBound" caption="Hydraulic Initial and Boundary Condition">
+		</Tab>
 
-	<GroupBox caption="Upstream Discharge Condition">
-		<GroupBox caption="Discharge">
-			<Item name="j_qin" caption="Discharge">
-				<Definition conditionType="constant" valueType="integer" option="true" default="1">
-				<Enumerations>
-					<Enumeration value="0" caption="Free"/>
-					<Enumeration value="1" caption="Constant"/>
-					<Enumeration value="2" caption="Input Hydrograph"/>
-				</Enumerations>
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isGreaterEqual" target="j_west" value="2"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-				</Definition>
-			</Item>
-			<Item name="q_up_const" caption="Constant Discharge Value(m**3/s)">
-				<Definition valueType="real" default="0.00">
+		<!-- 初期条件と境界条件 -->
+		<Tab name="HBound" caption="Hydraulic Initial and Boundary Condition">
+
+			<!-- 上流側(西側)流入流量条件 -->
+			<GroupBox caption="Upstream Discharge Condition">
+				<!-- 流量 -->
+				<GroupBox caption="Discharge">
+					<!-- 流量 -->
+					<Item name="j_qin" caption="Discharge">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<!-- 自由 -->
+								<Enumeration value="0" caption="Free"/>
+								<!-- 一定 -->
+								<Enumeration value="1" caption="Constant"/>
+								<!-- ハイドログラフ入力 -->
+								<Enumeration value="2" caption="Input Hydrograph"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isGreaterEqual" target="j_west" value="2"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- 一定流量の値(m**3/s) -->
+					<Item name="q_up_const" caption="Constant Discharge Value(m**3/s)">
+						<Definition valueType="real" default="0.00">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isGreaterEqual" target="j_west" value="2"/>
+									<Condition type="isEqual" target="j_qin" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- 流量ハイドログラフ -->
+					<Item name="q_hyd" caption="Discharge Hydrograph">
+						<Definition conditionType="functional">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isGreaterEqual" target="j_west" value="2"/>
+									<Condition type="isEqual" target="j_qin" value="2"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+							<!-- 時間(秒) -->
+							<Parameter name="time_q" valueType="real" caption="time(sec)"/>
+							<!-- 流量(m**3/s) -->
+							<Value name="qt_up" valueType="real" caption="Discharge(m**3/s)"/>
+						</Definition>
+					</Item>
+					<!-- 流量補正の開始時間(秒) -->
+					<Item name="q_stt" caption="Start time of discharge adjustment(sec)">
+						<Definition valueType="real" default="100">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isGreaterEqual" target="j_west" value="2"/>
+									<Condition type="isGreaterEqual" target="j_qin" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- フル流量までの線形上昇時間(秒) -->
+					<Item name="q_trn" caption="Time to reach full discharge(sec)">
+						<Definition valueType="real" default="500">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isGreaterEqual" target="j_west" value="2"/>
+									<Condition type="isGreaterEqual" target="j_qin" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</GroupBox>
+
+				<!-- 上流端水位 -->
+				<GroupBox caption="Upstream Water Surface">
+					<!-- 水位条件 -->
+					<Item name="j_hup" caption="Water Surface Condition">
+						<Definition conditionType="constant" valueType="integer" option="true" default="1">
+							<Enumerations>
+								<!-- 一定 -->
+								<Enumeration value="1" caption="Constant"/>
+								<!-- 水平(dH/dx=0) -->
+								<Enumeration value="2" caption="Horizontal (dH/dx=0)"/>
+								<!-- 水面勾配を与える -->
+								<Enumeration value="3" caption="Give Upstream Water Surface Slope"/>
+								<!-- 等流水深 -->
+								<Enumeration value="4" caption="Uniform Flow"/>
+							</Enumerations>
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_west" value="2"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- 水位(m) -->
+					<Item name="h_up_const" caption="Water Surface Elevation Value(m)">
+						<Definition valueType="real" default="0.00">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_west" value="2"/>
+									<Condition type="isEqual" target="j_hup" value="1"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- 上流端の水面勾配の値 -->
+					<Item name="up_wslope" caption="Water Surface Slope at Upstream End">
+						<Definition valueType="real" default="0.001">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isGreaterEqual" target="j_west" value="2"/>
+									<Condition type="isGreaterEqual" target="j_qin" value="1"/>
+									<Condition type="isEqual" target="j_hup" value="3"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- 上流端で等流計算用の勾配 -->
+					<Item name="up_slope" caption="Slope for upstream uniform flow computation">
+						<Definition valueType="real" default="0.005">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isGreaterEqual" target="j_west" value="2"/>
+									<Condition type="isGreaterEqual" target="j_qin" value="1"/>
+									<Condition type="isEqual" target="j_hup" value="4"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</GroupBox>
+			</GroupBox>
+
+			<!-- 下流端(東側境界)条件 -->
+			<GroupBox caption="Downstream(Eastern Boundary)">
+				<!-- 水平(dH/dx=0) -->
+				<Item name="j_hdw" caption="Water Surface Condition">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1">
+						<Enumerations>
+							<!-- 一定 -->
+							<Enumeration value="1" caption="Constant"/>
+							<!-- 水平(dH/dx=0) -->
+							<Enumeration value="2" caption="Horizontal(dH/dx=0)"/>
+							<!-- サインカーブによる振動 -->
+							<Enumeration value="3" caption="Sine Wave Oscillation"/>
+						</Enumerations>
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_east" value="2"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 下流端(東側境界)の水位(m) -->
+				<Item name="h_dw_const" caption="Downstream(East) Water Surface Elevation(m)">
+					<Definition valueType="real" default="0.00">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_east" value="2"/>
+								<Condition type="isEqual" target="j_hdw" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+
+				<!-- 下流端での水位振動パラメーター -->
+				<GroupBox caption="Downstream Stage Oscillation Values">
+					<!-- 波高(m) -->
+					<Item name="hd_amp" caption="Amplitude(m)">
+						<Definition valueType="real" default="0.00">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_east" value="2"/>
+									<Condition type="isEqual" target="j_hdw" value="3"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- 周期(秒) -->
+					<Item name="hd_wl" caption="Cycle Time(sec)">
+						<Definition valueType="real" default="0.00">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_east" value="2"/>
+									<Condition type="isEqual" target="j_hdw" value="3"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- 水位振動開始時間(秒) -->
+					<Item name="hd_st" caption="Start Time of Oscillation(sec)">
+						<Definition valueType="real" default="0.00">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_east" value="2"/>
+									<Condition type="isEqual" target="j_hdw" value="3"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+					<!-- フル振動に至るまでの時間(秒) -->
+					<Item name="hd_ap" caption="Time to reach full oscillation(sec)">
+						<Definition valueType="real" default="0.00">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="j_east" value="2"/>
+									<Condition type="isEqual" target="j_hdw" value="3"/>
+								</Condition>
+								<Action type="enable"/>
+							</Dependency>
+						</Definition>
+					</Item>
+				</GroupBox>
+			</GroupBox>
+
+			<!-- 初期水位条件 -->
+			<GroupBox caption="Initial Water Surface Condition">
+				<!-- 初期水位分布 -->
+				<Item name="j_hinit" caption="Initial Water Surface Profile">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1">
+						<Enumerations>
+							<!-- 水平方向に一定 -->
+							<Enumeration value="1" caption="Horizontally Constant"/>
+							<!-- 格子データのものを使う -->
+							<Enumeration value="2" caption="Read from geometric data"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<!-- 水平方向に一定値 -->
+				<Item name="h_horizontal" caption="Horizontally Constant Value(m)">
+					<Definition valueType="real" default="0.00">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_hinit" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+			</GroupBox>
+
+			<!-- 最小水深 -->
+			<GroupBox caption="Minimum Depth">
+				<!-- 指定 -->
+				<Item name="j_mindep" caption="Specify">
+					<Definition conditionType="constant" valueType="integer" option="true" default="0">
+						<Enumerations>
+							<!-- しない -->
+							<Enumeration value="0" caption="No"/>
+							<!-- する -->
+							<Enumeration value="1" caption="Yes"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<!-- 最小水深(m) -->
+				<Item name="dep_min" caption="Minimum Depth(m)">
+					<Definition valueType="real" default="3.00">
+						<Dependency>
+							<Condition type="isEqual" target="j_mindep" value="1"/>
+						</Dependency>
+					</Definition>
+				</Item>
+			</GroupBox>
+
+		</Tab>
+
+		<!-- 濃度の初期条件と境界条件 -->
+		<Tab name="IBcond" caption="Initial and Boundary Concentration Condition">
+			<!-- 背景(環境)濃度 -->
+			<Item name="c0" caption="Back Ground Concentration">
+				<Definition valueType="real" default="0">
 					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isEqual" target="j_qin" value="1"/>
-					</Condition>
-					<Action type="enable"/>
+						<Condition type="isEqual" target="j_dens" value="1"/>
 					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="q_hyd" caption="Discharge Hydrograph">
-				<Definition conditionType="functional">
+			<!-- 初期密度分布 -->
+			<Item name="j_ini_dens" caption="Initial Density Distribution">
+				<Definition conditionType="constant" valueType="integer" option="true" default="0">
 					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isEqual" target="j_qin" value="2"/>
-					</Condition>
-					<Action type="enable"/>
+						<Condition type="isEqual" target="j_dens" value="1"/>
 					</Dependency>
-					<Parameter name="time_q" valueType="real" caption="time(sec)"/>
-					<Value name="qt_up" valueType="real" caption="Discharge(m**3/s)"/>
-				</Definition>
-			</Item>
-<!--
-
-			<Item name="dh_alpha" caption="Magnificent Coefficient for Discharge Correction">
-				<Definition valueType="real" default="1.">
-					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isGreaterEqual" target="j_qin" value="1"/>
-					</Condition>
-					<Action type="enable"/>
-					</Dependency>
-				</Definition>
-			</Item>
-			<Item name="dh_ref" caption="Reference Delta H for discharge adjustment(m)">
-				<Definition valueType="real" default="1e-6">
-					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isGreaterEqual" target="j_qin" value="1"/>
-					</Condition>
-					<Action type="enable"/>
-					</Dependency>
-				</Definition>
-			</Item>
--->
-			<Item name="q_stt" caption="Start time of discharge adjustment(sec)">
-				<Definition valueType="real" default="100">
-					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isGreaterEqual" target="j_qin" value="1"/>
-					</Condition>
-					<Action type="enable"/>
-					</Dependency>
-				</Definition>
-			</Item>
-			<Item name="q_trn" caption="Time to reach full discharge(sec)">
-				<Definition valueType="real" default="500">
-					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isGreaterEqual" target="j_qin" value="1"/>
-					</Condition>
-					<Action type="enable"/>
-					</Dependency>
-				</Definition>
-			</Item>
-		</GroupBox>
-	
-                <GroupBox caption="Upstream Water Surface">
-			<Item name="j_hup" caption="Water Surface Condition">
-				<Definition conditionType="constant" valueType="integer" option="true" default="1">
 					<Enumerations>
-						<Enumeration value="1" caption="Constant"/>
-						<Enumeration value="2" caption="Horizontal (dH/dx=0)"/>
-						<Enumeration value="3" caption="Give Upstream Water Surface Slope"/>
-						<Enumeration value="4" caption="Uniform Flow"/>
+						<!-- しない -->
+						<Enumeration value="0" caption="No"/>
+						<!-- する -->
+						<Enumeration value="1" caption="Yes"/>
 					</Enumerations>
-					<Dependency>
-					<Condition type="and">
-						<Condition type="isEqual" target="j_west" value="2"/>
-					</Condition>
-					<Action type="enable"/>
-					</Dependency>
 				</Definition>
 			</Item>
-			<Item name="h_up_const" caption="Water Surface Elevation Value(m)">
-				<Definition valueType="real" default="0.00">
+
+			<!-- 初期密度分布 -->
+			<GroupBox caption="Initial Concentration Distribution">
+				<!-- 初期擾乱濃度 -->
+				<Item name="c1" caption="Initial Perturbed Concentration">
+					<Definition valueType="real" default="0.03">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_dens" value="1"/>
+								<Condition type="isEqual" target="j_ini_dens" value="1"/>
+							</Condition>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 初期擾乱濃度を与える範囲(i方向の始点) -->
+				<Item name="ic1" caption="Initial extra concentration i-from(1-nx)">
+					<Definition valueType="integer" default="1" min="1" max="1000">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_dens" value="1"/>
+								<Condition type="isEqual" target="j_ini_dens" value="1"/>
+							</Condition>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 初期擾乱濃度を与える範囲(i方向の終点) -->
+				<Item name="ic2" caption="Initial extra concentration i-to(1-nx)">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_dens" value="1"/>
+								<Condition type="isEqual" target="j_ini_dens" value="1"/>
+							</Condition>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 初期擾乱濃度を与える範囲(j方向の始点) -->
+				<Item name="jc1" caption="Initial extra concentration j-from(1-ny)">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_dens" value="1"/>
+								<Condition type="isEqual" target="j_ini_dens" value="1"/>
+							</Condition>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 初期擾乱濃度を与える範囲(j方向の終点) -->
+				<Item name="jc2" caption="Initial extra concentration j-to(1-ny)">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_dens" value="1"/>
+								<Condition type="isEqual" target="j_ini_dens" value="1"/>
+							</Condition>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 初期擾乱濃度を与える範囲(k方向の始点) -->
+				<Item name="kc1" caption="Initial extra concentration k-from(1-nk)">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_dens" value="1"/>
+								<Condition type="isEqual" target="j_ini_dens" value="1"/>
+							</Condition>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 初期擾乱濃度を与える範囲(k方向の終点) -->
+				<Item name="kc2" caption="Initial extra concentration k-to(1-nk)">
+					<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_dens" value="1"/>
+								<Condition type="isEqual" target="j_ini_dens" value="1"/>
+							</Condition>
+						</Dependency>
+					</Definition>
+				</Item>
+			</GroupBox>
+
+			<!-- 濃度境界条件 -->
+			<Item name="j_bc_dens" caption="Density Boundary Condition">
+				<Definition conditionType="constant" valueType="integer" option="true" default="0">
 					<Dependency>
-					<Condition type="and">
-						<Condition type="isEqual" target="j_west" value="2"/>
-						<Condition type="isEqual" target="j_hup" value="1"/>
-					</Condition>
-					<Action type="enable"/>
+						<Condition type="isEqual" target="j_dens" value="1"/>
 					</Dependency>
+					<Enumerations>
+						<!-- しない -->
+						<Enumeration value="0" caption="No"/>
+						<!-- する -->
+						<Enumeration value="1" caption="Yes"/>
+					</Enumerations>
 				</Definition>
 			</Item>
-			<Item name="up_wslope" caption="Water Surface Slope at Upstream End">
-				<Definition valueType="real" default="0.001">
-					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isGreaterEqual" target="j_qin" value="1"/>
-						<Condition type="isEqual" target="j_hup" value="3"/>
-					</Condition>
-					<Action type="enable"/>
-					</Dependency>
+
+		</Tab>
+
+		<!-- 時間および繰り返し計算パラメーター -->
+		<Tab name="Time" caption="Time and Iteration Parameters">
+
+			<!-- 時間パラメーター -->
+			<GroupBox caption="Time Parameters">
+				<!-- アウトプット間隔(秒) -->
+				<Item name="tuk" caption="Output Interval(sec)">
+					<Definition valueType="real" default="0.01">
+					</Definition>
+				</Item>
+				<!-- 計算終了時間(秒) -->
+				<Item name="etime" caption="Computation Finishing Time(sec)">
+					<Definition valueType="real" default="5">
+					</Definition>
+				</Item>
+				<!-- 計算時間刻み幅(秒) -->
+				<Item name="dt" caption="Time Step of Computation(sec)">
+					<Definition valueType="real" default="0.001">
+					</Definition>
+				</Item>
+			</GroupBox>
+
+			<!-- 繰り返し計算パラメーター -->
+			<GroupBox caption="Iteration Parameters">
+				<!-- 圧力計算SOR法の打ち切り誤差 -->
+				<Item name="sorerr" caption="Error Limitation in SOR Computation">
+					<Definition valueType="real" default="1e-4">
+					</Definition>
+				</Item>
+				<!-- 繰り返し計算の最大回数 -->
+				<Item name="lsor" caption="Max. Times of Iteration">
+					<Definition valueType="integer" default="10" max="500">
+					</Definition>
+				</Item>
+				<!-- 緩和係数 -->
+				<Item name="soralpha" caption="Relaxation Coefficient">
+					<Definition valueType="real" default=".7">
+					</Definition>
+				</Item>
+				<!-- 自由水面の計算 -->
+				<Item name="j_surf" caption="Free Surface Calculation">
+					<Definition conditionType="constant" valueType="integer" option="true" default="0">
+						<Enumerations>
+							<!-- しない -->
+							<Enumeration value="0" caption="No"/>
+							<!-- する -->
+							<Enumeration value="1" caption="Yes"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+				<!-- 自由水面計算の緩和係数 -->
+				<Item name="alpha_surf" caption="Relaxation Coefficient for Free Surface Computation">
+					<Definition valueType="real" default="0.1">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_surf" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 自由水面計算の開始時間(秒) -->
+				<Item name="stime_surf" caption="Starting Time of Free Surface Computation">
+					<Definition valueType="real" default="0">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_surf" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 自由水面の繰り返し計算回数 -->
+				<Item name="hloop" caption="Iteration time for water surface">
+					<Definition valueType="integer" default="10" max="500">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_surf" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+				<!-- 打ち切り誤差 -->
+				<Item name="hloop_err" caption="Truncation error">
+					<Definition valueType="real" default="0.001">
+						<Dependency>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_surf" value="1"/>
+							</Condition>
+							<Action type="enable"/>
+						</Dependency>
+					</Definition>
+				</Item>
+			</GroupBox>
+
+		</Tab>
+
+		<!-- 物理定数 -->
+		<Tab name="Physicals" caption="Physical Parameters">
+			<!-- 動粘性係数 -->
+			<Item name="snu" caption="Kinematic Viscosity Coefficient">
+				<Definition valueType="real" default="1e-6">
 				</Definition>
 			</Item>
-			<Item name="up_slope" caption="Slope for upstream uniform flow computation">
-				<Definition valueType="real" default="0.005">
-					<Dependency>
-					<Condition type="and">
-						<Condition type="isGreaterEqual" target="j_west" value="2"/>
-						<Condition type="isGreaterEqual" target="j_qin" value="1"/>
-						<Condition type="isEqual" target="j_hup" value="4"/>
-					</Condition>
-					<Action type="enable"/>
-					</Dependency>
+			<!-- 濃度の拡散係数 -->
+			<Item name="skc" caption="Diffusion Coefficient for Concentration">
+				<Definition valueType="real" default="0.000">
 				</Definition>
 			</Item>
-		</GroupBox>
-	</GroupBox>
+			<!-- 基準の密度(kg/m**3) -->
+			<Item name="rho" caption="Density(kg/m**3)">
+				<Definition valueType="real" default="1000.">
+				</Definition>
+			</Item>
+			<!-- 表面張力係数 -->
+			<Item name="surf_tension" caption="Surface Tension Coefficient">
+				<Definition valueType="real" default="0.072">
+				</Definition>
+			</Item>
+		</Tab>
 
+	</CalculationCondition>
 
-	<GroupBox caption="Downstream(Eastern Boundary)">
-
-		<Item name="j_hdw" caption="Water Surface Condition">
-			<Definition conditionType="constant" valueType="integer" option="true" default="1">
+	<GridRelatedCondition>
+		<!-- 河床高(m) -->
+		<Item name="Elevation" caption="Bed Elevation(m)">
+			<Definition position="node" valueType="real" default="0" />
+		</Item>
+		<!-- 水面高(m) -->
+		<Item name="WaterSurface" caption="Water Surface Elevation(m)">
+			<Definition position="node" valueType="real" default="0" />
+		</Item>
+		<!-- 障害物セル -->
+		<Item name="Obstacle" caption="Obstacle Cell">
+			<Definition position="cell" valueType="integer" default="0" option="true">
 				<Enumerations>
-					<Enumeration value="1" caption="Constant"/>
-					<Enumeration value="2" caption="Horizontal(dH/dx=0)"/>
-					<Enumeration value="3" caption="Sine Wave Oscillation"/>
-					<Enumeration value="4" caption="Time Series Data Input"/>
-				</Enumerations>
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_east" value="2"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-
-		<Item name="h_dw_const" caption="Downstream(East) Water Surface Elevation(m)">
-			<Definition valueType="real" default="0.00">
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_east" value="2"/>
-					<Condition type="isEqual" target="j_hdw" value="1"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-
-                <GroupBox caption="Downstream Stage Oscillation Values">
-		<Item name="hd_amp" caption="Amplitude(m)">
-			<Definition valueType="real" default="0.00">
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_east" value="2"/>
-					<Condition type="isEqual" target="j_hdw" value="3"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-		<Item name="hd_wl" caption="Cycle Time(sec)">
-			<Definition valueType="real" default="0.00">
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_east" value="2"/>
-					<Condition type="isEqual" target="j_hdw" value="3"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-		<Item name="hd_st" caption="Start Time of Oscillation(sec)">
-			<Definition valueType="real" default="0.00">
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_east" value="2"/>
-					<Condition type="isEqual" target="j_hdw" value="3"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-		<Item name="hd_ap" caption="Time to reach full oscillation(sec)">
-			<Definition valueType="real" default="0.00">
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_east" value="2"/>
-					<Condition type="isEqual" target="j_hdw" value="3"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-		<Item name="h_hyd" caption="Time series of downstream water surface elevation">
-			<Definition conditionType="functional">
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_east" value="2"/>
-					<Condition type="isEqual" target="j_hdw" value="4"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-				<Parameter name="time_h" valueType="real" caption="time(sec)"/>
-				<Value name="ht_down" valueType="real" caption="Stage(m)"/>
-			</Definition>
-		</Item>
-		</GroupBox>
-
-	</GroupBox>
-
-	<GroupBox caption="Initial Water Surface Condition">
-
-		<Item name="j_hinit" caption="Initial Water Surface Profile">
-			<Definition conditionType="constant" valueType="integer" option="true" default="1">
-				<Enumerations>
-					<Enumeration value="1" caption="Horizontally Constant"/>
-					<Enumeration value="2" caption="Read from geometric data"/>
-				</Enumerations>
-			</Definition>
-		</Item>
-		<Item name="h_horizontal" caption="Horizontally Constant Value(m)">
-			<Definition valueType="real" default="0.00">
-				<Dependency>
-				<Condition type="and">
-					<Condition type="isEqual" target="j_hinit" value="1"/>
-				</Condition>
-				<Action type="enable"/>
-				</Dependency>
-			</Definition>
-		</Item>
-	</GroupBox>
-
-	<GroupBox caption="Minimum Depth">
-		<Item name="j_mindep" caption="Specify">
-			<Definition conditionType="constant" valueType="integer" option="true" default="0">
-				<Enumerations>
-					<Enumeration value="0" caption="No"/>
-					<Enumeration value="1" caption="Yes"/>
-				</Enumerations>
-			</Definition>
-		</Item>
-		<Item name="dep_min" caption="Minimum Depth(m)">
-			<Definition valueType="real" default="3.00">
-				<Dependency>
-				<Condition type="isEqual" target="j_mindep" value="1"/>
-				</Dependency>
-			</Definition>
-		</Item>
-	</GroupBox>
-
-
-
-</Tab>
-
-
-<Tab name="IBcond" caption="Initial and Boundary Concentration Condition">
-
-	<Item name="c0" caption="Back Ground Concentration">
-		<Definition valueType="real" default="0">
-			<Dependency>
-				<Condition type="isEqual" target="j_dens" value="1"/>
-			</Dependency>
-		</Definition>
-	</Item>
-
-	<Item name="j_ini_dens" caption="Initial Density Distribution">
-		<Definition conditionType="constant" valueType="integer" option="true" default="0">
-			<Dependency>
-				<Condition type="isEqual" target="j_dens" value="1"/>
-			</Dependency>
-			<Enumerations>
-				<Enumeration value="0" caption="No"/>
-				<Enumeration value="1" caption="Yes"/>
-			</Enumerations>
-		</Definition>
-	</Item>
-
-	<GroupBox caption="Initial Concentration Distribution">
-
-	<Item name="c1" caption="Initial Perturbed Concentration">
-		<Definition valueType="real" default="0.03">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_dens" value="1"/>
-				<Condition type="isEqual" target="j_ini_dens" value="1"/>
-				</Condition>
-			</Dependency>
-		</Definition>
-	</Item>
-	<Item name="ic1" caption="Initial extra concentration i-from(1-nx)">
-               	<Definition valueType="integer" default="1" min="1" max="1000">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_dens" value="1"/>
-				<Condition type="isEqual" target="j_ini_dens" value="1"/>
-				</Condition>
-			</Dependency>
-		</Definition>
-	</Item>
-	<Item name="ic2" caption="Initial extra concentration i-to(1-nx)">
-               	<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_dens" value="1"/>
-				<Condition type="isEqual" target="j_ini_dens" value="1"/>
-				</Condition>
-			</Dependency>
-		</Definition>
-	</Item>
-	<Item name="jc1" caption="Initial extra concentration j-from(1-ny)">
-               	<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_dens" value="1"/>
-				<Condition type="isEqual" target="j_ini_dens" value="1"/>
-				</Condition>
-			</Dependency>
-		</Definition>
-	</Item>
-	<Item name="jc2" caption="Initial extra concentration j-to(1-ny)">
-               	<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_dens" value="1"/>
-				<Condition type="isEqual" target="j_ini_dens" value="1"/>
-				</Condition>
-			</Dependency>
-		</Definition>
-	</Item>
-	<Item name="kc1" caption="Initial extra concentration k-from(1-nk)">
-               	<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_dens" value="1"/>
-				<Condition type="isEqual" target="j_ini_dens" value="1"/>
-				</Condition>
-			</Dependency>
-		</Definition>
-	</Item>
-	<Item name="kc2" caption="Initial extra concentration k-to(1-nk)">
-               	<Definition conditionType="constant" valueType="integer" option="true" default="1" min="1" max="1000">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_dens" value="1"/>
-				<Condition type="isEqual" target="j_ini_dens" value="1"/>
-				</Condition>
-			</Dependency>
-		</Definition>
-	</Item>
-	</GroupBox>
-
-	<Item name="j_bc_dens" caption="Density Boundary Condition">
-		<Definition conditionType="constant" valueType="integer" option="true" default="0">
-			<Dependency>
-				<Condition type="isEqual" target="j_dens" value="1"/>
-			</Dependency>
-			<Enumerations>
-				<Enumeration value="0" caption="No"/>
-				<Enumeration value="1" caption="Yes"/>
-			</Enumerations>
-		</Definition>
-	</Item>
-</Tab>
-
-<Tab name="Time" caption="Time and Iteration Parameters">
-	<GroupBox caption="Time Parameters">
-		<Item name="tuk" caption="Output Interval(sec)">
-			<Definition valueType="real" default="0.01">
-			</Definition>
-		</Item>
-		<Item name="etime" caption="Computation Finishing Time(sec)">
-			<Definition valueType="real" default="5">
-			</Definition>
-		</Item>
-		<Item name="dt" caption="Time Step of Computation(sec)">
-			<Definition valueType="real" default="0.001">
-			</Definition>
-		</Item>
-	</GroupBox>
-	<GroupBox caption="Iteration Parameters">
-		<Item name="sorerr" caption="Error Limitation in SOR Computation">
-			<Definition valueType="real" default="1e-4">
-			</Definition>
-		</Item>
-		<Item name="lsor" caption="Max. Times of Iteration">
-			<Definition valueType="integer" default="10" max="500">
-			</Definition>
-		</Item>
-		<Item name="soralpha" caption="Relaxation Coefficient">
-			<Definition valueType="real" default=".7">
-			</Definition>
-		</Item>
-		<Item name="j_surf" caption="Free Surface Calculation">
-			<Definition conditionType="constant" valueType="integer" option="true" default="0">
-				<Enumerations>
-					<Enumeration value="0" caption="No"/>
-					<Enumeration value="1" caption="Yes"/>
+					<!-- 通常セル -->
+					<Enumeration value="0" caption="Normal cell" />
+					<!-- 障害物 -->
+					<Enumeration value="1" caption="Obstacle" />
 				</Enumerations>
 			</Definition>
 		</Item>
-		<Item name="alpha_surf" caption="Relaxation Coefficient for Free Surface Computation">
-		<Definition valueType="real" default="0.1">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_surf" value="1"/>
-				</Condition>
-				<Action type="enable"/>
-			</Dependency>
-		</Definition>
+		<!-- 障害物頂部の高さ(m) -->
+		<Item name="ObstacleTop" caption="Obstacle Top Elevation(m)">
+			<Definition position="cell" valueType="real" default="0"/>
 		</Item>
-		<Item name="stime_surf" caption="Starting Time of Free Surface Computation">
-		<Definition valueType="real" default="0">
-			<Dependency>
-				<Condition type="and">
-				<Condition type="isEqual" target="j_surf" value="1"/>
-				</Condition>
-				<Action type="enable"/>
-			</Dependency>
-		</Definition>
-		</Item>
+	</GridRelatedCondition>
 
-		<Item name="hloop" caption="Iteration time for water surface">
-		<Definition valueType="integer" default="10" max="500">
-		<Dependency>
-			<Condition type="and">
-			<Condition type="isEqual" target="j_surf" value="1"/>
-			</Condition>
-			<Action type="enable"/>
-		</Dependency>
-		</Definition>
+	<!-- 濃度境界条件 -->
+	<BoundaryCondition name="b_con" caption="C_Bound" position="edge">
+		<!-- 境界条件濃度 -->
+		<Item name="b_con_val" caption="Concentration at Boundary">
+			<Definition valueType="real" default="0.03">
+			</Definition>
 		</Item>
-		<Item name="hloop_err" caption="Truncation error">
-		<Definition valueType="real" default="0.001">
-		<Dependency>
-			<Condition type="and">
-			<Condition type="isEqual" target="j_surf" value="1"/>
-			</Condition>
-			<Action type="enable"/>
-		</Dependency>
-		</Definition>
-		</Item>
-	</GroupBox>
-</Tab>
-<Tab name="Physicals" caption="Physical Parameters">
-	<Item name="snu" caption="Kinematic Viscosity Coefficient">
-		<Definition valueType="real" default="1e-6">
-		</Definition>
-	</Item>
-<!--
-	<Item name="skt" caption="Diffusion Coefficient for Heat">
-		<Definition valueType="real" default="0.000">
-		</Definition>
-	</Item>
--->
-	<Item name="skc" caption="Diffusion Coefficient for Concentration">
-		<Definition valueType="real" default="0.000">
-		</Definition>
-	</Item>
-<!--
-	<Item name="beta_t" caption="Volume expansion coefficient">
-		<Definition valueType="real" default="0.00021">
-		</Definition>
-	</Item>
--->
-	<Item name="rho" caption="Density(kg/m**3)">
-		<Definition valueType="real" default="1000.">
-		</Definition>
-	</Item>
-	<Item name="surf_tension" caption="Surface Tension Coefficient">
-		<Definition valueType="real" default="0.072">
-		</Definition>
-	</Item>
-</Tab>
-		
-</CalculationCondition>
-<GridRelatedCondition>
-	<Item name="Elevation" caption="Bed Elevation(m)">
-		<Definition position="node" valueType="real" default="0" />
-	</Item>
-<!--
-	<Item name="Elevation_n" caption="Bed Elevation(m)">
-		<Definition position="node" valueType="real" default="0" />
-	</Item>
--->
-	<Item name="WaterSurface" caption="Water Surface Elevation(m)">
-		<Definition position="node" valueType="real" default="0" />
-	</Item>
-	<Item name="Obstacle" caption="Obstacle Cell">
-		<Definition position="cell" valueType="integer" default="0" option="true">
-			<Enumerations>
-                    		<Enumeration value="0" caption="Normal cell" />
-                    		<Enumeration value="1" caption="Obstacle" />
-                	</Enumerations>
-		</Definition>
-	</Item>
-	<Item name="ObstacleTop" caption="Obstacle Top Elevation(m)">
-		<Definition position="cell" valueType="real" default="0"/>
-	</Item>
-</GridRelatedCondition>
-<BoundaryCondition name="b_con" caption="C_Bound" position="edge">
-	<Item name="b_con_val" caption="Concentration at Boundary">
-		<Definition valueType="real" default="0.03">
-		</Definition>
-	</Item>
-	<Item name="e_up_con_val" caption="Upper Limit of Concentration(m)">
+		<!-- 濃度境界条件を与える最高部の高さ(m) -->
+		<Item name="e_up_con_val" caption="Upper Limit of Concentration(m)">
 			<Definition valueType="real" default="0">
 			</Definition>
 		</Item>
 	</BoundaryCondition>
+
 </SolverDefinition>
