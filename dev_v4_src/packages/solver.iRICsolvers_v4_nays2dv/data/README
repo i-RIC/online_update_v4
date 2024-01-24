@@ -7,6 +7,10 @@ Density currents occured due to density differences, arise from temperature vari
 Check here for case studies.
 https://uc.i-ric.org/uc_products/nays2dv_tutorial/index.html
 
+# Release notes
+ver.1.6.24012401
+* Minor adjustments to the result loading function during calculations.
+
 ver.1.6.23050801
 * Corrected name notation to "Nays2Dv"
 

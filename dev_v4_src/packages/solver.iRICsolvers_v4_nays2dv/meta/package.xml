@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Nays2Dv vertical 2D model </DisplayName>
 	<Description></Description>
-	<Version>1.6.23050801</Version>
+	<Version>1.6.24012401</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023-05-08</ReleaseDate>
+	<ReleaseDate>2024-01-24</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
