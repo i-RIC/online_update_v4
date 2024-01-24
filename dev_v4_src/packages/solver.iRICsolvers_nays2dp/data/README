@@ -6,7 +6,12 @@ curvature.
 Check here for case studies.
 https://i-ric.org/yasu/nays2d+/index.html
 
+# Release notes
+ver.1.1.24012401
+* Minor adjustments to the result loading function during calculations.
+
 ver.1.1.23021301
 * Add case study link to README.
+
 ver.1.1.23021301
 * Released for iRIC v4
