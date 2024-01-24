@@ -7,6 +7,9 @@ https://i-ric.org/yasu/Nays3dv/index.html
 
 
 # Release notes
+ver.1.7.24012401
+* Minor adjustments to the result loading function during calculations.
+
 ver.1.7.24011001
 * Addressed the issue where it was possible to select features that are not available due to being in development.
 
