@@ -3,7 +3,7 @@
     xmlns="www.iric.net/SolverDefinition/1.0"
     name="NaysMini" caption="NaysMini iRIC4.0" version="1.0.24012501" 
 	copyright="Yasu Shimizu"
-    release="2024.02.25" 
+    release="2024.01.25" 
 	homepage="https://i-ric.org/"
     executable="NaysMini.py"
     iterationtype="time"
