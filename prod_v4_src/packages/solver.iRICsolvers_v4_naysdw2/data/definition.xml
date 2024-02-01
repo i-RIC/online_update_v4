@@ -1,333 +1,863 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
-    xmlns="www.iric.net/SolverDefinition/1.0"
-    name="NaysDW2" caption="NaysDw2(Simple 2D Driftwood Tracker)" version="1.0.23060601" copyright="Yasuyuki SHIMIZU"
-    release="2023.06.06"
-    homepage="https://i-ric.org/"
-    executable="naysdw2.exe"
-    iterationtype="time"
-    gridtype="structured2d"
-    >
+	xmlns="www.iric.net/SolverDefinition/1.0"
+	name="NaysDW2"
+	caption="NaysDw2(Simple 2D Driftwood Tracker)"
+	version="1.1.24020101"
+	copyright="Yasuyuki SHIMIZU"
+	release="2024.02.01"
+	homepage="https://i-ric.org/"
+	executable="naysdw2.exe"
+	iterationtype="time"
+	gridtype="structured2d"
+>
+	
+	<!-- 計算条件 -->
 	<CalculationCondition>
+
+		<!-- 基本設定 -->
 		<Tab name="basic_setting" caption="Basic Setting">
+
+			<!-- 流況計算結果を読み込むCGNSファイル名 -->
 			<Item name="inputfile" caption="Input CGND File Name">
-				<Definition conditionType="constant" valueType="filename" default="Select CGNS file name" />
+				<Definition valueType="cgns_filename" default="Select CGNS file name" />
 			</Item>
+		
+			<!-- 最大流木数 -->
 			<Item name="maxTracerNumber" caption="Maximum driftwood numbers">
 				<Definition conditionType="constant" valueType="integer" default="1000" max="1000000"/>
 			</Item>
+		
+			<!-- 流木の追跡に用いる流速 -->
 			<Item name="j_surface" caption="Velocity for driftwood tracking">
-			<Definition conditionType="constant" valueType="integer" default="0">
-				<Enumerations>
-		    			<Enumeration value="0" caption="(0) depth averaged velocity"/>
-		 	   		<Enumeration value="1" caption="(1) surface velocity"/>
-		 	   		<Enumeration value="2" caption="(2) bottom velocity"/>
-				</Enumerations>
-			</Definition>
-			</Item>
-			<Item name="j_rep" caption="Boundary condition">
-			<Definition conditionType="constant" valueType="integer" default="0">
-				<Enumerations>
-		    			<Enumeration value="0" caption="(0) Non-periodic Boundary"/>
-		 	   		<Enumeration value="1" caption="(1) Periodic Boundary"/>
-		 	   		<Enumeration value="2" caption="(2) Closed Channel"/>
-				</Enumerations>
-			</Definition>
-			</Item>
-			<Item name="cr_depth" caption="Minimum depth of driftwood stopping(m)">
-				<Definition conditionType="constant" valueType="real" default="0.003" >
-				</Definition>
-			</Item>
-			<Item name="end_time" caption="Computation finishing time(sec)">
-				<Definition conditionType="constant" valueType="real" default="10" >
-				</Definition>
-			</Item>
-			<Item name="j_wood_obstacle" caption="Driftwood trapping at obstacles">
-			<Definition conditionType="constant" valueType="integer" default="0">
-				<Enumerations>
-		    			<Enumeration value="0" caption="Disable"/>
-		 	   		<Enumeration value="1" caption="Enable"/>
-				</Enumerations>
-			</Definition>
-			</Item>
-		</Tab>
-
-
-		<Tab name="seeds_spread" caption="Driftwood feeding condition">
-
-			<GroupBox caption="Driftwood placement at initial state">
-				<Item name="j_place" caption="Placement">
 				<Definition conditionType="constant" valueType="integer" default="0">
+					<Condition type="isEqual" target="advance_mode_activation" value="0" />
 					<Enumerations>
-		    				<Enumeration value="0" caption="Disable"/>
-		 	   			<Enumeration value="1" caption="Enable"/>
+						<!-- 水深平均流速 -->
+						<Enumeration value="0" caption="(0) depth averaged velocity"/>
+						<!-- 表面流速 -->
+						<Enumeration value="1" caption="(1) surface velocity"/>
+						<!-- 底面流速 -->
+						<Enumeration value="2" caption="(2) bottom velocity"/>
 					</Enumerations>
 				</Definition>
+			</Item>
+		
+			<!-- 境界条件 -->
+			<Item name="j_rep" caption="Boundary condition">
+				<Definition conditionType="constant" valueType="integer" default="0">
+					<Enumerations>
+						<!-- 非周期境界条件 -->
+						<Enumeration value="0" caption="(0) Non-periodic Boundary"/>
+						<!-- 周期境界条件 -->
+						<Enumeration value="1" caption="(1) Periodic Boundary"/>
+						<!-- 閉鎖水域 -->
+						<Enumeration value="2" caption="(2) Closed Channel"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+		
+			<!-- 流木の移動が停止する最小水深(m) -->
+			<Item name="cr_depth" caption="Minimum depth of driftwood stopping(m)">
+				<Definition conditionType="constant" valueType="real" default="0.003">
+				</Definition>
+			</Item>
+		
+			<!-- 計算終了時間(秒) -->
+			<Item name="end_time" caption="Computation finishing time(sec)">
+				<Definition conditionType="constant" valueType="real" default="10">
+				</Definition>
+			</Item>
+		
+			<!-- 障害物に当たった場合の流木は停止 -->
+			<Item name="j_wood_obstacle" caption="Driftwood trapping at obstacles">
+				<Definition conditionType="constant" valueType="integer" default="0">
+					<Enumerations>
+						<!-- しない -->
+						<Enumeration value="0" caption="Disable"/>
+						<!-- する -->
+						<Enumeration value="1" caption="Enable"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+		
+		</Tab>
+
+		<!-- 流木の供給条件 -->
+		<Tab name="seeds_spread" caption="Driftwood feeding condition">
+
+			<!-- 初期状態で流木を配置するか -->
+			<GroupBox caption="Driftwood placement at initial state">
+		
+				<!-- 配置 -->
+				<Item name="j_place" caption="Placement">
+					<Definition conditionType="constant" valueType="integer" default="0">
+						<Enumerations>
+							<!-- しない -->
+							<Enumeration value="0" caption="Disable"/>
+							<!-- する -->
+							<Enumeration value="1" caption="Enable"/>
+						</Enumerations>
+					</Definition>
 				</Item>
-
-
-
+		
+				<!-- 初期流木配置位置情報ファイル名 -->
 				<Item name="initPlace" caption="File name contains initial driftwood placement">
-					<Definition conditionType="constant" valueType="filename" default="Select file name" >
+					<Definition conditionType="constant" valueType="filename" default="Select file name">
 						<Dependency>
-						<Condition type="and">
-							<Condition type="isEqual" target="j_place" value="1"/>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_place" value="1"/>
 							</Condition>
 							<Action type="enable"/>
 						</Dependency>
 					</Definition>
 				</Item>
+		
 			</GroupBox>
 
+			<!-- 流木投入位置(無次元表示) -->
 			<GroupBox caption="Driftwood releasing location (non-dimensional expression)">
-			<GroupBox caption="Xi (Stream wise) Direction">
-				<Item name="xi_1" caption="xi_1">
-					<Definition conditionType="constant" valueType="real" default="0.1" >
-					</Definition>
-				</Item>
-				<Item name="xi_2" caption="xi_2">
-					<Definition conditionType="constant" valueType="real" default="0.1">
-					</Definition>
-				</Item>
-				<Item name="d_trace_xi" caption="d_trace_xi">
-					<Definition conditionType="constant" valueType="real" default="0.1">
-					</Definition>
-				</Item>
+		
+				<!-- ξ(流下方向) 0～1 -->
+				<GroupBox caption="Xi (Stream wise) Direction">
+		
+					<!-- ξ1から -->
+					<Item name="xi_1" caption="xi_1">
+						<Definition conditionType="constant" valueType="real" default="0.1" max="1.0" min="0.0">
+						</Definition>
+					</Item>
+		
+					<!-- ξ2まで -->
+					<Item name="xi_2" caption="xi_2">
+						<Definition conditionType="constant" valueType="real" default="0.1" max="1.0" min="0.0">
+						</Definition>
+					</Item>
+		
+					<!-- Δξ刻み -->
+					<Item name="d_trace_xi" caption="d_trace_xi">
+						<Definition conditionType="constant" valueType="real" default="0.1" max="1.0" min="0.0">
+						</Definition>
+					</Item>
+		
+				</GroupBox>
+		
+				<!-- η(横断方向) 0～1 -->
+				<GroupBox caption="Eta(Transverse) Direction">
+		
+					<!-- η1から -->
+					<Item name="eta_1" caption="eta_1">
+						<Definition conditionType="constant" valueType="real" default="0.5" max="1.0" min="0.0">
+						</Definition>
+					</Item>
+		
+					<!-- η2まで -->
+					<Item name="eta_2" caption="eta_2">
+						<Definition conditionType="constant" valueType="real" default="0.5" max="1.0" min="0.0">
+						</Definition>
+					</Item>
+		
+					<!-- Δη刻み -->
+					<Item name="d_trace_eta" caption="d_trace_eta">
+						<Definition conditionType="constant" valueType="real" default="0.1" max="1.0" min="0.0">
+						</Definition>
+					</Item>
+					
+				</GroupBox>
+				
+				<Image src="tracer supply range.png" title="tracer supply range"/>
+				
 			</GroupBox>
-			<GroupBox caption="Eta(Transverse) Direction">
-				<Item name="eta_1" caption="eta_1">
-					<Definition conditionType="constant" valueType="real" default="0.5" >
-					</Definition>
-				</Item>
-				<Item name="eta_2" caption="eta_2">
-					<Definition conditionType="constant" valueType="real" default="0.5">
-					</Definition>
-				</Item>
-				<Item name="d_trace_eta" caption="d_trace_eta">
-					<Definition conditionType="constant" valueType="real" default="0.1">
-					</Definition>
-				</Item>
-			</GroupBox>
-			</GroupBox>
-
+			
+			<!-- 流木投入時間(秒) -->
 			<GroupBox caption="Driftwood releasing time (second)">
+
+				<!-- 開始時間 -->
 				<Item name="spread_start" caption="spread_start">
-					<Definition conditionType="constant" valueType="real" default="0.0" >
+					<Definition conditionType="constant" valueType="real" default="0.0">
 					</Definition>
 				</Item>
+				
+				<!-- 終了時間 -->
 				<Item name="spread_end" caption="spread_end">
 					<Definition conditionType="constant" valueType="real" default="0.0">
 					</Definition>
 				</Item>
+				
+				<!-- 時間刻み -->
 				<Item name="spread_interval" caption="spred_interval">
 					<Definition conditionType="constant" valueType="real" default="0.1">
 					</Definition>
 				</Item>
+			
 			</GroupBox>
-                </Tab>	
+		
+		</Tab>
+
+		<!-- 流れおよび流木に関する条件 -->
 		<Tab name="Flow_Wood" caption="Flow and driftwood condition">
-				<Item name="j_flow" caption="Velocity used for driftwood tracking">
-					<Definition conditionType="constant" valueType="integer" default="0">
+
+			<!-- 流木の追跡に使用する流速 -->
+			<Item name="j_flow" caption="Velocity used for driftwood tracking">
+				<Definition conditionType="constant" valueType="integer" default="0">
 					<Enumerations>
-		    				<Enumeration value="0" caption="Use Simulated Value"/>
-		 	   			<Enumeration value="1" caption="Give Constant Value"/>
+						<!-- 計算結果を使用する -->
+						<Enumeration value="0" caption="Use Simulated Value"/>
+						<!-- 一定値を与える -->
+						<Enumeration value="1" caption="Give Constant Value"/>
 					</Enumerations>
-					</Definition>
-				</Item>
+				</Definition>
+			</Item>
+
+			<!-- 流速を一定値で与える場合のパラメーター -->
+			<GroupBox caption="Parameters when using constant Velocity">
+				
+				<!-- 流速(m/s) -->
 				<Item name="Ini_Vel_Flow" caption="Background flow velocity(m/s)">
-					<Definition conditionType="constant" valueType="real" default="0.0" >
+					<Definition conditionType="constant" valueType="real" default="0.0">
 						<Dependency>
-						<Condition type="and">
-							<Condition type="isEqual" target="j_flow" value="1"/>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_flow" value="1"/>
 							</Condition>
 							<Action type="enable"/>
 						</Dependency>
 					</Definition>
 				</Item>
-<!--
-				<Item name="Vel_Distribution" caption="Velocity Distribution">
-					<Definition conditionType="constant" valueType="real" default="0.05" >
-						<Dependency>
-						<Condition type="and">
-							<Condition type="isEqual" target="j_flow" value="1"/>
-							</Condition>
-							<Action type="enable"/>
-						</Dependency>
-					</Definition>
-				</Item>
--->
+				
+				<!-- 水深(m) -->
 				<Item name="Ini_Depth" caption="Constant depth(m)">
-					<Definition conditionType="constant" valueType="real" default="0.1" >
+					<Definition conditionType="constant" valueType="real" default="0.1">
 						<Dependency>
-						<Condition type="and">
-							<Condition type="isEqual" target="j_flow" value="1"/>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_flow" value="1"/>
 							</Condition>
 							<Action type="enable"/>
 						</Dependency>
 					</Definition>
 				</Item>
+			
+			</GroupBox>
+
+			<!-- 流木の流れのパラメーター -->
+			<GroupBox caption="Driftwood Parameters">
+				
+				<!-- 流木の初期ξ方向流速(m/s) -->
 				<Item name="Ini_Vel_Part_x" caption="Initial driftwood velocity-x(m/s)">
-					<Definition conditionType="constant" valueType="real" default="0.0" >
+					<Definition conditionType="constant" valueType="real" default="0.0">
 					</Definition>
 				</Item>
+				
+				<!-- 流木の初期η方向流速(m/s) -->
 				<Item name="Ini_Vel_Part_y" caption="Initial driftwood velocity-y(m/s)">
-					<Definition conditionType="constant" valueType="real" default="0.0" >
+					<Definition conditionType="constant" valueType="real" default="0.0">
 					</Definition>
 				</Item>
+				
+				<!-- 流木の初期回転速度(m/s) -->
 				<Item name="Ini_Vel_Part_r" caption="Initial driftwood rotation velocity(degree/s)">
-					<Definition conditionType="constant" valueType="real" default="0.0" >
+					<Definition conditionType="constant" valueType="real" default="0.0">
 					</Definition>
 				</Item>
+				
+				<!-- 流木の初期角度 -->
 				<Item name="j_rnd_phi" caption="Initial driftwood angle">
-					<Definition conditionType="constant" valueType="integer" default="0" >
-					<Enumerations>
-		    				<Enumeration value="0" caption="Random Angle"/>
-		 	   			<Enumeration value="1" caption="Constant Angle"/>
-		 	   			<Enumeration value="2" caption="Cross Stream Angle"/>
-					</Enumerations>
+					<Definition conditionType="constant" valueType="integer" default="0">
+						<Enumerations>
+							<!-- ランダムな角度 -->
+							<Enumeration value="0" caption="Random Angle"/>
+							<!-- 一定の角度 -->
+							<Enumeration value="1" caption="Constant Angle"/>
+							<!-- 横断方向に揃える -->
+							<Enumeration value="2" caption="Cross Stream Angle"/>
+						</Enumerations>
 					</Definition>
 				</Item>
+				
+				<!-- 初期角度を入力(度) -->
 				<Item name="Ini_phi" caption="Constant angle(degree)">
-					<Definition conditionType="constant" valueType="real" default="90.0" >
+					<Definition conditionType="constant" valueType="real" default="90.0">
 						<Dependency>
-						<Condition type="and">
-							<Condition type="isEqual" target="j_rnd_phi" value="1"/>
+							<Condition type="and">
+								<Condition type="isEqual" target="j_rnd_phi" value="1"/>
 							</Condition>
 							<Action type="enable"/>
 						</Dependency>
 					</Definition>
 				</Item>
+				
+				<!-- X方向への負荷加速度(m/s**2) -->
 				<Item name="gx" caption="Additional acceleration in X-direction(m/s**2)">
-					<Definition conditionType="constant" valueType="real" default="0.0" >
+					<Definition conditionType="constant" valueType="real" default="0.0">
 					</Definition>
 				</Item>
+				
+				<!-- Y方向への負荷加速度(m/s**2) -->
 				<Item name="gy" caption="Additional acceleration in Y-direction(m/s**2)">
-					<Definition conditionType="constant" valueType="real" default="0.0" >
+					<Definition conditionType="constant" valueType="real" default="0.0">
 					</Definition>
 				</Item>
+			
+			</GroupBox>
+
 		</Tab>
 
+		<!-- DEM(個別要素法)パラメーター -->
 		<Tab name="Coefs" caption="DEM Coefficients">
 
+			<!-- 流木形状 -->
 			<GroupBox caption="Parameters on Elements">
+
+				<!-- 直径(m) -->
 				<Item name="diameter" caption="Diameter of driftwood">
-					<Definition conditionType="constant" valueType="real" default="0.01" >
+					<Definition conditionType="constant" valueType="real" default="0.01">
 					</Definition>
 				</Item>
+
+				<!-- 長さ(m) -->
 				<Item name="length" caption="length of driftwood">
-					<Definition conditionType="constant" valueType="real" default="0.05" >
+					<Definition conditionType="constant" valueType="real" default="0.05">
 					</Definition>
 				</Item>
+				
+				<!-- DEM個別要素補法の時間刻み -->
 				<Item name="ddt" caption="Time step for DEM">
-					<Definition conditionType="constant" valueType="real" default="0.001" >
+					<Definition conditionType="constant" valueType="real" default="0.001">
 					</Definition>
 				</Item>
+
 			</GroupBox>
+
+			<!-- 計算結果表示時のパラメーター -->
 			<GroupBox caption="Parameters on plotting elements">
+
+				<!-- 流木長さの拡大係数 -->
 				<Item name="m_length" caption="Magnification factor of length">
-					<Definition conditionType="constant" valueType="real" default="1" >
+					<Definition conditionType="constant" valueType="real" default="1">
 					</Definition>
 				</Item>
+				
+				<!-- 流木直径の拡大係数 -->
 				<Item name="m_thickness" caption="Magnification factor of Thickness">
-					<Definition conditionType="constant" valueType="real" default="5" >
+					<Definition conditionType="constant" valueType="real" default="5">
 					</Definition>
 				</Item>
-			</GroupBox>
-		</Tab>
-<!-- Comment 
 
-		<Tab name="Coefs" caption="DEM Coefficients">
-
-			<GroupBox caption="Parameters on Elements">
-				<Item name="diameter" caption="Diameter of elements">
-					<Definition conditionType="constant" valueType="real" default="0.03" >
-					</Definition>
-				</Item>
-				<Item name="ddt" caption="Delta T for DEM">
-					<Definition conditionType="constant" valueType="real" default="0.0001" >
-					</Definition>
-				</Item>
-				<Item name="k_n" caption="Spring constant in n">
-					<Definition conditionType="constant" valueType="real" default="500000" >
-					</Definition>
-				</Item>
-				<Item name="eta_n" caption="Dashpot constant in n">
-					<Definition conditionType="constant" valueType="real" default="60" >
-					</Definition>
-				</Item>
-				<Item name="k_s" caption="Spring constant in s">
-					<Definition conditionType="constant" valueType="real" default="20000" >
-					</Definition>
-				</Item>
-				<Item name="eta_s" caption="Dashpot constant in s">
-					<Definition conditionType="constant" valueType="real" default="600" >
-					</Definition>
-				</Item>
-				<Item name="nu_p" caption="Particle Friction Coefficient">
-					<Definition conditionType="constant" valueType="real" default="0.45" >
-					</Definition>
-				</Item>
 			</GroupBox>
 
 		</Tab>
-
--->
+		
+		<!-- その他のDEM関係定数 -->
 		<Tab name="DEM" caption="Other Parameters on DEM">
 
+			<!-- DEM定数 -->
 			<GroupBox caption="DEM Parameters">
+				
+				<!-- 負荷質量係数 -->
 				<Item name="c_m" caption="Additional Mass Coefficient">
-					<Definition conditionType="constant" valueType="real" default="0.5" >
+					<Definition conditionType="constant" valueType="real" default="0.5">
 					</Definition>
 				</Item>
+				
+				<!-- 抵抗係数 -->
 				<Item name="c_d" caption="Form Drag Coefficient">
 					<Definition conditionType="constant" valueType="real" default="0.1">
 					</Definition>
 				</Item>
+				
+				<!-- 回転抵抗係数 -->
 				<Item name="c_r" caption="Drag coefficient for rotational motion">
 					<Definition conditionType="constant" valueType="real" default="0.05">
 					</Definition>
 				</Item>
+				
+				<!-- 流体密度 -->
 				<Item name="rho" caption="Fluid Density">
 					<Definition conditionType="constant" valueType="real" default="1000">
 					</Definition>
 				</Item>
+				
+				<!-- 個体(流木)密度 -->
 				<Item name="sigma" caption="Solid Density">
 					<Definition conditionType="constant" valueType="real" default="1100">
 					</Definition>
 				</Item>
+
 			</GroupBox>
+	
+			<!-- DEMにおける他の要素の探索範囲 -->
 			<GroupBox caption="DEM Search Region">
+
+				<!-- 上流側検索範囲 -->
 				<Item name="xi_up" caption="Upstream search region">
-					<Definition conditionType="constant" valueType="real" default="0.05" >
+					<Definition conditionType="constant" valueType="real" default="0.05">
 					</Definition>
 				</Item>
+				
+				<!-- 下流側検索範囲 -->
 				<Item name="xi_down" caption="Downstream search region">
-					<Definition conditionType="constant" valueType="real" default="0.1" >
+					<Definition conditionType="constant" valueType="real" default="0.1">
 					</Definition>
 				</Item>
+				
+				<!-- 右岸側検索範囲 -->
 				<Item name="eta_right" caption="Right-hand side search region">
-					<Definition conditionType="constant" valueType="real" default="0.05" >
+					<Definition conditionType="constant" valueType="real" default="0.05">
 					</Definition>
 				</Item>
+				
+				<!-- 左岸側検索範囲 -->
 				<Item name="eta_left" caption="Left-hand side search region">
-					<Definition conditionType="constant" valueType="real" default="0.05" >
+					<Definition conditionType="constant" valueType="real" default="0.05">
 					</Definition>
 				</Item>
+
 			</GroupBox>
-                </Tab>
+
+		</Tab>
+		
+		<!-- アドバンスモード -->
+		<Tab name="Advance" caption="+ Advance mode">
+			
+			<!-- アドバンスモードの有効化 -->
+			<Item name="advance_mode_activation" caption="advance mode activation">
+				<Definition valueType="integer" default="0" checkBox="true" />
+				<!-- 0=no 1=yes -->
+			</Item>
+
+			<Label caption=""/>
+			<Label caption="In advanced mode, you can optionally specify parameters used for calculation."/>
+			<Label caption="It is also possible to output any parameters that are not used in calculations."/>
+			<Label caption=""/>
+
+			<!-- 追跡計算用パラメーターの指定 -->
+			<GroupBox caption="Specifying parameters for calculations" >
+
+				<Label caption=""/>
+				<Label caption="This parameter is required." />
+				<Label caption=""/>
+				
+				<!-- X方向の流速 -->
+				<Item name="velocityName_x" caption="Velocity_X Name" >
+					<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+						<Dependency>
+							<Condition type="isEqual" target="advance_mode_activation" value="1" />
+						</Dependency>
+					</Definition>
+				</Item>
+
+				<!-- Y方向の流速 -->
+				<Item name="velocityName_y" caption="Velocity_Y Name">
+					<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+						<Dependency>
+							<Condition type="isEqual" target="advance_mode_activation" value="1" />
+						</Dependency>
+					</Definition>
+				</Item>
+				
+				<!-- 水深 -->
+				<Item name="depthName" caption="Depth Name">
+					<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+						<Dependency>
+                            <Condition type="isEqual" target="advance_mode_activation" value="1" />
+                        </Dependency>
+                    </Definition>
+				</Item>
+
+			</GroupBox>
+
+			<!-- 任意の出力したいスカラー名の指定（時系列） -->
+			<GroupBox caption="Specifying any iterative data">
+
+				<GridLayout>
+					<Label row="0" col="1" caption="activation" />
+                    <Label row="0" col="2" caption="scalar name" />
+
+					<Label row="1" col="0" caption="scalar_1" />
+                    <Label row="2" col="0" caption="scalar_2" />
+
+					<Item row="1" col="1" name="iterative_scalar_1_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="1" col="2" name="iterative_scalar_1_name">
+						<Definition valueType="result_baseIterativeReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="iterative_scalar_1_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="2" col="1" name="iterative_scalar_2_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="2" col="2" name="iterative_scalar_2_name">
+						<Definition valueType="result_baseIterativeReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="iterative_scalar_2_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>					
+
+				</GridLayout>
+
+			</GroupBox>
+
+			<!-- 任意の出力したいスカラー名の指定（格子点） -->
+			<GroupBox caption="Specifying any scalar (node)">
+
+				<GridLayout>
+					<Label row="0" col="1" caption="activation" />
+                    <Label row="0" col="2" caption="scalar name" />
+
+					<Label row="1" col="0" caption="scalar_1" />
+                    <Label row="2" col="0" caption="scalar_2" />
+                    <Label row="3" col="0" caption="scalar_3" />
+					<Label row="4" col="0" caption="scalar_4" />
+                    <Label row="5" col="0" caption="scalar_5" />
+
+					<Item row="1" col="1" name="node_scalar_1_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="1" col="2" name="node_scalar_1_name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="node_scalar_1_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="2" col="1" name="node_scalar_2_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="2" col="2" name="node_scalar_2_name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="node_scalar_2_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="3" col="1" name="node_scalar_3_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="3" col="2" name="node_scalar_3_name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="node_scalar_3_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="4" col="1" name="node_scalar_4_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="4" col="2" name="node_scalar_4_name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="node_scalar_4_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="5" col="1" name="node_scalar_5_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="5" col="2" name="node_scalar_5_name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="node_scalar_5_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+				</GridLayout>
+
+			</GroupBox>
+
+			<!-- 任意の出力したいスカラー名の指定（セル）（実数値） -->
+			<GroupBox caption="Specifying any scalar (cell)(real)">
+
+				<GridLayout>
+					<Label row="0" col="1" caption="activation" />
+					<Label row="0" col="2" caption="scalar name" />
+
+					<Label row="1" col="0" caption="scalar_1" />
+					<Label row="2" col="0" caption="scalar_2" />
+					<Label row="3" col="0" caption="scalar_3" />
+					<Label row="4" col="0" caption="scalar_4" />
+					<Label row="5" col="0" caption="scalar_5" />
+
+					<Item row="1" col="1" name="cell_scalar_real_1_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="1" col="2" name="cell_scalar_real_1_name">
+						<Definition valueType="result_gridCellReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_real_1_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="2" col="1" name="cell_scalar_real_2_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="2" col="2" name="cell_scalar_real_2_name">
+						<Definition valueType="result_gridCellReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_real_2_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="3" col="1" name="cell_scalar_real_3_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="3" col="2" name="cell_scalar_real_3_name">
+						<Definition valueType="result_gridCellReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_real_3_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="4" col="1" name="cell_scalar_real_4_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="4" col="2" name="cell_scalar_real_4_name">
+						<Definition valueType="result_gridCellReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_real_4_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="5" col="1" name="cell_scalar_real_5_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="5" col="2" name="cell_scalar_real_5_name">
+						<Definition valueType="result_gridCellReal" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_real_5_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+				</GridLayout>
+				
+			</GroupBox>
+
+			<!-- 任意の出力したいスカラー名の指定（セル）（整数値） -->
+			<GroupBox caption="Specifying any scalar (cell)(integer)">
+
+				<GridLayout>
+					<Label row="0" col="1" caption="activation" />
+					<Label row="0" col="2" caption="scalar name" />
+
+					<Label row="1" col="0" caption="scalar_1" />
+					<Label row="2" col="0" caption="scalar_2" />
+					<Label row="3" col="0" caption="scalar_3" />
+					<Label row="4" col="0" caption="scalar_4" />
+					<Label row="5" col="0" caption="scalar_5" />
+
+					<Item row="1" col="1" name="cell_scalar_integer_1_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="1" col="2" name="cell_scalar_integer_1_name">
+						<Definition valueType="result_gridCellInteger" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_integer_1_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="2" col="1" name="cell_scalar_integer_2_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="2" col="2" name="cell_scalar_integer_2_name">
+						<Definition valueType="result_gridCellInteger" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_integer_2_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="3" col="1" name="cell_scalar_integer_3_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="3" col="2" name="cell_scalar_integer_3_name">
+						<Definition valueType="result_gridCellInteger" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_integer_3_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="4" col="1" name="cell_scalar_integer_4_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="4" col="2" name="cell_scalar_integer_4_name">
+						<Definition valueType="result_gridCellInteger" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_integer_4_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+					<Item row="5" col="1" name="cell_scalar_integer_5_activation">
+						<Definition valueType="integer" default="0" checkBox="true">
+							<Dependency>
+								<Condition type="isEqual" target="advance_mode_activation" value="1" />
+							</Dependency>
+						</Definition>
+					</Item>
+					<Item row="5" col="2" name="cell_scalar_integer_5_name">
+						<Definition valueType="result_gridCellInteger" cgnsFile="inputfile">
+							<Dependency>
+								<Condition type="and">
+									<Condition type="isEqual" target="advance_mode_activation" value="1" />
+									<Condition type="isEqual" target="cell_scalar_integer_5_activation" value="1" />
+								</Condition>
+							</Dependency>
+						</Definition>
+					</Item>
+
+				</GridLayout>
+				
+			</GroupBox>
+
+		</Tab>
+
 	</CalculationCondition>
+	
+	<!-- 格子属性の定義 -->
 	<GridRelatedCondition>
+		
+		<!-- 河床高 -->
 		<Item name="Elevation" caption="Elevation">
 			<Definition position="node" valueType="real" default="max" />
 		</Item>
+		<!-- 障害物 -->
 		<Item name="Obstacle" caption="Obstacle" option="true">
 			<Definition position="cell" valueType="integer" default="0">
 				<Enumerations>
+					<!-- 通常セル -->
 					<Enumeration value="0" caption="normal"/>
+					<!-- 障害物セル -->
 					<Enumeration value="1" caption="obstacle"/>
 				</Enumerations>
 			</Definition>
 		</Item>
+
 	</GridRelatedCondition>
 
 </SolverDefinition>

@@ -157,12 +157,20 @@
             <translation>一定値を与える</translation>
         </message>
         <message>
+            <source>Parameters when using constant Velocity</source>
+            <translation>流速を一定値で与える場合のパラメーター</translation>
+        </message>
+        <message>
             <source>Background flow velocity(m/s)</source>
             <translation>流速(m/s)</translation>
         </message>
         <message>
             <source>Constant depth(m)</source>
             <translation>水深(m)</translation>
+        </message>
+        <message>
+            <source>Driftwood Parameters</source>
+            <translation>流木の流れのパラメーター</translation>
         </message>
         <message>
             <source>Initial driftwood velocity-x(m/s)</source>
@@ -283,6 +291,91 @@
         <message>
             <source>Left-hand side search region</source>
             <translation>左岸側検索範囲</translation>
+        </message>
+        <message>
+            <source>+ Advance mode</source>
+            <translation>+ アドバンスモード</translation>
+        </message>
+        <message>
+            <source>advance mode activation</source>
+            <translation>アドバンスモードの有効化</translation>
+        </message>
+        <message>
+            <source></source>
+            <translation></translation>
+        </message>
+        <message>
+            <source>In advanced mode, you can optionally specify parameters used for calculation.</source>
+            <translation>アドバンスモードでは、流況計算結果を読み込むCGNSファイルにおいて流速等の名前が
+NaysDw2内で定義されていない場合等に任意のスカラー名を指定して読み込むことができます。</translation>
+        </message>
+        <message>
+            <source>It is also possible to output any parameters that are not used in calculations.</source>
+            <translation>また、任意のスカラーを読み込んで計算結果に出力可能です。</translation>
+        </message>
+        <message>
+            <source>Specifying parameters for calculations</source>
+            <translation>追跡計算用パラメーターの指定</translation>
+        </message>
+        <message>
+            <source>This parameter is required.</source>
+            <translation>このパラメータの指定は必須です。</translation>
+        </message>
+        <message>
+            <source>Velocity_X Name</source>
+            <translation>X方向の流速</translation>
+        </message>
+        <message>
+            <source>Velocity_Y Name</source>
+            <translation>Y方向の流速</translation>
+        </message>
+        <message>
+            <source>Depth Name</source>
+            <translation>水深</translation>
+        </message>
+        <message>
+            <source>Specifying any iterative data</source>
+            <translation>任意の出力したいスカラー名の指定（時系列）</translation>
+        </message>
+        <message>
+            <source>activation</source>
+            <translation>有効化</translation>
+        </message>
+        <message>
+            <source>scalar name</source>
+            <translation>スカラー名</translation>
+        </message>
+        <message>
+            <source>scalar_1</source>
+            <translation>スカラー1</translation>
+        </message>
+        <message>
+            <source>scalar_2</source>
+            <translation>スカラー2</translation>
+        </message>
+        <message>
+            <source>Specifying any scalar (node)</source>
+            <translation>任意の出力したいスカラー名の指定（格子点）</translation>
+        </message>
+        <message>
+            <source>scalar_3</source>
+            <translation>スカラー3</translation>
+        </message>
+        <message>
+            <source>scalar_4</source>
+            <translation>スカラー4</translation>
+        </message>
+        <message>
+            <source>scalar_5</source>
+            <translation>スカラー5</translation>
+        </message>
+        <message>
+            <source>Specifying any scalar (cell)(real)</source>
+            <translation>任意の出力したいスカラー名の指定（セル）（実数値）</translation>
+        </message>
+        <message>
+            <source>Specifying any scalar (cell)(integer)</source>
+            <translation>任意の出力したいスカラー名の指定（セル）（整数値）</translation>
         </message>
         <message>
             <source>Elevation</source>
