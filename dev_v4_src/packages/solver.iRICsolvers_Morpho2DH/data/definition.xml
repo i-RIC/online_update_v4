@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SolverDefinition xmlns="www.iric.net/SolverDefinition/1.0" 
   name="morpho2d" 
-  caption="Morpho2DH v2.1" 
-  version="2.0.23121801" 
+  caption="Morpho2DH v2.0CR" 
+  version="2.0.23062303" 
   copyright="Hiroshi Takebayashi" 
   release="2014.11.01" 
   homepage="http://www.google.co.jp/" 
