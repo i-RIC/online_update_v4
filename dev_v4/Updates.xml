@@ -801,7 +801,7 @@
   <UpdateFile CompressedSize="5910397" OS="Any" UncompressedSize="42947998"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>ef6bbb27b0cb2407d8bce905c28acf173497fc5e</SHA1>
  </PackageUpdate>
@@ -835,13 +835,13 @@
   <Name>solver.iRICsolvers_Morpho2DH</Name>
   <DisplayName>Morpho2DH v2.1</DisplayName>
   <Description/>
-  <Version>2.0.24022001</Version>
+  <Version>2.1.23062305</Version>
   <Default>true</Default>
   <ReleaseDate>2014-11-01</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="372491" OS="Any" UncompressedSize="1388919"/>
+  <UpdateFile CompressedSize="372490" UncompressedSize="1388919" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>e26573bd66249a402f38dc858563f454ca3f9f5c</SHA1>
+  <SHA1>04fb6a2b9ba218b42bcdc610bafb01e87e823106</SHA1>
  </PackageUpdate>
 </Updates>

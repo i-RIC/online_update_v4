@@ -2,7 +2,7 @@
 <SolverDefinition xmlns="www.iric.net/SolverDefinition/1.0" 
   name="morpho2d" 
   caption="Morpho2DH v2.1" 
-  version="2.0.24022001" 
+  version="2.1.23062305" 
   copyright="Hiroshi Takebayashi" 
   release="2014.11.01" 
   homepage="http://www.google.co.jp/" 
