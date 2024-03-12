@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>RiTER3D</DisplayName>
+	<Description>RiTER3D. TIN elevation data editor.</Description>
+	<Version>0.1</Version>
+	<Dependencies>gui.tin_simplifier</Dependencies>
+	<Default>true</Default>
+	<ReleaseDate>2024-03-22</ReleaseDate>
+	<SortingPriority>50</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
