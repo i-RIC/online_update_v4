@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GuiDefinition 
   xmlns="www.iric.net/GuiDefinition/1.0"
-  name="riter3d" caption="RiTER3D 0.1" version=" 0.1" release="2024.03.22"
+  name="riter3d" caption="RiTER3D 2.1.0" version="2.1.0" release="2024.03.22"
   copyright="Public Works Research Institute Japan, National Institute for Land and Infrastructure Management, River Division, River Department" executable="riter3d.exe"
 >
 </GuiDefinition>

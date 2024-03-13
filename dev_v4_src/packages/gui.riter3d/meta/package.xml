@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>RiTER3D</DisplayName>
 	<Description>RiTER3D. TIN elevation data editor.</Description>
-	<Version>0.1</Version>
+	<Version>2.1.0</Version>
 	<Dependencies>gui.tin_simplifier</Dependencies>
 	<Default>true</Default>
 	<ReleaseDate>2024-03-22</ReleaseDate>

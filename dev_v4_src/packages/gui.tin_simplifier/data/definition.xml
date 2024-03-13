@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GuiDefinition 
   xmlns="www.iric.net/GuiDefinition/1.0"
-  name="tin_simplifier" caption="Tin Simplifier 1.0" version="1.0" release="2024.03.22"
+  name="tin_simplifier" caption="TIN Simplifier 1.0" version="1.0" release="2024.03.22"
   copyright="Public Works Research Institute Japan" executable="tin_simplifier.exe"
 >
 </GuiDefinition>

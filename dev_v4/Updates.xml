@@ -845,30 +845,30 @@
   <SHA1>62c283e92ceadab9914f1a8a7f8f4ac8bc4bfec4</SHA1>
  </PackageUpdate>
  <PackageUpdate>
+  <Name>gui.riter3d</Name>
+  <DisplayName>RiTER3D</DisplayName>
+  <Description>RiTER3D. TIN elevation data editor.</Description>
+  <Version>2.1.0</Version>
+  <Dependencies>gui.tin_simplifier</Dependencies>
+  <Default>true</Default>
+  <ReleaseDate>2024-03-22</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="64160477" CompressedSize="15352779"/>
+  <DownloadableArchives>accessible.7z,bearer.7z,iconengines.7z,imageformats.7z,languages.7z,platforms.7z,content.7z</DownloadableArchives>
+  <SHA1>4783c1cffdc90bc27df1bc2a007f9ed5244e054e</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
   <Name>gui.tin_simplifier</Name>
-  <DisplayName>Tin Simplifier</DisplayName>
+  <DisplayName>TIN Simplifier</DisplayName>
   <Description>TIN simplifier. You can simplify TIN stored in STL files.</Description>
   <Version>1.0.0</Version>
   <Default>true</Default>
   <ReleaseDate>2024-03-22</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="87696700" CompressedSize="22921625"/>
+  <UpdateFile OS="Any" UncompressedSize="87696700" CompressedSize="22921307"/>
   <DownloadableArchives>iconengines.7z,imageformats.7z,languages.7z,platforms.7z,styles.7z,translations.7z,content.7z</DownloadableArchives>
-  <SHA1>22c2964e721140de663ebb5ee928be23205feed8</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>gui.riter3d</Name>
-  <DisplayName>RiTER3D</DisplayName>
-  <Description>RiTER3D. TIN elevation data editor.</Description>
-  <Version>0.1</Version>
-  <Dependencies>gui.tin_simplifier</Dependencies>
-  <Default>true</Default>
-  <ReleaseDate>2024-03-22</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="64160474" CompressedSize="15352779"/>
-  <DownloadableArchives>accessible.7z,bearer.7z,iconengines.7z,imageformats.7z,languages.7z,platforms.7z,content.7z</DownloadableArchives>
-  <SHA1>0188ae93c9e02a0ba31cb27a755d53d5f4d4f014</SHA1>
+  <SHA1>83425c4665562a01bdbfd242e13be8165e47e451</SHA1>
  </PackageUpdate>
 </Updates>
