@@ -37,8 +37,12 @@ int IRICLIBDLL cg_iRIC_Write_BC_FunctionalWithName_String(int fid, const char* t
 // from iriclib_complex.h
 int IRICLIBDLL cg_iRIC_Read_Grid_Complex_Node(int fid, const char* groupname, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Complex_Cell(int fid, const char* groupname, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Complex_IFace(int fid, const char* groupname, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Complex_JFace(int fid, const char* groupname, int* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Complex_Node(int fid, const char* groupname, int* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Complex_Cell(int fid, const char* groupname, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_Complex_IFace(int fid, const char* groupname, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_Complex_JFace(int fid, const char* groupname, int* v_arr);
 
 // from iriclib_grid.h
 int IRICLIBDLL cg_iRIC_Read_Grid2d_Str_Size(int fid, int* isize, int* jsize);
@@ -57,6 +61,10 @@ int IRICLIBDLL cg_iRIC_Read_Grid_Real_Node(int fid, const char* name, double* v_
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_Node(int fid, const char* name, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_Cell(int fid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_Cell(int fid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Real_IFace(int fid, const char* name, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Integer_IFace(int fid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Real_JFace(int fid, const char* name, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Integer_JFace(int fid, const char* name, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalDimensionSize(int fid, const char* name, const char* dimname, int* count);
 int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalDimension_Integer(int fid, const char* name, const char* dimname, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalDimension_Real(int fid, const char* name, const char* dimname, double* v_arr);
@@ -66,6 +74,10 @@ int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_Node(int fid, const char* na
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_Node(int fid, const char* name, int dimid, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_Cell(int fid, const char* name, int dimid, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_Cell(int fid, const char* name, int dimid, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_IFace(int fid, const char* name, int dimid, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_IFace(int fid, const char* name, int dimid, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_JFace(int fid, const char* name, int dimid, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_JFace(int fid, const char* name, int dimid, double* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid1d_Coords(int fid, int isize, double* x_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid2d_Coords(int fid, int isize, int jsize, double* x_arr, double* y_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid3d_Coords(int fid, int isize, int jsize, int ksize, double* x_arr, double* y_arr, double* z_arr);
@@ -76,6 +88,10 @@ int IRICLIBDLL cg_iRIC_Write_Grid_Real_Node(int fid, const char* name, double* v
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_Node(int fid, const char* name, int* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_Cell(int fid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_Cell(int fid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_Real_IFace(int fid, const char* name, double* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_Integer_IFace(int fid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_Real_JFace(int fid, const char* name, double* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_Integer_JFace(int fid, const char* name, int* v_arr);
 int IRICLIBDLL cg_iRIC_Copy_Grid(int fid_from, int fid_to);
 
 // from iriclib_grid_solverlib.h
@@ -141,6 +157,13 @@ int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Pos2d(int fid, double x, double y
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Pos3d(int fid, double x, double y, double z);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Integer(int fid, const char* name, int value);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Real(int fid, const char* name, double value);
+
+// from iriclib_sol_particlegroupimage.h
+int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroupImage_Count(int fid, int step, const char* groupname, int* count);
+int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroupImage_Pos2d(int fid, int step, const char* groupname, double* x_arr, double* y_arr, double* size_arr, double* angle_arr);
+int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroupImage_GroupBegin(int fid, const char* name);
+int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroupImage_GroupEnd(int fid);
+int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroupImage_Pos2d(int fid, double x, double y, double size, double angle);
 
 // from iriclib_sol_polydata.h
 int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_DataCount(int fid, int step, const char* groupname, int* count);

@@ -42,6 +42,7 @@
 #include "iriclib_sol_node.h" // solution at node
 #include "iriclib_sol_particle.h" // solution at particles
 #include "iriclib_sol_particlegroup.h" // solution at particle groups
+#include "iriclib_sol_particlegroupimage.h" // solution at particle groups to show images
 #include "iriclib_sol_polydata.h" // solution at lines, polygons
 #include "iriclib_not_withbaseid.h" // not withbaseid
 #include "iriclib_not_withgridid.h" // not withgridid
