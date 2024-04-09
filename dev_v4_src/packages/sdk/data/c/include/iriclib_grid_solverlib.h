@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 int IRICLIBDLL cg_iRIC_Read_Grid2d_Open_WithGridId(int fid, int gid, int* grid_handle);
-int IRICLIBDLL cg_iRIC_Read_Sol_Grid2d_Open_WithGridId(int fid, int gid, int solid, int* grid_handle);
+int IRICLIBDLL cg_iRIC_Read_Sol_Grid2d_Open_WithGridId(int fid, int gid, int step, int* grid_handle);
 int IRICLIBDLL cg_iRIC_Read_Grid2d_Close(int grid_handle);
 int IRICLIBDLL cg_iRIC_Read_Grid2d_CellArea(int grid_handle, int cellId, double* area);
 int IRICLIBDLL cg_iRIC_Read_Grid2d_FindCell(int grid_handle, double x, double y, int* cellId);

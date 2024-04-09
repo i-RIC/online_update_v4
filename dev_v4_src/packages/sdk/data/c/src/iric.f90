@@ -2355,246 +2355,246 @@ contains
 
   ! from iriclib_geo.h
 
-  subroutine iric_geo_polygon_open(filename, id, ier)
+  subroutine iric_geo_polygon_open(filename, geo_handle, ier)
     character(*), intent(in):: filename
-    integer, intent(out):: id
+    integer, intent(out):: geo_handle
     integer, intent(out):: ier
 
     call iric_geo_polygon_open_f2c &
-      (filename, id, ier)
+      (filename, geo_handle, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_read_integervalue(id, value, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_polygon_read_integervalue(geo_handle, value, ier)
+    integer, intent(in):: geo_handle
     integer, intent(out):: value
     integer, intent(out):: ier
 
     call iric_geo_polygon_read_integervalue_f2c &
-      (id, value, ier)
+      (geo_handle, value, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_read_realvalue(id, value, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_polygon_read_realvalue(geo_handle, value, ier)
+    integer, intent(in):: geo_handle
     double precision, intent(out):: value
     integer, intent(out):: ier
 
     call iric_geo_polygon_read_realvalue_f2c &
-      (id, value, ier)
+      (geo_handle, value, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_read_pointcount(id, size, ier)
-    integer, intent(in):: id
-    integer, intent(out):: size
+  subroutine iric_geo_polygon_read_pointcount(geo_handle, count, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(out):: count
     integer, intent(out):: ier
 
     call iric_geo_polygon_read_pointcount_f2c &
-      (id, size, ier)
+      (geo_handle, count, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_read_points(id, x_arr, y_arr, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_polygon_read_points(geo_handle, x_arr, y_arr, ier)
+    integer, intent(in):: geo_handle
     double precision, dimension(:), intent(out):: x_arr
     double precision, dimension(:), intent(out):: y_arr
     integer, intent(out):: ier
 
     call iric_geo_polygon_read_points_f2c &
-      (id, x_arr, y_arr, ier)
+      (geo_handle, x_arr, y_arr, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_read_holecount(id, count, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_polygon_read_holecount(geo_handle, count, ier)
+    integer, intent(in):: geo_handle
     integer, intent(out):: count
     integer, intent(out):: ier
 
     call iric_geo_polygon_read_holecount_f2c &
-      (id, count, ier)
+      (geo_handle, count, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_read_holepointcount(id, holeid, count, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_polygon_read_holepointcount(geo_handle, holeid, count, ier)
+    integer, intent(in):: geo_handle
     integer, intent(in):: holeid
     integer, intent(out):: count
     integer, intent(out):: ier
 
     call iric_geo_polygon_read_holepointcount_f2c &
-      (id, holeid, count, ier)
+      (geo_handle, holeid, count, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_read_holepoints(id, holeid, x_arr, y_arr, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_polygon_read_holepoints(geo_handle, holeid, x_arr, y_arr, ier)
+    integer, intent(in):: geo_handle
     integer, intent(in):: holeid
     double precision, dimension(:), intent(out):: x_arr
     double precision, dimension(:), intent(out):: y_arr
     integer, intent(out):: ier
 
     call iric_geo_polygon_read_holepoints_f2c &
-      (id, holeid, x_arr, y_arr, ier)
+      (geo_handle, holeid, x_arr, y_arr, ier)
 
   end subroutine
 
-  subroutine iric_geo_polygon_close(id, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_polygon_close(geo_handle, ier)
+    integer, intent(in):: geo_handle
     integer, intent(out):: ier
 
     call iric_geo_polygon_close_f2c &
-      (id, ier)
+      (geo_handle, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_open(filename, id, ier)
+  subroutine iric_geo_riversurvey_open(filename, geo_handle, ier)
     character(*), intent(in):: filename
-    integer, intent(out):: id
+    integer, intent(out):: geo_handle
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_open_f2c &
-      (filename, id, ier)
+      (filename, geo_handle, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_count(id, count, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_riversurvey_read_count(geo_handle, count, ier)
+    integer, intent(in):: geo_handle
     integer, intent(out):: count
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_count_f2c &
-      (id, count, ier)
+      (geo_handle, count, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_position(id, pointid, x, y, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_position(geo_handle, csid, x, y, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     double precision, intent(out):: x
     double precision, intent(out):: y
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_position_f2c &
-      (id, pointid, x, y, ier)
+      (geo_handle, csid, x, y, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_direction(id, pointid, vx, vy, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
-    double precision, intent(out):: vx
-    double precision, intent(out):: vy
+  subroutine iric_geo_riversurvey_read_direction(geo_handle, csid, dirx, diry, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
+    double precision, intent(out):: dirx
+    double precision, intent(out):: diry
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_direction_f2c &
-      (id, pointid, vx, vy, ier)
+      (geo_handle, csid, dirx, diry, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_name(id, pointid, strvalue, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_name(geo_handle, csid, strvalue, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     character(*), intent(out):: strvalue
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_name_f2c &
-      (id, pointid, strvalue, ier)
+      (geo_handle, csid, strvalue, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_realname(id, pointid, name, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_realname(geo_handle, csid, name, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     double precision, intent(out):: name
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_realname_f2c &
-      (id, pointid, name, ier)
+      (geo_handle, csid, name, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_leftshift(id, pointid, shift, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_leftshift(geo_handle, csid, shift, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     double precision, intent(out):: shift
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_leftshift_f2c &
-      (id, pointid, shift, ier)
+      (geo_handle, csid, shift, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_altitudecount(id, pointid, count, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_altitudecount(geo_handle, csid, count, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     integer, intent(out):: count
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_altitudecount_f2c &
-      (id, pointid, count, ier)
+      (geo_handle, csid, count, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_altitudes(id, pointid, position_arr, height_arr, active_arr, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_altitudes(geo_handle, csid, position_arr, height_arr, active_arr, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     double precision, dimension(:), intent(out):: position_arr
     double precision, dimension(:), intent(out):: height_arr
     integer, dimension(:), intent(out):: active_arr
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_altitudes_f2c &
-      (id, pointid, position_arr, height_arr, active_arr, ier)
+      (geo_handle, csid, position_arr, height_arr, active_arr, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_fixedpointl(id, pointid, set, directionX, directionY, index, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_fixedpointl(geo_handle, csid, set, dirx, diry, index, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     integer, intent(out):: set
-    double precision, intent(out):: directionX
-    double precision, intent(out):: directionY
+    double precision, intent(out):: dirx
+    double precision, intent(out):: diry
     integer, intent(out):: index
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_fixedpointl_f2c &
-      (id, pointid, set, directionX, directionY, index, ier)
+      (geo_handle, csid, set, dirx, diry, index, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_fixedpointr(id, pointid, set, directionX, directionY, index, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_fixedpointr(geo_handle, csid, set, dirx, diry, index, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     integer, intent(out):: set
-    double precision, intent(out):: directionX
-    double precision, intent(out):: directionY
+    double precision, intent(out):: dirx
+    double precision, intent(out):: diry
     integer, intent(out):: index
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_fixedpointr_f2c &
-      (id, pointid, set, directionX, directionY, index, ier)
+      (geo_handle, csid, set, dirx, diry, index, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_read_watersurfaceelevation(id, pointid, set, value, ier)
-    integer, intent(in):: id
-    integer, intent(in):: pointid
+  subroutine iric_geo_riversurvey_read_watersurfaceelevation(geo_handle, csid, set, value, ier)
+    integer, intent(in):: geo_handle
+    integer, intent(in):: csid
     integer, intent(out):: set
     double precision, intent(out):: value
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_read_watersurfaceelevation_f2c &
-      (id, pointid, set, value, ier)
+      (geo_handle, csid, set, value, ier)
 
   end subroutine
 
-  subroutine iric_geo_riversurvey_close(id, ier)
-    integer, intent(in):: id
+  subroutine iric_geo_riversurvey_close(geo_handle, ier)
+    integer, intent(in):: geo_handle
     integer, intent(out):: ier
 
     call iric_geo_riversurvey_close_f2c &
-      (id, ier)
+      (geo_handle, ier)
 
   end subroutine
 
@@ -2705,14 +2705,14 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_read_grid_triangleelementssize_withgridid(fid, gid, size, ier)
+  subroutine cg_iric_read_grid_triangleelementssize_withgridid(fid, gid, tsize, ier)
     integer, intent(in):: fid
     integer, intent(in):: gid
-    integer, intent(out):: size
+    integer, intent(out):: tsize
     integer, intent(out):: ier
 
     call cg_iric_read_grid_triangleelementssize_withgridid_f2c &
-      (fid, gid, size, ier)
+      (fid, gid, tsize, ier)
 
   end subroutine
 
@@ -3908,15 +3908,15 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_read_sol_grid2d_open_withgridid(fid, gid, solid, grid_handle, ier)
+  subroutine cg_iric_read_sol_grid2d_open_withgridid(fid, gid, step, grid_handle, ier)
     integer, intent(in):: fid
     integer, intent(in):: gid
-    integer, intent(in):: solid
+    integer, intent(in):: step
     integer, intent(out):: grid_handle
     integer, intent(out):: ier
 
     call cg_iric_read_sol_grid2d_open_withgridid_f2c &
-      (fid, gid, solid, grid_handle, ier)
+      (fid, gid, step, grid_handle, ier)
 
   end subroutine
 
@@ -5558,13 +5558,13 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_read_grid_triangleelementssize(fid, size, ier)
+  subroutine cg_iric_read_grid_triangleelementssize(fid, tsize, ier)
     integer, intent(in):: fid
-    integer, intent(out):: size
+    integer, intent(out):: tsize
     integer, intent(out):: ier
 
     call cg_iric_read_grid_triangleelementssize_f2c &
-      (fid, size, ier)
+      (fid, tsize, ier)
 
   end subroutine
 
@@ -6661,14 +6661,14 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_read_sol_grid2d_open(fid, solid, grid_handle, ier)
+  subroutine cg_iric_read_sol_grid2d_open(fid, step, grid_handle, ier)
     integer, intent(in):: fid
-    integer, intent(in):: solid
+    integer, intent(in):: step
     integer, intent(out):: grid_handle
     integer, intent(out):: ier
 
     call cg_iric_read_sol_grid2d_open_f2c &
-      (fid, solid, grid_handle, ier)
+      (fid, step, grid_handle, ier)
 
   end subroutine
 
@@ -7630,13 +7630,13 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_write_sol_particlegroup_groupbegin(fid, name, ier)
+  subroutine cg_iric_write_sol_particlegroup_groupbegin(fid, groupname, ier)
     integer, intent(in):: fid
-    character(*), intent(in):: name
+    character(*), intent(in):: groupname
     integer, intent(out):: ier
 
     call cg_iric_write_sol_particlegroup_groupbegin_f2c &
-      (fid, name, ier)
+      (fid, groupname, ier)
 
   end subroutine
 
@@ -7721,13 +7721,13 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_write_sol_particlegroupimage_groupbegin(fid, name, ier)
+  subroutine cg_iric_write_sol_particlegroupimage_groupbegin(fid, groupname, ier)
     integer, intent(in):: fid
-    character(*), intent(in):: name
+    character(*), intent(in):: groupname
     integer, intent(out):: ier
 
     call cg_iric_write_sol_particlegroupimage_groupbegin_f2c &
-      (fid, name, ier)
+      (fid, groupname, ier)
 
   end subroutine
 
@@ -7828,13 +7828,13 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_write_sol_polydata_groupbegin(fid, name, ier)
+  subroutine cg_iric_write_sol_polydata_groupbegin(fid, groupname, ier)
     integer, intent(in):: fid
-    character(*), intent(in):: name
+    character(*), intent(in):: groupname
     integer, intent(out):: ier
 
     call cg_iric_write_sol_polydata_groupbegin_f2c &
-      (fid, name, ier)
+      (fid, groupname, ier)
 
   end subroutine
 
@@ -7918,14 +7918,14 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_read_sol_iteration(fid, step, index, ier)
+  subroutine cg_iric_read_sol_iteration(fid, step, iteration, ier)
     integer, intent(in):: fid
     integer, intent(in):: step
-    integer, intent(out):: index
+    integer, intent(out):: iteration
     integer, intent(out):: ier
 
     call cg_iric_read_sol_iteration_f2c &
-      (fid, step, index, ier)
+      (fid, step, iteration, ier)
 
   end subroutine
 
@@ -8005,13 +8005,13 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_write_sol_iteration(fid, index, ier)
+  subroutine cg_iric_write_sol_iteration(fid, iteration, ier)
     integer, intent(in):: fid
-    integer, intent(in):: index
+    integer, intent(in):: iteration
     integer, intent(out):: ier
 
     call cg_iric_write_sol_iteration_f2c &
-      (fid, index, ier)
+      (fid, iteration, ier)
 
   end subroutine
 
@@ -9139,14 +9139,14 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_write_sol_particlegroup_groupbegin_withgridid(fid, gid, name, ier)
+  subroutine cg_iric_write_sol_particlegroup_groupbegin_withgridid(fid, gid, groupname, ier)
     integer, intent(in):: fid
     integer, intent(in):: gid
-    character(*), intent(in):: name
+    character(*), intent(in):: groupname
     integer, intent(out):: ier
 
     call cg_iric_write_sol_particlegroup_groupbegin_withgridid_f2c &
-      (fid, gid, name, ier)
+      (fid, gid, groupname, ier)
 
   end subroutine
 
@@ -9242,14 +9242,14 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_write_sol_particlegroupimage_groupbegin_withgridid(fid, gid, name, ier)
+  subroutine cg_iric_write_sol_particlegroupimage_groupbegin_withgridid(fid, gid, groupname, ier)
     integer, intent(in):: fid
     integer, intent(in):: gid
-    character(*), intent(in):: name
+    character(*), intent(in):: groupname
     integer, intent(out):: ier
 
     call cg_iric_write_sol_particlegroupimage_groupbegin_withgridid_f2c &
-      (fid, gid, name, ier)
+      (fid, gid, groupname, ier)
 
   end subroutine
 
@@ -9362,14 +9362,14 @@ contains
 
   end subroutine
 
-  subroutine cg_iric_write_sol_polydata_groupbegin_withgridid(fid, gid, name, ier)
+  subroutine cg_iric_write_sol_polydata_groupbegin_withgridid(fid, gid, groupname, ier)
     integer, intent(in):: fid
     integer, intent(in):: gid
-    character(*), intent(in):: name
+    character(*), intent(in):: groupname
     integer, intent(out):: ier
 
     call cg_iric_write_sol_polydata_groupbegin_withgridid_f2c &
-      (fid, gid, name, ier)
+      (fid, gid, groupname, ier)
 
   end subroutine
 

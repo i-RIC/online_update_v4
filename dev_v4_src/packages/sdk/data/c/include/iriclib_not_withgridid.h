@@ -49,8 +49,8 @@ int IRICLIBDLL cg_iRIC_Read_Grid2d_Str_Size(int fid, int* isize, int* jsize);
 int IRICLIBDLL cg_iRIC_Read_Grid2d_Coords(int fid, double* x_arr, double* y_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid3d_Str_Size(int fid, int* isize, int* jsize, int* ksize);
 int IRICLIBDLL cg_iRIC_Read_Grid3d_Coords(int fid, double* x_arr, double* y_arr, double* z_arr);
-int IRICLIBDLL cg_iRIC_Read_Grid_TriangleElementsSize(int fid, int* size);
-int IRICLIBDLL cg_iRIC_Read_Grid_TriangleElementsSize2(int fid, int* size);
+int IRICLIBDLL cg_iRIC_Read_Grid_TriangleElementsSize(int fid, int* tsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_TriangleElementsSize2(int fid, int* tsize);
 int IRICLIBDLL cg_iRIC_Read_Grid_TriangleElements(int fid, int* id_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_NodeCount(int fid, int* count);
 int IRICLIBDLL cg_iRIC_Read_Grid_CellCount(int fid, int* count);
@@ -96,7 +96,7 @@ int IRICLIBDLL cg_iRIC_Copy_Grid(int fid_from, int fid_to);
 
 // from iriclib_grid_solverlib.h
 int IRICLIBDLL cg_iRIC_Read_Grid2d_Open(int fid, int* grid_handle);
-int IRICLIBDLL cg_iRIC_Read_Sol_Grid2d_Open(int fid, int solid, int* grid_handle);
+int IRICLIBDLL cg_iRIC_Read_Sol_Grid2d_Open(int fid, int step, int* grid_handle);
 
 // from iriclib_sol_cell.h
 int IRICLIBDLL cg_iRIC_Read_Sol_Cell_Integer(int fid, int step, const char* name, int* v_arr);
@@ -151,7 +151,7 @@ int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroup_Pos2d(int fid, int step, const cha
 int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroup_Pos3d(int fid, int step, const char* groupname, double* x_arr, double* y_arr, double* z_arr);
 int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroup_Real(int fid, int step, const char* groupname, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroup_Integer(int fid, int step, const char* groupname, const char* name, int* v_arr);
-int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_GroupBegin(int fid, const char* name);
+int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_GroupBegin(int fid, const char* groupname);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_GroupEnd(int fid);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Pos2d(int fid, double x, double y);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Pos3d(int fid, double x, double y, double z);
@@ -161,7 +161,7 @@ int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Real(int fid, const char* name, d
 // from iriclib_sol_particlegroupimage.h
 int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroupImage_Count(int fid, int step, const char* groupname, int* count);
 int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroupImage_Pos2d(int fid, int step, const char* groupname, double* x_arr, double* y_arr, double* size_arr, double* angle_arr);
-int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroupImage_GroupBegin(int fid, const char* name);
+int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroupImage_GroupBegin(int fid, const char* groupname);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroupImage_GroupEnd(int fid);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroupImage_Pos2d(int fid, double x, double y, double size, double angle);
 
@@ -172,7 +172,7 @@ int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_Pos2d(int fid, int step, const char* gr
 int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_Type(int fid, int step, const char* groupname, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_Real(int fid, int step, const char* groupname, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_Integer(int fid, int step, const char* groupname, const char* name, int* v_arr);
-int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_GroupBegin(int fid, const char* name);
+int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_GroupBegin(int fid, const char* groupname);
 int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_GroupEnd(int fid);
 int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_Polygon(int fid, int numPoints, double* x_arr, double* y_arr);
 int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_Polyline(int fid, int numPoints, double* x_arr, double* y_arr);

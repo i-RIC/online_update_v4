@@ -36,9 +36,9 @@ int IRICLIBDLL cg_iRIC_Write_Grid_Complex_IFace_WithGridId(int fid, int gid, con
 int IRICLIBDLL cg_iRIC_Write_Grid_Complex_JFace_WithGridId(int fid, int gid, const char* groupname, IntArrayContainer& v_arr);
 
 // from iriclib_geo.h
-int IRICLIBDLL iRIC_Geo_Polygon_Read_Points(int id, RealArrayContainer& x_arr, RealArrayContainer& y_arr);
-int IRICLIBDLL iRIC_Geo_Polygon_Read_HolePoints(int id, int holeid, RealArrayContainer& x_arr, RealArrayContainer& y_arr);
-int IRICLIBDLL iRIC_Geo_RiverSurvey_Read_Altitudes(int id, int pointid, RealArrayContainer& position_arr, RealArrayContainer& height_arr, IntArrayContainer& active_arr);
+int IRICLIBDLL iRIC_Geo_Polygon_Read_Points(int geo_handle, RealArrayContainer& x_arr, RealArrayContainer& y_arr);
+int IRICLIBDLL iRIC_Geo_Polygon_Read_HolePoints(int geo_handle, int holeid, RealArrayContainer& x_arr, RealArrayContainer& y_arr);
+int IRICLIBDLL iRIC_Geo_RiverSurvey_Read_Altitudes(int geo_handle, int csid, RealArrayContainer& position_arr, RealArrayContainer& height_arr, IntArrayContainer& active_arr);
 
 // from iriclib_geoutil.h
 
