@@ -54,6 +54,9 @@ public:
 	H5CgnsParticleGroupSolution* openParticleGroupSolution();
 	H5CgnsParticleGroupSolution* createParticleGroupSolution();
 
+	H5CgnsParticleGroupImageSolution* openParticleGroupImageSolution();
+	H5CgnsParticleGroupImageSolution* createParticleGroupImageSolution();
+
 	H5CgnsParticleSolution* openParticleSolution();
 	H5CgnsParticleSolution* createParticleSolution();
 
@@ -80,6 +83,7 @@ public:
 	H5CgnsFlowSolution* m_jFaceSolution;
 	H5CgnsFlowSolution* m_kFaceSolution;
 	H5CgnsParticleGroupSolution* m_particleGroupSolution;
+	H5CgnsParticleGroupImageSolution* m_particleGroupImageSolution;
 	H5CgnsParticleSolution* m_particleSolution;
 	H5CgnsPolyDataSolution* m_polyDataSolution;
 

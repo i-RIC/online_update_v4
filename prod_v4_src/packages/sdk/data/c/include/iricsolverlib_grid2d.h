@@ -20,7 +20,7 @@ public:
 	~Grid2D();
 
 	int load(int fid, int gid);
-	int load(int fid, int gid, int solid);
+	int load(int fid, int gid, int step);
 	int load(iRICLib::H5CgnsZone* zone);
 
 	int nodeCount() const;

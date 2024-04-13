@@ -53,7 +53,7 @@ private:
 } // namespace iRICLib
 
 #ifdef _DEBUG
-	#include "private/h5cgnsparticlesolution_impl.h"
+	#include "private/h5cgnsparticlegroupsolution_impl.h"
 #endif // _DEBUG
 
 #endif // H5CGNSPARTICLEGROUPSOLUTION_H

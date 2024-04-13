@@ -13,7 +13,7 @@ int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroup_Pos3d_WithGridId(int fid, int gid,
 int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroup_Real_WithGridId(int fid, int gid, int step, const char* groupname, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Sol_ParticleGroup_Integer_WithGridId(int fid, int gid, int step, const char* groupname, const char* name, int* v_arr);
 
-int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_GroupBegin_WithGridId(int fid, int gid, const char* name);
+int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_GroupBegin_WithGridId(int fid, int gid, const char* groupname);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_GroupEnd_WithGridId(int fid, int gid);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Pos2d_WithGridId(int fid, int gid, double x, double y);
 int IRICLIBDLL cg_iRIC_Write_Sol_ParticleGroup_Pos3d_WithGridId(int fid, int gid, double x, double y, double z);

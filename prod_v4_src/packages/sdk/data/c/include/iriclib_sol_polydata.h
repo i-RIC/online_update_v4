@@ -14,7 +14,7 @@ int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_Type_WithGridId(int fid, int gid, int s
 int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_Real_WithGridId(int fid, int gid, int step, const char* groupname, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Sol_PolyData_Integer_WithGridId(int fid, int gid, int step, const char* groupname, const char* name, int* v_arr);
 
-int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_GroupBegin_WithGridId(int fid, int gid, const char* name);
+int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_GroupBegin_WithGridId(int fid, int gid, const char* groupname);
 int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_GroupEnd_WithGridId(int fid, int gid);
 int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_Polygon_WithGridId(int fid, int gid, int numPoints, double* x_arr, double* y_arr);
 int IRICLIBDLL cg_iRIC_Write_Sol_PolyData_Polyline_WithGridId(int fid, int gid, int numPoints, double* x_arr, double* y_arr);

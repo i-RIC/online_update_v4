@@ -14,6 +14,7 @@ class H5CgnsBase;
 class H5CgnsFlowSolution;
 class H5CgnsGridAttributes;
 class H5CgnsGridCoordinates;
+class H5CgnsParticleGroupImageSolution;
 class H5CgnsParticleGroupSolution;
 class H5CgnsParticleSolution;
 class H5CgnsPolyDataSolution;
@@ -92,6 +93,8 @@ public:
 	H5CgnsFlowSolution* kFaceSolution();
 	bool particleGroupSolutionExists() const;
 	H5CgnsParticleGroupSolution* particleGroupSolution();
+	bool particleGroupImageSolutionExists() const;
+	H5CgnsParticleGroupImageSolution* particleGroupImageSolution();
 	bool particleSolutionExists() const;
 	H5CgnsParticleSolution* particleSolution();
 	bool polyDataSolutionExists() const;
