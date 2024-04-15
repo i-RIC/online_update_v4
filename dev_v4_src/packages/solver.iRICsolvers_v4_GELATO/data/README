@@ -6,6 +6,11 @@ Check here for case studies.
 https://i-ric.org/yasu/UTT_EN/index.html
 
 # Release notes
+ver.1.3.24041501 update by shimizu and hoshino
+* Added a function to stop the tracer depending on the calculated maximum friction velocity.
+* Modified the coordinate transformation formula for the tracer.
+* Changed the layout of the calculation conditions dialog.
+
 ver.1.2.23122001 update by hoshino
 * Fixed translation file.
 
