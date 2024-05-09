@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Structured grid Nays CSV exporter</DisplayName>
 	<Description>Structured grid Nays CSV exporter</Description>
-	<Version>1.1.1</Version>
+	<Version>1.1.2</Version>
 	<Default>true</Default>
-	<ReleaseDate>2020-02-03</ReleaseDate>
+	<ReleaseDate>2023-11-09</ReleaseDate>
 	<SortingPriority>30</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

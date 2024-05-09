@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridImporterPluginDefinition 
   xmlns="www.iric.net/GridImporterPluginDefinition/1.0"
-  name="structured2dgridvtkimporter" caption="Structured grid VTK file importer" version="1.0.1" release="2023.03.16"
+  name="structured2dgridvtkimporter" caption="Structured grid VTK file importer" version="1.0.2" release="2023.11.09"
   copyright="iRIC Organization"
 >
 </GridImporterPluginDefinition>
