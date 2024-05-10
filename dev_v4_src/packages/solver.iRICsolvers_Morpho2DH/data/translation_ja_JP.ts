@@ -476,9 +476,6 @@
 	</message>　　　　　　<message>
 		<source>Code</source>
 		<translation>コード</translation>
-	</message>　　　　　　<message>
-		<source>Building</source>
-		<translation>建物</translation>
 	</message>
 
 </context>
