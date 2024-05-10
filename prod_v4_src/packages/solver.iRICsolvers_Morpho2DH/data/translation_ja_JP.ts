@@ -473,9 +473,6 @@
 	</message>　　　　　　<message>
 		<source>Critical force (N/m2)</source>
 		<translation>限界破壊応力（N/m2）</translation>
-	</message>　　　　　　<message>
-		<source>Code</source>
-		<translation>コード</translation>
 	</message>
 
 </context>
