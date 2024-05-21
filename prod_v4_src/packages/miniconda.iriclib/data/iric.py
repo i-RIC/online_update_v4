@@ -302,96 +302,96 @@ def cg_iRIC_Write_Complex_FunctionalWithName_String_WithBaseId(fid, bid, groupna
 
 # from iriclib_geo.h
 def iRIC_Geo_Polygon_Open(filename):
-	ier, id = _iric.iRIC_Geo_Polygon_Open(filename)
+	ier, geo_handle = _iric.iRIC_Geo_Polygon_Open(filename)
 	_checkErrorCode(ier)
-	return id
+	return geo_handle
 
-def iRIC_Geo_Polygon_Read_IntegerValue(id):
-	ier, value = _iric.iRIC_Geo_Polygon_Read_IntegerValue(id)
-	_checkErrorCode(ier)
-	return value
-
-def iRIC_Geo_Polygon_Read_RealValue(id):
-	ier, value = _iric.iRIC_Geo_Polygon_Read_RealValue(id)
+def iRIC_Geo_Polygon_Read_IntegerValue(geo_handle):
+	ier, value = _iric.iRIC_Geo_Polygon_Read_IntegerValue(geo_handle)
 	_checkErrorCode(ier)
 	return value
 
-def iRIC_Geo_Polygon_Read_PointCount(id):
-	ier, size = _iric.iRIC_Geo_Polygon_Read_PointCount(id)
+def iRIC_Geo_Polygon_Read_RealValue(geo_handle):
+	ier, value = _iric.iRIC_Geo_Polygon_Read_RealValue(geo_handle)
 	_checkErrorCode(ier)
-	return size
+	return value
 
-def iRIC_Geo_Polygon_Read_HoleCount(id):
-	ier, count = _iric.iRIC_Geo_Polygon_Read_HoleCount(id)
-	_checkErrorCode(ier)
-	return count
-
-def iRIC_Geo_Polygon_Read_HolePointCount(id, holeid):
-	ier, count = _iric.iRIC_Geo_Polygon_Read_HolePointCount(id, holeid)
+def iRIC_Geo_Polygon_Read_PointCount(geo_handle):
+	ier, count = _iric.iRIC_Geo_Polygon_Read_PointCount(geo_handle)
 	_checkErrorCode(ier)
 	return count
 
-def iRIC_Geo_Polygon_Close(id):
-	ier = _iric.iRIC_Geo_Polygon_Close(id)
+def iRIC_Geo_Polygon_Read_HoleCount(geo_handle):
+	ier, count = _iric.iRIC_Geo_Polygon_Read_HoleCount(geo_handle)
+	_checkErrorCode(ier)
+	return count
+
+def iRIC_Geo_Polygon_Read_HolePointCount(geo_handle, holeid):
+	ier, count = _iric.iRIC_Geo_Polygon_Read_HolePointCount(geo_handle, holeid)
+	_checkErrorCode(ier)
+	return count
+
+def iRIC_Geo_Polygon_Close(geo_handle):
+	ier = _iric.iRIC_Geo_Polygon_Close(geo_handle)
 	_checkErrorCode(ier)
 
 def iRIC_Geo_RiverSurvey_Open(filename):
-	ier, id = _iric.iRIC_Geo_RiverSurvey_Open(filename)
+	ier, geo_handle = _iric.iRIC_Geo_RiverSurvey_Open(filename)
 	_checkErrorCode(ier)
-	return id
+	return geo_handle
 
-def iRIC_Geo_RiverSurvey_Read_Count(id):
-	ier, count = _iric.iRIC_Geo_RiverSurvey_Read_Count(id)
+def iRIC_Geo_RiverSurvey_Read_Count(geo_handle):
+	ier, count = _iric.iRIC_Geo_RiverSurvey_Read_Count(geo_handle)
 	_checkErrorCode(ier)
 	return count
 
-def iRIC_Geo_RiverSurvey_Read_Position(id, pointid):
-	ier, x, y = _iric.iRIC_Geo_RiverSurvey_Read_Position(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_Position(geo_handle, csid):
+	ier, x, y = _iric.iRIC_Geo_RiverSurvey_Read_Position(geo_handle, csid)
 	_checkErrorCode(ier)
 	return x, y
 
-def iRIC_Geo_RiverSurvey_Read_Direction(id, pointid):
-	ier, vx, vy = _iric.iRIC_Geo_RiverSurvey_Read_Direction(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_Direction(geo_handle, csid):
+	ier, dirx, diry = _iric.iRIC_Geo_RiverSurvey_Read_Direction(geo_handle, csid)
 	_checkErrorCode(ier)
-	return vx, vy
+	return dirx, diry
 
-def iRIC_Geo_RiverSurvey_Read_Name(id, pointid):
-	ier, strvalue = _iric.iRIC_Geo_RiverSurvey_Read_Name(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_Name(geo_handle, csid):
+	ier, strvalue = _iric.iRIC_Geo_RiverSurvey_Read_Name(geo_handle, csid)
 	_checkErrorCode(ier)
 	return strvalue
 
-def iRIC_Geo_RiverSurvey_Read_RealName(id, pointid):
-	ier, name = _iric.iRIC_Geo_RiverSurvey_Read_RealName(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_RealName(geo_handle, csid):
+	ier, name = _iric.iRIC_Geo_RiverSurvey_Read_RealName(geo_handle, csid)
 	_checkErrorCode(ier)
 	return name
 
-def iRIC_Geo_RiverSurvey_Read_LeftShift(id, pointid):
-	ier, shift = _iric.iRIC_Geo_RiverSurvey_Read_LeftShift(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_LeftShift(geo_handle, csid):
+	ier, shift = _iric.iRIC_Geo_RiverSurvey_Read_LeftShift(geo_handle, csid)
 	_checkErrorCode(ier)
 	return shift
 
-def iRIC_Geo_RiverSurvey_Read_AltitudeCount(id, pointid):
-	ier, count = _iric.iRIC_Geo_RiverSurvey_Read_AltitudeCount(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_AltitudeCount(geo_handle, csid):
+	ier, count = _iric.iRIC_Geo_RiverSurvey_Read_AltitudeCount(geo_handle, csid)
 	_checkErrorCode(ier)
 	return count
 
-def iRIC_Geo_RiverSurvey_Read_FixedPointL(id, pointid):
-	ier, set, directionX, directionY, index = _iric.iRIC_Geo_RiverSurvey_Read_FixedPointL(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_FixedPointL(geo_handle, csid):
+	ier, set, dirx, diry, index = _iric.iRIC_Geo_RiverSurvey_Read_FixedPointL(geo_handle, csid)
 	_checkErrorCode(ier)
-	return set, directionX, directionY, index
+	return set, dirx, diry, index
 
-def iRIC_Geo_RiverSurvey_Read_FixedPointR(id, pointid):
-	ier, set, directionX, directionY, index = _iric.iRIC_Geo_RiverSurvey_Read_FixedPointR(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_FixedPointR(geo_handle, csid):
+	ier, set, dirx, diry, index = _iric.iRIC_Geo_RiverSurvey_Read_FixedPointR(geo_handle, csid)
 	_checkErrorCode(ier)
-	return set, directionX, directionY, index
+	return set, dirx, diry, index
 
-def iRIC_Geo_RiverSurvey_Read_WaterSurfaceElevation(id, pointid):
-	ier, set, value = _iric.iRIC_Geo_RiverSurvey_Read_WaterSurfaceElevation(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_WaterSurfaceElevation(geo_handle, csid):
+	ier, set, value = _iric.iRIC_Geo_RiverSurvey_Read_WaterSurfaceElevation(geo_handle, csid)
 	_checkErrorCode(ier)
 	return set, value
 
-def iRIC_Geo_RiverSurvey_Close(id):
-	ier = _iric.iRIC_Geo_RiverSurvey_Close(id)
+def iRIC_Geo_RiverSurvey_Close(geo_handle):
+	ier = _iric.iRIC_Geo_RiverSurvey_Close(geo_handle)
 	_checkErrorCode(ier)
 
 
@@ -419,14 +419,14 @@ def cg_iRIC_Read_Grid3d_Str_Size_WithGridId(fid, gid):
 	return isize, jsize, ksize
 
 def cg_iRIC_Read_Grid_TriangleElementsSize_WithGridId(fid, gid):
-	ier, size = _iric.cg_iRIC_Read_Grid_TriangleElementsSize_WithGridId(fid, gid)
+	ier, tsize = _iric.cg_iRIC_Read_Grid_TriangleElementsSize_WithGridId(fid, gid)
 	_checkErrorCode(ier)
-	return size
+	return tsize
 
 def cg_iRIC_Read_Grid_TriangleElementsSize2_WithGridId(fid, gid):
-	ier, size = _iric.cg_iRIC_Read_Grid_TriangleElementsSize2_WithGridId(fid, gid)
+	ier, tsize = _iric.cg_iRIC_Read_Grid_TriangleElementsSize2_WithGridId(fid, gid)
 	_checkErrorCode(ier)
-	return size
+	return tsize
 
 def cg_iRIC_Read_Grid_NodeCount_WithGridId(fid, gid):
 	ier, count = _iric.cg_iRIC_Read_Grid_NodeCount_WithGridId(fid, gid)
@@ -463,6 +463,10 @@ def cg_iRIC_Read_Grid_FunctionalTimeSize_WithGridId(fid, gid, name):
 	_checkErrorCode(ier)
 	return count
 
+def cg_iRIC_Copy_Grid_WithGridId(fid_from, fid_to, gid):
+	ier = _iric.cg_iRIC_Copy_Grid_WithGridId(fid_from, fid_to, gid)
+	_checkErrorCode(ier)
+
 
 # from iriclib_grid_solverlib.h
 def cg_iRIC_Read_Grid2d_Open_WithGridId(fid, gid):
@@ -470,8 +474,8 @@ def cg_iRIC_Read_Grid2d_Open_WithGridId(fid, gid):
 	_checkErrorCode(ier)
 	return grid_handle
 
-def cg_iRIC_Read_Sol_Grid2d_Open_WithGridId(fid, gid, solid):
-	ier, grid_handle = _iric.cg_iRIC_Read_Sol_Grid2d_Open_WithGridId(fid, gid, solid)
+def cg_iRIC_Read_Sol_Grid2d_Open_WithGridId(fid, gid, step):
+	ier, grid_handle = _iric.cg_iRIC_Read_Sol_Grid2d_Open_WithGridId(fid, gid, step)
 	_checkErrorCode(ier)
 	return grid_handle
 
@@ -643,14 +647,14 @@ def cg_iRIC_Read_Grid3d_Str_Size(fid):
 	return isize, jsize, ksize
 
 def cg_iRIC_Read_Grid_TriangleElementsSize(fid):
-	ier, size = _iric.cg_iRIC_Read_Grid_TriangleElementsSize(fid)
+	ier, tsize = _iric.cg_iRIC_Read_Grid_TriangleElementsSize(fid)
 	_checkErrorCode(ier)
-	return size
+	return tsize
 
 def cg_iRIC_Read_Grid_TriangleElementsSize2(fid):
-	ier, size = _iric.cg_iRIC_Read_Grid_TriangleElementsSize2(fid)
+	ier, tsize = _iric.cg_iRIC_Read_Grid_TriangleElementsSize2(fid)
 	_checkErrorCode(ier)
-	return size
+	return tsize
 
 def cg_iRIC_Read_Grid_NodeCount(fid):
 	ier, count = _iric.cg_iRIC_Read_Grid_NodeCount(fid)
@@ -687,13 +691,17 @@ def cg_iRIC_Read_Grid_FunctionalTimeSize(fid, name):
 	_checkErrorCode(ier)
 	return count
 
+def cg_iRIC_Copy_Grid(fid_from, fid_to):
+	ier = _iric.cg_iRIC_Copy_Grid(fid_from, fid_to)
+	_checkErrorCode(ier)
+
 def cg_iRIC_Read_Grid2d_Open(fid):
 	ier, grid_handle = _iric.cg_iRIC_Read_Grid2d_Open(fid)
 	_checkErrorCode(ier)
 	return grid_handle
 
-def cg_iRIC_Read_Sol_Grid2d_Open(fid, solid):
-	ier, grid_handle = _iric.cg_iRIC_Read_Sol_Grid2d_Open(fid, solid)
+def cg_iRIC_Read_Sol_Grid2d_Open(fid, step):
+	ier, grid_handle = _iric.cg_iRIC_Read_Sol_Grid2d_Open(fid, step)
 	_checkErrorCode(ier)
 	return grid_handle
 
@@ -707,8 +715,8 @@ def cg_iRIC_Read_Sol_ParticleGroup_Count(fid, step, groupname):
 	_checkErrorCode(ier)
 	return count
 
-def cg_iRIC_Write_Sol_ParticleGroup_GroupBegin(fid, name):
-	ier = _iric.cg_iRIC_Write_Sol_ParticleGroup_GroupBegin(fid, name)
+def cg_iRIC_Write_Sol_ParticleGroup_GroupBegin(fid, groupname):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroup_GroupBegin(fid, groupname)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Sol_ParticleGroup_GroupEnd(fid):
@@ -731,6 +739,23 @@ def cg_iRIC_Write_Sol_ParticleGroup_Real(fid, name, value):
 	ier = _iric.cg_iRIC_Write_Sol_ParticleGroup_Real(fid, name, value)
 	_checkErrorCode(ier)
 
+def cg_iRIC_Read_Sol_ParticleGroupImage_Count(fid, step, groupname):
+	ier, count = _iric.cg_iRIC_Read_Sol_ParticleGroupImage_Count(fid, step, groupname)
+	_checkErrorCode(ier)
+	return count
+
+def cg_iRIC_Write_Sol_ParticleGroupImage_GroupBegin(fid, groupname):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroupImage_GroupBegin(fid, groupname)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Sol_ParticleGroupImage_GroupEnd(fid):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroupImage_GroupEnd(fid)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Sol_ParticleGroupImage_Pos2d(fid, x, y, size, angle):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroupImage_Pos2d(fid, x, y, size, angle)
+	_checkErrorCode(ier)
+
 def cg_iRIC_Read_Sol_PolyData_DataCount(fid, step, groupname):
 	ier, count = _iric.cg_iRIC_Read_Sol_PolyData_DataCount(fid, step, groupname)
 	_checkErrorCode(ier)
@@ -741,8 +766,8 @@ def cg_iRIC_Read_Sol_PolyData_CoordinateCount(fid, step, groupname):
 	_checkErrorCode(ier)
 	return count
 
-def cg_iRIC_Write_Sol_PolyData_GroupBegin(fid, name):
-	ier = _iric.cg_iRIC_Write_Sol_PolyData_GroupBegin(fid, name)
+def cg_iRIC_Write_Sol_PolyData_GroupBegin(fid, groupname):
+	ier = _iric.cg_iRIC_Write_Sol_PolyData_GroupBegin(fid, groupname)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Sol_PolyData_GroupEnd(fid):
@@ -771,8 +796,8 @@ def cg_iRIC_Read_Sol_ParticleGroup_Count_WithGridId(fid, gid, step, groupname):
 	_checkErrorCode(ier)
 	return count
 
-def cg_iRIC_Write_Sol_ParticleGroup_GroupBegin_WithGridId(fid, gid, name):
-	ier = _iric.cg_iRIC_Write_Sol_ParticleGroup_GroupBegin_WithGridId(fid, gid, name)
+def cg_iRIC_Write_Sol_ParticleGroup_GroupBegin_WithGridId(fid, gid, groupname):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroup_GroupBegin_WithGridId(fid, gid, groupname)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Sol_ParticleGroup_GroupEnd_WithGridId(fid, gid):
@@ -796,6 +821,25 @@ def cg_iRIC_Write_Sol_ParticleGroup_Real_WithGridId(fid, gid, name, value):
 	_checkErrorCode(ier)
 
 
+# from iriclib_sol_particlegroupimage.h
+def cg_iRIC_Read_Sol_ParticleGroupImage_Count_WithGridId(fid, gid, step, groupname):
+	ier, count = _iric.cg_iRIC_Read_Sol_ParticleGroupImage_Count_WithGridId(fid, gid, step, groupname)
+	_checkErrorCode(ier)
+	return count
+
+def cg_iRIC_Write_Sol_ParticleGroupImage_GroupBegin_WithGridId(fid, gid, groupname):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroupImage_GroupBegin_WithGridId(fid, gid, groupname)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Sol_ParticleGroupImage_GroupEnd_WithGridId(fid, gid):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroupImage_GroupEnd_WithGridId(fid, gid)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Sol_ParticleGroupImage_Pos2d_WithGridId(fid, gid, x, y, size, angle):
+	ier = _iric.cg_iRIC_Write_Sol_ParticleGroupImage_Pos2d_WithGridId(fid, gid, x, y, size, angle)
+	_checkErrorCode(ier)
+
+
 # from iriclib_sol_polydata.h
 def cg_iRIC_Read_Sol_PolyData_DataCount_WithGridId(fid, gid, step, groupname):
 	ier, count = _iric.cg_iRIC_Read_Sol_PolyData_DataCount_WithGridId(fid, gid, step, groupname)
@@ -807,8 +851,8 @@ def cg_iRIC_Read_Sol_PolyData_CoordinateCount_WithGridId(fid, gid, step, groupna
 	_checkErrorCode(ier)
 	return count
 
-def cg_iRIC_Write_Sol_PolyData_GroupBegin_WithGridId(fid, gid, name):
-	ier = _iric.cg_iRIC_Write_Sol_PolyData_GroupBegin_WithGridId(fid, gid, name)
+def cg_iRIC_Write_Sol_PolyData_GroupBegin_WithGridId(fid, gid, groupname):
+	ier = _iric.cg_iRIC_Write_Sol_PolyData_GroupBegin_WithGridId(fid, gid, groupname)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Sol_PolyData_GroupEnd_WithGridId(fid, gid):
@@ -836,9 +880,9 @@ def cg_iRIC_Read_Sol_Time(fid, step):
 	return time
 
 def cg_iRIC_Read_Sol_Iteration(fid, step):
-	ier, index = _iric.cg_iRIC_Read_Sol_Iteration(fid, step)
+	ier, iteration = _iric.cg_iRIC_Read_Sol_Iteration(fid, step)
 	_checkErrorCode(ier)
-	return index
+	return iteration
 
 def cg_iRIC_Read_Sol_BaseIterative_Integer(fid, step, name):
 	ier, value = _iric.cg_iRIC_Read_Sol_BaseIterative_Integer(fid, step, name)
@@ -867,8 +911,8 @@ def cg_iRIC_Write_Sol_Time(fid, time):
 	ier = _iric.cg_iRIC_Write_Sol_Time(fid, time)
 	_checkErrorCode(ier)
 
-def cg_iRIC_Write_Sol_Iteration(fid, index):
-	ier = _iric.cg_iRIC_Write_Sol_Iteration(fid, index)
+def cg_iRIC_Write_Sol_Iteration(fid, iteration):
+	ier = _iric.cg_iRIC_Write_Sol_Iteration(fid, iteration)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Sol_BaseIterative_Integer(fid, name, value):
@@ -885,6 +929,10 @@ def cg_iRIC_Write_Sol_BaseIterative_String(fid, name, value):
 
 def cg_iRIC_Write_ErrorCode(fid, errorcode):
 	ier = _iric.cg_iRIC_Write_ErrorCode(fid, errorcode)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Clear_Sol(fid):
+	ier = _iric.cg_iRIC_Clear_Sol(fid)
 	_checkErrorCode(ier)
 
 
@@ -995,6 +1043,20 @@ def cg_iRIC_Read_Grid_Complex_Cell_WithGridId(fid, gid, groupname):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Complex_IFace_WithGridId(fid, gid, groupname):
+	size = cg_iRIC_Read_Grid_IFaceCount_WithGridId(fid, gid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Complex_IFace_WithGridId(fid, gid, groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Complex_JFace_WithGridId(fid, gid, groupname):
+	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Complex_JFace_WithGridId(fid, gid, groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Write_Complex_Functional_WithBaseId(fid, bid, groupname, num, name, x_arr, y_arr):
 	x = RealArrayContainer(x_arr.size)
 	x.set(x_arr)
@@ -1021,28 +1083,40 @@ def cg_iRIC_Write_Grid_Complex_Cell_WithGridId(fid, gid, groupname, v_arr):
 	ier = _iric.cg_iRIC_Write_Grid_Complex_Cell_WithGridId(fid, gid, groupname, v)
 	_checkErrorCode(ier)
 
-def iRIC_Geo_Polygon_Read_Points(id):
-	size = iRIC_Geo_Polygon_Read_PointCount(id)
+def cg_iRIC_Write_Grid_Complex_IFace_WithGridId(fid, gid, groupname, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Complex_IFace_WithGridId(fid, gid, groupname, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Complex_JFace_WithGridId(fid, gid, groupname, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Complex_JFace_WithGridId(fid, gid, groupname, v)
+	_checkErrorCode(ier)
+
+def iRIC_Geo_Polygon_Read_Points(geo_handle):
+	size = iRIC_Geo_Polygon_Read_PointCount(geo_handle)
 	x = RealArrayContainer(size)
 	y = RealArrayContainer(size)
-	ier = _iric.iRIC_Geo_Polygon_Read_Points(id, x, y)
+	ier = _iric.iRIC_Geo_Polygon_Read_Points(geo_handle, x, y)
 	_checkErrorCode(ier)
 	return x.get(), y.get()
 
-def iRIC_Geo_Polygon_Read_HolePoints(id, holeid):
-	size = iRIC_Geo_Polygon_Read_HolePointCount(id, holeid)
+def iRIC_Geo_Polygon_Read_HolePoints(geo_handle, holeid):
+	size = iRIC_Geo_Polygon_Read_HolePointCount(geo_handle, holeid)
 	x = RealArrayContainer(size)
 	y = RealArrayContainer(size)
-	ier = _iric.iRIC_Geo_Polygon_Read_HolePoints(id, holeid, x, y)
+	ier = _iric.iRIC_Geo_Polygon_Read_HolePoints(geo_handle, holeid, x, y)
 	_checkErrorCode(ier)
 	return x.get(), y.get()
 
-def iRIC_Geo_RiverSurvey_Read_Altitudes(id, pointid):
-	size = iRIC_Geo_RiverSurvey_Read_AltitudeCount(id, pointid)
+def iRIC_Geo_RiverSurvey_Read_Altitudes(geo_handle, csid):
+	size = iRIC_Geo_RiverSurvey_Read_AltitudeCount(geo_handle, csid)
 	position = RealArrayContainer(size)
 	height = RealArrayContainer(size)
 	active = IntArrayContainer(size)
-	ier = _iric.iRIC_Geo_RiverSurvey_Read_Altitudes(id, pointid, position, height, active)
+	ier = _iric.iRIC_Geo_RiverSurvey_Read_Altitudes(geo_handle, csid, position, height, active)
 	_checkErrorCode(ier)
 	return position.get(), height.get(), active.get()
 
@@ -1098,6 +1172,34 @@ def cg_iRIC_Read_Grid_Integer_Cell_WithGridId(fid, gid, name):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Real_IFace_WithGridId(fid, gid, name):
+	size = cg_iRIC_Read_Grid_IFaceCount_WithGridId(fid, gid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Real_IFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Integer_IFace_WithGridId(fid, gid, name):
+	size = cg_iRIC_Read_Grid_IFaceCount_WithGridId(fid, gid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Integer_IFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Real_JFace_WithGridId(fid, gid, name):
+	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Real_JFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Integer_JFace_WithGridId(fid, gid, name):
+	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Integer_JFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_FunctionalDimension_Integer_WithGridId(fid, gid, name, dimname):
 	size = cg_iRIC_Read_Grid_FunctionalDimensionSize_WithGridId(fid, gid, name, dimname)
 	v = IntArrayContainer(size)
@@ -1147,6 +1249,34 @@ def cg_iRIC_Read_Grid_Functional_Real_Cell_WithGridId(fid, gid, name, dimid):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Functional_Integer_IFace_WithGridId(fid, gid, name, dimid):
+	size = cg_iRIC_Read_Grid_IFaceCount_WithGridId(fid, gid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Integer_IFace_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_Real_IFace_WithGridId(fid, gid, name, dimid):
+	size = cg_iRIC_Read_Grid_IFaceCount_WithGridId(fid, gid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_IFace_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_Integer_JFace_WithGridId(fid, gid, name, dimid):
+	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Integer_JFace_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_Real_JFace_WithGridId(fid, gid, name, dimid):
+	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_JFace_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Write_Grid1d_Coords_WithGridId(fid, isize, x_arr):
 	x = RealArrayContainer(x_arr.size)
 	x.set(x_arr)
@@ -1174,6 +1304,33 @@ def cg_iRIC_Write_Grid3d_Coords_WithGridId(fid, isize, jsize, ksize, x_arr, y_ar
 	_checkErrorCode(ier)
 	return gid
 
+def cg_iRIC_Write_NamedGrid1d_Coords_WithGridId(fid, name, isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier, gid = _iric.cg_iRIC_Write_NamedGrid1d_Coords_WithGridId(fid, name, isize, x)
+	_checkErrorCode(ier)
+	return gid
+
+def cg_iRIC_Write_NamedGrid2d_Coords_WithGridId(fid, name, isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier, gid = _iric.cg_iRIC_Write_NamedGrid2d_Coords_WithGridId(fid, name, isize, jsize, x, y)
+	_checkErrorCode(ier)
+	return gid
+
+def cg_iRIC_Write_NamedGrid3d_Coords_WithGridId(fid, name, isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier, gid = _iric.cg_iRIC_Write_NamedGrid3d_Coords_WithGridId(fid, name, isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+	return gid
+
 def cg_iRIC_Write_Grid_Real_Node_WithGridId(fid, gid, name, v_arr):
 	v = RealArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1196,6 +1353,30 @@ def cg_iRIC_Write_Grid_Integer_Cell_WithGridId(fid, gid, name, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
 	ier = _iric.cg_iRIC_Write_Grid_Integer_Cell_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Real_IFace_WithGridId(fid, gid, name, v_arr):
+	v = RealArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Real_IFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Integer_IFace_WithGridId(fid, gid, name, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Integer_IFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Real_JFace_WithGridId(fid, gid, name, v_arr):
+	v = RealArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Real_JFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Integer_JFace_WithGridId(fid, gid, name, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Integer_JFace_WithGridId(fid, gid, name, v)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId):
@@ -1297,6 +1478,20 @@ def cg_iRIC_Read_Grid_Complex_Cell(fid, groupname):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Complex_IFace(fid, groupname):
+	size = cg_iRIC_Read_Grid_IFaceCount(fid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Complex_IFace(fid, groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Complex_JFace(fid, groupname):
+	size = cg_iRIC_Read_Grid_JFaceCount(fid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Complex_JFace(fid, groupname, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Write_Grid_Complex_Node(fid, groupname, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1307,6 +1502,18 @@ def cg_iRIC_Write_Grid_Complex_Cell(fid, groupname, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
 	ier = _iric.cg_iRIC_Write_Grid_Complex_Cell(fid, groupname, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Complex_IFace(fid, groupname, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Complex_IFace(fid, groupname, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Complex_JFace(fid, groupname, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Complex_JFace(fid, groupname, v)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Read_Grid2d_Coords(fid):
@@ -1361,6 +1568,34 @@ def cg_iRIC_Read_Grid_Integer_Cell(fid, name):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Real_IFace(fid, name):
+	size = cg_iRIC_Read_Grid_IFaceCount(fid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Real_IFace(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Integer_IFace(fid, name):
+	size = cg_iRIC_Read_Grid_IFaceCount(fid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Integer_IFace(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Real_JFace(fid, name):
+	size = cg_iRIC_Read_Grid_JFaceCount(fid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Real_JFace(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Integer_JFace(fid, name):
+	size = cg_iRIC_Read_Grid_JFaceCount(fid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Integer_JFace(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_FunctionalDimension_Integer(fid, name, dimname):
 	size = cg_iRIC_Read_Grid_FunctionalDimensionSize(fid, name, dimname)
 	v = IntArrayContainer(size)
@@ -1410,6 +1645,34 @@ def cg_iRIC_Read_Grid_Functional_Real_Cell(fid, name, dimid):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Functional_Integer_IFace(fid, name, dimid):
+	size = cg_iRIC_Read_Grid_IFaceCount(fid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Integer_IFace(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_Real_IFace(fid, name, dimid):
+	size = cg_iRIC_Read_Grid_IFaceCount(fid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_IFace(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_Integer_JFace(fid, name, dimid):
+	size = cg_iRIC_Read_Grid_JFaceCount(fid)
+	v = IntArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Integer_JFace(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_Real_JFace(fid, name, dimid):
+	size = cg_iRIC_Read_Grid_JFaceCount(fid)
+	v = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_JFace(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Write_Grid1d_Coords(fid, isize, x_arr):
 	x = RealArrayContainer(x_arr.size)
 	x.set(x_arr)
@@ -1434,6 +1697,30 @@ def cg_iRIC_Write_Grid3d_Coords(fid, isize, jsize, ksize, x_arr, y_arr, z_arr):
 	ier = _iric.cg_iRIC_Write_Grid3d_Coords(fid, isize, jsize, ksize, x, y, z)
 	_checkErrorCode(ier)
 
+def cg_iRIC_Write_NamedGrid1d_Coords(fid, name, isize, x_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	ier = _iric.cg_iRIC_Write_NamedGrid1d_Coords(fid, name, isize, x)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_NamedGrid2d_Coords(fid, name, isize, jsize, x_arr, y_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	ier = _iric.cg_iRIC_Write_NamedGrid2d_Coords(fid, name, isize, jsize, x, y)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_NamedGrid3d_Coords(fid, name, isize, jsize, ksize, x_arr, y_arr, z_arr):
+	x = RealArrayContainer(x_arr.size)
+	x.set(x_arr)
+	y = RealArrayContainer(y_arr.size)
+	y.set(y_arr)
+	z = RealArrayContainer(z_arr.size)
+	z.set(z_arr)
+	ier = _iric.cg_iRIC_Write_NamedGrid3d_Coords(fid, name, isize, jsize, ksize, x, y, z)
+	_checkErrorCode(ier)
+
 def cg_iRIC_Write_Grid_Real_Node(fid, name, v_arr):
 	v = RealArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1456,6 +1743,30 @@ def cg_iRIC_Write_Grid_Integer_Cell(fid, name, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
 	ier = _iric.cg_iRIC_Write_Grid_Integer_Cell(fid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Real_IFace(fid, name, v_arr):
+	v = RealArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Real_IFace(fid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Integer_IFace(fid, name, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Integer_IFace(fid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Real_JFace(fid, name, v_arr):
+	v = RealArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Real_JFace(fid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_Integer_JFace(fid, name, v_arr):
+	v = IntArrayContainer(v_arr.size)
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_Integer_JFace(fid, name, v)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Read_Sol_Cell_Integer(fid, step, name):
@@ -1714,6 +2025,16 @@ def cg_iRIC_Read_Sol_ParticleGroup_Integer(fid, step, groupname, name):
 	ier = _iric.cg_iRIC_Read_Sol_ParticleGroup_Integer(fid, step, groupname, name, v)
 	_checkErrorCode(ier)
 	return v.get()
+
+def cg_iRIC_Read_Sol_ParticleGroupImage_Pos2d(fid, step, groupname):
+	size = cg_iRIC_Read_Sol_ParticleGroupImage_Count(fid, step, groupname)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	size = RealArrayContainer(size)
+	angle = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Sol_ParticleGroupImage_Pos2d(fid, step, groupname, x, y, size, angle)
+	_checkErrorCode(ier)
+	return x.get(), y.get(), size.get(), angle.get()
 
 def cg_iRIC_Read_Sol_PolyData_Pos2d(fid, step, groupname):
 	size = cg_iRIC_Read_Sol_PolyData_CoordinateCount(fid, step, groupname)
@@ -2016,6 +2337,16 @@ def cg_iRIC_Read_Sol_ParticleGroup_Integer_WithGridId(fid, gid, step, groupname,
 	ier = _iric.cg_iRIC_Read_Sol_ParticleGroup_Integer_WithGridId(fid, gid, step, groupname, name, v)
 	_checkErrorCode(ier)
 	return v.get()
+
+def cg_iRIC_Read_Sol_ParticleGroupImage_Pos2d_WithGridId(fid, gid, step, groupname):
+	size = cg_iRIC_Read_Sol_ParticleGroupImage_Count_WithGridId(fid, gid, step, groupname)
+	x = RealArrayContainer(size)
+	y = RealArrayContainer(size)
+	size = RealArrayContainer(size)
+	angle = RealArrayContainer(size)
+	ier = _iric.cg_iRIC_Read_Sol_ParticleGroupImage_Pos2d_WithGridId(fid, gid, step, groupname, x, y, size, angle)
+	_checkErrorCode(ier)
+	return x.get(), y.get(), size.get(), angle.get()
 
 def cg_iRIC_Read_Sol_PolyData_Pos2d_WithGridId(fid, gid, step, groupname):
 	size = cg_iRIC_Read_Sol_PolyData_CoordinateCount_WithGridId(fid, gid, step, groupname)
