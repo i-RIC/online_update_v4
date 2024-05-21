@@ -2,7 +2,7 @@
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI v1.4.2.3 on iRIC"
-					version="1.4.2.240520"
+					version="1.4.2.240521"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd."
 					release="2024.5.20"
 					homepage="http://i-ric.org"
