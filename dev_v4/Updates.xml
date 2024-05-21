@@ -873,15 +873,15 @@
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.iRICsolvers_v4_RRI</Name>
-  <DisplayName>RRI v1.4.2.2 on iRIC</DisplayName>
+  <DisplayName>RRI v1.4.2.3 on iRIC</DisplayName>
   <Description/>
   <Version>1.4.2.240520</Version>
   <Default>true</Default>
   <ReleaseDate>2024-05-20</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="2658338" CompressedSize="834426" OS="Any"/>
+  <UpdateFile UncompressedSize="2658338" CompressedSize="834438" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>51aa2acb265e86ed5db6edf8cb94288bec679cc2</SHA1>
+  <SHA1>4d89d8e8d35d853fc81c8b1c621c15008155d3cb</SHA1>
  </PackageUpdate>
 </Updates>
