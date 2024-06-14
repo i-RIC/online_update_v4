@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Package>
-	<DisplayName>iriclib and iRIC-MI for Miniconda 3</DisplayName>
-	<Description>iriclib and iRIC-MI for Miniconda 3</Description>
+	<DisplayName>iriclib for Miniconda 3</DisplayName>
+	<Description>iriclib for Miniconda 3</Description>
 	<Dependencies></Dependencies>
 	<Version>4.0.51</Version>
 	<Default>false</Default>
