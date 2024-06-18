@@ -397,19 +397,6 @@
   <SHA1>1b9a2663622f9534360769016c1bbd9a60205a1d</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gui.runtime</Name>
-  <DisplayName>iRIC GUI Runtime</DisplayName>
-  <Description>Runtime DLLs for iRIC Main GUI</Description>
-  <Version>1.2.0</Version>
-  <ReleaseDate>2023-09-06</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>true</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="324584589" OS="Any" CompressedSize="87281571"/>
-  <DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives>
-  <SHA1>a27c91d302d75809052802f998bc19c35e20924c</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.iRICsolvers_srm</Name>
   <DisplayName>SRM</DisplayName>
   <Description/>
@@ -813,22 +800,6 @@
   <SHA1>aa27de9f07cef26ecde84456509f8c966867ab76</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gui.prepost</Name>
-  <DisplayName>iRIC v4 (develop)</DisplayName>
-  <Description>iRIC Main GUI</Description>
-  <Version>4.1.0.7052</Version>
-  <ReleaseDate>2024-06-14</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>true</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="43722176" OS="Any" CompressedSize="6004620"/>
-  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
-  <Licenses>
-   <License file="LICENSE" name="MIT License"/>
-  </Licenses>
-  <SHA1>496c5a998856feae3c117191601d3d494449f205</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>miniconda</Name>
   <DisplayName>Miniconda 3</DisplayName>
   <Description>Miniconda 3-py312_24.4.0</Description>
@@ -839,21 +810,6 @@
   <UpdateFile UncompressedSize="3476077" OS="Any" CompressedSize="301613"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>96b561a2a92448df3dd7400f0a492e9f8c3b74d8</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>miniconda.iriclib</Name>
-  <DisplayName>iriclib and iRIC-MI for Miniconda 3</DisplayName>
-  <Description>iriclib and iRIC-MI for Miniconda 3</Description>
-  <Dependencies/>
-  <Version>4.0.51.1</Version>
-  <Default>false</Default>
-  <ReleaseDate>2024-06-17</ReleaseDate>
-  <SortingPriority>10</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="43960776" OS="Any" CompressedSize="9100600"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>5cc65ede846a142b198e69135434537c5fd6e906</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>miniconda.main</Name>
@@ -871,17 +827,61 @@
   <SHA1>cc0acb2efb349a4f2b116048f079bc8d32a2f1c7</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>sdk</Name>
-  <DisplayName>iRIC Solver SDK</DisplayName>
-  <Description>Headers and libraries needed to develop iRIC solvers</Description>
-  <Version>4.0.51.1</Version>
-  <Default>true</Default>
+  <Name>gui.prepost</Name>
+  <DisplayName>iRIC v4 (develop)</DisplayName>
+  <Description>iRIC Main GUI</Description>
+  <Version>4.1.0.7053</Version>
+  <ReleaseDate>2024-06-18</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="43720119" OS="Any" CompressedSize="6003664"/>
+  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
+  <Licenses>
+   <License name="MIT License" file="LICENSE"/>
+  </Licenses>
+  <SHA1>345a72d9f12042ee0c0f52d179a2fbfe88488d42</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.runtime</Name>
+  <DisplayName>iRIC GUI Runtime</DisplayName>
+  <Description>Runtime DLLs for iRIC Main GUI</Description>
+  <Version>1.3.0</Version>
+  <ReleaseDate>2024-06-18</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="325605517" OS="Any" CompressedSize="87568684"/>
+  <DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives>
+  <SHA1>8646b56ffcd101591eb3747d953df6e0bdff9c28</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda.iriclib</Name>
+  <DisplayName>iriclib and iRIC-MI for Miniconda 3</DisplayName>
+  <Description>iriclib and iRIC-MI for Miniconda 3</Description>
+  <Dependencies/>
+  <Version>4.0.51.2</Version>
+  <Default>false</Default>
   <ReleaseDate>2024-06-17</ReleaseDate>
   <SortingPriority>10</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="27141905" CompressedSize="2933824" OS="Any"/>
+  <UpdateFile UncompressedSize="45004744" OS="Any" CompressedSize="9389647"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>b9558dedd273219e8f42f79ced411b838b42efd8</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>sdk</Name>
+  <DisplayName>iRIC Solver SDK</DisplayName>
+  <Description>Headers and libraries needed to develop iRIC solvers</Description>
+  <Version>4.0.51.2</Version>
+  <Default>true</Default>
+  <ReleaseDate>2024-06-18</ReleaseDate>
+  <SortingPriority>10</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="25606609" OS="Any" CompressedSize="2703589"/>
   <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>ca670f27eada9657716762175ee25191e73c229c</SHA1>
+  <SHA1>77ba558742a9c81d0037d35c525dc0b9408859e0</SHA1>
  </PackageUpdate>
 </Updates>
