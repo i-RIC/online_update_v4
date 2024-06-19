@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <Package>
 	<DisplayName>Miniconda 3</DisplayName>
-	<Description>Miniconda 3-py38_4.9.2</Description>
+	<Description>Miniconda 3-py312_24.4.0</Description>
 	<Dependencies></Dependencies>
-	<Version>4.9.2.1</Version>
+	<Version>24.4.0</Version>
 	<Default>false</Default>
-	<ReleaseDate>2023-06-19</ReleaseDate>
+	<ReleaseDate>2024-06-17</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<ForcedInstallation>false</ForcedInstallation>
 	<Script>installscript.qs</Script>
