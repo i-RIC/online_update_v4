@@ -29,6 +29,11 @@ public:
 		Structured,
 		Unstructured
 	};
+	enum class CellType {
+		Triangle,
+		Line,
+	};
+
 	enum class SolutionPosition {
 		Null,
 		Node,
@@ -71,10 +76,18 @@ public:
 	H5CgnsGridAttributes* gridAttributes() const;
 	H5CgnsZoneBc* zoneBc() const;
 
+	int readUnstructuredGridCellType(CellType* type) const;
+
 	int readTriangleElementsSize(int* size) const;
 	int readTriangleElementsValueCount(int* size) const;
 	int readTriangleElements(std::vector<int>* indices) const;
 	int writeTriangleElements(const std::vector<int>& indices) const;
+
+	int readLineElementsSize(int* size) const;
+	int readLineElementsValueCount(int* size) const;
+	int readLineElements(std::vector<int>* indices) const;
+	int writeLineElements(const std::vector<int>& indices) const;
+
 	int copyExceptSolution(H5CgnsZone* target);
 
 	bool gridCoordinatesForSolutionExists() const;
