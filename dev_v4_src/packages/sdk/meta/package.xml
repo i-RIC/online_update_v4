@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>iRIC Solver SDK</DisplayName>
 	<Description>Headers and libraries needed to develop iRIC solvers</Description>
-	<Version>4.0.53</Version>
+	<Version>4.0.54</Version>
 	<Default>true</Default>
-	<ReleaseDate>2024-06-24</ReleaseDate>
+	<ReleaseDate>2024-07-02</ReleaseDate>
 	<SortingPriority>10</SortingPriority>
 	<ForcedInstallation>false</ForcedInstallation>
 	<Script>installscript.qs</Script>
