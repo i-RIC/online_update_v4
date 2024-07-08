@@ -5,8 +5,8 @@
 -->
     <context>
         <message>
-            <source>GELATO(former UTT)</source>
-            <translation>GELATO(旧 UTT)</translation>
+            <source>GELATO</source>
+            <translation>GELATO</translation>
         </message>
         <message>
             <source>Basic Settings</source>
