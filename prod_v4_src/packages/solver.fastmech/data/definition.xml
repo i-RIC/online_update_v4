@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition
 	xmlns="www.iric.net/SolverDefinition/1.0"
-	name="fastmech" caption="FaSTMECH" version="1.1.3"  copyright="None"
-	release="2022.02.01" homepage="https://wwwbrr.cr.usgs.gov/gstl/index.html"
+	name="fastmech" caption="FaSTMECH" version="1.1.7" copyright="None"
+	release="2023.05.21" homepage="https://wwwbrr.cr.usgs.gov/gstl/index.html"
 	executable="Fastmech.exe"
 	iterationtype="time"
 	gridtype="structured2d"
@@ -253,7 +253,7 @@
 							</Dependency>
 						</Definition>
 					</Item>
-					<!--<Item name="FM_SolAttNSExtShow" caption="View Extension">
+					<Item name="FM_SolAttNSExtShow" caption="View Extension">
 						<Definition conditionType="constant" valueType="integer" option="true"
 							default="0">
 							<Enumerations>
@@ -265,7 +265,7 @@
 								<Action type="enable" />
 							</Dependency>
 						</Definition>
-					</Item>-->
+					</Item>
 					<Item name="FM_HydAttVelBCDS" caption="Downstream Boundary Velocity">
 						<Definition conditionType="constant" valueType="integer" option="true"
 							default="0">
@@ -750,8 +750,8 @@
 							<Enumerations>
 								<Enumeration value="0" caption="Yalin" />
 								<Enumeration value="1" caption="Engelund-Hansen" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-								<!--<Enumeration value="2" caption="Wilcock-Kenworthy" />
-                <Enumeration value="3" caption="Meyer-Peter Muller" />-->
+								<Enumeration value="2" caption="Wilcock-Kenworthy" />
+                					<Enumeration value="3" caption="Meyer-Peter Muller" />
               </Enumerations>
 							<Dependency>
 								<Condition type="isEqual" target="FM_SedTrans" value="1" />
@@ -768,7 +768,7 @@
 							</Dependency>
 						</Definition>
 					</Item>
-					<Item name="FM_SedDuneH" caption="Dune Hieght (0 for planebed)">
+					<Item name="FM_SedDuneH" caption="Dune Height (0 for planebed)">
 						<Definition conditionType="constant" valueType="real" option="false"
 							default="0">
 							<Dependency>
@@ -804,7 +804,7 @@
 							</Dependency>
 						</Definition>
 					</Item>
-					<Item name="FM_SedSmoothWeight" caption="Smoothing Wieght">
+					<Item name="FM_SedSmoothWeight" caption="Smoothing Weight">
 						<Definition conditionType="constant" valueType="real" option="false"
 							default="0.3">
 							<Dependency>
