@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ColorMapSetting transitionMode="0" valueMode="1" autoValueRange="true" minValue="0" maxValue="1" fillUppeer="true" fillLower="true" colorTableMinValue="0" visible="true" direction="1" barAutoWidth="false" barWidth="30" barAlign="2" title="title" autoNumberOfLabels="true" numberOfLabels="2" labelSkipRate="1" labelFormat="%5.2f" titleFont="Arial,14,-1,5,50,0,0,0,0,0,Regular" labelFont="Arial,14,-1,5,50,0,0,0,0,0,Regular" titleColor="#000000" labelColor="#000000" backgroundColor="#ffffff" backgroundOpacityEnabled="true" backgroundOpacityPercent="20" showBorder="true" position="7" horizontalMarginRatio="0" verticalMarginRatio="0.1" autoSize="true" width="300" height="300">
+    <Item value="0.000000" color="#00224d" transparent="false"/>
+    <Item value="0.111111" color="#11356f" transparent="false"/>
+    <Item value="0.222222" color="#3a486b" transparent="false"/>
+    <Item value="0.333333" color="#575d6d" transparent="false"/>
+    <Item value="0.444444" color="#6f7073" transparent="false"/>
+    <Item value="0.555556" color="#898678" transparent="false"/>
+    <Item value="0.666667" color="#a59b73" transparent="false"/>
+    <Item value="0.777778" color="#c3b368" transparent="false"/>
+    <Item value="0.888889" color="#e1cc54" transparent="false"/>
+    <Item value="1.000000" color="#fde737" transparent="false"/>
+</ColorMapSetting>

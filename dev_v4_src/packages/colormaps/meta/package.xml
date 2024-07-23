@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Standard Colormaps</DisplayName>
 	<Description></Description>
-	<Version>0.0.3</Version>
+	<Version>0.0.4</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023-04-26</ReleaseDate>
+	<ReleaseDate>2024-07-23</ReleaseDate>
 	<SortingPriority>30</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
