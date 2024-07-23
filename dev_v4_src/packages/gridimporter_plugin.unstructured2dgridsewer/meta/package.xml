@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+	<DisplayName>Unstructured grid Sewer CSV importer</DisplayName>
+	<Description>Unstructured grid Sewer CSV importer</Description>
+	<Version>0.1</Version>
+	<Default>true</Default>
+	<ReleaseDate>2024-07-23</ReleaseDate>
+	<SortingPriority>100</SortingPriority>
+	<Script>installscript.qs</Script>
+</Package>
