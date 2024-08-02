@@ -1218,15 +1218,15 @@
             <translation>河川測量ファイル</translation>
         </message>
         <message>
-            <source>River survey file name</source>
+            <source>     River survey file name</source>
             <translation>河川測量ファイル</translation>
         </message>
         <message>
-            <source>Initial water-elevation at downstream</source>
+            <source>     Initial water-elevation at downstream</source>
             <translation>     下流端水位</translation>
         </message>
         <message>
-            <source>Initial water-surface gradient</source>
+            <source>     Initial water-surface slope</source>
             <translation>     初期水面勾配</translation>
         </message>
         <message>

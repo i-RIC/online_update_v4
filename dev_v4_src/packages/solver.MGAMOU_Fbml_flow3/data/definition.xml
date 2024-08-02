@@ -1687,40 +1687,33 @@
 					</Definition>
 				</Item>
 				<GroupBox caption="River survey file">
-					<HBoxLayout>
-						<Label row="0" col="0" caption="River survey file name"/>
-						<Item row="0" col="1" name="SURVEY_FILE" >
-							<Definition conditionType="constant" valueType="filename" option="false" default="Select File" keepOrder="true">
+					<Item name="SURVEY_FILE" caption="     River survey file name">
+						<Definition conditionType="constant" valueType="filename" option="false" default="Select File" keepOrder="true">
 							<Condition type="or">
 								<Condition type="isEqual" target="IAREA" value="1"/>
 								<Condition type="isEqual" target="IAREA" value="2"/>
 							</Condition>
-								<Action type="enable" />
-							</Definition>
-						</Item>
-					</HBoxLayout>
-					<HBoxLayout>
-						<Label row="0" col="0" caption="Initial water-elevation at downstream"/>
-						<Item row="1" col="0" name="HQ_00" >
-							<Definition conditionType="constant" valueType="real" option="true" default="0" keepOrder="true">
+							<Action type="enable" />
+						</Definition>
+					</Item>
+					<Item name="HQ_00" caption="     Initial water-elevation at downstream">
+						<Definition conditionType="constant" valueType="real" option="true" default="0" keepOrder="true">
 							<Condition type="or">
 								<Condition type="isEqual" target="IAREA" value="1"/>
 								<Condition type="isEqual" target="IAREA" value="2"/>
 							</Condition>
-								<Action type="enable" />
-							</Definition>
-						</Item>
-						<Label row="0" col="1" caption="Initial water-surface gradient"/>
-						<Item row="1" col="1" name="DSX_00" >
-							<Definition conditionType="constant" valueType="real" option="true" default="0" keepOrder="true">
+							<Action type="enable" />
+						</Definition>
+					</Item>
+					<Item name="DSX_00" caption="     Initial water-surface slope">
+						<Definition conditionType="constant" valueType="real" option="true" default="0" keepOrder="true">
 							<Condition type="or">
 								<Condition type="isEqual" target="IAREA" value="1"/>
 								<Condition type="isEqual" target="IAREA" value="2"/>
 							</Condition>
-								<Action type="enable" />
-							</Definition>
-						</Item>
-					</HBoxLayout>
+							<Action type="enable" />
+						</Definition>
+					</Item>
 				</GroupBox>
 				<GroupBox caption="Water surface elevation (flat)">
 					<Item name="WATER_S" caption="Water surface elevation">

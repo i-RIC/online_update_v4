@@ -397,19 +397,6 @@
   <SHA1>3908a7f264ee1c3114ed2e1d303d89e7d46ac4a8</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.MGAMOU_Fbml_flow3</Name>
-  <DisplayName>Fbml_flow3_v2023_2_iric4</DisplayName>
-  <Description/>
-  <Version>1.2023.2</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-08-01</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="15129971" CompressedSize="1845068"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>f5ebdd7ef2ae40cff1ab1d0a69c29213f3aafe1c</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>solver.ichirokk_CUBEv4</Name>
   <DisplayName>NaysCUBE v4.43.79</DisplayName>
   <Description/>
@@ -896,5 +883,18 @@
   <UpdateFile OS="Any" UncompressedSize="1142212" CompressedSize="283030"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>c1e7a74a71ddb5464660814fb9de6a6dd7b32f04</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.MGAMOU_Fbml_flow3</Name>
+  <DisplayName>Fbml_flow3_v2023_2_iric4</DisplayName>
+  <Description/>
+  <Version>1.2023.2</Version>
+  <Default>true</Default>
+  <ReleaseDate>2023-08-01</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" UncompressedSize="15129755" CompressedSize="1844989"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>a38cd218d1a94638d922e46080715f18716c7cee</SHA1>
  </PackageUpdate>
 </Updates>
