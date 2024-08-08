@@ -2705,6 +2705,17 @@ contains
 
   end subroutine
 
+  subroutine cg_iric_read_grid_celltype_withgridid(fid, gid, type, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: gid
+    integer, intent(out):: type
+    integer, intent(out):: ier
+
+    call cg_iric_read_grid_celltype_withgridid_f2c &
+      (fid, gid, type, ier)
+
+  end subroutine
+
   subroutine cg_iric_read_grid_triangleelementssize_withgridid(fid, gid, tsize, ier)
     integer, intent(in):: fid
     integer, intent(in):: gid
@@ -2723,6 +2734,28 @@ contains
     integer, intent(out):: ier
 
     call cg_iric_read_grid_triangleelements_withgridid_f2c &
+      (fid, gid, id_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_read_grid_lineelementssize_withgridid(fid, gid, tsize, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: gid
+    integer, intent(out):: tsize
+    integer, intent(out):: ier
+
+    call cg_iric_read_grid_lineelementssize_withgridid_f2c &
+      (fid, gid, tsize, ier)
+
+  end subroutine
+
+  subroutine cg_iric_read_grid_lineelements_withgridid(fid, gid, id_arr, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: gid
+    integer, dimension(:), intent(out):: id_arr
+    integer, intent(out):: ier
+
+    call cg_iric_read_grid_lineelements_withgridid_f2c &
       (fid, gid, id_arr, ier)
 
   end subroutine
@@ -3591,6 +3624,101 @@ contains
 
     call cg_iric_write_namedgrid3d_coords_withgridid_f2c &
       (fid, name, isize, jsize, ksize, x_arr, y_arr, z_arr, gid, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_grid2d_unst_triangles_withgridid(fid, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: gid
+    integer, intent(out):: ier
+
+    call cg_iric_write_grid2d_unst_triangles_withgridid_f2c &
+      (fid, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_grid2d_unst_lines_withgridid(fid, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: gid
+    integer, intent(out):: ier
+
+    call cg_iric_write_grid2d_unst_lines_withgridid_f2c &
+      (fid, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_grid3d_unst_lines_withgridid(fid, psize, x_arr, y_arr, z_arr, csize, idx_arr, gid, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    double precision, dimension(:), intent(in):: z_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: gid
+    integer, intent(out):: ier
+
+    call cg_iric_write_grid3d_unst_lines_withgridid_f2c &
+      (fid, psize, x_arr, y_arr, z_arr, csize, idx_arr, gid, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_namedgrid2d_unst_triangles_withgridid(fid, name, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+    integer, intent(in):: fid
+    character(*), intent(in):: name
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: gid
+    integer, intent(out):: ier
+
+    call cg_iric_write_namedgrid2d_unst_triangles_withgridid_f2c &
+      (fid, name, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_namedgrid2d_unst_lines_withgridid(fid, name, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+    integer, intent(in):: fid
+    character(*), intent(in):: name
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: gid
+    integer, intent(out):: ier
+
+    call cg_iric_write_namedgrid2d_unst_lines_withgridid_f2c &
+      (fid, name, psize, x_arr, y_arr, csize, idx_arr, gid, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_namedgrid3d_unst_lines_withgridid(fid, name, psize, x_arr, y_arr, z_arr, csize, idx_arr, gid, ier)
+    integer, intent(in):: fid
+    character(*), intent(in):: name
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    double precision, dimension(:), intent(in):: z_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: gid
+    integer, intent(out):: ier
+
+    call cg_iric_write_namedgrid3d_unst_lines_withgridid_f2c &
+      (fid, name, psize, x_arr, y_arr, z_arr, csize, idx_arr, gid, ier)
 
   end subroutine
 
@@ -5558,6 +5686,16 @@ contains
 
   end subroutine
 
+  subroutine cg_iric_read_grid_celltype(fid, type, ier)
+    integer, intent(in):: fid
+    integer, intent(out):: type
+    integer, intent(out):: ier
+
+    call cg_iric_read_grid_celltype_f2c &
+      (fid, type, ier)
+
+  end subroutine
+
   subroutine cg_iric_read_grid_triangleelementssize(fid, tsize, ier)
     integer, intent(in):: fid
     integer, intent(out):: tsize
@@ -5574,6 +5712,26 @@ contains
     integer, intent(out):: ier
 
     call cg_iric_read_grid_triangleelements_f2c &
+      (fid, id_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_read_grid_lineelementssize(fid, tsize, ier)
+    integer, intent(in):: fid
+    integer, intent(out):: tsize
+    integer, intent(out):: ier
+
+    call cg_iric_read_grid_lineelementssize_f2c &
+      (fid, tsize, ier)
+
+  end subroutine
+
+  subroutine cg_iric_read_grid_lineelements(fid, id_arr, ier)
+    integer, intent(in):: fid
+    integer, dimension(:), intent(out):: id_arr
+    integer, intent(out):: ier
+
+    call cg_iric_read_grid_lineelements_f2c &
       (fid, id_arr, ier)
 
   end subroutine
@@ -6374,6 +6532,95 @@ contains
 
     call cg_iric_write_namedgrid3d_coords_f2c &
       (fid, name, isize, jsize, ksize, x_arr, y_arr, z_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_grid2d_unst_triangles(fid, psize, x_arr, y_arr, csize, idx_arr, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: ier
+
+    call cg_iric_write_grid2d_unst_triangles_f2c &
+      (fid, psize, x_arr, y_arr, csize, idx_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_grid2d_unst_lines(fid, psize, x_arr, y_arr, csize, idx_arr, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: ier
+
+    call cg_iric_write_grid2d_unst_lines_f2c &
+      (fid, psize, x_arr, y_arr, csize, idx_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_grid3d_unst_lines(fid, psize, x_arr, y_arr, z_arr, csize, idx_arr, ier)
+    integer, intent(in):: fid
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    double precision, dimension(:), intent(in):: z_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: ier
+
+    call cg_iric_write_grid3d_unst_lines_f2c &
+      (fid, psize, x_arr, y_arr, z_arr, csize, idx_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_namedgrid2d_unst_triangles(fid, name, psize, x_arr, y_arr, csize, idx_arr, ier)
+    integer, intent(in):: fid
+    character(*), intent(in):: name
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: ier
+
+    call cg_iric_write_namedgrid2d_unst_triangles_f2c &
+      (fid, name, psize, x_arr, y_arr, csize, idx_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_namedgrid2d_unst_lines(fid, name, psize, x_arr, y_arr, csize, idx_arr, ier)
+    integer, intent(in):: fid
+    character(*), intent(in):: name
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: ier
+
+    call cg_iric_write_namedgrid2d_unst_lines_f2c &
+      (fid, name, psize, x_arr, y_arr, csize, idx_arr, ier)
+
+  end subroutine
+
+  subroutine cg_iric_write_namedgrid3d_unst_lines(fid, name, psize, x_arr, y_arr, z_arr, csize, idx_arr, ier)
+    integer, intent(in):: fid
+    character(*), intent(in):: name
+    integer, intent(in):: psize
+    double precision, dimension(:), intent(in):: x_arr
+    double precision, dimension(:), intent(in):: y_arr
+    double precision, dimension(:), intent(in):: z_arr
+    integer, intent(in):: csize
+    integer, dimension(:), intent(in):: idx_arr
+    integer, intent(out):: ier
+
+    call cg_iric_write_namedgrid3d_unst_lines_f2c &
+      (fid, name, psize, x_arr, y_arr, z_arr, csize, idx_arr, ier)
 
   end subroutine
 
