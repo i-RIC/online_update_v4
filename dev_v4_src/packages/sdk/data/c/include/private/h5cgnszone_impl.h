@@ -96,6 +96,7 @@ private:
 	int openSolutionGroup(const std::string& name, hid_t* gId);
 	int createSolutionGroup(const std::string& name, const std::string& gridLocation, hid_t* gId);
 	std::string getSolutionName(const std::string& pointersName, const std::string& prefix, int solId);
+	std::string getStandardSolutionName(const std::string& prefix, int solId);
 
 	H5CgnsZone* m_zone;
 };

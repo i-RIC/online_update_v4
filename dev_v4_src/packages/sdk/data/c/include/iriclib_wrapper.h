@@ -46,6 +46,7 @@ int IRICLIBDLL iRIC_Geo_RiverSurvey_Read_Altitudes(int geo_handle, int csid, Rea
 int IRICLIBDLL cg_iRIC_Read_Grid2d_Coords_WithGridId(int fid, int gid, RealArrayContainer& x_arr, RealArrayContainer& y_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid3d_Coords_WithGridId(int fid, int gid, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_TriangleElements_WithGridId(int fid, int gid, IntArrayContainer& id_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_LineElements_WithGridId(int fid, int gid, IntArrayContainer& id_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_Node_WithGridId(int fid, int gid, const char* name, RealArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_Node_WithGridId(int fid, int gid, const char* name, IntArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_Cell_WithGridId(int fid, int gid, const char* name, RealArrayContainer& v_arr);
@@ -71,6 +72,12 @@ int IRICLIBDLL cg_iRIC_Write_Grid3d_Coords_WithGridId(int fid, int isize, int js
 int IRICLIBDLL cg_iRIC_Write_NamedGrid1d_Coords_WithGridId(int fid, const char* name, int isize, RealArrayContainer& x_arr, int* gid);
 int IRICLIBDLL cg_iRIC_Write_NamedGrid2d_Coords_WithGridId(int fid, const char* name, int isize, int jsize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int* gid);
 int IRICLIBDLL cg_iRIC_Write_NamedGrid3d_Coords_WithGridId(int fid, const char* name, int isize, int jsize, int ksize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr, int* gid);
+int IRICLIBDLL cg_iRIC_Write_Grid2d_Unst_Triangles_WithGridId(int fid, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr, int* gid);
+int IRICLIBDLL cg_iRIC_Write_Grid2d_Unst_Lines_WithGridId(int fid, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr, int* gid);
+int IRICLIBDLL cg_iRIC_Write_Grid3d_Unst_Lines_WithGridId(int fid, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr, int csize, IntArrayContainer& idx_arr, int* gid);
+int IRICLIBDLL cg_iRIC_Write_NamedGrid2d_Unst_Triangles_WithGridId(int fid, const char* name, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr, int* gid);
+int IRICLIBDLL cg_iRIC_Write_NamedGrid2d_Unst_Lines_WithGridId(int fid, const char* name, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr, int* gid);
+int IRICLIBDLL cg_iRIC_Write_NamedGrid3d_Unst_Lines_WithGridId(int fid, const char* name, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr, int csize, IntArrayContainer& idx_arr, int* gid);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_Node_WithGridId(int fid, int gid, const char* name, RealArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_Node_WithGridId(int fid, int gid, const char* name, IntArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_Cell_WithGridId(int fid, int gid, const char* name, RealArrayContainer& v_arr);
@@ -109,6 +116,7 @@ int IRICLIBDLL cg_iRIC_Write_Grid_Complex_JFace(int fid, const char* groupname, 
 int IRICLIBDLL cg_iRIC_Read_Grid2d_Coords(int fid, RealArrayContainer& x_arr, RealArrayContainer& y_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid3d_Coords(int fid, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_TriangleElements(int fid, IntArrayContainer& id_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_LineElements(int fid, IntArrayContainer& id_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_Node(int fid, const char* name, RealArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_Node(int fid, const char* name, IntArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_Cell(int fid, const char* name, RealArrayContainer& v_arr);
@@ -134,6 +142,12 @@ int IRICLIBDLL cg_iRIC_Write_Grid3d_Coords(int fid, int isize, int jsize, int ks
 int IRICLIBDLL cg_iRIC_Write_NamedGrid1d_Coords(int fid, const char* name, int isize, RealArrayContainer& x_arr);
 int IRICLIBDLL cg_iRIC_Write_NamedGrid2d_Coords(int fid, const char* name, int isize, int jsize, RealArrayContainer& x_arr, RealArrayContainer& y_arr);
 int IRICLIBDLL cg_iRIC_Write_NamedGrid3d_Coords(int fid, const char* name, int isize, int jsize, int ksize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid2d_Unst_Triangles(int fid, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid2d_Unst_Lines(int fid, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid3d_Unst_Lines(int fid, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr, int csize, IntArrayContainer& idx_arr);
+int IRICLIBDLL cg_iRIC_Write_NamedGrid2d_Unst_Triangles(int fid, const char* name, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr);
+int IRICLIBDLL cg_iRIC_Write_NamedGrid2d_Unst_Lines(int fid, const char* name, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, int csize, IntArrayContainer& idx_arr);
+int IRICLIBDLL cg_iRIC_Write_NamedGrid3d_Unst_Lines(int fid, const char* name, int psize, RealArrayContainer& x_arr, RealArrayContainer& y_arr, RealArrayContainer& z_arr, int csize, IntArrayContainer& idx_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_Node(int fid, const char* name, RealArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_Node(int fid, const char* name, IntArrayContainer& v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_Cell(int fid, const char* name, RealArrayContainer& v_arr);
