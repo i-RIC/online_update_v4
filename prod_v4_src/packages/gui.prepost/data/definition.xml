@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GuiDefinition 
   xmlns="www.iric.net/GuiDefinition/1.0"
-  name="prepost" caption="iRIC v4" version="4.1.0.6937" release="2024.08.08"
+  name="prepost" caption="iRIC v4" version="4.1.0.6938" release="2024.08.20"
   copyright="iRIC Organization" essential="true"
-  github-sha1="587d1558948ddd3ffb374e77c92907270aebc759"
-  iriclib-github-sha1="587d1558948ddd3ffb374e77c92907270aebc759"
+  github-sha1="44d74749215f6181d1cd4bd875ea14c9250d6394"
+  iriclib-github-sha1="44d74749215f6181d1cd4bd875ea14c9250d6394"
 >
 </GuiDefinition>
