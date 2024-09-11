@@ -500,19 +500,6 @@
   <SHA1>8ec0e33a736e79e70a8b18e1c63b2451a12cf056</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gridimporter_plugin.structured2dgridnaysgrid</Name>
-  <DisplayName>Structured grid Nays grid file importer</DisplayName>
-  <Description>Structured grid Nays grid file importer</Description>
-  <Version>1.0.1</Version>
-  <Default>true</Default>
-  <ReleaseDate>2023-11-09</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="26431" CompressedSize="10699" OS="Any" />
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>85f7defb0f71bd2b12976bef85a09c9797051d7d</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridimporter_plugin.unstructured2dgridtriangle</Name>
   <DisplayName>Unstructured grid TRIANGLE file importer</DisplayName>
   <Description>Unstructured grid TRIANGLE file importer</Description>
@@ -815,19 +802,6 @@
   <UpdateFile UncompressedSize="37449" CompressedSize="13767" OS="Any" />
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>7145f01b122715a066abdff96841c8840f971f79</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>gridexporter_plugin.structured2dgridnaysgrid</Name>
-  <DisplayName>Structured grid Nays grid file exporter</DisplayName>
-  <Description>Structured grid Nays grid file exporter</Description>
-  <Version>1.0.3</Version>
-  <Default>true</Default>
-  <ReleaseDate>2024-09-09</ReleaseDate>
-  <SortingPriority>30</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="26545" CompressedSize="10670" OS="Any" />
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>e4567b78466dd87e8c3848710b5620064d26d31f</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridexporter_plugin.structured2dgridvtk</Name>
