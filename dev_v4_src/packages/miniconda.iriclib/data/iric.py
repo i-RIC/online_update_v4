@@ -144,6 +144,55 @@ class RealArrayContainer(object):
 # Register RealArrayContainer in _iric:
 _iric.RealArrayContainer_swigregister(RealArrayContainer)
 
+class StringArrayContainer(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self):
+        _iric.StringArrayContainer_swiginit(self, _iric.new_StringArrayContainer())
+    __swig_destroy__ = _iric.delete_StringArrayContainer
+
+    def allocate(self, size, maxlen):
+        return _iric.StringArrayContainer_allocate(self, size, maxlen)
+
+    def size(self):
+        return _iric.StringArrayContainer_size(self)
+
+    def maxlen(self):
+        return _iric.StringArrayContainer_maxlen(self)
+
+    def value(self, index):
+        return _iric.StringArrayContainer_value(self, index)
+
+    def setValue(self, index, v):
+        return _iric.StringArrayContainer_setValue(self, index, v)
+
+    def pointer(self):
+        return _iric.StringArrayContainer_pointer(self)
+
+    def get(self):
+        ret = list()
+        for i in range(self.size()):
+            ret.append(self.value(i))
+        return ret
+
+    def set(self, vals):
+        size = len(vals)
+        maxlen = 1
+        for v in vals:
+            l = len(v) + 1
+            if l > maxlen:
+                maxlen = l
+        
+        self.allocate(size, maxlen)
+
+        for i in range(size):
+            self.setValue(i, vals[i])
+
+# Register StringArrayContainer in _iric:
+_iric.StringArrayContainer_swigregister(StringArrayContainer)
+
+
 # from iriclib_bc.h
 def cg_iRIC_Read_BC_Count_WithGridId(fid, gid, type):
 	num = _iric.cg_iRIC_Read_BC_Count_WithGridId(fid, gid, type)
@@ -1195,6 +1244,12 @@ def cg_iRIC_Read_Grid_Integer_Node_WithGridId(fid, gid, name):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_String_Node_WithGridId(fid, gid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_Node_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Real_Cell_WithGridId(fid, gid, name):
 	size = cg_iRIC_Read_Grid_CellCount_WithGridId(fid, gid)
 	v = RealArrayContainer(size)
@@ -1206,6 +1261,12 @@ def cg_iRIC_Read_Grid_Integer_Cell_WithGridId(fid, gid, name):
 	size = cg_iRIC_Read_Grid_CellCount_WithGridId(fid, gid)
 	v = IntArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Integer_Cell_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_String_Cell_WithGridId(fid, gid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_Cell_WithGridId(fid, gid, name, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1223,6 +1284,12 @@ def cg_iRIC_Read_Grid_Integer_IFace_WithGridId(fid, gid, name):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_String_IFace_WithGridId(fid, gid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_IFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Real_JFace_WithGridId(fid, gid, name):
 	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
 	v = RealArrayContainer(size)
@@ -1234,6 +1301,12 @@ def cg_iRIC_Read_Grid_Integer_JFace_WithGridId(fid, gid, name):
 	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
 	v = IntArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Integer_JFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_String_JFace_WithGridId(fid, gid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_JFace_WithGridId(fid, gid, name, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1272,6 +1345,12 @@ def cg_iRIC_Read_Grid_Functional_Real_Node_WithGridId(fid, gid, name, dimid):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Functional_String_Node_WithGridId(fid, gid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_Node_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Functional_Integer_Cell_WithGridId(fid, gid, name, dimid):
 	size = cg_iRIC_Read_Grid_CellCount_WithGridId(fid, gid)
 	v = IntArrayContainer(size)
@@ -1283,6 +1362,12 @@ def cg_iRIC_Read_Grid_Functional_Real_Cell_WithGridId(fid, gid, name, dimid):
 	size = cg_iRIC_Read_Grid_CellCount_WithGridId(fid, gid)
 	v = RealArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_Cell_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_String_Cell_WithGridId(fid, gid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_Cell_WithGridId(fid, gid, name, dimid, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1300,6 +1385,12 @@ def cg_iRIC_Read_Grid_Functional_Real_IFace_WithGridId(fid, gid, name, dimid):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Functional_String_IFace_WithGridId(fid, gid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_IFace_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Functional_Integer_JFace_WithGridId(fid, gid, name, dimid):
 	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
 	v = IntArrayContainer(size)
@@ -1311,6 +1402,12 @@ def cg_iRIC_Read_Grid_Functional_Real_JFace_WithGridId(fid, gid, name, dimid):
 	size = cg_iRIC_Read_Grid_JFaceCount_WithGridId(fid, gid)
 	v = RealArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_JFace_WithGridId(fid, gid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_String_JFace_WithGridId(fid, gid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_JFace_WithGridId(fid, gid, name, dimid, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1450,6 +1547,12 @@ def cg_iRIC_Write_Grid_Integer_Node_WithGridId(fid, gid, name, v_arr):
 	ier = _iric.cg_iRIC_Write_Grid_Integer_Node_WithGridId(fid, gid, name, v)
 	_checkErrorCode(ier)
 
+def cg_iRIC_Write_Grid_String_Node_WithGridId(fid, gid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_Node_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
 def cg_iRIC_Write_Grid_Real_Cell_WithGridId(fid, gid, name, v_arr):
 	v = RealArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1460,6 +1563,12 @@ def cg_iRIC_Write_Grid_Integer_Cell_WithGridId(fid, gid, name, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
 	ier = _iric.cg_iRIC_Write_Grid_Integer_Cell_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_String_Cell_WithGridId(fid, gid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_Cell_WithGridId(fid, gid, name, v)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Grid_Real_IFace_WithGridId(fid, gid, name, v_arr):
@@ -1474,6 +1583,12 @@ def cg_iRIC_Write_Grid_Integer_IFace_WithGridId(fid, gid, name, v_arr):
 	ier = _iric.cg_iRIC_Write_Grid_Integer_IFace_WithGridId(fid, gid, name, v)
 	_checkErrorCode(ier)
 
+def cg_iRIC_Write_Grid_String_IFace_WithGridId(fid, gid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_IFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
 def cg_iRIC_Write_Grid_Real_JFace_WithGridId(fid, gid, name, v_arr):
 	v = RealArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1484,6 +1599,12 @@ def cg_iRIC_Write_Grid_Integer_JFace_WithGridId(fid, gid, name, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
 	ier = _iric.cg_iRIC_Write_Grid_Integer_JFace_WithGridId(fid, gid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_String_JFace_WithGridId(fid, gid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_JFace_WithGridId(fid, gid, name, v)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Read_Grid2d_InterpolateWithCell(grid_handle, x, y, cellId):
@@ -1668,6 +1789,12 @@ def cg_iRIC_Read_Grid_Integer_Node(fid, name):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_String_Node(fid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_Node(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Real_Cell(fid, name):
 	size = cg_iRIC_Read_Grid_CellCount(fid)
 	v = RealArrayContainer(size)
@@ -1679,6 +1806,12 @@ def cg_iRIC_Read_Grid_Integer_Cell(fid, name):
 	size = cg_iRIC_Read_Grid_CellCount(fid)
 	v = IntArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Integer_Cell(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_String_Cell(fid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_Cell(fid, name, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1696,6 +1829,12 @@ def cg_iRIC_Read_Grid_Integer_IFace(fid, name):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_String_IFace(fid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_IFace(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Real_JFace(fid, name):
 	size = cg_iRIC_Read_Grid_JFaceCount(fid)
 	v = RealArrayContainer(size)
@@ -1707,6 +1846,12 @@ def cg_iRIC_Read_Grid_Integer_JFace(fid, name):
 	size = cg_iRIC_Read_Grid_JFaceCount(fid)
 	v = IntArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Integer_JFace(fid, name, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_String_JFace(fid, name):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_String_JFace(fid, name, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1745,6 +1890,12 @@ def cg_iRIC_Read_Grid_Functional_Real_Node(fid, name, dimid):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Functional_String_Node(fid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_Node(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Functional_Integer_Cell(fid, name, dimid):
 	size = cg_iRIC_Read_Grid_CellCount(fid)
 	v = IntArrayContainer(size)
@@ -1756,6 +1907,12 @@ def cg_iRIC_Read_Grid_Functional_Real_Cell(fid, name, dimid):
 	size = cg_iRIC_Read_Grid_CellCount(fid)
 	v = RealArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_Cell(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_String_Cell(fid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_Cell(fid, name, dimid, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1773,6 +1930,12 @@ def cg_iRIC_Read_Grid_Functional_Real_IFace(fid, name, dimid):
 	_checkErrorCode(ier)
 	return v.get()
 
+def cg_iRIC_Read_Grid_Functional_String_IFace(fid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_IFace(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
 def cg_iRIC_Read_Grid_Functional_Integer_JFace(fid, name, dimid):
 	size = cg_iRIC_Read_Grid_JFaceCount(fid)
 	v = IntArrayContainer(size)
@@ -1784,6 +1947,12 @@ def cg_iRIC_Read_Grid_Functional_Real_JFace(fid, name, dimid):
 	size = cg_iRIC_Read_Grid_JFaceCount(fid)
 	v = RealArrayContainer(size)
 	ier = _iric.cg_iRIC_Read_Grid_Functional_Real_JFace(fid, name, dimid, v)
+	_checkErrorCode(ier)
+	return v.get()
+
+def cg_iRIC_Read_Grid_Functional_String_JFace(fid, name, dimid):
+	v = StringArrayContainer()
+	ier = _iric.cg_iRIC_Read_Grid_Functional_String_JFace(fid, name, dimid, v)
 	_checkErrorCode(ier)
 	return v.get()
 
@@ -1911,6 +2080,12 @@ def cg_iRIC_Write_Grid_Integer_Node(fid, name, v_arr):
 	ier = _iric.cg_iRIC_Write_Grid_Integer_Node(fid, name, v)
 	_checkErrorCode(ier)
 
+def cg_iRIC_Write_Grid_String_Node(fid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_Node(fid, name, v)
+	_checkErrorCode(ier)
+
 def cg_iRIC_Write_Grid_Real_Cell(fid, name, v_arr):
 	v = RealArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1921,6 +2096,12 @@ def cg_iRIC_Write_Grid_Integer_Cell(fid, name, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
 	ier = _iric.cg_iRIC_Write_Grid_Integer_Cell(fid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_String_Cell(fid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_Cell(fid, name, v)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Write_Grid_Real_IFace(fid, name, v_arr):
@@ -1935,6 +2116,12 @@ def cg_iRIC_Write_Grid_Integer_IFace(fid, name, v_arr):
 	ier = _iric.cg_iRIC_Write_Grid_Integer_IFace(fid, name, v)
 	_checkErrorCode(ier)
 
+def cg_iRIC_Write_Grid_String_IFace(fid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_IFace(fid, name, v)
+	_checkErrorCode(ier)
+
 def cg_iRIC_Write_Grid_Real_JFace(fid, name, v_arr):
 	v = RealArrayContainer(v_arr.size)
 	v.set(v_arr)
@@ -1945,6 +2132,12 @@ def cg_iRIC_Write_Grid_Integer_JFace(fid, name, v_arr):
 	v = IntArrayContainer(v_arr.size)
 	v.set(v_arr)
 	ier = _iric.cg_iRIC_Write_Grid_Integer_JFace(fid, name, v)
+	_checkErrorCode(ier)
+
+def cg_iRIC_Write_Grid_String_JFace(fid, name, v_arr):
+	v = StringArrayContainer()
+	v.set(v_arr)
+	ier = _iric.cg_iRIC_Write_Grid_String_JFace(fid, name, v)
 	_checkErrorCode(ier)
 
 def cg_iRIC_Read_Sol_Cell_Integer(fid, step, name):

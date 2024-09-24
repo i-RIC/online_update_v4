@@ -24,20 +24,30 @@ public:
 	int getValueType(const std::string& name, H5Util::DataArrayValueType *type) const;
 	int readValue(const std::string& name, std::vector<int>* values) const;
 	int readValue(const std::string& name, std::vector<double>* values) const;
+	int readDimensions(const std::string& name, std::vector<size_t>* dims) const;
+	int readValue(const std::string& name, std::vector<char>* values) const;
+	int readValue(const std::string& name, std::vector<std::string>* values) const;
 
 	int readFunctionalDimensionSize(const std::string& name, const std::string& dimname, int* size) const;
 	int readFunctionalDimension(const std::string& name, const std::string& dimname, std::vector<int>* values) const;
 	int readFunctionalDimension(const std::string& name, const std::string& dimname, std::vector<double>* values) const;
 	int readFunctional(const std::string& name, int dimid, std::vector<int>* values) const;
 	int readFunctional(const std::string& name, int dimid, std::vector<double>* values) const;
+	int readFunctionalDimensions(const std::string& name, int dimid, std::vector<size_t>* dims) const;
+	int readFunctional(const std::string& name, int dimid, std::vector<char>* values) const;
+	int readFunctional(const std::string& name, int dimid, std::vector<std::string>* values) const;
 
 	int writeValue(const std::string& name, const std::vector<int>& values) const;
 	int writeValue(const std::string& name, const std::vector<double>& values) const;
+	int writeValue(const std::string& name, const std::vector<char>& values, const std::vector<size_t>& dims) const;
+	int writeValue(const std::string& name, const std::vector<std::string>& values) const;
 
 	int writeFunctionalDimension(const std::string& name, const std::string& dimname, const std::vector<int>& values) const;
 	int writeFunctionalDimension(const std::string& name, const std::string& dimname, const std::vector<double>& values) const;
 	int writeFunctional(const std::string& name, int dimid, const std::vector<int>& values) const;
 	int writeFunctional(const std::string& name, int dimid, const std::vector<double>& values) const;
+	int writeFunctional(const std::string& name, int dimid, const std::vector<char>& values, const std::vector<size_t>& dims) const;
+	int writeFunctional(const std::string& name, int dimid, const std::vector<std::string>& values) const;
 
 	int copyTo(H5CgnsGridAttributes* target);
 
