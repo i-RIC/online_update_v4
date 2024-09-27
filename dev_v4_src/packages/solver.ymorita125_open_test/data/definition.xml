@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition 
+	xmlns="www.iric.net/SolverDefinition/1.0"
+	name="test_autobuild" 
+	caption="test_autobuild" 
+	version="1.0.0"
+	copyright="iRIC organization"
+	release="2023.9.27"
+	homepage="https://i-ric.org/"
+	executable="main.py"
+	iterationtype="time"
+	gridtype="structured2d"
+>
+    <CalculationCondition>
+        <Tab name="cond0" caption="計算フラグ">
+            <Item name="iflow" caption="flag for flow calculation">
+                <Definition valueType="integer" default="0"/>
+            </Item>
+            <Item name="isediment" caption="flag for sediment calculation">
+                <Definition valueType="integer" default="0"/>
+            </Item>
+        </Tab>
+        <Tab name="cond1" caption="時間条件">
+            <Item name="dt" caption="計算タイムステップ[sec]">
+                <Definition valueType="real" default="0.1"/>
+            </Item>
+            <Item name="tqh" caption="時系列：上流端流量・下流端水位">
+                <Definition conditionType="functional">
+                    <Parameter name="time" valueType="real" caption="Time[hour]"/>
+                    <Value name="discharge" valueType="real" caption="Discharge(m3/s)"/>
+                    <Value name="water_level" valueType="real" caption="Water level(m)"/>
+                </Definition>
+            </Item>
+            <Item name="tout" caption="計算結果出力時間間隔[sec]">
+                <Definition valueType="real" default="60"/>
+            </Item>
+        </Tab>
+    </CalculationCondition>
+    <GridRelatedCondition>
+        <Item name="Elevation" caption="Elevation (m)">
+            <Definition position="node" valueType="real" default="max" />
+        </Item>
+        <Item name="ManningN" caption="Manning N">
+            <Definition position="cell" valueType="real" default="0.02" />
+        </Item>
+    </GridRelatedCondition>
+</SolverDefinition>
