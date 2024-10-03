@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SolverDefinition 
-	xmlns="www.iric.net/SolverDefinition/1.0"
-	name="test_autobuild" 
-	caption="test_autobuild" 
-	version="1.0.0"
-	copyright="iRIC organization"
-	release="2023.9.27"
-	homepage="https://i-ric.org/"
-	executable="main.py"
-	iterationtype="time"
-	gridtype="structured2d"
->
+<SolverDefinition xmlns="www.iric.net/SolverDefinition/1.0" name="test_autobuild" caption="test_autobuild" version="1.0.1" copyright="iRIC organization" release="2023.9.27" homepage="https://i-ric.org/" executable="main.py" iterationtype="time" gridtype="structured2d">
     <CalculationCondition>
         <Tab name="cond0" caption="計算フラグ">
             <Item name="iflow" caption="flag for flow calculation">
