@@ -7,6 +7,8 @@ import random
 # 計算結果出力関数
 # --------------------------------------------------
 
+# 更新
+
 
 def write_calc_result(fid, ctime, xx, yy, zz, ss, qq, uu, vv, hh, zb, hs):
 
