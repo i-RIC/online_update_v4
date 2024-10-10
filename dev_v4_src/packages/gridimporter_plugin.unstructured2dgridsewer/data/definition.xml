@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GridImporterPluginDefinition 
   xmlns="www.iric.net/GridImporterPluginDefinition/1.0"
-  name="unstructured2dgridsewerimporter" caption="Unstructured grid sewer importer" version="1.0.2" release="2024.07.23"
+  name="unstructured2dgridsewerimporter" caption="Unstructured grid sewer importer" version="1.0.3" release="2024.10.10"
   copyright="iRIC Organization"
 >
 </GridImporterPluginDefinition>
