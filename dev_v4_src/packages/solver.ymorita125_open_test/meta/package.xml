@@ -2,7 +2,7 @@
 <Package>
     <DisplayName>test_autobuild</DisplayName>
     <Description></Description>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Default>true</Default>
     <ReleaseDate>2023-09-27</ReleaseDate>
     <SortingPriority>50</SortingPriority>

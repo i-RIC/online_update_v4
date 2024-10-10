@@ -3,7 +3,7 @@
 	xmlns="www.iric.net/SolverDefinition/1.0"
 	name="test_autobuild" 
 	caption="test_autobuild" 
-	version="1.0.2"
+	version="1.0.3"
 	copyright="iRIC organization"
 	release="2023.9.27"
 	homepage="https://i-ric.org/"
