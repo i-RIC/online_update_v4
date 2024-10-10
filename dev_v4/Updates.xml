@@ -882,6 +882,6 @@
   <Script>installscript.qs</Script>
   <UpdateFile OS="Any" CompressedSize="2508" UncompressedSize="7128"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>6d7a8e197c6955d01ba881a46e501e419b54df62</SHA1>
+  <SHA1>cd625ae66d09d2bcd81f0278235b5d33a0aaab47</SHA1>
  </PackageUpdate>
 </Updates>
