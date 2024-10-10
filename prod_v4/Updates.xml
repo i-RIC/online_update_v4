@@ -727,17 +727,17 @@
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (release)</DisplayName>
   <Description>iRIC Main GUI</Description>
-  <Version>4.1.0.6946</Version>
-  <ReleaseDate>2024-09-18</ReleaseDate>
+  <Version>4.1.0.6947</Version>
+  <ReleaseDate>2024-10-10</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="42765101" OS="Any" CompressedSize="5845764" />
+  <UpdateFile UncompressedSize="42819534" OS="Any" CompressedSize="5853798" />
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License" />
+   <License name="MIT License" file="LICENSE" />
   </Licenses>
-  <SHA1>6fa3c24ba7365c67dfb9a71113d244e0779a3cf1</SHA1>
+  <SHA1>51543623e723de5538f72d0e8e8de63156d80626</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>miniconda</Name>
@@ -747,22 +747,22 @@
   <Default>false</Default>
   <ReleaseDate>2024-06-17</ReleaseDate>
   <SortingPriority>100</SortingPriority>
-  <UpdateFile UncompressedSize="2012161" OS="Any" CompressedSize="204181" />
+  <UpdateFile UncompressedSize="2167379" OS="Any" CompressedSize="220051" />
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>44a4aa5382e081e814d46d5539d635318d4883cf</SHA1>
+  <SHA1>50d5ca8f90defebbcd35fddb129e8afc1a60d5d2</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>sdk</Name>
   <DisplayName>iRIC Solver SDK</DisplayName>
   <Description>Headers and libraries needed to develop iRIC solvers</Description>
-  <Version>4.0.56</Version>
+  <Version>4.0.57</Version>
   <Default>true</Default>
-  <ReleaseDate>2024-09-06</ReleaseDate>
+  <ReleaseDate>2024-09-24</ReleaseDate>
   <SortingPriority>10</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="28687246" OS="Any" CompressedSize="3000861" />
+  <UpdateFile UncompressedSize="29388473" OS="Any" CompressedSize="3054686" />
   <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>df40d55f57477ab5e575799db9ebfd10e3e59353</SHA1>
+  <SHA1>50a362fbd5d40144c12e5824ba1c32badaf053a8</SHA1>
  </PackageUpdate>
 </Updates>

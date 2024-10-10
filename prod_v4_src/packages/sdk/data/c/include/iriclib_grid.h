@@ -25,12 +25,20 @@ int IRICLIBDLL cg_iRIC_Read_Grid_JFaceCount_WithGridId(int fid, int gid, int* co
 int IRICLIBDLL cg_iRIC_Read_Grid_KFaceCount_WithGridId(int fid, int gid, int* count);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_Node_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_Node_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_StringMaxLen_Node_WithGridId(int fid, int gid, const char* name, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_String_Node_WithGridId(int fid, int gid, const char* name, char* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_Cell_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_Cell_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_StringMaxLen_Cell_WithGridId(int fid, int gid, const char* name, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_String_Cell_WithGridId(int fid, int gid, const char* name, char* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_IFace_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_IFace_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_StringMaxLen_IFace_WithGridId(int fid, int gid, const char* name, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_String_IFace_WithGridId(int fid, int gid, const char* name, char* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Real_JFace_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Integer_JFace_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_StringMaxLen_JFace_WithGridId(int fid, int gid, const char* name, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_String_JFace_WithGridId(int fid, int gid, const char* name, char* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalDimensionSize_WithGridId(int fid, int gid, const char* name, const char* dimname, int* count);
 int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalDimension_Integer_WithGridId(int fid, int gid, const char* name, const char* dimname, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalDimension_Real_WithGridId(int fid, int gid, const char* name, const char* dimname, double* v_arr);
@@ -38,12 +46,20 @@ int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalTimeSize_WithGridId(int fid, int gid,
 int IRICLIBDLL cg_iRIC_Read_Grid_FunctionalTime_WithGridId(int fid, int gid, const char* name, double* time_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_Node_WithGridId(int fid, int gid, const char* name, int dimid, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_Node_WithGridId(int fid, int gid, const char* name, int dimid, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_StringMaxLen_Node_WithGridId(int fid, int gid, const char* name, int dimid, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_String_Node_WithGridId(int fid, int gid, const char* name, int dimid, char* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_Cell_WithGridId(int fid, int gid, const char* name, int dimid, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_Cell_WithGridId(int fid, int gid, const char* name, int dimid, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_StringMaxLen_Cell_WithGridId(int fid, int gid, const char* name, int dimid, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_String_Cell_WithGridId(int fid, int gid, const char* name, int dimid, char* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_IFace_WithGridId(int fid, int gid, const char* name, int dimid, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_IFace_WithGridId(int fid, int gid, const char* name, int dimid, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_StringMaxLen_IFace_WithGridId(int fid, int gid, const char* name, int dimid, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_String_IFace_WithGridId(int fid, int gid, const char* name, int dimid, char* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Integer_JFace_WithGridId(int fid, int gid, const char* name, int dimid, int* v_arr);
 int IRICLIBDLL cg_iRIC_Read_Grid_Functional_Real_JFace_WithGridId(int fid, int gid, const char* name, int dimid, double* v_arr);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_StringMaxLen_JFace_WithGridId(int fid, int gid, const char* name, int dimid, int* smsize);
+int IRICLIBDLL cg_iRIC_Read_Grid_Functional_String_JFace_WithGridId(int fid, int gid, const char* name, int dimid, char* v_arr);
 
 int IRICLIBDLL cg_iRIC_Write_Grid1d_Coords_WithGridId(int fid, int isize, double* x_arr, int* gid);
 int IRICLIBDLL cg_iRIC_Write_Grid2d_Coords_WithGridId(int fid, int isize, int jsize, double* x_arr, double* y_arr, int* gid);
@@ -61,12 +77,16 @@ int IRICLIBDLL cg_iRIC_Write_NamedGrid3d_Unst_Lines_WithGridId(int fid, const ch
 
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_Node_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_Node_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_String_Node_WithGridId(int fid, int gid, const char* name, int maxlen, char* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_Cell_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_Cell_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_String_Cell_WithGridId(int fid, int gid, const char* name, int maxlen, char* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_IFace_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_IFace_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_String_IFace_WithGridId(int fid, int gid, const char* name, int maxlen, char* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Real_JFace_WithGridId(int fid, int gid, const char* name, double* v_arr);
 int IRICLIBDLL cg_iRIC_Write_Grid_Integer_JFace_WithGridId(int fid, int gid, const char* name, int* v_arr);
+int IRICLIBDLL cg_iRIC_Write_Grid_String_JFace_WithGridId(int fid, int gid, const char* name, int maxlen, char* v_arr);
 
 int IRICLIBDLL cg_iRIC_Copy_Grid_WithGridId(int fid_from, int fid_to, int gid);
 

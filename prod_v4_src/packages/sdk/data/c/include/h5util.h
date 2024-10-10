@@ -32,6 +32,7 @@ public:
 	static int getGroupNamesWithLabel(hid_t groupId, const std::string& label, std::unordered_set<std::string>* names);
 	static int getDatasetNames(hid_t groupId, std::vector<std::string>* names);
 	static int getDatasetNames(hid_t groupId, std::unordered_set<std::string>* names);
+	static void buildDimsAndBuffer(const std::vector<std::string>& value, std::vector<size_t>* dims, std::vector<char>* buffer);
 
 	static int createGroup(hid_t groupId, const std::string& name, hid_t* newGroup);
 	static int createGroup(hid_t groupId, const std::string& name, const std::string& label, const std::string& type, hid_t* newGroup);
@@ -49,6 +50,7 @@ public:
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const std::vector<int>& value, hid_t* newGroup = nullptr);
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const std::vector<float>& value, hid_t* newGroup = nullptr);
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const std::vector<double>& value, hid_t* newGroup = nullptr);
+	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const std::vector<std::string>& value, hid_t* newGroup = nullptr);
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const std::vector<char>& value, const std::vector<hsize_t>& dims, hid_t* newGroup = nullptr);
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const std::vector<int>& value, const std::vector<hsize_t>& dims, hid_t* newGroup = nullptr);
 	static int createGroupWithValue(hid_t groupId, const std::string& name, const std::string& label, const std::vector<float>& value, const std::vector<hsize_t>& dims, hid_t* newGroup = nullptr);
@@ -59,6 +61,7 @@ public:
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<int>& value);
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<float>& value);
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<double>& value);
+	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<std::string>& value);
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<char>& value, const std::vector<hsize_t>& dims);
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<int>& value, const std::vector<hsize_t>& dims);
 	static int createDataArray(hid_t groupId, const std::string& name, const std::vector<float>& value, const std::vector<hsize_t>& dims);
