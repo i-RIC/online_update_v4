@@ -711,48 +711,6 @@
   <SHA1>4a25bf3aecc8584002dd43c1d58cd28d94bc9cee</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gui.prepost</Name>
-  <DisplayName>iRIC v4 (release)</DisplayName>
-  <Description>iRIC Main GUI</Description>
-  <Version>4.1.0.6953</Version>
-  <ReleaseDate>2024-12-06</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>true</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="42854862" CompressedSize="5862647" OS="Any" />
-  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
-  <Licenses>
-   <License file="LICENSE" name="MIT License" />
-  </Licenses>
-  <SHA1>cd4c652bd0125fcad550a2d53fa0d70d56e283b8</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>miniconda</Name>
-  <DisplayName>Miniconda 3</DisplayName>
-  <Description>Miniconda 3-py312_24.4.0</Description>
-  <Version>24.4.0</Version>
-  <Default>false</Default>
-  <ReleaseDate>2024-06-17</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <UpdateFile UncompressedSize="2167379" CompressedSize="219747" OS="Any" />
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>5461051771651c5b616739bded86dabd21096edd</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>sdk</Name>
-  <DisplayName>iRIC Solver SDK</DisplayName>
-  <Description>Headers and libraries needed to develop iRIC solvers</Description>
-  <Version>4.0.58</Version>
-  <Default>true</Default>
-  <ReleaseDate>2024-10-29</ReleaseDate>
-  <SortingPriority>10</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="29366457" CompressedSize="3050126" OS="Any" />
-  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>1d9f5ef8939c19bc077d816391a7edc1ab73969f</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>colormaps</Name>
   <DisplayName>Standard Colormaps</DisplayName>
   <Description />
@@ -764,5 +722,47 @@
   <UpdateFile UncompressedSize="25477190" CompressedSize="22035316" OS="Any" />
   <DownloadableArchives>Colorbrewer.7z,Inundation depth.7z,LICENSE.7z,matplotlib.7z,content.7z</DownloadableArchives>
   <SHA1>5f17a8730c6263c249cb6da454bc2660c4807bbd</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.prepost</Name>
+  <DisplayName>iRIC v4 (release)</DisplayName>
+  <Description>iRIC Main GUI</Description>
+  <Version>4.1.0.6954</Version>
+  <ReleaseDate>2025-01-10</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="42854862" CompressedSize="5863401" OS="Any" />
+  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
+  <Licenses>
+   <License file="LICENSE" name="MIT License" />
+  </Licenses>
+  <SHA1>8339e7186f70952e42ef62607bbb2d55e877a24b</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda</Name>
+  <DisplayName>Miniconda 3</DisplayName>
+  <Description>Miniconda 3-py312_24.4.0</Description>
+  <Version>24.4.0</Version>
+  <Default>false</Default>
+  <ReleaseDate>2024-06-17</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <UpdateFile UncompressedSize="2167379" CompressedSize="219746" OS="Any" />
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>074ffba5f4c3ecd15afc966fd55b47c60ae3faee</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>sdk</Name>
+  <DisplayName>iRIC Solver SDK</DisplayName>
+  <Description>Headers and libraries needed to develop iRIC solvers</Description>
+  <Version>4.0.58</Version>
+  <Default>true</Default>
+  <ReleaseDate>2024-10-29</ReleaseDate>
+  <SortingPriority>10</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="29366457" CompressedSize="3050130" OS="Any" />
+  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
+  <SHA1>ddab284c8278d01c2a721771ca54da62b6311661</SHA1>
  </PackageUpdate>
 </Updates>
