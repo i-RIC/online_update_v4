@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
     xmlns="www.iric.net/SolverDefinition/1.0"
-    name="UTT" caption="GELATO" version="1.3.24070801" copyright="Yasuyuki SHIMIZU"
-    release="2024.07.08"
+    name="UTT" caption="GELATO" version="1.3.25020501" copyright="Yasuyuki SHIMIZU"
+    release="2025.02.05"
     homepage="https://i-ric.org/yasu/"
     executable="GELATO.exe"
     iterationtype="time"
