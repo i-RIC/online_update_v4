@@ -841,7 +841,7 @@
   <UpdateFile CompressedSize="6071528" OS="Any" UncompressedSize="44190852"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>fa529b77a34a1603edb13ccbaa90104939a81788</SHA1>
  </PackageUpdate>
@@ -873,15 +873,15 @@
  </PackageUpdate>
  <PackageUpdate>
   <Name>solver.ichirokk_CUBEv4</Name>
-  <DisplayName>NaysCUBE v4.43.79</DisplayName>
+  <DisplayName>NaysCUBE v4.43.85</DisplayName>
   <Description/>
-  <Version>4.43.79</Version>
+  <Version>4.43.85</Version>
   <Default>true</Default>
-  <ReleaseDate>2023-08-22</ReleaseDate>
+  <ReleaseDate>2025-02-21</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="833562" OS="Any" UncompressedSize="12097652"/>
+  <UpdateFile CompressedSize="837672" OS="Any" UncompressedSize="13092022"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>d0958a90f5d8f7d13a569b91a8411805b7efed7e</SHA1>
+  <SHA1>4d12b546e3a1c7434b78f35e4aec4d387851ed6d</SHA1>
  </PackageUpdate>
 </Updates>

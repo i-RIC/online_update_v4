@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <SolverDefinition
-name="NaysCUBE_v3" caption="NaysCUBE v4.43.79" version="4.43.79" copyright="Ichiro Kimura"
-release="2023.8.22" homepage="http://i-ric.org/"
+name="NaysCUBE_v3" caption="NaysCUBE v4.43.85" version="4.43.85" copyright="Ichiro Kimura"
+release="2025.2.21" homepage="http://i-ric.org/"
 executable="nayscube.exe"
 iterationtype="time"
 gridtype="structured2d"
@@ -995,16 +995,29 @@ gridtype="structured2d"
   <Tab name="DriftWood_basic" caption="DriftWood basic">
     <Content>
       <Items>
-	<Item name="i_DRIFT" caption="Calculate DriftWood?">
-        <Definition conditionType="constant" valueType="integer" option="true" default="0" max="4">
-	 <Enumerations>
-         <Enumeration value="0" caption="No DriftWood"/>
-     <!--<Enumeration value="1" caption="Neutral float"/>
-         <Enumeration value="2" caption="Equivalent sphere"/> -->
-         <Enumeration value="3" caption="Grouped spheres"/>
-         <Enumeration value="4" caption="Arbitral shape"/>
-        </Enumerations>
-       </Definition>
+        <Item name="i_DRIFT" caption="Calculate DriftWood?">
+          <Definition conditionType="constant" valueType="integer" option="true" default="0" max="4">
+            <Enumerations>
+              <Enumeration value="0" caption="No DriftWood"/>
+          <!--<Enumeration value="1" caption="Neutral float"/>
+              <Enumeration value="2" caption="Equivalent sphere"/> -->
+              <Enumeration value="3" caption="Grouped spheres"/>
+              <Enumeration value="4" caption="Arbitral shape"/>
+            </Enumerations>
+          </Definition>
+        </Item>
+
+      <Item name="i_arbit" caption="Set diameter and density for each sphere one by one?">
+	      <Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
+          <Dependency>
+            <Condition type="isEqual"            target="i_DRIFT" value="4"/>
+            <Action type="enable"/>
+          </Dependency>
+		      <Enumerations>
+		        <Enumeration value="0" caption="No"/>
+		        <Enumeration value="1" caption="Yes"/>
+		      </Enumerations>
+  	    </Definition>
       </Item>
 
       <Item name="dn_len" caption="Length of DriftWood[m]">
@@ -1063,7 +1076,10 @@ gridtype="structured2d"
 	<Item name="dn_diam2" caption="Diameter of element[m]">
 		<Definition conditionType="constant" valueType="real" option="false" default="0.1">
 			<Dependency>
-				<Condition type="isEqual"        target="i_DRIFT" value="4"/>
+		 		<Condition type="and">
+	 		  <Condition type="isEqual"        target="i_DRIFT" value="4"/>
+	 		  <Condition type="isEqual"        target="i_arbit" value="0"/>
+        </Condition>
 				<Action type="enable"/>
 			</Dependency>
    	</Definition>
@@ -1072,23 +1088,28 @@ gridtype="structured2d"
 	<Item name="rho_dn2" caption="Density of element[kg/m3]">
 		<Definition conditionType="constant" valueType="real" option="false" default="900">
 			<Dependency>
+        <Condition type="and">
 				<Condition type="isEqual"        target="i_DRIFT" value="4"/>
+	 		  <Condition type="isEqual"        target="i_arbit" value="0"/>
+        </Condition>
 				<Action type="enable"/>
 			</Dependency>
 		</Definition>
 	</Item>
 
 	<Item name="shape_arbit" caption="Arbitral shape">
-        <Definition conditionType="functional">
-          <Dependency>
-            <Condition type="isEqual" target="i_DRIFT"    value="4"/>
-            <Action type="enable"/>
-          </Dependency>
-          <Parameter name="x" valueType="real" caption="x[m]"/>
-          <Value name    ="y" valueType="real" caption="y[m]"/>
-          <Value name    ="z" valueType="real" caption="z[m]"/>
-        </Definition>
-      </Item>
+    <Definition conditionType="functional">
+      <Dependency>
+        <Condition type="isEqual" target="i_DRIFT"    value="4"/>
+         <Action type="enable"/>
+      </Dependency>
+      <Parameter name="x"        valueType="real" caption="x[m]"/>
+      <Value name    ="y"        valueType="real" caption="y[m]"/>
+      <Value name    ="z"        valueType="real" caption="z[m]"/>
+      <Value name    ="diameter" valueType="real" caption="diameter[m]"/>
+      <Value name    ="density"  valueType="real" caption="density[kg/m3]"/>
+    </Definition>
+  </Item>
 
 	<Item name="i_DRI_set_area" caption="Initial driftwood supply cells">
 		<Definition conditionType="constant" valueType="integer" option="true" default="0" max="1">
@@ -1333,6 +1354,19 @@ gridtype="structured2d"
 	    </Item>
 
       <Item name="i_dri_slope" caption="Consider slope effect on wood movement?">
+        <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
+          <Dependency>
+            <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>
+            <Action type="enable"/>
+          </Dependency>
+          <Enumerations>
+            <Enumeration value="0" caption="No"/>
+            <Enumeration value="1" caption="Yes"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+
+      <Item name="i_DRI_SF_slope" caption="Consider surface slope effect on wood movement?">
         <Definition conditionType="constant" valueType="integer" option="true" default="1" max="1">
           <Dependency>
             <Condition type="isGreaterEqual" target="i_DRIFT" value="1"/>

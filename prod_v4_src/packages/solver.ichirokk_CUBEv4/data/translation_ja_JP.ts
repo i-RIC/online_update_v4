@@ -1951,5 +1951,20 @@
         <translation>ポンプ５繰返し回数</translation>
     </message>
 
+    <message>
+       <source>Consider slope effect on wood movement?</source>
+        <translation>河床勾配の影響を流木に反映？</translation>
+    </message>
+
+    <message>
+       <source>Set diameter and density for each sphere one by one?</source>
+        <translation>球体要素の一つ一つに異なる直径と密度を設定？</translation>
+    </message>
+
+    <message>
+       <source>Consider surface slope effect on wood movement?</source>
+        <translation>流木の移動に水面勾配の影響を考慮？</translation>
+    </message>
+
 </context>
 </TS>
