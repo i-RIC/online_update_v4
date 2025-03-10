@@ -871,4 +871,17 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>77218f2928ae47e4e43afbc5ad3bbd18dd184853</SHA1>
  </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_GELATO_Rewrite</Name>
+  <DisplayName>GELATO v2.x</DisplayName>
+  <Description/>
+  <Version>2.0.25031001</Version>
+  <Default>true</Default>
+  <ReleaseDate>2025-03-10</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile OS="Any" CompressedSize="124518" UncompressedSize="480936"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>702434baa3272cc4aea5fb972deb7269edecf81c</SHA1>
+ </PackageUpdate>
 </Updates>

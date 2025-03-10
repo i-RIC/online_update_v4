@@ -1,0 +1,1493 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition 
+	xmlns="www.iric.net/SolverDefinition/1.0" 
+	name="GELATO" 
+	caption="GELATO v2.x" 
+	version="2.0.25031001" 
+	copyright="Yasuyuki SHIMIZU, Keita Hoshino" 
+	release="2025.03.10" 
+	homepage="https://i-ric.org/yasu/" 
+	executable="GELATO.exe" 
+	iterationtype="time" 
+	gridtype="structured2d">
+
+	<!-- 計算条件 -->
+	<CalculationCondition>
+
+		<!-- 基本設定 -->
+		<Tab name="basic_setting" caption="Basic Settings">
+
+			<!-- 流況計算結果を読み込むCGNSファイルの名前 -->
+			<Item name="inputfile" caption="Flow Information Input File Name">
+				<Definition valueType="cgns_filename" default="Select CGNS file name" />
+			</Item>
+
+			<!-- トレーサー追跡の時間間隔 -->
+			<Item name="time_interval_for_tracking" caption="Delta T for Tracer Tracking">
+				<Definition valueType="real" default="0.001" min="0.0000001"/>
+			</Item>
+
+			<!-- 計算終了時間 -->
+			<Item name="time_end_out" caption="Computation Finishing Time(sec)">
+				<Definition valueType="real" default="10"/>
+			</Item>
+
+			<!-- 出力間隔倍率 -->
+			<Item name="output_interval_magnification" caption="Output Frequency Increase Factor">
+				<Definition valueType="integer" default="1" min="1"/>
+			</Item>
+
+			<!-- オリジナルの時刻を使用するか -->
+			<Item name="is_use_original_time" caption="Use Original Time">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+			</Item>
+
+			<!-- センターラインの描画 -->
+			<Item name="is_draw_center_line" caption="Drawing Center Line">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+			</Item>
+
+		</Tab>
+
+		<!-- 計算結果読み込み設定 -->
+		<Tab name="result_loading_setting" caption="Result Loading Settings">
+
+			<Item name="flow_conditions_used_for_tracking" caption="Flow Conditions Used for Tracking">
+				<Definition valueType="integer" default="0">
+					<Enumerations>
+						<Enumeration value="0" caption="(0) Use Simulated Value"/>
+						<Enumeration value="1" caption="(1) Give Constant Value"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+
+			<GroupBox caption="Give Constant Value">
+
+				<Item name="Constant_velocity" caption="Constant Velocity(m/s)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="and">
+							<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+				<Item name="Constant_Depth" caption="Constant Depth(m)">
+					<Definition valueType="real" default="0.1">
+						<Condition type="and">
+							<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+			<GroupBox caption="Use Simulated Value">
+
+				<!-- 計算に必須な値 -->
+				<GroupBox caption="Required Result for Calculation">
+
+					<!-- X方向の流速 -->
+					<Item name="velocity_x_name" caption="Velocity_X Name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+						</Definition>
+					</Item>
+
+					<!-- Y方向の流速 -->
+					<Item name="velocity_y_name" caption="Velocity_Y Name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+						</Definition>
+					</Item>
+
+					<!-- 水深 -->
+					<Item name="depth_name" caption="Depth Name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+						</Definition>
+					</Item>
+
+					<!-- 標高 -->
+					<Item name="elevation_name" caption="Elevation Name">
+						<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+							<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<GroupBox caption="Option Result">
+
+					<HBoxLayout>
+						<!-- 流量を読み込むか -->
+						<Label col="0" caption="Load Discharge" />
+						<Item col="1" name="is_load_discharge">
+							<Definition valueType="integer" default="0" checkBox="true">
+								<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+							</Definition>
+						</Item>
+
+						<!-- 流量 -->
+						<Item col="2" name="discharge_name">
+							<Definition valueType="result_baseIterativeReal" cgnsFile="inputfile">
+								<Condition type="and">
+									<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+									<Condition type="isEqual" target="is_load_discharge" value="1" />
+								</Condition>
+							</Definition>
+						</Item>
+					</HBoxLayout>
+
+
+					<HBoxLayout>
+						<!-- 河床変動量を読み込むか -->
+						<Label col="0" caption="Load Elevation Change" />
+						<Item col="1" name="is_load_elevation_change">
+							<Definition valueType="integer" default="0" checkBox="true">
+								<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+							</Definition>
+						</Item>
+
+						<!-- 河床変動量 -->
+						<Item col="2" name="elevation_change_name">
+							<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+								<Condition type="and">
+									<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+									<Condition type="isEqual" target="is_load_elevation_change" value="1" />
+								</Condition>
+							</Definition>
+						</Item>
+					</HBoxLayout>
+					
+					<HBoxLayout>
+
+						<!-- 渦度を読み込むか -->
+						<Label col="0" caption="Load Vorticity" />
+						<Item col="1" name="is_load_vorticity">
+							<Definition valueType="integer" default="0" checkBox="true">
+								<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+							</Definition>
+						</Item>
+
+						<!-- 渦度 -->
+						<Item col="2" name="vorticity_name" >
+							<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+								<Condition type="and">
+									<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+									<Condition type="isEqual" target="is_load_vorticity" value="1" />
+								</Condition>
+							</Definition>
+						</Item>
+
+					</HBoxLayout>
+					
+
+					<HBoxLayout>
+
+						<!-- 渦度を読み込むか -->
+						<Label col="0" caption="Load Dye Concentration" />
+						<Item col="1" name="is_load_dye_concentration">
+							<Definition valueType="integer" default="0" checkBox="true">
+								<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+							</Definition>
+						</Item>
+
+						<!-- 染料濃度 -->
+						<Item col="2" name="dye_concentration_name" >
+							<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
+								<Condition type="and">
+									<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
+									<Condition type="isEqual" target="is_load_dye_concentration" value="1" />
+								</Condition>
+							</Definition>
+						</Item>
+					</HBoxLayout>
+
+				</GroupBox>
+
+			</GroupBox>
+		</Tab>
+
+		<!-- 通常トレーサーの共通設定 -->
+		<Tab name="normal_tracers_basic_setting" caption="Normal Tracers Basic Setting">
+
+			<!-- 通常トレーサーの散布時間設定 -->
+			<GroupBox caption="Time Parameters for Normal Tracers(Seconds)">
+
+				<!-- 通常トレーサーの散布開始時間 -->
+				<Item name="supply_time_start_normal_tracers" caption="Supplying Time Start">
+					<Definition valueType="real" default="0.0">
+						<Condition type="or">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+				<!-- 通常トレーサーの散布修了時間 -->
+				<Item name="supply_time_end_normal_tracers" caption="Supplying Time End">
+					<Definition valueType="real" default="10.0">
+						<Condition type="or">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+				<!-- 通常トレーサーの散布時間間隔 -->
+				<Item name="supply_time_interval_normal_tracers" caption="Supplying Time Interval">
+					<Definition valueType="real" default="0.1" min="0.0000001">
+						<Condition type="or">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+			<!-- 輸送の周期境界条件 -->
+			<Item name="is_periodic_boundary_condition_Tracers" caption="Periodic Boundary Condition for Tracers">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+					<Condition type="or">
+						<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+					</Condition>
+				<Definition />
+			</Item>
+
+			<!-- 停止したトレーサーの扱い -->
+			<Item name="stopped_tracer_handling" caption="Handling of Tracer Stoppage Due to Minimum Water Depth &#xa; or Critical Friction Velocity">
+				<Definition valueType="integer" default="1">
+					<Condition type="or">
+						<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+					</Condition>
+					<Enumerations>
+						<Enumeration value="1" caption="Stop Movement"/>
+						<Enumeration value="2" caption="Disappear"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+
+		</Tab>
+
+		<!-- プライマリートレーサーの設定 -->
+		<Tab name="primary_tracers_setting" caption="Primary Normal Tracers Setting">
+
+			<!-- トレースするかどうか -->
+			<Item name="is_trace_primary" caption="Whether to Trace The Primary Tracer">
+				<Definition position="cell" valueType="integer" default="0" checkBox="true">
+				</Definition>
+			</Item>
+
+			<!-- 最大トレーサー数 -->
+			<Item name="max_number_primary" caption="Maximum Number of Total Tracer Particles">
+				<Definition valueType="integer" default="100000" max="100000000">
+					<Condition type="isEqual" target="is_trace_primary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- セル内の最大トレーサー数 -->
+			<Item name="max_number_in_cell_primary" caption="Maximum Number of Tracer Particles in one Cell">
+				<Definition valueType="integer" default="10" max="1000">
+					<Condition type="isEqual" target="is_trace_primary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 移動限界水深 -->
+			<Item name="movable_critical_depth_primary" caption="Critical Depth for Tracer Moving(m)">
+				<Definition valueType="real" default="0.003" min="0.0">
+					<Condition type="isEqual" target="is_trace_primary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 移動限界摩擦速度 -->
+			<Item name="movable_critical_u_star_primary" caption="Critical Shear Velocity Below Which The Tracer Stops(m/s)">
+				<Definition valueType="real" default="0.0">
+					<Condition type="isEqual" target="is_trace_primary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- トレーサー補足壁の設定 -->
+			<GroupBox caption="Tracer Capturing Wall">
+
+				<!-- トレーサー補足壁の高さ -->
+				<Item name="trap_wall_height_primary" caption="Capturing Wall Height(m)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="isEqual" target="is_trace_primary" value="1"/>
+					</Definition>
+				</Item>
+
+				<!-- トレーサー捕捉率 -->
+				<Item name="trap_rate_primary" caption="Capturing Rate of The Wall(%)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="isEqual" target="is_trace_primary" value="1"/>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+			<!-- トレーサー初期配置 -->
+			<GroupBox caption="Tracers Supply Range">
+
+				<!-- 流下方向 -->
+				<GroupBox caption="xi(Streamwise) Direction">
+
+					<!-- 配置始点 -->
+					<Item name="supply_position_xi_first_primary" caption="xi_1">
+						<Definition valueType="real" default="0.1" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置終点 -->
+					<Item name="supply_position_xi_end_primary" caption="xi_2">
+						<Definition valueType="real" default="0.1" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置間隔 -->
+					<Item name="supply_interval_xi_primary" caption="d_xi">
+						<Definition valueType="real" default="0.1" max="1" min="0.0001">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<!-- 横断方向 -->
+				<GroupBox caption="eta(Transverse) Direction">
+
+					<Item name="supply_position_eta_first_primary" caption="eta_1">
+						<Definition valueType="real" default="0.3" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Definition>
+					</Item>
+					<Item name="supply_position_eta_end_primary" caption="eta_2">
+						<Definition valueType="real" default="0.7" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Definition>
+					</Item>
+					<Item name="supply_interval_eta_primary" caption="d_eta">
+						<Definition valueType="real" default="0.02" max="1" min="0.0000001">
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<Image src="tracer supply range.png"/>
+
+			</GroupBox>
+
+			<!-- トレーサークローニングを行うか -->
+			<Item name="is_tracer_cloning_primary" caption="Tracer Cloning for Primary Normal Tracers">
+				<Definition valueType="integer" default="0" checkBox="true">
+					<Condition type="isEqual" target="is_trace_primary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- クローニング設定 -->
+			<GroupBox caption="Cloning Method">
+
+				<!-- クローニング手法 -->
+				<Item name="cloning_option_primary" caption="Cloning Condition or Method">
+					<Definition valueType="integer" default="0">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_tracer_cloning_primary" value="1"/>
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Condition>
+						<Enumerations>
+							<Enumeration value="0" caption="All Empty Cells"/>
+							<Enumeration value="1" caption="Cells With Only one Tracer"/>
+							<Enumeration value="2" caption="Specified Cells With one Tracer"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+
+				<!-- 最大分割回数 -->
+				<Item name="max_generation_primary" caption="Maximum Cloning Generations">
+					<Definition valueType="integer" default="5" max="100">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_tracer_cloning_primary" value="1"/>
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+				<!-- すべての空白セルにトレーサーを発生させる場合の割引係数 -->
+				<Item name="cloning_reduction_factor_primary" caption="Cloning Reduction Factor for Empty Cells Cloning">
+					<Definition valueType="integer" default="1" max="1000">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_tracer_cloning_primary" value="1"/>
+							<Condition type="isEqual" target="is_trace_primary" value="1"/>
+							<Condition type="isEqual" target="cloning_option_primary" value="0"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+		</Tab>
+
+		<!-- セカンダリートレーサーの設定 -->
+		<Tab name="secondary_tracers_setting" caption="Secondary Normal Tracers Setting">
+
+			<!-- トレースするかどうか -->
+			<Item name="is_trace_secondary" caption="Whether to Trace The Secondary Tracer">
+				<Definition position="cell" valueType="integer" default="0" checkBox="true">
+				</Definition>
+			</Item>
+
+			<!-- 最大トレーサー数 -->
+			<Item name="max_number_secondary" caption="Maximum Number of Total Tracer Particles">
+				<Definition valueType="integer" default="100000" max="100000000">
+					<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- セル内の最大トレーサー数 -->
+			<Item name="max_number_in_cell_secondary" caption="Maximum Number of Tracer Particles in one Cell">
+				<Definition valueType="integer" default="10" max="1000">
+					<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 移動限界水深 -->
+			<Item name="movable_critical_depth_secondary" caption="Critical Depth for Tracer Moving(m)">
+				<Definition valueType="real" default="0.003" min="0.0">
+					<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 移動限界摩擦速度 -->
+			<Item name="movable_critical_u_star_secondary" caption="Critical Shear Velocity Below Which The Tracer Stops(m/s)">
+				<Definition valueType="real" default="0.0">
+					<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- トレーサー補足壁の設定 -->
+			<GroupBox caption="Tracer Capturing Wall">
+
+				<!-- トレーサー補足壁の高さ -->
+				<Item name="trap_wall_height_secondary" caption="Capturing Wall Height(m)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+					</Definition>
+				</Item>
+
+				<!-- トレーサー捕捉率 -->
+				<Item name="trap_rate_secondary" caption="Capturing Rate of The Wall(%)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+			<!-- トレーサー配置 -->
+			<GroupBox caption="Tracers Supply Range">
+
+				<!-- 流下方向 -->
+				<GroupBox caption="xi(Streamwise) Direction">
+
+					<!-- 配置始点 -->
+					<Item name="supply_position_xi_first_secondary" caption="xi_1">
+						<Definition valueType="real" default="0.1" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置終点 -->
+					<Item name="supply_position_xi_end_secondary" caption="xi_2">
+						<Definition valueType="real" default="0.1" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置間隔 -->
+					<Item name="supply_interval_xi_secondary" caption="d_xi">
+						<Definition valueType="real" default="0.1" max="1" min="0.0000001">
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<!-- 横断方向 -->
+				<GroupBox caption="eta(Transverse) Direction">
+
+					<Item name="supply_position_eta_first_secondary" caption="eta_1">
+						<Definition valueType="real" default="0.3" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Definition>
+					</Item>
+					<Item name="supply_position_eta_end_secondary" caption="eta_2">
+						<Definition valueType="real" default="0.7" max="1" min="0">
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Definition>
+					</Item>
+					<Item name="supply_interval_eta_secondary" caption="d_eta">
+						<Definition valueType="real" default="0.02" max="1" min="0.0000001">
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<Image src="tracer supply range.png"/>
+
+			</GroupBox>
+
+			<!-- トレーサークローニングを行うか -->
+			<Item name="is_tracer_cloning_secondary" caption="Tracer Cloning for Secondary Normal Tracers">
+				<Definition valueType="integer" default="0" checkBox="true">
+					<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- クローニング設定 -->
+			<GroupBox caption="Cloning Method">
+
+				<!-- クローニング手法 -->
+				<Item name="cloning_option_secondary" caption="Cloning Condition or Method">
+					<Definition valueType="integer" default="0">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_tracer_cloning_secondary" value="1"/>
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Condition>
+						<Enumerations>
+							<Enumeration value="0" caption="All Empty Cells"/>
+							<Enumeration value="1" caption="Cells With Only one Tracer"/>
+							<Enumeration value="2" caption="Specified Cells With one Tracer"/>
+						</Enumerations>
+					</Definition>
+				</Item>
+
+				<!-- 最大分割回数 -->
+				<Item name="max_generation_secondary" caption="Maximum Cloning Generations">
+					<Definition valueType="integer" default="5" max="100">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_tracer_cloning_secondary" value="1"/>
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+				<!-- すべての空白セルにトレーサーを発生させる場合の割引係数 -->
+				<Item name="cloning_reduction_factor_secondary" caption="Cloning Reduction Factor for Empty Cells Cloning">
+					<Definition valueType="integer" default="1" max="1000">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_tracer_cloning_secondary" value="1"/>
+							<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+							<Condition type="isEqual" target="cloning_option_secondary" value="0"/>
+						</Condition>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+		</Tab>
+
+		<!-- 軌跡追跡トレーサーの設定 -->
+		<Tab name="special_supply" caption="Trajectory Tracers Setting">
+
+			<!-- 軌跡追跡トレーサーを追跡するか -->
+			<Item name="is_trace_trajectory" caption="Whether to Trace The Trajectory Tracer">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+			</Item>
+
+			<!-- 軌跡追跡トレーサーの最大数 -->
+			<Item name="max_number_trajectory" caption="Maximum Number of Total Tracer for Trajectory">
+				<Definition valueType="integer" default="100" max="100">
+					<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 軌跡の最大保存回数 -->
+			<Item name="max_save_times_trajectory" caption="Maximum Times of Tracer Trajectory Saving">
+				<Definition valueType="integer" default="10000" max="1000000">
+					<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 軌跡の保存間隔 -->
+			<Item name="save_interval_trajectory" caption="Interval of Tracer Trajectory Saving">
+				<Definition valueType="integer" default="10" min="1" max="10000">
+					<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 移動限界水深 -->
+			<Item name="movable_critical_depth_trajectory" caption="Critical Depth for Tracer Moving(m)">
+				<Definition valueType="real" default="0.003" min="0.0">
+					<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 移動限界摩擦速度 -->
+			<Item name="movable_critical_u_star_trajectory" caption="Critical Shear Velocity Below Which The Tracer Stops(m/s)">
+				<Definition valueType="real" default="0.0">
+					<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- トレーサー補足壁の設定 -->
+			<GroupBox caption="Tracer Capturing Wall">
+
+				<!-- トレーサー補足壁の高さ -->
+				<Item name="trap_wall_height_trajectory" caption="Capturing Wall Height(m)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+					</Definition>
+				</Item>
+
+				<!-- トレーサー捕捉率 -->
+				<Item name="trap_rate_trajectory" caption="Capturing Rate of The Wall(%)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+			<!-- トレーサー配置 -->
+			<GroupBox caption="Tracers Supply Range">
+
+				<!-- 流下方向 -->
+				<GroupBox caption="xi(Streamwise) Direction">
+
+					<!-- 配置始点 -->
+					<Item name="supply_position_xi_first_trajectory" caption="xi_1">
+						<Definition valueType="real" default="0.1">
+							<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置終点 -->
+					<Item name="supply_position_xi_end_trajectory" caption="xi_2">
+						<Definition valueType="real" default="0.1">
+							<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置間隔 -->
+					<Item name="supply_interval_xi_trajectory" caption="d_xi">
+						<Definition valueType="real" default="0.1" min="0.0000001">
+							<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<!-- 横断方向 -->
+				<GroupBox caption="eta(Transverse) Direction">
+
+					<!-- 配置始点 -->
+					<Item name="supply_position_eta_first_trajectory" caption="eta_1">
+						<Definition valueType="real" default="0.3">
+							<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置終点 -->
+					<Item name="supply_position_eta_end_trajectory" caption="eta_2">
+						<Definition valueType="real" default="0.7">
+							<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+						</Definition>
+					</Item>
+
+					<!-- 配置間隔 -->
+					<Item name="supply_interval_eta_trajectory" caption="d_eta">
+						<Definition valueType="real" default="0.02" min="0.0000001">
+							<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<Image src="tracer supply range.png"/>
+
+			</GroupBox>
+
+			<!-- 軌跡追跡トレーサーの投入時間 -->
+			<GroupBox caption="Time of Special Tracers Injection(Seconds)">
+
+				<Item name="supply_time_trajectory" caption="Supply Time(sec)">
+					<Definition valueType="real" default="0.0">
+						<Condition type="isEqual" target="is_trace_trajectory" value="1"/>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+		</Tab>
+
+		<!-- ウィンドマップ風表示設定 -->
+		<Tab name="windmap" caption="Wind Map Like Plotting">
+
+			<!-- ウィンドマップ風表示をするか -->
+			<Item name="is_draw_windmap" caption="Drawing Wind Map">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+			</Item>
+
+			<!-- ウィンドマップ設定 -->
+			<GroupBox caption="Wind Map Setting">
+
+				<!-- ウィンドマップライン最大表示数 -->
+				<Item name="max_display_number_windmap_line" caption="Max Numbers of Windmap Lines">
+					<Definition valueType="integer" default="100" max="1000000">
+						<Condition type="isEqual" target="is_draw_windmap" value="1"/>
+					</Definition>
+				</Item>
+				<!-- ウィンドマップラインの寿命 -->
+				<Item name="display_life_span_windmap_line" caption="Lifespan of Each Windmap Lines(sec)">
+					<Definition valueType="real" default="10">
+						<Condition type="isEqual" target="is_draw_windmap" value="1"/>
+					</Definition>
+				</Item>
+				<!-- ウィンドマップラインの保存間隔 -->
+				<Item name="save_interval_windmap_line" caption="Time Step for Windmap Memory(sec)">
+					<Definition valueType="real" default="1" min="0.0000001">
+						<Condition type="isEqual" target="is_draw_windmap" value="1"/>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+		</Tab>
+
+		<!-- 魚の設定 -->
+		<Tab name="fish_motion1" caption="Simulation of Fish Motion">
+
+			<!-- 魚のシミュレーションを行うか -->
+			<Item name="is_simulation_fish" caption="Fish Simulation">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+			</Item>
+
+			<!-- 魚の周期境界条件 -->
+			<Item name="is_periodic_boundary_condition_fish" caption="Periodic Boundary Condition for Fish Simulation">
+				<Definition valueType="integer" default="0" checkBox="true">
+					<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- ジャンプするかどうか -->
+			<Item name="is_jump_fish" caption="Fish Jumping">
+				<Definition valueType="integer" default="0" checkBox="true">
+					<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 魚の遊泳パラメーターリスト -->
+			<Item name="fish_information_list" caption="Fish Swimming Information List">
+				<Definition valueType="complex">
+
+					<!-- このグループが占める割合 -->
+					<Item name="fish_group_ratio" caption="Ratio of Fish Group">
+						<Definition valueType="integer" default="1" min="1" />
+					</Item>
+
+					<!-- 体長 -->
+					<Item name="fish_body_length" caption="Fish Body Length (m)">
+						<Definition valueType="real" default="0.3" min="0.001"/>
+					</Item>
+
+					<!-- 遊泳速度 -->
+					<Item name="fish_cruise_speed" caption="Fish Cruise Speed (m/s)">
+						<Definition valueType="real" default="0.1" min="0"/>
+					</Item>
+
+					<!-- 遊泳継続時間 -->
+					<Item name="fish_cruise_time" caption="Fish Cruise Time (sec)">
+						<Definition valueType="real" default="5" min="0"/>
+					</Item>
+
+					<!-- 突進速度 -->
+					<Item name="fish_rush_speed" caption="Fish Rush Speed (m/s)">
+						<Definition valueType="real" default="0.2" min="0"/>
+					</Item>
+
+					<!-- 突進継続時間 -->
+					<Item name="fish_rush_time" caption="Fish Rush Time (sec)">
+						<Definition valueType="real" default="5" min="0"/>
+					</Item>
+
+					<!-- 移動限界水深 -->
+					<Item name="movable_critical_depth_fish" caption="Minimum Depth for Fish Activity(m)">
+						<Definition valueType="real" default="0.01"/>
+					</Item>
+
+					<!-- 限界水深での魚の挙動 -->
+					<Item name="fish_handling_in_critical_depth" caption="Fish Motion in Critical Depth Area">
+						<Definition valueType="integer" default="0" min="0" max="4">
+							<Enumerations>
+								<!-- その場に留まる -->
+								<Enumeration value="0" caption="Stop"/>
+								<!-- 逆方向に泳ぐ -->
+								<Enumeration value="1" caption="Reverse"/>
+								<!-- 流れに身を任せる -->
+								<Enumeration value="2" caption="Noswimming"/>
+								<!-- ランダムな方向に泳ぐ -->
+								<Enumeration value="3" caption="Random"/>
+								<!-- 除去される -->
+								<Enumeration value="4" caption="Remove"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+
+					<!-- 限界水深に入った魚の挙動の継続時間 -->
+					<Item name="behavior_time_in_critical_depth" caption="Time During Motion in Critical Depth Area(sec)">
+						<Definition valueType="real" default="1">
+						</Definition>
+					</Item>
+
+					<!-- ジャンプに挑戦する高さ -->
+					<Item name="jump_try_height" caption="Water Surface Elevation Drop Height Where Fish Consider Jumping(m)">
+						<Definition valueType="real" default="0.15"/>
+					</Item>
+
+					<!-- ジャンプの高さ -->
+					<Item name="jumpable_height" caption="Possible Jumping Height(m)">
+						<Definition valueType="real" default="0.5"/>
+					</Item>
+
+					<!-- ジャンプできる距離 -->
+					<Item name="jumpable_distance" caption="Possible Jumping Distance(m)">
+						<Definition valueType="real" default="0.5"/>
+					</Item>
+					<!-- ジャンプが出来なかった際の動作 -->
+					<Item name="fish_handling_when_jumping_failed" caption="Fish Handling When Jumping Fails">
+						<Definition valueType="integer" default="0">
+							<Enumerations>
+								<!-- その場に留まる -->
+								<Enumeration value="0" caption="Stop"/>
+								<!-- 遊泳による遡上を試みる -->
+								<Enumeration value="1" caption="Continue Swimming"/>
+							</Enumerations>
+						</Definition>
+					</Item>
+
+				</Definition>
+			</Item>
+
+			<!-- 魚の配置方法 -->
+			<Item name="fish_arrangement_method" caption="How to Set Initial Location">
+				<Definition valueType="integer" default="1">
+					<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+					<Enumerations>
+						<!-- 無次元座標で配置する -->
+						<Enumeration value="1" caption="Nondimensional Coordinate"/>
+						<!-- 総数を与えてランダムに配置する -->
+						<Enumeration value="2" caption="Give Total Numbers and Random Placement"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+
+			<!-- 魚を配置できない場合の処理 -->
+			<Item name="fish_handling_unable_to_place" caption="Handling When Unable to Place">
+				<Definition valueType="integer" default="0" tooltips="When the fish cannot be placed, it will be handled as follows:&#xa;0: Fish placed in an obstacle cell or under the minimum depth point will be removed.&#xa;1: Fish placed in an obstacle cell will be removed.&#xa;2: Fish placed in an obstacle cell or under the minimum depth point will be replaced to a random position.&#xa;3: Fish placed in an obstacle cell will be replaced to a random position.">
+					<Condition type="and">
+						<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+					</Condition>
+					<Enumerations>
+						<Enumeration value="0" caption="0:Remove (Obstacle and Depth)"/>
+						<Enumeration value="1" caption="1:Remove (Obstacle)"/>
+						<Enumeration value="2" caption="2:Relocation (Obstacle and Depth)"/>
+						<Enumeration value="3" caption="3:Relocation (Obstacle)"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+
+			<!-- 魚の総数 -->
+			<Item name="fish_number" caption="Total Number of Fish">
+				<Definition valueType="integer" default="100" max="1000">
+					<Condition type="and">
+						<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+						<Condition type="isEqual" target="fish_arrangement_method" value="2"/>
+					</Condition>
+				</Definition>
+			</Item>
+
+			<!-- 魚の初期位置 -->
+			<GroupBox caption="Initial Fish Location">
+
+				<!-- 流下方向 -->
+				<GroupBox caption="xi(Streamwise) Direction">
+
+					<!-- 始点 -->
+					<Item name="supply_position_xi_first_fish" caption="xi_1">
+						<Definition valueType="real" default="0.9" min="0.0" max="1.0">
+							<Condition type="and">
+								<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+								<Condition type="isEqual" target="fish_arrangement_method" value="1"/>
+							</Condition>
+						</Definition>
+					</Item>
+
+					<!-- 終点 -->
+					<Item name="supply_position_xi_end_fish" caption="xi_2">
+						<Definition valueType="real" default="0.9" min="0.0" max="1.0">
+							<Condition type="and">
+								<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+								<Condition type="isEqual" target="fish_arrangement_method" value="1"/>
+							</Condition>
+						</Definition>
+					</Item>
+
+					<!-- 間隔 -->
+					<Item name="supply_interval_xi_fish" caption="d_xi">
+						<Definition valueType="real" default="0.1" min="0.0000001" max="1.0">
+							<Condition type="and">
+								<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+								<Condition type="isEqual" target="fish_arrangement_method" value="1"/>
+							</Condition>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<!-- 横断方向 -->
+				<GroupBox caption="eta(Transverse) Direction">
+
+					<!-- 始点 -->
+					<Item name="supply_position_eta_first_fish" caption="eta_1">
+						<Definition valueType="real" default="0.3" min="0.0" max="1.0">
+							<Condition type="and">
+								<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+								<Condition type="isEqual" target="fish_arrangement_method" value="1"/>
+							</Condition>
+						</Definition>
+					</Item>
+
+					<!-- 終点 -->
+					<Item name="supply_position_eta_end_fish" caption="eta_2">
+						<Definition valueType="real" default="0.7" min="0.0" max="1.0">
+							<Condition type="and">
+								<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+								<Condition type="isEqual" target="fish_arrangement_method" value="1"/>
+							</Condition>
+						</Definition>
+					</Item>
+
+					<!-- 間隔 -->
+					<Item name="supply_interval_eta_fish" caption="d_eta">
+						<Definition valueType="real" default="0.02" min="0.0000001" max="1.0">
+							<Condition type="and">
+								<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+								<Condition type="isEqual" target="fish_arrangement_method" value="1"/>
+							</Condition>
+						</Definition>
+					</Item>
+
+				</GroupBox>
+
+				<Image src="tracer supply range.png"/>
+
+			</GroupBox>
+
+			<!-- 魚の表示サイズ倍率 -->
+			<Item name="fish_display_size_magnification" caption="Fish Size Magnification Factor">
+				<Definition valueType="real" default="1.0">
+					<Condition type="and">
+						<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+					</Condition>
+
+				</Definition>
+			</Item>
+
+			<!-- 通過した魚の数計測 -->
+			<GroupBox caption="Counting Numbers of Fish Passing Trough">
+
+				<!-- 魚の計測を行うか -->
+				<Item name="is_count_fish" caption="Fish Count">
+					<Definition valueType="integer" default="0" checkBox="true">
+						<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+					</Definition>
+				</Item>
+
+				<!-- 計測断面 -->
+				<Item name="count_section_position" caption="Fish Count Section">
+					<Definition valueType="integer" default="10">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+							<Condition type="isEqual" target="is_count_fish" value="1"/>
+						</Condition>
+
+					</Definition>
+				</Item>
+
+				<!-- 計測開始時間 -->
+				<Item name="count_time_start" caption="Fish Count Start Time(sec)">
+					<Definition valueType="real" default="0">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+							<Condition type="isEqual" target="is_count_fish" value="1"/>
+						</Condition>
+
+					</Definition>
+				</Item>
+
+				<!-- 計測終了時間 -->
+				<Item name="count_time_end" caption="Fish Count End Time(sec)">
+					<Definition valueType="real" default="10">
+						<Condition type="and">
+							<Condition type="isEqual" target="is_simulation_fish" value="1"/>
+							<Condition type="isEqual" target="is_count_fish" value="1"/>
+						</Condition>
+
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+		</Tab>
+
+		<!-- 拡散の設定 -->
+		<Tab name="Diffusivity" caption="Diffusion Condition">
+
+			<!-- ランダムウォークを適用するか -->
+			<Item name="is_consider_Diffusion" caption="Diffusivity Correction">
+				<Definition valueType="integer" default="1" checkBox="true"/>
+			</Item>
+
+			<!-- 拡散の式 -->
+			<GroupBox caption="Diffusivity Parameters">
+
+				<!-- 拡散係数a -->
+				<Item name="a_diff" caption="A Value in D=A Nu + B">
+					<Definition valueType="real" default="1">
+						<Condition type="isEqual" target="is_consider_Diffusion" value="1"/>
+					</Definition>
+				</Item>
+
+				<!-- 拡散定数b -->
+				<Item name="b_diff" caption="B Value (m2 S-1)">
+					<Definition valueType="real" default="0">
+						<Condition type="isEqual" target="is_consider_Diffusion" value="1"/>
+					</Definition>
+				</Item>
+
+			</GroupBox>
+
+		</Tab>
+
+		<!-- 植生描画設定 -->
+		<Tab name="tree" caption="Tree Drawing Condition">
+
+			<!-- 描画するかどうか -->
+			<Item name="is_draw_tree" caption="Tree Drawing">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+			</Item>
+
+			<!-- 描画するセル -->
+			<Item name="drawing_target_tree" caption="Tree Drawing Condition">
+				<Definition valueType="integer" default="1">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+					<Enumerations>
+						<Enumeration value="1" caption="Dry Cell Only"/>
+						<Enumeration value="2" caption="Read From Cell"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+
+			<!-- 植生を描画できる水深 -->
+			<Item name="drawable_depth_tree" caption="Critical Depth Below Which Tree Draw(m)">
+				<Definition valueType="real" default="0.001">
+					<Condition type="and">
+						<Condition type="isEqual" target="is_draw_tree" value="1"/>
+					</Condition>
+
+				</Definition>
+			</Item>
+
+			<!-- 植生の平均高さ -->
+			<Item name="base_size_tree" caption="Average Tree Height(m)">
+				<Definition valueType="real" default="1.0">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 樹木の高さにバリエーションを与えるか -->
+			<Item name="is_apply_variation_size_tree" caption="Tree Height Variation">
+				<Definition valueType="integer" default="0" checkBox="true">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 樹木のアスペクト比 -->
+			<Item name="tree_aspect_ratio" caption="Aspect Ratio of Tree Image">
+				<Definition valueType="real" default="0.5">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 樹木の描画アングル(Degree)(Y軸方向が0)(時計回りが正) -->
+			<Item name="tree_drawing_angle" caption="Tree Drawing Angle(Degree)">
+				<Definition valueType="real" default="0" tooltips="Y-axis direction is 0 degree, clockwise is positive">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 範囲内に何個樹木を描画するか -->
+			<Item name="number_of_tree_in_range" caption="Number of Tree in The Range">
+				<Definition valueType="integer" default="1" min="1">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 樹木描画間隔(i方向) -->
+			<Item name="draw_interval_i_tree" caption="Tree Plot Step in i-Direction">
+				<Definition valueType="integer" default="1" min="1">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 樹木描画間隔(j方向) -->
+			<Item name="draw_interval_j_tree" caption="Tree Plot Step in j-Direction">
+				<Definition valueType="integer" default="1" min="1">
+					<Condition type="isEqual" target="is_draw_tree" value="1"/>
+				</Definition>
+			</Item>
+
+		</Tab>
+
+		<!-- 礫の描画 -->
+		<Tab name="Gravel Bed" caption="Gravel Bed Drawing">
+
+			<!-- 描画するかどうか -->
+			<Item name="is_draw_gravel" caption="Gravel Drawing">
+				<Definition valueType="integer" default="0" checkBox="true"/>
+			</Item>
+
+			<!-- 描画するセル -->
+			<Item name="drawing_target_gravel" caption="Gravel Drawing Condition">
+				<Definition valueType="integer" default="1">
+					<Condition type="isEqual" target="is_draw_gravel" value="1"/>
+					<Enumerations>
+						<Enumeration value="1" caption="Dry Cell Only"/>
+						<Enumeration value="2" caption="Read From Cell"/>
+					</Enumerations>
+				</Definition>
+			</Item>
+
+			<!-- 礫を描画できる水深 -->
+			<Item name="drawable_depth_gravel" caption="Critical Depth Below Which Gravel Draw(m)">
+				<Definition valueType="real" default="0.001">
+					<Condition type="and">
+						<Condition type="isEqual" target="is_draw_gravel" value="1"/>
+					</Condition>
+
+				</Definition>
+			</Item>
+
+			<!-- 礫の粒径 -->
+			<Item name="base_size_gravel" caption="Average Gravel Diameter(m)">
+				<Definition valueType="real" default="1.0">
+					<Condition type="isEqual" target="is_draw_gravel" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 礫の粒径にバリエーションを与えるか -->
+			<Item name="is_apply_variation_size_gravel" caption="Gravel Diameter Variation">
+				<Definition valueType="integer" default="0" checkBox="true">
+					<Condition type="isEqual" target="is_draw_gravel" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 範囲内に何個礫を描画するか -->
+			<Item name="number_of_gravel_in_range" caption="Number of Gravel in The Range">
+				<Definition valueType="integer" default="1" min="1">
+					<Condition type="isEqual" target="is_draw_gravel" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 礫描画間隔(i方向) -->
+			<Item name="draw_interval_i_gravel" caption="Gravel Plot Step in i-Direction">
+				<Definition valueType="integer" default="1" min="1">
+					<Condition type="isEqual" target="is_draw_gravel" value="1"/>
+				</Definition>
+			</Item>
+
+			<!-- 礫描画間隔(j方向) -->
+			<Item name="draw_interval_j_gravel" caption="Gravel Plot Step in j-Direction">
+				<Definition valueType="integer" default="1" min="1">
+					<Condition type="isEqual" target="is_draw_gravel" value="1"/>
+				</Definition>
+			</Item>
+
+		</Tab>
+
+		<Tab name="others" caption="Others">
+
+			<!-- 一定のマニング粗度を使用するか -->
+			<Item name="is_use_constant_roughness" caption="Use Constant Roughness">
+				<Definition valueType="integer" default="1" checkBox="true" />
+			</Item>
+
+			<!-- 一定のマニング粗度係数の値 -->
+			<Item name="constant_roughness" caption="Manning&apos;s Roughness Coefficient">
+				<Definition valueType="real"  default="0.03" tooltips="The Manning's roughness coefficient is used to calculate the friction velocity and eddy viscosity coefficient.">
+					<Condition type="isEqual" target="is_use_constant_roughness" value="1" />
+				</Definition>
+			</Item>
+
+			<!-- 乱数のシード値 -->
+			<Item name="random_seed" caption="Random Seed Value">
+				<Definition valueType="integer" default="0" min="0">
+				</Definition>
+			</Item>
+
+		</Tab>
+
+	</CalculationCondition>
+
+	<GridRelatedCondition>
+
+		<!-- 標高 -->
+		<Item name="elevation" caption="Elevation(m)">
+			<Definition position="node" valueType="real" default="max" />
+		</Item>
+
+		<!-- 障害物セル -->
+		<Item name="obstacle" caption="Obstacle">
+			<Definition position="cell" valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal Cell"/>
+					<Enumeration value="1" caption="Obstacle"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<!-- トレーサーのクローニング設定 -->
+		<Item name="is_tracer_cloning" caption="Tracer Cloning Cell">
+			<Definition position="cell" valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal Cell" />
+					<Enumeration value="1" caption="Tracer Cloning Cell" />
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<!-- 粗度 -->
+		<Item name="roughness_cell" caption="Manning&apos;s Roughness Coefficient">
+			<Definition position="cell" valueType="real" default="0.03"/>
+		</Item>
+
+		<!-- 礫の描画設定 -->
+		<Item name="is_gravel_cell" caption="Gravel Bed Cell">
+			<Definition position="cell" valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal Cell"/>
+					<Enumeration value="1" caption="Gravel Bed Cell"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<!-- 樹木の描画設定 -->
+		<Item name="is_tree_cell" caption="Tree Cell">
+			<Definition position="cell" valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal Cell"/>
+					<Enumeration value="1" caption="Tree Cell"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<!-- トラップの設定 -->
+		<Item name="trap_cell" caption="Tracer Trap">
+			<Definition position="cell" valueType="integer" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal Cell"/>
+					<Enumeration value="1" caption="Tracer Trapping Cell"/>
+				</Enumerations>
+			</Definition>
+		</Item>
+
+		<!-- 計算結果名の定義 -->
+		<!-- 格子点の値 -->
+		<Output name="Depth" caption="Depth(m)">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<Output name="ElevationChange" caption="Elevation Change(m)">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<Output name="Elevation" caption="Bed Elevation(m)">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<Output name="WaterSurface" caption="Water Surface Elevation(m)">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<Output name="Vorticity" caption="Vorticity(1/sec)">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<Output name="DyeConcentration" caption="Dye Concentration">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<Output name="ShearVelocity" caption="Shear Velocity(m/s)">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<Output name="VelocityX" caption="Velocity(m/s)X">
+			<Definition valueType="real" position="node" />
+		</Output>
+		<!-- セルの値 -->
+		<Output name="Numbers of Tracers (primary)" caption="Numbers of Tracers (Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Weighted Numbers of Tracers (primary)" caption="Weighted Numbers of Tracers (Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Tracer Numbers in Each Section(primary)" caption="Tracer Numbers in Each Section(Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Cross-Sectional Averaged Tracer Numbers(primary)" caption="Cross-Sectional Averaged Tracer Numbers(Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Time-Integrated Tracer Counts in Cells (primary)" caption="Time-Integrated Tracer Counts in Cells (Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Averaged Tracer Counts (primary)" caption="Averaged Tracer Counts (Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+
+		<Output name="Numbers of Tracers (secondary)" caption="Numbers of Tracers (Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Weighted Numbers of Tracers (secondary)" caption="Weighted Numbers of Tracers (Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Tracer Numbers in Each Section(secondary)" caption="Tracer Numbers in Each Section(Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Cross-Sectional Averaged Tracer Numbers(secondary)" caption="Cross-Sectional Averaged Tracer Numbers(Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Time-Integrated Tracer Counts in Cells (secondary)" caption="Time-Integrated Tracer Counts in Cells (Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Averaged Tracer Counts (secondary)" caption="Averaged Tracer Counts (Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+
+		<!-- パーティクルの値 -->
+		<Output name="primary Normal Tracers" caption="Primary Normal Tracers">
+		</Output>
+		<Output name="Tracer Number (primary)" caption="Tracer Number (Primary)">
+		</Output>
+		<Output name="Generation(primary)" caption="Generation(Primary)">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="Tracer Weight(primary)" caption="Tracer Weight(Primary)">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="Cell Index i (primary)" caption="Cell Index i (Primary)">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="Cell Index j (primary)" caption="Cell Index j (Primary)">
+			<Definition valueType="real" />
+		</Output>
+
+		<Output name="secondary Normal Tracers" caption="Secondary Normal Tracers">
+		</Output>
+		<Output name="Tracer Number (secondary)" caption="Tracer Number (Secondary)">
+		</Output>
+		<Output name="Generation(secondary)" caption="Generation(Secondary)">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="Tracer Weight(secondary)" caption="Tracer Weight(Secondary)">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="Cell Index i (secondary)" caption="Cell Index i (Secondary)">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="Cell Index j (secondary)" caption="Cell Index j (Secondary)">
+			<Definition valueType="real" />
+		</Output>
+
+		<!-- 軌跡追跡トレーサー -->
+		<Output name="Trajectory" caption="Trajectory">
+		</Output>
+		<Output name="Total Trajectory Number" caption="Total Trajectory Number">
+		</Output>
+		<Output name="TracerID" caption="TracerID">
+			<Definition valueType="integer" />
+		</Output>
+
+		<!-- Wind Map -->
+		<Output name="Windmap Head" caption="Windmap Head">
+		</Output>
+		<Output name="Windmap" caption="Windmap">
+		</Output>
+		<Output name="Length" caption="Length">
+			<Definition valueType="real" />
+		</Output>
+		<Output name="Normalized Velocity" caption="Normalized Velocity">
+			<Definition valueType="real" />
+		</Output>
+
+		<!-- 魚計測の断面 -->
+		<Output name="Fish Count Crossing Section" caption="Fish Count Crossing Section">
+		</Output>
+
+		<!-- 魚の値 -->
+		<Output name="Fish" caption="Fish">
+		</Output>
+		<Output name="Number of Alive Fish" caption="Number of Alive Fish">
+			<Definition valueType="integer"/>
+		</Output>
+		<Output name="Number of Fish passed through the section" caption="Number of Fish Passed Through The Section">
+			<Definition valueType="integer"/>
+		</Output>
+		<Output name="Swim Mode" caption="Swim Mode">
+			<Definition valueType="integer">
+				<Enumerations>
+					<Enumeration value="0" caption="Normal Mode"/>
+					<Enumeration value="1" caption="Rush Mode"/>
+				</Enumerations>
+			</Definition>
+		</Output>
+		<Output name="under critical depth mode" caption="Under Critical Depth Mode">
+			<Definition valueType="integer">
+				<Enumerations>
+					<Enumeration value="0" caption="Disable"/>
+					<Enumeration value="1" caption="Enable"/>
+				</Enumerations>
+			</Definition>
+		</Output>
+		<Output name="Fish Group" caption="Fish Group">
+			<Definition valueType="integer"/>
+		</Output>
+		<Output name="Fish Index" caption="Fish Index">
+			<Definition valueType="integer"/>
+		</Output>
+		<Output name="Jump Mode" caption="Jump Mode">
+			<Definition valueType="integer">
+				<Enumerations>
+					<Enumeration value="1" caption="Jump Success"/>
+					<Enumeration value="0" caption="Swimming"/>
+					<Enumeration value="-1" caption="Jump Failed"/>
+				</Enumerations>
+			</Definition>
+		</Output>
+
+		<!-- 水路中心線 -->
+		<Output name="Center Line" caption="Center Line">
+		</Output>
+
+		<!-- 樹木 -->
+		<Output name="01_Tree leaf" caption="01_Tree leaf">
+		</Output>
+		<Output name="02_Tree trunk" caption="02_Tree trunk">
+		</Output>
+		<Output name="01_Gravel" caption="01_Gravel">
+		</Output>
+		<Output name="03_Gravel" caption="03_Gravel">
+		</Output>
+
+
+	</GridRelatedCondition>
+
+</SolverDefinition>
