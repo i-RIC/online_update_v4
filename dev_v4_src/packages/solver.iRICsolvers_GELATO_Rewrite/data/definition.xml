@@ -184,7 +184,7 @@
 
 					<HBoxLayout>
 
-						<!-- 渦度を読み込むか -->
+						<!-- 染料濃度を読み込むか -->
 						<Label col="0" caption="Load Dye Concentration" />
 						<Item col="1" name="is_load_dye_concentration">
 							<Definition valueType="integer" default="0" checkBox="true">
