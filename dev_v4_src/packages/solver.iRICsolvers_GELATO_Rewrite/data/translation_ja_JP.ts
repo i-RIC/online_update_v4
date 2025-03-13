@@ -305,12 +305,12 @@
             <translation>Wind Mapの最大描画本数</translation>
         </message>
         <message>
-            <source>Lifespan of Each Windmap Lines(sec)</source>
-            <translation>個々のWind Map線の寿命(sec)</translation>
+            <source>Maximum Life of Windmap Lines</source>
+            <translation>個々のWind Map線の寿命(保存回数)</translation>
         </message>
         <message>
-            <source>Time Step for Windmap Memory(sec)</source>
-            <translation>Wind Mapの保存時間間隔(sec)</translation>
+            <source>Interval of Windmap Saving</source>
+            <translation>Wind Mapの保存間隔(追跡回数)</translation>
         </message>
         <message>
             <source>Simulation of Fish Motion</source>
@@ -673,8 +673,16 @@
             <translation>粒子数(プライマリー)</translation>
         </message>
         <message>
+            <source>Numbers of Tracers (Primary)</source>
+            <translation>補足された粒子数(プライマリー)</translation>
+        </message>
+        <message>
             <source>Weighted Numbers of Tracers (Primary)</source>
             <translation>重み付き粒子数(プライマリー)</translation>
+        </message>
+        <message>
+            <source>Weighted Numbers of Tracers (Primary)</source>
+            <translation>補足された重み付き粒子数(プライマリー)</translation>
         </message>
         <message>
             <source>Tracer Numbers in Each Section(Primary)</source>
@@ -697,8 +705,12 @@
             <translation>粒子数(セカンダリー)</translation>
         </message>
         <message>
+            <source>Numbers of Tracers (Secondary)</source>
+            <translation>補足された粒子数(セカンダリー)</translation>
+        </message>
+        <message>
             <source>Weighted Numbers of Tracers (Secondary)</source>
-            <translation>重み付き粒子数(セカンダリー)</translation>
+            <translation>補足された重み付き粒子数(セカンダリー)</translation>
         </message>
         <message>
             <source>Tracer Numbers in Each Section(Secondary)</source>

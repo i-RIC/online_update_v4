@@ -6,5 +6,8 @@ Check here for case studies:
 https://gelato-rewrite-documents.readthedocs.io/ja/v2.0_en/
 
 # Release notes
+ver 2.1.25031301 update by hoshino
+* Changed the specification so that trapped tracers are not counted in the number of tracers in the cell, but are counted separately as the number of trapped tracers.
+* Changed the specification so that the lifespan and saving interval of the Windmap wind drawing lines are specified by the number of times, similar to the trajectory tracking tracers, instead of seconds.
 ver. 2.0.25031001 update by Hoshino
 * Fully rewritten based on GELATO v1.3.25020501

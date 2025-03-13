@@ -10,5 +10,8 @@ GELATOにおいて使用される背景の流れ場は、iRICで提供されて�
 https://gelato-rewrite-documents.readthedocs.io/ja/v2.0_jp/
 
 リリースノート
-ver. 2.0.25031001 update by hoshino
+ver 2.1.25031301 update by hoshino
+* トラップされたトレーサーをセル内のトレーサー数にカウントせず、別途トラップされたトレーサー数としてカウントするよう仕様変更
+* Windmap風描画のラインの寿命と保存間隔を秒から軌跡追跡トレーサーと同様に回数で指定するように変更
+ver 2.0.25031001 update by hoshino
 * GELATO v1.3.25020501をベースにフルリライト

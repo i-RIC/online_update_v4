@@ -735,7 +735,7 @@
   <UpdateFile UncompressedSize="43130580" CompressedSize="5892983" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>8b5b45d56faee212e5feca545d9c07dd711add49</SHA1>
  </PackageUpdate>
@@ -769,13 +769,13 @@
   <Name>solver.iRICsolvers_GELATO_Rewrite</Name>
   <DisplayName>GELATO v2.x</DisplayName>
   <Description/>
-  <Version>2.0.25031001</Version>
+  <Version>2.1.25031301</Version>
   <Default>true</Default>
-  <ReleaseDate>2025-03-10</ReleaseDate>
+  <ReleaseDate>2025-03-13</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="481156" CompressedSize="124622" OS="Any"/>
+  <UpdateFile UncompressedSize="489884" CompressedSize="125185" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>692f278b8b8373d276ff7330826fc2f21548696d</SHA1>
+  <SHA1>eacaeb0b320c07afdcdaf7424e99fa88a6f3a488</SHA1>
  </PackageUpdate>
 </Updates>

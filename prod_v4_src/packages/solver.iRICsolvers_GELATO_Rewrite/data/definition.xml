@@ -3,9 +3,9 @@
 	xmlns="www.iric.net/SolverDefinition/1.0" 
 	name="GELATO" 
 	caption="GELATO v2.x" 
-	version="2.0.25031001" 
+	version="2.1.25031301" 
 	copyright="Yasuyuki SHIMIZU, Keita Hoshino" 
-	release="2025.03.10" 
+	release="2025.03.13" 
 	homepage="https://i-ric.org/yasu/" 
 	executable="GELATO.exe" 
 	iterationtype="time" 
@@ -744,14 +744,14 @@
 					</Definition>
 				</Item>
 				<!-- ウィンドマップラインの寿命 -->
-				<Item name="display_life_span_windmap_line" caption="Lifespan of Each Windmap Lines(sec)">
-					<Definition valueType="real" default="10">
+				<Item name="display_life_span_windmap_line" caption="Maximum Life of Windmap Lines">
+					<Definition valueType="integer" default="10" min="1">
 						<Condition type="isEqual" target="is_draw_windmap" value="1"/>
 					</Definition>
 				</Item>
 				<!-- ウィンドマップラインの保存間隔 -->
-				<Item name="save_interval_windmap_line" caption="Time Step for Windmap Memory(sec)">
-					<Definition valueType="real" default="1" min="0.0000001">
+				<Item name="save_interval_windmap_line" caption="Interval of Windmap Saving">
+					<Definition valueType="integer" default="1" min="1">
 						<Condition type="isEqual" target="is_draw_windmap" value="1"/>
 					</Definition>
 				</Item>
@@ -1337,7 +1337,13 @@
 		<Output name="Numbers of Tracers (primary)" caption="Numbers of Tracers (Primary)">
 			<Definition valueType="real" position="cell" />
 		</Output>
+		<Output name="Nunmbers of Trapped Tracers (primary)" caption="Nunmbers of Trapped Tracers (Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
 		<Output name="Weighted Numbers of Tracers (primary)" caption="Weighted Numbers of Tracers (Primary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Weighted Numbers of Trapped Tracers (primary)" caption="Weighted Numbers of Trapped Tracers (Primary)">
 			<Definition valueType="real" position="cell" />
 		</Output>
 		<Output name="Tracer Numbers in Each Section(primary)" caption="Tracer Numbers in Each Section(Primary)">
@@ -1356,7 +1362,13 @@
 		<Output name="Numbers of Tracers (secondary)" caption="Numbers of Tracers (Secondary)">
 			<Definition valueType="real" position="cell" />
 		</Output>
+		<Output name="Numbers of Trapped Tracers (secondary)" caption="Numbers of Trapped Tracers (Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
 		<Output name="Weighted Numbers of Tracers (secondary)" caption="Weighted Numbers of Tracers (Secondary)">
+			<Definition valueType="real" position="cell" />
+		</Output>
+		<Output name="Weighted Numbers of Trapped Tracers (secondary)" caption="Weighted Numbers of Trapped Tracers (Secondary)">
 			<Definition valueType="real" position="cell" />
 		</Output>
 		<Output name="Tracer Numbers in Each Section(secondary)" caption="Tracer Numbers in Each Section(Secondary)">
