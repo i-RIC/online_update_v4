@@ -711,19 +711,6 @@
   <SHA1>68650c27c389e93356f7bc591e858bd8671d2474</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.ichirokk_CUBEv4</Name>
-  <DisplayName>NaysCUBE v4.43.85</DisplayName>
-  <Description/>
-  <Version>4.43.85</Version>
-  <Default>true</Default>
-  <ReleaseDate>2025-02-21</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="13093558" CompressedSize="839534" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>76d47ecaf668c9341a9d96b1eef708e266964413</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (release)</DisplayName>
   <Description>iRIC Main GUI</Description>
@@ -735,7 +722,7 @@
   <UpdateFile UncompressedSize="43130580" CompressedSize="5892983" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>8b5b45d56faee212e5feca545d9c07dd711add49</SHA1>
  </PackageUpdate>
@@ -777,5 +764,18 @@
   <UpdateFile UncompressedSize="489884" CompressedSize="125185" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>eacaeb0b320c07afdcdaf7424e99fa88a6f3a488</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.ichirokk_CUBEv4</Name>
+  <DisplayName>NaysCUBE v4.43.85</DisplayName>
+  <Description/>
+  <Version>4.43.85</Version>
+  <Default>true</Default>
+  <ReleaseDate>2025-02-21</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="13093558" CompressedSize="839529" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>7c559a78012d8e1d41d90dd5209dc651dc5a905b</SHA1>
  </PackageUpdate>
 </Updates>
