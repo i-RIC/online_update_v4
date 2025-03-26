@@ -3,9 +3,9 @@
 	xmlns="www.iric.net/SolverDefinition/1.0" 
 	name="GELATO" 
 	caption="GELATO v2.x" 
-	version="2.1.25031301" 
+	version="2.1.25032601" 
 	copyright="Yasuyuki SHIMIZU, Keita Hoshino" 
-	release="2025.03.13" 
+	release="2025.03.26" 
 	homepage="https://i-ric.org/yasu/" 
 	executable="GELATO.exe" 
 	iterationtype="time" 
@@ -1335,10 +1335,10 @@
 		</Output>
 		<!-- セルの値 -->
 		<Output name="Numbers of Tracers (primary)" caption="Numbers of Tracers (Primary)">
-			<Definition valueType="real" position="cell" />
+			<Definition valueType="integer" position="cell" />
 		</Output>
-		<Output name="Nunmbers of Trapped Tracers (primary)" caption="Nunmbers of Trapped Tracers (Primary)">
-			<Definition valueType="real" position="cell" />
+		<Output name="Numbers of Trapped Tracers (primary)" caption="Numbers of Trapped Tracers (Primary)">
+			<Definition valueType="integer" position="cell" />
 		</Output>
 		<Output name="Weighted Numbers of Tracers (primary)" caption="Weighted Numbers of Tracers (Primary)">
 			<Definition valueType="real" position="cell" />
@@ -1347,7 +1347,7 @@
 			<Definition valueType="real" position="cell" />
 		</Output>
 		<Output name="Tracer Numbers in Each Section(primary)" caption="Tracer Numbers in Each Section(Primary)">
-			<Definition valueType="real" position="cell" />
+			<Definition valueType="integer" position="cell" />
 		</Output>
 		<Output name="Cross-Sectional Averaged Tracer Numbers(primary)" caption="Cross-Sectional Averaged Tracer Numbers(Primary)">
 			<Definition valueType="real" position="cell" />
@@ -1360,10 +1360,10 @@
 		</Output>
 
 		<Output name="Numbers of Tracers (secondary)" caption="Numbers of Tracers (Secondary)">
-			<Definition valueType="real" position="cell" />
+			<Definition valueType="integer" position="cell" />
 		</Output>
 		<Output name="Numbers of Trapped Tracers (secondary)" caption="Numbers of Trapped Tracers (Secondary)">
-			<Definition valueType="real" position="cell" />
+			<Definition valueType="integer" position="cell" />
 		</Output>
 		<Output name="Weighted Numbers of Tracers (secondary)" caption="Weighted Numbers of Tracers (Secondary)">
 			<Definition valueType="real" position="cell" />
@@ -1372,7 +1372,7 @@
 			<Definition valueType="real" position="cell" />
 		</Output>
 		<Output name="Tracer Numbers in Each Section(secondary)" caption="Tracer Numbers in Each Section(Secondary)">
-			<Definition valueType="real" position="cell" />
+			<Definition valueType="integer" position="cell" />
 		</Output>
 		<Output name="Cross-Sectional Averaged Tracer Numbers(secondary)" caption="Cross-Sectional Averaged Tracer Numbers(Secondary)">
 			<Definition valueType="real" position="cell" />

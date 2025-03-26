@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>GELATO v2.x</DisplayName>
 	<Description></Description>
-	<Version>2.1.25031301</Version>
+	<Version>2.1.25032601</Version>
 	<Default>true</Default>
-	<ReleaseDate>2025-03-13</ReleaseDate>
+	<ReleaseDate>2025-03-26</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
