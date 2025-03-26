@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Package>
-	<DisplayName>RRI v1.4.2.2 on iRIC</DisplayName>
+	<DisplayName>RRI on iRIC</DisplayName>
 	<Description></Description>
 	<Version>1.4.3.2503262</Version>
 	<Default>true</Default>
