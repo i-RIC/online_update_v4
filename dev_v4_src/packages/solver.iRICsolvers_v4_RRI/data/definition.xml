@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
-					caption="RRI v1.4.2.2 on iRIC"
+					caption="RRI on iRIC"
 					version="1.4.3.2503263"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd."
 					release="2023.1.31"
