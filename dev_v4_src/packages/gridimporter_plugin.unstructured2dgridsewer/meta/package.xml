@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Unstructured grid Sewer CSV importer</DisplayName>
 	<Description>Unstructured grid Sewer CSV importer</Description>
-	<Version>1.0.3</Version>
+	<Version>1.1.0</Version>
 	<Default>true</Default>
-	<ReleaseDate>2024-10-10</ReleaseDate>
+	<ReleaseDate>2025-07-11</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
