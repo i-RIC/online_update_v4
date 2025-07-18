@@ -337,6 +337,18 @@
             <translation>下流端の境界条件</translation>
         </message>
         <message>
+            <source>Setting the threshold of minimum river width and depth</source>
+            <translation>最小川幅と深さの設定</translation>
+        </message>        
+        <message>
+            <source>Minimum river width (m)</source>
+            <translation>最小川幅(m)</translation>
+        </message>         
+        <message>
+            <source>Minimum river depth (m)</source>
+            <translation>最小河道深さ(m)</translation>
+        </message>         
+        <message>
             <source>+ RSR model</source>
             <translation> + 土砂流出(RSR)モデル</translation>
         </message>
@@ -600,6 +612,22 @@
             <source>Using slope erosion model</source>
             <translation>斜面侵食モデルの使用</translation>
         </message>
+        <message>
+            <source>parameters for gully and max rainfall infiltration depth</source>
+            <translation>斜面侵食発生ガリの形状パラメーターと雨の最大浸透深の設定</translation>
+        </message>
+        <message>
+            <source>Width_gully/Width_cell</source>
+            <translation>ガリ幅/セル幅</translation>
+        </message>
+        <message>
+            <source>Depth of gully (m)</source>
+            <translation>ガリの深さ(m)</translation>
+        </message>
+        <message>
+            <source>Maximum raifall infiltration depth(m)</source>
+            <translation>斜面侵食解析に用いる雨の最大浸透深 (m)</translation>
+        </message>        
         <message>
             <source>Minimum flow depth for slope erosion (m)</source>
             <translation>斜面侵食解析の最小水深</translation>

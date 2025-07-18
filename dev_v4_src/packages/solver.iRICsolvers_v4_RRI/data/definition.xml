@@ -2,7 +2,7 @@
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI on iRIC"
-					version="1.4.2.250401"
+					version="1.4.2.250717"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
 					release="2025.3.28"
 					homepage="http://i-ric.org"
@@ -601,7 +601,20 @@
             <Enumeration value="1" caption="Yes" />
           </Definition>
         </Item>
-        
+
+        <Label row="10" col="0" caption="outfile_surface_flow_depth" />
+        <Item  row="10" col="1" name="outfile_h_surf" >
+          <Definition valueType="filename" default="h_surf_">
+            <Condition type="isEqual" target="outswitch_h_surf" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="10" col="2" name="outswitch_h_surf">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+                
       </GridLayout>
     </GroupBox>
   </Tab>
@@ -646,6 +659,36 @@
           </Enumerations>
         </Definition>
       </Item> 
+      <Item name = "chan_capa_switch" caption="Setting the threshold of minimum river width and depth">
+        <Definition valueType = "integer" default = "0">
+          <Enumerations>
+            <Enumeration value = "0" caption = "Disabled"/>
+            <Enumeration value = "1" caption = "Set the threshold"/>
+          </Enumerations>
+        </Definition>
+      </Item>  
+      
+      <Item name="min_wid" caption="Minimum river width (m)" >
+        <Definition valueType="real" default="-9999"  max ="100000">
+          <Dependency>
+            <Condition type="and">
+              <Condition type="isEqual" target="chan_capa_switch" value="1"/>
+            </Condition>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+      <Item name="min_dep" caption="Minimum river depth (m)" >
+        <Definition valueType="real" default="-9999"  max ="100000">
+          <Dependency>
+            <Condition type="and">
+              <Condition type="isEqual" target="chan_capa_switch" value="1"/>
+            </Condition>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>      
     </GroupBox>  
   </Tab>
 
@@ -959,6 +1002,7 @@
       </Definition>
     </Item>
 
+
     <!--Item name="mixfile_fr_debris" caption="Debris flow Grain size distribution (supplied to the river)">
 			<Definition conditionType="functional">
 				<Parameter name="diameter_k" valueType="real" caption="Diameter(mm)"/>
@@ -1006,7 +1050,7 @@
       </Definition>
     </Item>
 
-    <GroupBox caption= "parameters for gully">
+    <GroupBox caption= "parameters for gully and max rainfall infiltration depth">
       <GridLayout>
         <Label row="0" col="1" caption="Area 1" align="center"/>
         <Label row="0" col="2" caption="Area 2" align="center" />
@@ -1022,6 +1066,7 @@
         <Label row="0" col="0" caption="" />
         <Label row="1" col="0" caption="Width_gully/Width_cell" />
         <Label row="2" col="0" caption="Depth of gully (m)" />
+        <Label row="3" col= "0" caption="Maximum raifall infiltration depth(m)"/>
 
         <Item row = "1" col = "1" name = "B_gully_r_0">
           <Definition valueType = "real" default="1.0" >
@@ -1144,7 +1189,7 @@
         </Item>
        
         <Item row = "2" col = "3" name = "D_gully_2">
-          <Definition valueType = "real" default="2.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1154,7 +1199,7 @@
         </Item>
        
         <Item row = "2" col = "4" name = "D_gully_3">
-          <Definition valueType = "real" default="1.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1164,7 +1209,7 @@
         </Item>    
        
         <Item row = "2" col = "5" name = "D_gully_4">
-          <Definition valueType = "real" default="1.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1174,7 +1219,7 @@
         </Item>   
        
         <Item row = "2" col = "6" name = "D_gully_5">
-          <Definition valueType = "real" default="1.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1184,7 +1229,7 @@
         </Item>      
        
         <Item row = "2" col = "7" name = "D_gully_6">
-          <Definition valueType = "real" default="1.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1194,7 +1239,7 @@
         </Item>    
        
         <Item row = "2" col = "8" name = "D_gully_7">
-          <Definition valueType = "real" default="1.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1204,7 +1249,7 @@
         </Item>  
        
         <Item row = "2" col = "9" name = "D_gully_8">
-          <Definition valueType = "real" default="1.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1214,7 +1259,7 @@
         </Item>     
        
         <Item row = "2" col = "10" name = "D_gully_9">
-          <Definition valueType = "real" default="1.0" >
+          <Definition valueType = "real" default="0.2" >
             <Dependency>
               <Condition type = "and">
                 <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
@@ -1222,9 +1267,109 @@
             </Dependency>
           </Definition>
         </Item> 
+
+        <Item row = "3" col = "1" name = "infil_s_d_0">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "3" col = "2" name = "infil_s_d_1">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "3" col = "3" name = "infil_s_d_2">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "3" col = "4" name = "infil_s_d_3">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "3" col = "5" name = "infil_s_d_4">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>   
+       
+        <Item row = "3" col = "6" name = "infil_s_d_5">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>      
+       
+        <Item row = "3" col = "7" name = "infil_s_d_6">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "3" col = "8" name = "infil_s_d_7">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>  
+       
+        <Item row = "3" col = "9" name = "infil_s_d_8">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>     
+       
+        <Item row = "3" col = "10" name = "infil_s_d_9">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>         
       </GridLayout>
     </GroupBox>
-    
+
     <Item name="modirate_to_slo_dt" caption="(dt slope)/(dt sediment in slope)" >
       <Definition valueType="real" default="1000."  max ="100000">
       </Definition>
@@ -1344,8 +1489,86 @@
             <Enumeration value="1" caption="Yes" />
           </Definition>
         </Item>
-      </GridLayout>
 
+        <Label row="2" col="0" caption="outfile_elevation_change_by_slope_erosion" />
+        <Item  row="2" col="1" name="outfile_dzslo" >
+          <Definition valueType="filename" default="./out/dzslo">
+            <Condition type="isEqual" target="outswitch_dzslo" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="2" name="outswitch_dzslo">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="3" col="0" caption="outfile_erosion_volume_by_slope_erosion" />
+        <Item  row="3" col="1" name="outfile_eroslovol" >
+          <Definition valueType="filename" default="./out/eroslovol">
+            <Condition type="isEqual" target="outswitch_eroslovol" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="3" col="2" name="outswitch_eroslovol">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="4" col="0" caption="outfile_slope_ero_supply" />
+        <Item  row="4" col="1" name="outfile_erosupply" >
+          <Definition valueType="filename" default="./out/slo_supply">
+            <Condition type="isEqual" target="outswitch_erosupply" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="4" col="2" name="outswitch_erosupply">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="5" col="0" caption="outfile_bed_elevation_change" />
+        <Item  row="5" col="1" name="outfile_dzb" >
+          <Definition valueType="filename" default="./out/sumdzb">
+            <Condition type="isEqual" target="outswitch_dzb" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="5" col="2" name="outswitch_dzb">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="6" col="0" caption="outfile_elevation_change_by_debris" />
+        <Item  row="6" col="1" name="outfile_mspnt" >
+          <Definition valueType="filename" default="./out/dz_debris">
+            <Condition type="isEqual" target="outswitch_mspnt" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="6" col="2" name="outswitch_mspnt">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="7" col="0" caption="outfile_landslide_area" />
+        <Item  row="7" col="1" name="outfile_LS" >
+          <Definition valueType="filename" default="./out/landslides">
+            <Condition type="isEqual" target="outswitch_LS" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="7" col="2" name="outswitch_LS">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+      </GridLayout>
     </GroupBox>
 
 
