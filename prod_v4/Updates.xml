@@ -787,8 +787,8 @@
   <ReleaseDate>2025-03-28</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="1025743" OS="Any" UncompressedSize="3356399"/>
+  <UpdateFile CompressedSize="1025745" OS="Any" UncompressedSize="3356384"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>d87f936a4d35d96410bd0338875b7aeb0b1dcb5c</SHA1>
+  <SHA1>a6f995bc6d6b4ac5cb63eec42452da304f265507</SHA1>
  </PackageUpdate>
 </Updates>
