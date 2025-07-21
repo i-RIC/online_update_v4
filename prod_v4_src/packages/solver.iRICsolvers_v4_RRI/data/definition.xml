@@ -1,0 +1,1765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
+					name="RRI"
+					caption="RRI on iRIC"
+					version="1.4.2.250717"
+					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
+					release="2025.3.28"
+					homepage="http://i-ric.org"
+					executable="go.bat"
+					iterationtype="time"
+					gridtype="structured2d">
+
+<CalculationCondition>
+
+  <!-- 
+  ***** Options *****
+  -->
+
+  <Tab name="options" caption="Base Conditions">
+    <!-- <Label caption="RRI_Input_Format_Ver1_4_2 for iRIC" align="right"/> -->
+    <Item name="run_type" caption="RunType" >
+      <Definition valueType="integer" default="0">
+        <Enumeration value="0" caption="Make Geographic Condition Only" />
+        <!-- <Enumeration value="1" caption="Make Geographic Condition and Run" /> -->
+        <Enumeration value="2" caption="Run Only" />
+      </Definition>
+    </Item>
+
+    <GroupBox caption="Base Parameters">
+      <Item name="utm" caption="Coordinate System" >
+        <Definition valueType="integer" default="0">
+          <Enumeration value="0" caption="LatLon" />
+          <Enumeration value="1" caption="UTM" />
+        </Definition>
+      </Item>
+    
+      <Item name="eight_dir" caption="Number for DIR Directions" >
+        <Definition valueType="integer" default="1">
+          <Enumeration value="0" caption="4 (Recommend for RSR-model)" />
+          <Enumeration value="1" caption="8" />
+        </Definition>
+      </Item>
+    </GroupBox>
+
+    <GroupBox caption="Geographic Data file">
+      <Item name="demfile" caption="Dem File" >
+        <Definition valueType="filename" default="./topo/elv_export.asc">
+        </Definition>
+      </Item>
+
+      <Item name="accfile" caption="Acc File" >
+        <Definition valueType="filename" default="./topo/upg_export.asc">
+        </Definition>
+      </Item>
+
+      <Item name="dirfile" caption="Dir File" >
+        <Definition valueType="filename" default="./topo/dir_export.asc">
+        </Definition>
+      </Item>
+    </GroupBox>
+
+    <GroupBox caption="River Shape Parameters">
+      <GridLayout withSpacer="true">
+        <Label row="0" col="0" caption="Width : Cw, Sw"/>
+        <Item row="0" col="1" name="width_param_c">
+          <Definition valueType="real" default="5.0">
+          </Definition>
+        </Item>
+       
+        <Item row="0" col="2" name="width_param_s" caption="width_param_s" >
+          <Definition valueType="real" default="0.35">
+          </Definition>
+        </Item>
+
+        <Label row="1" col="0" caption="Depth : Cd, Sd" />
+        <Item row="1" col="1" name="depth_param_c" caption="depth_param_c" >
+          <Definition valueType="real" default="0.95">
+          </Definition>
+        </Item>
+        <Item row="1" col="2" name="depth_param_s" caption="depth_param_s" >
+          <Definition valueType="real" default="0.2">
+          </Definition>
+        </Item>
+
+        <Label row="2" col="0" caption="Height : Height, Limit" />
+        <Item row="2" col="1" name="height_param" caption="height_param" >
+          <Definition valueType="real" default="2.0">
+          </Definition>
+        </Item>
+        <Item row="2" col="2" name="height_limit_param" caption="height_limit_param" >
+          <Definition valueType="integer" default="1000"  max ="100000">
+          </Definition>
+        </Item>
+        
+      </GridLayout>
+    </GroupBox>
+   
+  </Tab>
+
+  <!--<Tab name="rain_data" caption="Rain and Evaporation">-->
+  <Tab name="rain_data" caption="Rain">
+    
+
+    <GroupBox caption="Rain">
+      <Item name="rainfile" caption="Rain File" >
+        <Definition valueType="filename" default="./rain/rain.dat">
+        </Definition>
+      </Item>
+      <Item row="0" col="0" name="xllcorner_rain" caption="xllcorner_rain" >
+        <Definition valueType="real" default="140">
+        </Definition>
+      </Item>
+      <Item row="0" col="1" name="yllcorner_rain" caption="yllcorner_rain" >
+        <Definition valueType="real" default="39">
+        </Definition>
+      </Item>
+      <Item row="1" col="0" name="cellsize_rain_x" caption="cellsize_rain_x" >
+        <Definition valueType="real" default="0.0125">
+        </Definition>
+      </Item>
+      <Item row="1" col="1" name="cellsize_rain_y" caption="cellsize_rain_y" >
+        <Definition valueType="real" default="0.00833333">
+        </Definition>
+      </Item>
+    </GroupBox>
+
+    <!--<GroupBox caption="Evaporation">
+      <Item name="evaporation_rate" caption="Evaporation Rate[mm/h]" >
+        <Definition valueType="real" default="0.0">
+        </Definition>
+      </Item>
+    </GroupBox>-->
+  </Tab>
+  
+
+ <!--
+  ***** Time Contorol Parameters *****
+  --> 
+  
+  <Tab name="time_ctrl" caption="Time Control">
+    <Item name="lasth" caption="Simulation Time[hour]" >
+      <Definition valueType="integer" default="12" max ="1000000">
+      </Definition>
+    </Item>
+
+    <Item name="dt" caption="Time Step for Slope Simulation[sec]" >
+      <Definition valueType="integer" default="600"  max ="3600">
+      </Definition>
+    </Item>
+
+    <Item name="dt_riv" caption="Time Step for River Simulation[sec]" >
+      <Definition valueType="integer" default="60"  max="3600">
+      </Definition>
+    </Item>
+
+    <Item name="outnum" caption="Number for Output Times(without Initial)" >
+      <Definition valueType="integer" default="12"  max ="10000">
+      </Definition>
+    </Item>
+  </Tab>
+
+  <!--
+  ***** River Simulation Parameters *****
+  -->
+  <Tab name="river_sim" caption="River Simulation Parameters">
+    <Item name="ns_river" caption="Manning Roughness for River Region" >
+      <Definition valueType="real" default="0.03">
+      </Definition>
+    </Item>
+    <Item name="riv_thresh" caption="threshold of flow accumulation" >
+      <Definition valueType="integer" default="100"  max ="100000">
+      </Definition>
+    </Item>
+  </Tab>
+  <!--
+  ***** Slope Simulation Parameters *****
+  -->
+  <Tab name="slope_sim" caption="Slope Simulation Parameters">
+    <GroupBox caption="Green-Ampt infiltration model parameters">
+      <GridLayout>
+        <Label row="0" col="1" caption="Region 1" align="center"/>
+        <Label row="0" col="2" caption="Region 2" align="center" />
+        <Label row="0" col="3" caption="Region 3" align="center" />
+        <Label row="0" col="4" caption="Region 4" align="center" />
+        <Label row="0" col="5" caption="Region 5" align="center" />
+
+        <Label row="0" col="0" caption="" />
+        <Label row="1" col="0" caption="Diff or Kinematic" />
+        <Label row="2" col="0" caption="Manning Roughness for Slope" />
+        <Label row="3" col="0" caption="soildepth[m]" />
+        <Label row="4" col="0" caption="Porosity [-]" />
+
+        
+        <Item row="1" col="1" name="dif_1">
+          <Definition valueType="integer" default="1">
+            <Enumeration value="0" caption="Kinematic" />
+            <Enumeration value="1" caption="Diffusion"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="1" name="ns_slope_1">
+          <Definition valueType="real" default="1.0" />
+        </Item>
+        <Item row="3" col="1" name="soildepth_1">
+          <Definition valueType="real" default="1.0" />
+        </Item>
+        <Item row="4" col="1" name="gammaa_1">
+          <Definition valueType="real" default="0.471" />
+        </Item>
+
+        
+        <Item row="1" col="2" name="dif_2">
+          <Definition valueType="integer" default="1">
+            <Enumeration value="0" caption="Kinematic" />
+            <Enumeration value="1" caption="Diffusion"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="2" name="ns_slope_2">
+          <Definition valueType="real" default="0.4" />
+        </Item>
+        <Item row="3" col="2" name="soildepth_2">
+          <Definition valueType="real" default="1.0" />
+        </Item>
+        <Item row="4" col="2" name="gammaa_2">
+          <Definition valueType="real" default="0.471" />
+        </Item>
+
+        <Item row="1" col="3" name="dif_3">
+          <Definition valueType="integer" default="1">
+            <Enumeration value="0" caption="Kinematic" />
+            <Enumeration value="1" caption="Diffusion"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="3" name="ns_slope_3">
+          <Definition valueType="real" default="0.6" />
+        </Item>
+        <Item row="3" col="3" name="soildepth_3">
+          <Definition valueType="real" default="1.0" />
+        </Item>
+        <Item row="4" col="3" name="gammaa_3">
+          <Definition valueType="real" default="0.471" />
+        </Item>
+        
+        <Item row="1" col="4" name="dif_4">
+          <Definition valueType="integer" default="1">
+            <Enumeration value="0" caption="Kinematic" />
+            <Enumeration value="1" caption="Diffusion"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="4" name="ns_slope_4">
+          <Definition valueType="real" default="0.2" />
+        </Item>
+        <Item row="3" col="4" name="soildepth_4">
+          <Definition valueType="real" default="1.0" />
+        </Item>
+        <Item row="4" col="4" name="gammaa_4">
+          <Definition valueType="real" default="0.471" />
+        </Item>
+
+        <Item row="1" col="5" name="dif_5">
+          <Definition valueType="integer" default="1">
+            <Enumeration value="0" caption="Kinematic" />
+            <Enumeration value="1" caption="Diffusion"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="5" name="ns_slope_5">
+          <Definition valueType="real" default="0.1" />
+        </Item>
+        <Item row="3" col="5" name="soildepth_5">
+          <Definition valueType="real" default="1.0" />
+        </Item>
+        <Item row="4" col="5" name="gammaa_5">
+          <Definition valueType="real" default="0.471" />
+        </Item>
+
+
+      </GridLayout>
+    </GroupBox>
+
+    <GroupBox caption="Green-Ampt infiltration model parameters">
+      <GridLayout>
+        
+        
+        <Label row="1" col="0" caption="ksv[m/s]                   " />
+        <Label row="2" col="0" caption="Sf[m]" />
+
+        <Item row="1" col="1" name="ksv_1">
+          <Definition valueType="real" default="5.560e-7" />
+        </Item>
+        <Item row="2" col="1" name="faif_1">
+          <Definition valueType="real" default="0.273" />
+        </Item>
+
+        <Item row="1" col="2" name="ksv_2">
+          <Definition valueType="real" default="5.560e-7" />
+        </Item>
+        <Item row="2" col="2" name="faif_2">
+          <Definition valueType="real" default="0.273" />
+        </Item>
+
+        <Item row="1" col="3" name="ksv_3">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="2" col="3" name="faif_3">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        
+        
+        <Item row="1" col="4" name="ksv_4">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="2" col="4" name="faif_4">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+
+        <Item row="1" col="5" name="ksv_5">
+          <Definition valueType="real" default="5.560e-7" />
+        </Item>
+        <Item row="2" col="5" name="faif_5">
+          <Definition valueType="real" default="0.273" />
+        </Item>
+          
+      </GridLayout>
+    </GroupBox>
+
+    <GroupBox caption="lateral subsurface and surface model parameters">
+      <GridLayout>
+        <Label row="1" col="0" caption="ka[m/s]" />
+        <Label row="2" col="0" caption="Unsat. porosity [-]        " />
+        <Label row="3" col="0" caption="beta" />
+        <!--Label row= "4" col="0" caption="min_wc_formation_later_flow"/-->
+
+        <!--type1-->
+        <Item row="1" col="1" name="ka_1">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="2" col="1" name="gammam_1">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="3" col="1" name="beta_1">
+          <Definition valueType="real" default="4.0" />
+        </Item>
+        <!--Item row="4" col="1" name="min_wc_1">
+          <Definition valueType="real" default="0.0" />
+        </Item-->
+
+        <!--type2--> 
+        <Item row="1" col="2" name="ka_2" caption="ka[m/s]">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="2" col="2" name="gammam_2" caption="Unsat. porosity [-]">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="3" col="2" name="beta_2" caption="beta">
+          <Definition valueType="real" default="4.0" />
+        </Item>
+        <!--Item row="4" col="2" name="min_wc_2">
+          <Definition valueType="real" default="0.0" />
+        </Item-->
+
+        <!--type3-->
+        <Item row="1" col="3" name="ka_3" caption="ka[m/s]">
+          <Definition valueType="real" default="0.1" />
+        </Item>
+        <Item row="2" col="3" name="gammam_3" caption="Unsat. porosity [-]">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="3" col="3" name="beta_3" caption="beta">
+          <Definition valueType="real" default="4.0" />
+        </Item>
+        <!--Item row="4" col="3" name="min_wc_3">
+          <Definition valueType="real" default="0.0" />
+        </Item-->
+
+        <!--type4-->
+        <Item row="1" col="4" name="ka_4" caption="ka[m/s]">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="2" col="4" name="gammam_4" caption="Unsat. porosity [-]">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="3" col="4" name="beta_4" caption="beta">
+          <Definition valueType="real" default="4.0" />
+        </Item>
+        <!--Item row="4" col="4" name="min_wc_4">
+          <Definition valueType="real" default="0.0" />
+        </Item-->
+
+        <!--type5-->
+        <Item row="1" col="5" name="ka_5" caption="ka[m/s]">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="2" col="5" name="gammam_5" caption="Unsat. porosity [-]">
+          <Definition valueType="real" default="0.0" />
+        </Item>
+        <Item row="3" col="5" name="beta_5" caption="beta">
+          <Definition valueType="real" default="4.0" />
+        </Item>
+        <!--Item row="4" col="5" name="min_wc_5">
+          <Definition valueType="real" default="0.0" />
+        </Item-->     
+
+      </GridLayout>
+    </GroupBox>
+  </Tab>
+
+  <!--
+  ***** initial condition for hotstart *****
+  -->
+  <Tab name="initial_files" caption="Initial Condition setting for hotstart">
+    <GroupBox caption="Intitial Condtion Settings for Hotstart">
+      <GridLayout>
+        <Label row="0" col="0" caption="initfile_slo" />
+        <Item  row="0" col="1" name="initfile_slo" >
+          <Definition valueType="filename" default="./init/hs_init_dummy.out">
+            <Condition type="isEqual" target="init_slo_switch" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="0" col="2" name="init_slo_switch">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="1" col="0" caption="initfile_riv" />
+        <Item  row="1" col="1" name="initfile_riv" >
+          <Definition valueType="filename" default="./init/hr_init_dummy.out">
+            <Condition type="isEqual" target="init_riv_switch" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="1" col="2" name="init_riv_switch">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="2" col="0" caption="initfile_gw" />
+        <Item  row="2" col="1" name="initfile_gw" >
+          <Definition valueType="filename" default="./init/hg_init_dummy.out">
+            <Condition type="isEqual" target="init_gw_switch" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="2" name="init_gw_switch">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="3" col="0" caption="initfile_gampt_ff" />
+        <Item  row="3" col="1" name="initfile_gampt_ff" >
+          <Definition valueType="filename" default="./init/gamptff_init_dummy.out">
+            <Condition type="isEqual" target="init_gampt_ff_switch" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="3" col="2" name="init_gampt_ff_switch">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+
+      </GridLayout>
+    </GroupBox>
+  </Tab>  
+    
+  <!--
+  ***** outputfiles *****
+  -->
+  <Tab name="output_files" caption="Output asc File format">
+    <GroupBox caption="Settings">
+      <GridLayout>
+        <Label row="0" col="0" caption="outfile_hs" />
+        <Item  row="0" col="1" name="outfile_hs" >
+          <Definition valueType="filename" default="hs_">
+            <Condition type="isEqual" target="outswitch_hs" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="0" col="2" name="outswitch_hs">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="1" col="0" caption="outfile_hr" />
+        <Item  row="1" col="1" name="outfile_hr" >
+          <Definition valueType="filename" default="hr_">
+            <Condition type="isEqual" target="outswitch_hr" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="1" col="2" name="outswitch_hr">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="2" col="0" caption="outfile_hg" />
+        <Item  row="2" col="1" name="outfile_hg" >
+          <Definition valueType="filename" default="hg_">
+            <Condition type="isEqual" target="outswitch_hg" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="2" name="outswitch_hg">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="3" col="0" caption="outfile_qr" />
+        <Item  row="3" col="1" name="outfile_qr" >
+          <Definition valueType="filename" default="qr_">
+            <Condition type="isEqual" target="outswitch_qr" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="3" col="2" name="outswitch_qr">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="4" col="0" caption="outfile_qu" />
+        <Item  row="4" col="1" name="outfile_qu" >
+          <Definition valueType="filename" default="qu_">
+            <Condition type="isEqual" target="outswitch_qu" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="4" col="2" name="outswitch_qu">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="5" col="0" caption="outfile_qv" />
+        <Item  row="5" col="1" name="outfile_qv" >
+          <Definition valueType="filename" default="qv_">
+            <Condition type="isEqual" target="outswitch_qv" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="5" col="2" name="outswitch_qv">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="6" col="0" caption="outfile_gu" />
+        <Item  row="6" col="1" name="outfile_gu" >
+          <Definition valueType="filename" default="gu_">
+            <Condition type="isEqual" target="outswitch_gu" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="6" col="2" name="outswitch_gu">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="7" col="0" caption="outfile_gv" />
+        <Item  row="7" col="1" name="outfile_gv" >
+          <Definition valueType="filename" default="gv_">
+            <Condition type="isEqual" target="outswitch_gv" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="7" col="2" name="outswitch_gv">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="8" col="0" caption="outfile_gampt_ff" />
+        <Item  row="8" col="1" name="outfile_gampt_ff" >
+          <Definition valueType="filename" default="gampt_ff_">
+            <Condition type="isEqual" target="outswitch_gampt_ff" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="8" col="2" name="outswitch_gampt_ff">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="9" col="0" caption="outfile_storage" />
+        <Item  row="9" col="1" name="outfile_storage" >
+          <Definition valueType="filename" default="storage.dat">
+            <Condition type="isEqual" target="outswitch_storage" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="9" col="2" name="outswitch_storage">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="10" col="0" caption="outfile_surface_flow_depth" />
+        <Item  row="10" col="1" name="outfile_h_surf" >
+          <Definition valueType="filename" default="h_surf_">
+            <Condition type="isEqual" target="outswitch_h_surf" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="10" col="2" name="outswitch_h_surf">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+                
+      </GridLayout>
+    </GroupBox>
+  </Tab>
+
+  <!--Advanced settings-->
+  <Tab name="Advanced settings" caption="Settings for Advanced Users">
+    <GroupBox caption="Variables used for Adaptive Stepsize to Control Runge-Kutta">
+      <Item name="eps" caption="eps (small value for fine mesh computation)" >
+        <Definition valueType="real" default="0.01"  max ="10">
+        </Definition>
+      </Item>
+      
+      <Item name="ddt_min_riv" caption="ddt_min_riv (small value for fine mesh computation)" >
+        <Definition valueType="real" default="0.1"  max ="10">
+        </Definition>
+      </Item>
+
+      <Item name="ddt_min_slo" caption="ddt_min_slo (small value for fine mesh computation)" >
+        <Definition valueType="real" default="1"  max ="100">
+        </Definition>
+      </Item>  
+    </GroupBox>  
+    <GroupBox caption = "Initial conditions">
+      <GridLayout>
+        <Label row="0" col= "0" caption = "initial water content of surface soil"/>
+          <Item row= "0" col = "1" name="wc0">
+            <Definition valueType="real" default = "0." max="1"/>
+          </Item>
+        <Label row = "1" col = "0" caption="Iinitial flow depth(m)"/>  
+          <Item row = "1" col ="1" name="hr0">
+            <Definition valueType="real" default="0." max ="100"/>
+          </Item>
+      </GridLayout>    
+    </GroupBox>
+    
+    <GroupBox>
+      <Item name = "DBC_switch" caption="Downstream boundary condition setting">
+        <Definition valueType = "integer" default = "0">
+          <Enumerations>
+            <Enumeration value = "0" caption = "Keep with default setting of RRI"/>
+            <Enumeration value = "1" caption = "Free flow"/>
+          </Enumerations>
+        </Definition>
+      </Item> 
+      <Item name = "chan_capa_switch" caption="Setting the threshold of minimum river width and depth">
+        <Definition valueType = "integer" default = "0">
+          <Enumerations>
+            <Enumeration value = "0" caption = "Disabled"/>
+            <Enumeration value = "1" caption = "Set the threshold"/>
+          </Enumerations>
+        </Definition>
+      </Item>  
+      
+      <Item name="min_wid" caption="Minimum river width (m)" >
+        <Definition valueType="real" default="-9999"  max ="100000">
+          <Dependency>
+            <Condition type="and">
+              <Condition type="isEqual" target="chan_capa_switch" value="1"/>
+            </Condition>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+      <Item name="min_dep" caption="Minimum river depth (m)" >
+        <Definition valueType="real" default="-9999"  max ="100000">
+          <Dependency>
+            <Condition type="and">
+              <Condition type="isEqual" target="chan_capa_switch" value="1"/>
+            </Condition>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>      
+    </GroupBox>  
+  </Tab>
+
+     <!--
+  ***** Sediment conditions (RSR model) added for RSR model 20240724*****
+  --> 
+  
+  <Tab name="rsr" caption="+ RSR model">
+    
+    <Item name="sed_switch" caption="Sediment computation (RSR)" >
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Disabled"/>
+					<Enumeration value="1" caption="Cell model (not recommended)"/>
+          <Enumeration value="2" caption="Unit channel model"/>
+				</Enumerations>
+      </Definition>
+    </Item>
+
+    <Item name="t_beddeform_start" caption="Start time of bed deformation (hour)" >
+      <Definition valueType="real" default="2." max ="10000">
+      </Definition>
+    </Item>
+
+    <Item name="s" caption="Specific gravity of sediment" >
+      <Definition valueType="real" default="2.65" max ="10">
+      </Definition>
+    </Item>
+
+    <Item name="grav" caption="gravitational acceleration[m2/s]" >
+      <Definition valueType="real" default="9.81"  max ="100">
+      </Definition>
+    </Item>
+
+    <Item name="t_Crit" caption="critical shear stress" >
+      <Definition valueType="real" default="0.047"  max ="100">
+      </Definition>
+    </Item>
+
+    <Item name="kin_visc" caption="kinematic viscosity" >
+      <Definition valueType="real" default="1.004E-6"  max ="1">
+      </Definition>
+    </Item>
+
+    <Item name="karmans" caption="karmans (von Karmans constant)" >
+      <Definition valueType="real" default="0.4"  max ="1">
+      </Definition>
+    </Item>  
+
+    <Item name="lambda" caption="Void_ratio" >
+      <Definition valueType="real" default="0.4"  max ="1">
+      </Definition>
+    </Item>  
+
+		<Item name="sed_type_switch" caption="Bed material type">
+			<Definition conditionType="constant" valueType="integer" option="true" default="2">
+				<Enumerations>
+					<Enumeration value="1" caption="Uniform"/>								
+          <Enumeration value="2" caption="Non-uniform"/>
+				</Enumerations>
+      </Definition>
+		</Item>
+
+    <Item name="ds_river" caption="diameter of uniform sediment size (m)" >
+      <Definition valueType="real" default="0.001"  max ="1">
+      </Definition>
+    </Item>
+
+    <Item name="iidt" caption="iidt (= dt_river/dt_sediment cal.)" >
+      <Definition valueType="integer" default="5000"  max ="100000">
+      </Definition>
+    </Item>
+    
+    <Item name="isedeq" caption="Bedload transport formula">
+			<Definition conditionType="constant" valueType="integer" option="true" default="3">
+				<Enumerations>
+					<Enumeration value="1" caption="Ashida and Michiue formula"/>
+					<Enumeration value="2" caption="M.P.M formula"/>
+          <Enumeration value="3" caption="Egashira formula"/>
+				</Enumerations>
+      </Definition>
+    </Item>
+
+    <Item name="isuseq" caption="Suspended sediment erosion formula">
+			<Definition conditionType="constant" valueType="integer" option="true" default="2">
+				<Enumerations>
+					<Enumeration value="1" caption="Lane-Karinske formula"/>
+					<Enumeration value="2" caption="Density stratified flow model"/>
+				</Enumerations>
+      </Definition>
+    </Item>
+
+    <GroupBox caption="Regulation">
+    <Item name="min_num_cell_link" caption="Unit channel is not formed below this cell number" >
+      <Definition valueType="integer" default="2"  max ="1000">
+      </Definition>
+    </Item>
+    <Item name="perosion" caption="Maximum erosion depth (m)" >
+      <Definition valueType="real" default="5"  max ="9999">
+      </Definition>
+    </Item>
+    <Item name="min_slope" caption="Minimum unit channel slope" >
+      <Definition valueType="real" default="0.001"  max ="1">
+      </Definition>
+    </Item>
+    <Item name="max_slope" caption="Maximum unit channel slope (degree)" >
+      <Definition valueType="real" default="15"  max ="100">
+      </Definition>
+    </Item>
+    <Item name="min_hr" caption="Minimum river depth for sediment computation(m)" >
+      <Definition valueType="real" default="0.1"  max ="100">
+      </Definition>
+    </Item>
+    <Item name="alpha_ss1" caption="Maximum wood concentrarion" >
+      <Definition valueType="real" default="0.5"  max ="100">
+      </Definition>
+    </Item>
+    <Item name="alpha_ss2" caption="Maximum SS concentration" >
+      <Definition valueType="real" default="0.1"  max ="100">
+      </Definition>
+    </Item>
+    <Item name="thresh_ss" caption="Maximum SS at slope" >
+      <Definition valueType="real" default="0.3"  max ="100">
+      </Definition>
+    </Item>
+    <!--Item name="hr0" caption="Iinitial flow depth(m)" >
+      <Definition valueType="real" default="0."  max ="100">
+      </Definition>
+    </Item>
+    <Item name="hs0" caption="Iinitial water depth of slope cells(m):hs">
+      <Definition valueType="real" default="0."  max ="100">
+      </Definition>
+    </Item-->
+    <Item name="cut_overdepo_switch" caption="Enforcing overflow of sediment when river channel is filled up with sediment ">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="0" caption="Disable"/>
+          <Enumeration value="1" caption="Enable"/>
+        </Enumerations>
+      </Definition>
+    </Item>
+    </GroupBox>
+
+  </Tab>
+
+       <!--
+  ***** Sediment size distributions added for RSR model 20240724+ modified for slope erosion*****
+  --> 
+  
+  <!--Tab name="GSD" caption="+ Non-uniform sediment size distribusion"-->
+  <Tab name="GSD" caption="+ Non-uniform GSDs for river and slope">
+    <GroupBox caption = "GSD for river channels">
+      <Item name="mixfile_fr" caption="Initial grain size distribution in mixed layer (fraction)">
+        <Definition conditionType="functional">
+          <Parameter name="diameter_k" valueType="real" caption="Diameter(mm)"/>
+            <Value name="Region0" valueType="real" caption="Section1(%)"/>
+            <Value name="Region1" valueType="real" caption="Section2(%)"/>
+            <Value name="Region2" valueType="real" caption="Section3(%)"/>
+            <Value name="Region3" valueType="real" caption="Section4(%)"/>
+            <Value name="Region4" valueType="real" caption="Section5(%)"/>
+            <Value name="Region5" valueType="real" caption="Section6(%)"/>
+            <Value name="Region6" valueType="real" caption="Section7(%)"/>
+            <Value name="Region7" valueType="real" caption="Sectionn8(%)"/>
+            <Value name="Region8" valueType="real" caption="Section9(%)"/>
+            <Value name="Region9" valueType="real" caption="Section10(%)"/>
+        </Definition>
+      </Item>
+
+      <Item name="j_mix_dis_dep" caption="Grain size distribution in deposited layer is;">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0">
+          <Enumerations>
+            <Enumeration value="0" caption="Same in mixed layer"/>
+            <Enumeration value="1" caption="Given"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+      <Item name="mixfile_fr_d" caption="Initial grain size distribution in deposited layer (fraction)">
+        <Definition conditionType="functional">
+          <Parameter name="diameter_k" valueType="real" caption="Diameter(mm)"/>							
+            <Value name="Region0" valueType="real" caption="Section1(%)"/>
+            <Value name="Region1" valueType="real" caption="Section2(%)"/>
+            <Value name="Region2" valueType="real" caption="Section3(%)"/>
+            <Value name="Region3" valueType="real" caption="Section4(%)"/>
+            <Value name="Region4" valueType="real" caption="Section5(%)"/>
+            <Value name="Region5" valueType="real" caption="Section6(%)"/>
+            <Value name="Region6" valueType="real" caption="Section7(%)"/>
+            <Value name="Region7" valueType="real" caption="Sectionn8(%)"/>
+            <Value name="Region8" valueType="real" caption="Section9(%)"/>
+            <Value name="Region9" valueType="real" caption="Section10(%)"/>
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="j_mix_dis_dep" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+        </Definition>
+      </Item>
+
+      <Item name="Em" caption="Thickness of exchange layer(m)" >
+        <Definition valueType="real" default="0.1"  max ="10">
+        </Definition>
+      </Item>
+
+      <Item name="no_of_layers" caption="Maximum number of layers" >
+        <Definition valueType="integer" default="40"  max ="1000">
+        </Definition>
+      </Item>
+
+      <Item name="Nl" caption="Initial number of layers" >
+        <Definition valueType="integer" default="40"  max ="1000">
+        </Definition>
+      </Item>
+
+      <Item name="Emc" caption="Minimum bedload layer thickness(m)" >
+        <Definition valueType="real" default="0.001"  max ="10">
+        </Definition>
+      </Item>
+    </GroupBox>
+
+    <GroupBox caption="GSD for slope area">
+      <Item name="j_set_slo_GSD" caption="Setting GSD at slope area(for debris flow and slope erosion);">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0">
+          <Enumerations>
+            <Enumeration value="0" caption="Disabled"/>
+            <Enumeration value="1" caption="Given"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+      <Item name="mixfile_fr_slopearea" caption="GSDs at slope areas (supplied to the river)">
+        <Definition conditionType="functional">
+          <Parameter name="diameter_k" valueType="real" caption="Diameter(mm)"/>
+            <Value name="Region0" valueType="real" caption="Area1(%)"/>
+            <Value name="Region1" valueType="real" caption="Area2(%)"/>
+            <Value name="Region2" valueType="real" caption="Area3(%)"/>
+            <Value name="Region3" valueType="real" caption="Area4(%)"/>
+            <Value name="Region4" valueType="real" caption="Area5(%)"/>
+            <Value name="Region5" valueType="real" caption="Area6(%)"/>
+            <Value name="Region6" valueType="real" caption="Area7(%)"/>
+            <Value name="Region7" valueType="real" caption="Area8(%)"/>
+            <Value name="Region8" valueType="real" caption="Area9(%)"/>
+            <Value name="Region9" valueType="real" caption="Area10(%)"/>
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="j_set_slo_GSD" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+        </Definition>
+		  </Item>
+    </GroupBox>
+  </Tab>
+
+       <!--
+  ***** Landslide and debris flow *** added for RSR model 20240724*****
+  --> 
+  <Tab name="LS_mspnt" caption="+ Landslide and debris flow">
+
+    <Item name="debris_switch" caption="Landslide and debris flow computation" >
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Disabled"/>
+					<Enumeration value="1" caption="Enabled"/>
+				</Enumerations>
+      </Definition>
+    </Item>
+
+    <GroupBox caption="Parameters">
+    <Item name="cohe" caption="cohesion (kN/m2)" >
+      <Definition valueType="real" default="3.0"  max ="100">
+      </Definition>
+    </Item>
+    <Item name="pwc" caption="Critical volume water content for subsurface flow" >
+      <Definition valueType="real" default="0.1"  max ="1">
+      </Definition>
+    </Item>
+    <Item name="pf" caption="Fine material content in the debris flow" >
+      <Definition valueType="real" default="0.3"  max ="1">
+      </Definition>
+    </Item>
+    <Item name="b_mp" caption="Width of debris flow (m)" >
+      <Definition valueType="real" default="10."  max ="1000">
+      </Definition>
+    </Item>
+    <Item name="d_mp_ini" caption="Erosion depth of debris flow (m)" >
+      <Definition valueType="real" default="1."  max ="1000">
+      </Definition>
+    </Item>
+    <Item name="L_rain_ini" caption="Exclude landslides below this rainfall (mm)" >
+      <Definition valueType="real" default="10."  max ="1000">
+      </Definition>
+    </Item>
+    </GroupBox>    
+
+    <Item name="debris_end_switch" caption="End this calculation at certain time" >
+      <Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Disabled"/>
+					<Enumeration value="1" caption="Enabled"/>
+				</Enumerations>
+      </Definition>
+    </Item>
+
+    <Item name="T_bebris_off" caption="End time for LS and DF (hour)" >
+      <Definition valueType="real" default="24."  max ="100000">
+      	<Dependency>
+          <Condition type="and">
+						<Condition type="isEqual" target="debris_end_switch" value="1"/>
+					</Condition>
+					<Action type="enable"/>
+				</Dependency>
+      </Definition>
+    </Item>
+
+
+    <!--Item name="mixfile_fr_debris" caption="Debris flow Grain size distribution (supplied to the river)">
+			<Definition conditionType="functional">
+				<Parameter name="diameter_k" valueType="real" caption="Diameter(mm)"/>
+					<Value name="fraction0" valueType="real" caption="Region1(%)"/>
+					<Value name="fraction1" valueType="real" caption="Region2(%)"/>
+					<Value name="fraction2" valueType="real" caption="Region3(%)"/>
+					<Value name="fraction3" valueType="real" caption="Region4(%)"/>
+					<Value name="fraction4" valueType="real" caption="Region5(%)"/>
+					<Value name="fraction5" valueType="real" caption="Region6(%)"/>
+					<Value name="fraction6" valueType="real" caption="Region7(%)"/>
+					<Value name="fraction7" valueType="real" caption="Region8(%)"/>
+					<Value name="fraction8" valueType="real" caption="Region9(%)"/>
+					<Value name="fraction9" valueType="real" caption="Region10(%)"/>
+			</Definition>
+		</Item-->
+
+  </Tab>
+
+       <!--
+  ***** Sediment supply from the slope *** added for RSR model 20240724*****
+  --> 
+  <!---modified for slope erosion-->
+  <Tab name="slope_sedi_cal" caption="+ Sediment transportation at slope area">
+    <Item name = "slo_sedi_cal_switch" caption = "conducting the sediment tranport calculation at slope area">
+      <Definition conditionType="constant" valueType = "integer" option = "true" default = "0">
+      	<Enumerations>
+					<Enumeration value="0" caption="Disabled"/>
+					<Enumeration value="1" caption="Enabled"/>
+				</Enumerations>
+      </Definition>
+    </Item>
+
+    <Item name="slope_ero_switch" caption="Using slope erosion model" >
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Disabled"/>
+					<Enumeration value="1" caption="Enabled"/>
+				</Enumerations>
+        <Dependency>
+          <Condition type = "and">
+            <Condition type= "isEqual" target="slo_sedi_cal_switch" value = "1"/>
+          </Condition>
+          <Action type= "enable"/>
+        </Dependency>
+      </Definition>
+    </Item>
+
+    <GroupBox caption= "parameters for gully and max rainfall infiltration depth">
+      <GridLayout>
+        <Label row="0" col="1" caption="Area 1" align="center"/>
+        <Label row="0" col="2" caption="Area 2" align="center" />
+        <Label row="0" col="3" caption="Area 3" align="center" />
+        <Label row="0" col="4" caption="Area 4" align="center" />
+        <Label row="0" col="5" caption="Area 5" align="center" />
+        <Label row="0" col="6" caption="Area 6" align="center"/>
+        <Label row="0" col="7" caption="Area 7" align="center" />
+        <Label row="0" col="8" caption="Area 8" align="center" />
+        <Label row="0" col="9" caption="Area 9" align="center" />
+        <Label row="0" col="10" caption="Area 10" align="center" />
+
+        <Label row="0" col="0" caption="" />
+        <Label row="1" col="0" caption="Width_gully/Width_cell" />
+        <Label row="2" col="0" caption="Depth of gully (m)" />
+        <Label row="3" col= "0" caption="Maximum raifall infiltration depth(m)"/>
+
+        <Item row = "1" col = "1" name = "B_gully_r_0">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "1" col = "2" name = "B_gully_r_1">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "1" col = "3" name = "B_gully_r_2">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "1" col = "4" name = "B_gully_r_3">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "1" col = "5" name = "B_gully_r_4">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>   
+       
+        <Item row = "1" col = "6" name = "B_gully_r_5">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>      
+       
+        <Item row = "1" col = "7" name = "B_gully_r_6">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "1" col = "8" name = "B_gully_r_7">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>  
+       
+        <Item row = "1" col = "9" name = "B_gully_r_8">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>     
+       
+        <Item row = "1" col = "10" name = "B_gully_r_9">
+          <Definition valueType = "real" default="1.0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item> 
+
+        <Item row = "2" col = "1" name = "D_gully_0">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "2" col = "2" name = "D_gully_1">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "2" col = "3" name = "D_gully_2">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "2" col = "4" name = "D_gully_3">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "2" col = "5" name = "D_gully_4">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>   
+       
+        <Item row = "2" col = "6" name = "D_gully_5">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>      
+       
+        <Item row = "2" col = "7" name = "D_gully_6">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "2" col = "8" name = "D_gully_7">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>  
+       
+        <Item row = "2" col = "9" name = "D_gully_8">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>     
+       
+        <Item row = "2" col = "10" name = "D_gully_9">
+          <Definition valueType = "real" default="0.2" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item> 
+
+        <Item row = "3" col = "1" name = "infil_s_d_0">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "3" col = "2" name = "infil_s_d_1">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "3" col = "3" name = "infil_s_d_2">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "3" col = "4" name = "infil_s_d_3">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "3" col = "5" name = "infil_s_d_4">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>   
+       
+        <Item row = "3" col = "6" name = "infil_s_d_5">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>      
+       
+        <Item row = "3" col = "7" name = "infil_s_d_6">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>    
+       
+        <Item row = "3" col = "8" name = "infil_s_d_7">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>  
+       
+        <Item row = "3" col = "9" name = "infil_s_d_8">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>     
+       
+        <Item row = "3" col = "10" name = "infil_s_d_9">
+          <Definition valueType = "real" default="0.5" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="slope_ero_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>         
+      </GridLayout>
+    </GroupBox>
+
+    <Item name="modirate_to_slo_dt" caption="(dt slope)/(dt sediment in slope)" >
+      <Definition valueType="real" default="1000."  max ="100000">
+      </Definition>
+    </Item>
+    
+    <Item name="surflowdepth" caption="Minimum flow depth for slope erosion (m)" >
+      <Definition valueType="real" default="0.01"  max ="10">
+      </Definition>
+    </Item>
+
+  </Tab>
+
+         <!--
+  ***** Driftwood *** added for RSR model 20240724*****
+  --> 
+  <Tab name="Driftwood" caption="+ Driftwood computation">
+
+    <Item name="j_drf" caption="Driftwood computation" >
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Disabled"/>
+					<Enumeration value="1" caption="Enabled"/>
+				</Enumerations>
+      </Definition>
+    </Item>
+    
+    <Item name="Wood_density" caption="Standing tree density (m3/m2)" >
+      <Definition valueType="real" default="0.01"  max ="1000">
+      </Definition>
+    </Item>
+    
+  </Tab>
+
+         <!--
+  ***** Advanced setting for RSR *** added for RSR model 20240724*****
+  --> 
+  <Tab name="Advanced setting" caption="+ Advanced setting for RSR">
+    <Item name="detail_console" caption="Display detailed RSR results in the console" >
+			<Definition conditionType="constant" valueType="integer" option="true" default="0">
+				<Enumerations>
+					<Enumeration value="0" caption="Disabled"/>
+					<Enumeration value="1" caption="Enabled"/>
+				</Enumerations>
+      </Definition>
+    </Item>  
+    <GroupBox caption="Division of long unit channel (Minimizing the uniform spatial variation of sediment transport process)">
+      
+      <Item name="link_divi_switch" caption = "Dividing unit channels">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0">
+          <Enumerations>
+            <Enumeration value="0" caption="Disabled"/>
+            <Enumeration value="1" caption="Enabled"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+
+      <Item name ="merg_cell_num" caption="The number of intervel cells for division">
+        <Definition conditionType="constant" valueType="integer" default="0">
+          <Dependency>
+            <Condition type="and">
+              <Condition type="isEqual" target="link_divi_switch" value="1"/>
+            </Condition>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>  
+      </Item>
+
+      <Item name="division_sec" caption="Setting the boudaries' (i,j) of division sections">
+        <Definition conditionType="functional">
+          <Parameter name="sec_ij" valueType="integer" caption="Division Section No.(Set from 1)"/>							
+            <Value name="Cordi_1" valueType="integer" caption="i of upstream boundary cell"/>
+            <Value name="Cordi_2" valueType="integer" caption="j of upstream boundary cell"/>
+            <Value name="Cordi_3"  valueType="integer" caption="i of downstream boundary cell"/>
+            <Value name="Cordi_4" valueType="integer" caption="j of downstream boundary cell"/>
+            <Dependency>
+              <Condition type="and">
+                <Condition type="isEqual" target="link_divi_switch" value="1"/>
+              </Condition>
+              <Action type="enable"/>
+            </Dependency>
+        </Definition>
+      </Item>
+
+    </GroupBox>
+
+  </Tab>
+
+           <!--
+  ***** Advanced output results *** added for RSR model 20240724*****
+  --> 
+  <Tab name="Advanced output" caption="+ Advanced output results">
+
+    <GroupBox caption="Settings">
+      <GridLayout>
+        <Label row="0" col="0" caption="Time series detail output switch" />
+        <Item  row="0" col="1" name="outfile_test" >
+          <Definition valueType="filename" default="./out/sediment_">
+            <Condition type="isEqual" target="outswitch_test" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="0" col="2" name="outswitch_test">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="1" col="0" caption="outfile_slope_erosion" />
+        <Item  row="1" col="1" name="outfile_slope" >
+          <Definition valueType="filename" default="./out/slope_flow_sedi">
+            <Condition type="isEqual" target="outswitch_slope" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="1" col="2" name="outswitch_slope">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="2" col="0" caption="outfile_elevation_change_by_slope_erosion" />
+        <Item  row="2" col="1" name="outfile_dzslo" >
+          <Definition valueType="filename" default="./out/dzslo">
+            <Condition type="isEqual" target="outswitch_dzslo" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="2" col="2" name="outswitch_dzslo">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="3" col="0" caption="outfile_erosion_volume_by_slope_erosion" />
+        <Item  row="3" col="1" name="outfile_eroslovol" >
+          <Definition valueType="filename" default="./out/eroslovol">
+            <Condition type="isEqual" target="outswitch_eroslovol" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="3" col="2" name="outswitch_eroslovol">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="4" col="0" caption="outfile_slope_ero_supply" />
+        <Item  row="4" col="1" name="outfile_erosupply" >
+          <Definition valueType="filename" default="./out/slo_supply">
+            <Condition type="isEqual" target="outswitch_erosupply" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="4" col="2" name="outswitch_erosupply">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="5" col="0" caption="outfile_bed_elevation_change" />
+        <Item  row="5" col="1" name="outfile_dzb" >
+          <Definition valueType="filename" default="./out/sumdzb">
+            <Condition type="isEqual" target="outswitch_dzb" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="5" col="2" name="outswitch_dzb">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="6" col="0" caption="outfile_elevation_change_by_debris" />
+        <Item  row="6" col="1" name="outfile_mspnt" >
+          <Definition valueType="filename" default="./out/dz_debris">
+            <Condition type="isEqual" target="outswitch_mspnt" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="6" col="2" name="outswitch_mspnt">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+        <Label row="7" col="0" caption="outfile_landslide_area" />
+        <Item  row="7" col="1" name="outfile_LS" >
+          <Definition valueType="filename" default="./out/landslides">
+            <Condition type="isEqual" target="outswitch_LS" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="7" col="2" name="outswitch_LS">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+
+      </GridLayout>
+    </GroupBox>
+
+
+  </Tab>
+
+</CalculationCondition>  
+
+  <GridRelatedCondition  keepOrder="true">
+    <Item name="elevation_c" caption="Elevation [m]">
+      <Definition position="cell" valueType="real" default="max" />
+    </Item>
+    <Item name="dir_c" caption="DIR">
+      <Definition position="cell" valueType="integer" default="0" />
+    </Item>
+    <Item name="acc_c" caption="ACC">
+      <Definition position="cell" valueType="integer" default="0" />
+    </Item>
+    <Item name="width_c" caption="Width[m]">
+      <Definition position="cell" valueType="real" default="0"/>
+    </Item>
+    <Item name="depth_c" caption="Depth[m]">
+      <Definition position="cell" valueType="real" default="0"/>
+    </Item>
+    <Item name="height_c" caption="Height[m]">
+      <Definition position="cell" valueType="real" default="0"/>
+    </Item>
+    <Item name="landuse_c" caption="Land Use Type">
+      <Definition  position="cell" valueType="integer" default="1">
+        <Enumeration value="1" caption="Region 1"/>
+        <Enumeration value="2" caption="Region 2" />
+        <Enumeration value="3" caption="Region 3"/>
+        <Enumeration value="4" caption="Region 4"/>
+        <Enumeration value="5" caption="Region 5"/>
+      </Definition>
+    </Item>
+    <Item name="rain_c" caption="Rain[mm/h]: Data Check Only">
+      <Definition position="cell" valueType="real" default="0">
+        <Dimension name="Time" caption="Time" valueType="real"/>
+      </Definition>
+    </Item>
+		<Item name="GSD_s" caption="GrainSizeDistribution for slope area">
+      <Definition  position="cell" valueType="integer" default="1">
+        <Enumeration value="1" caption="Area 1"/>
+        <Enumeration value="2" caption="Area 2" />
+        <Enumeration value="3" caption="Area 3"/>
+        <Enumeration value="4" caption="Area 4"/>
+        <Enumeration value="5" caption="Area 5"/>
+        <Enumeration value="6" caption="Area 6"/>
+        <Enumeration value="7" caption="Area 7"/>
+        <Enumeration value="8" caption="Area 8"/>
+        <Enumeration value="9" caption="Area 9"/>
+        <Enumeration value="10" caption="Area 10"/>
+			</Definition>
+		</Item>
+		<Item name="GSD_c" caption="GrainSizeDistribution for channel">
+      <Definition  position="cell" valueType="integer" default="1">
+        <Enumeration value="1" caption="Section 1"/>
+        <Enumeration value="2" caption="Section 2" />
+        <Enumeration value="3" caption="Section 3"/>
+        <Enumeration value="4" caption="Section 4"/>
+        <Enumeration value="5" caption="Section 5"/>
+        <Enumeration value="6" caption="Section 6"/>
+        <Enumeration value="7" caption="Section 7"/>
+        <Enumeration value="8" caption="Section 8"/>
+        <Enumeration value="9" caption="Section 9"/>
+        <Enumeration value="10" caption="Section 10"/>
+			</Definition>
+		</Item>    
+    <!--<Item name="evaporation_c" caption="Evaporation[mm/h]">
+      <Definition position="cell" valueType="real" default="max" />
+    </Item>-->
+
+  </GridRelatedCondition>
+
+  <BoundaryCondition name="dam" caption="Dam" position="cell">
+    <Item name="name" caption="Name">
+      <Definition valueType="string" default="Dam Name" />
+    </Item>
+    <Item name="dam_volmax" caption="Storage Volume[m3]">
+      <Definition valueType="real" default="66000000" />
+    </Item>
+    <Item name="dam_floodq" caption="Constant Discharge[m3/s]">
+      <Definition valueType="real" default="20" />
+    </Item>
+    <Item name="dam_reserv_area" caption="Area of the dam reservoir[m2]">
+      <Definition valueType="real" default="20" />
+    </Item>
+    <Item name = "modify_dam_ele" caption = "Modifying dam elevation(to avoid flat bed where sediment inflows to dam cell could not be calculated)">
+      <Definition conditionType="constant" valueType= "integer" option = "true" default = "0">
+        <Enumerations>
+          <Enumeration value="0" caption = "Disabled"/>
+          <Enumeration value = "1" caption= "Given"/>
+        </Enumerations>
+      </Definition>
+    </Item>
+    <Item name="reserv_elev" caption="Modified elevation of dam[m]">
+      <Definition valueType="real" default="-9999" >
+        <Dependency>
+          <Condition type = "and">
+            <Condition type= "isEqual" target="modify_dam_ele" value = "1"/>
+          </Condition>
+          <Action type= "enable"/>
+        </Dependency>
+      </Definition>
+    </Item>
+    <Item name = "dam_discharge_switch" caption= "setting dam outflow data(hourly)">
+      <Definition conditionType="constant" valueType= "integer" option = "true" default = "0">
+        <Enumerations>
+          <Enumeration value ="0" caption = "Disabled"/>
+          <Enumeration value = "1" caption = "Given"/>
+        </Enumerations> 
+      </Definition>   
+    </Item>
+    <Item name="dam_outflow" caption = "Dam outflow (m3/s)">
+      <Definition conditionType = "functional">
+        <Parameter name = "dam_discharge_period" valueType="real" caption = "Time(Hour)"/>
+          <Value name= "dam_discharge" valueType="real" caption ="outflow(m3/s)"/>
+          <Dependency>
+            <Condition type = "and">
+              <Condition type="isEqual" target="dam_discharge_switch" value="1"/>
+            </Condition>
+          </Dependency>  
+      </Definition>
+    </Item>
+    <GroupBox caption="Settings of dam outfile">
+      <GridLayout>
+        <Label row="0" col="0" caption="outfile_dam" />
+        <Item  row="0" col="1" name="outfile_dam" >
+          <Definition valueType="filename" default="./out/dam/dam_out_">
+            <Condition type="isEqual" target="outswitch_dam" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="0" col="2" name="outswitch_dam">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+      </GridLayout>  
+    </GroupBox>
+  </BoundaryCondition>
+  
+  <BoundaryCondition name="bound_qr" caption="Time Series for River Discharge at point" position="cell">   
+    <Item name="qr_bound" caption="qr[m3/s]">
+      <Definition conditionType="functional">
+        <Parameter name="t_qr" valueType="real" caption="Time"/>
+        <Value name="qr" valueType="real" caption="qr[m3/s]"/>
+      </Definition>
+    </Item>
+  </BoundaryCondition>
+
+   <BoundaryCondition name="bound_hr" caption="Time Series for River Depth at point" position="cell">
+    <Item name="hr_bound" caption="hr[m]">
+      <Definition conditionType="functional">
+        <Parameter name="t_hr" valueType="real" caption="Time"/>
+        <Value name="hr" valueType="real" caption="hr[m]"/>
+      </Definition>
+    </Item>
+  </BoundaryCondition>
+
+  <BoundaryCondition name="bound_qs" caption="Time Series for Slope Discharge at point" position="cell">
+    <Item name="qs_bound" caption="qs[m3/s]">
+      <Definition conditionType="functional">
+        <Parameter name="t_qs" valueType="real" caption="Time"/>
+        <Value name="qs" valueType="real" caption="qs[m3/s]"/>
+      </Definition>
+    </Item>
+  </BoundaryCondition>
+
+  <BoundaryCondition name="bound_hs" caption="Time Series for Slope Depth at point" position="cell">
+    <Item name="hs_bound" caption="hs[m]">
+      <Definition conditionType="functional">
+        <Parameter name="t_hs" valueType="integer" caption="Time"/>
+        <Value  name="hs" valueType="real" caption="hs[m]"/>
+      </Definition>
+    </Item>
+  </BoundaryCondition>
+
+  <BoundaryCondition name="div" caption="DivSet" position="cell">
+    <Item name="div_dest_i" caption="div_dest_i">
+      <Definition valueType="integer" default="1" max="10000">
+      </Definition>
+    </Item>
+    <Item name="div_dest_j" caption="div_dest_j">
+      <Definition valueType="integer" default="1" max="10000">
+      </Definition>
+    </Item>
+    <Item name="div_rate" caption="div_rate">
+      <Definition valueType="real" default="0.5">
+      </Definition>
+    </Item>
+  </BoundaryCondition>
+
+</SolverDefinition>
