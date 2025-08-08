@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Grid LandXML exporter</DisplayName>
 	<Description>Grid LandXML exporter</Description>
-	<Version>1.0.4</Version>
+	<Version>1.0.5</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023-11-09</ReleaseDate>
+	<ReleaseDate>2024-09-09</ReleaseDate>
 	<SortingPriority>30</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
