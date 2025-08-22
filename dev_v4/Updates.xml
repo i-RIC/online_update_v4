@@ -804,19 +804,6 @@
   <SHA1>591cd0be3c24adda2b3eab775b5573a707b25515</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>solver.iRICsolvers_GELATO_Rewrite</Name>
-  <DisplayName>GELATO v2.x</DisplayName>
-  <Description/>
-  <Version>2.1.25032601</Version>
-  <Default>true</Default>
-  <ReleaseDate>2025-03-26</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="125342" OS="Any" UncompressedSize="490417"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>192692b1240f224117789f02dce13905750c215d</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gui.runtime</Name>
   <DisplayName>iRIC GUI Runtime</DisplayName>
   <Description>Runtime DLLs for iRIC Main GUI</Description>
@@ -896,5 +883,18 @@
   <UpdateFile CompressedSize="1026250" OS="Any" UncompressedSize="3357920"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>fc4774f84287f5c7ee57d05a4a1a70c0ddd33e0c</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_GELATO_Rewrite</Name>
+  <DisplayName>GELATO v2.x</DisplayName>
+  <Description/>
+  <Version>2.1.25082201</Version>
+  <Default>true</Default>
+  <ReleaseDate>2025-08-22</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="234343" OS="Any" UncompressedSize="1744024"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>37087fcb552e54c5c12b1f2156587d21908d35c3</SHA1>
  </PackageUpdate>
 </Updates>

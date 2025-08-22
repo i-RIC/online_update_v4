@@ -6,6 +6,8 @@ Check here for case studies:
 https://gelato-rewrite-documents.readthedocs.io/ja/v2.0_en/
 
 # Release notes
+ver 2.1.25082201 update by hoshino
+* Fixed a bug where the zoom factor for fish display was not working.
 ver 2.1.25032601 update by hoshino
 * Fixed typos in translation files, etc.
 * Changed tracer output in cells to integer values
