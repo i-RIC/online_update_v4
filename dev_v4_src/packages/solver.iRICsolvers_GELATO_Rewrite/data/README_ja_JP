@@ -10,6 +10,8 @@ GELATOにおいて使用される背景の流れ場は、iRICで提供されて�
 https://gelato-rewrite-documents.readthedocs.io/ja/v2.0_jp/
 
 リリースノート
+ver 2.1.25090201 update by hoshino
+* 魚が限界水深以下の領域に入った際に遊泳可能領域に復帰しやすくなるよう処理を変更しました。
 ver 2.1.25082201 update by hoshino
 * 魚の表示用拡大係数が機能していなかったバグを修正しました
 ver 2.1.25032601 update by hoshino

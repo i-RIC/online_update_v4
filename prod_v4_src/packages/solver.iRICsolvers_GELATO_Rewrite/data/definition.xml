@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition 
-	xmlns="www.iric.net/SolverDefinition/1.0" 
-	name="GELATO" 
-	caption="GELATO v2.x" 
-	version="2.1.25082201" 
-	copyright="Yasuyuki SHIMIZU, Keita Hoshino" 
-	release="2025.08.22" 
-	homepage="https://i-ric.org/yasu/" 
-	executable="GELATO.exe" 
-	iterationtype="time" 
-	gridtype="structured2d">
+xmlns="www.iric.net/SolverDefinition/1.0" 
+name="GELATO" 
+caption="GELATO v2.x" 
+version="2.1.25090201" 
+copyright="Yasuyuki SHIMIZU, Keita Hoshino" 
+release="2025.09.02" 
+homepage="https://i-ric.org/yasu/" 
+executable="GELATO.exe" 
+iterationtype="time" 
+gridtype="structured2d">
 
 	<!-- 計算条件 -->
 	<CalculationCondition>
@@ -158,7 +158,7 @@
 							</Definition>
 						</Item>
 					</HBoxLayout>
-					
+
 					<HBoxLayout>
 
 						<!-- 渦度を読み込むか -->
@@ -170,7 +170,7 @@
 						</Item>
 
 						<!-- 渦度 -->
-						<Item col="2" name="vorticity_name" >
+						<Item col="2" name="vorticity_name">
 							<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
 								<Condition type="and">
 									<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
@@ -180,7 +180,7 @@
 						</Item>
 
 					</HBoxLayout>
-					
+
 
 					<HBoxLayout>
 
@@ -193,7 +193,7 @@
 						</Item>
 
 						<!-- 染料濃度 -->
-						<Item col="2" name="dye_concentration_name" >
+						<Item col="2" name="dye_concentration_name">
 							<Definition valueType="result_gridNodeReal" cgnsFile="inputfile">
 								<Condition type="and">
 									<Condition type="isEqual" target="flow_conditions_used_for_tracking" value="0" />
@@ -249,10 +249,10 @@
 			<!-- 輸送の周期境界条件 -->
 			<Item name="is_periodic_boundary_condition_Tracers" caption="Periodic Boundary Condition for Tracers">
 				<Definition valueType="integer" default="0" checkBox="true"/>
-					<Condition type="or">
-						<Condition type="isEqual" target="is_trace_primary" value="1"/>
-						<Condition type="isEqual" target="is_trace_secondary" value="1"/>
-					</Condition>
+				<Condition type="or">
+					<Condition type="isEqual" target="is_trace_primary" value="1"/>
+					<Condition type="isEqual" target="is_trace_secondary" value="1"/>
+				</Condition>
 				<Definition />
 			</Item>
 
@@ -1230,7 +1230,7 @@
 
 			<!-- 一定のマニング粗度係数の値 -->
 			<Item name="constant_roughness" caption="Manning&apos;s Roughness Coefficient">
-				<Definition valueType="real"  default="0.03" tooltips="The Manning's roughness coefficient is used to calculate the friction velocity and eddy viscosity coefficient.">
+				<Definition valueType="real" default="0.03" tooltips="The Manning's roughness coefficient is used to calculate the friction velocity and eddy viscosity coefficient.">
 					<Condition type="isEqual" target="is_use_constant_roughness" value="1" />
 				</Definition>
 			</Item>
