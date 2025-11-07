@@ -4,5 +4,3 @@ mkdir %2
 %2\condabin\conda.bat init
 %2\condabin\conda.bat condig --remove channels defaults
 %2\condabin\conda.bat condig --add channels conda-forge
-%2\condabin\conda.bat update -n base conda -y
-%2\condabin\conda.bat update -n base --all -y

@@ -9,6 +9,7 @@ Component.prototype.createOperations = function()
 	component.createOperations();
 
 	component.addOperation("Execute", "@TargetDir@/miniconda_install.bat", "@TargetDir@", "@TargetDir@\\Miniconda3", "UNDOEXECUTE", "@TargetDir@/miniconda_uninstall.bat", "@TargetDir@\\Miniconda3");
+	component.addOperation("Execute", "@TargetDir@/miniconda_update_conda.bat", "@TargetDir@\\Miniconda3");
 	component.addOperation("Execute", "@TargetDir@/miniconda_create_venv.bat", "@TargetDir@\\Miniconda3");
 
 	component.addOperation("Delete", "@TargetDir@/Miniconda3-py312_24.4.0-0-Windows-x86_64.exe");
