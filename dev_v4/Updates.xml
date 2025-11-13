@@ -810,21 +810,6 @@
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>fc4774f84287f5c7ee57d05a4a1a70c0ddd33e0c</SHA1>
  </PackageUpdate>
- <PackageUpdate>
-  <Name>miniconda.iriclib</Name>
-  <DisplayName>iriclib and iRIC-MI for Miniconda 3</DisplayName>
-  <Description>iriclib and iRIC-MI for Miniconda 3</Description>
-  <Dependencies/>
-  <Version>4.0.58.1</Version>
-  <Default>false</Default>
-  <ReleaseDate>2025-10-09</ReleaseDate>
-  <SortingPriority>10</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="9747131" UncompressedSize="45990455" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>07031a51322d265ca9d0648cc8ecd37a5e2f91a1</SHA1>
- </PackageUpdate>
  <SHA1>dfaefc9aff567342230e30b8213fcaac59690233</SHA1>
  <MetadataName>2025-10-15-1624_meta.7z</MetadataName>
  <PackageUpdate>
@@ -839,21 +824,6 @@
   <UpdateFile CompressedSize="234229" UncompressedSize="1744334" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>c6721ec7c9e23759728e14cb2ed3072e49561e9e</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>miniconda.main</Name>
-  <DisplayName>Miniconda 3</DisplayName>
-  <Description>Miniconda 3-py312_24.4.0</Description>
-  <Dependencies/>
-  <Version>24.4.0.7</Version>
-  <Default>false</Default>
-  <ReleaseDate>2025-11-07</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="81695197" UncompressedSize="83402635" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>da1a1941e4909484d1f603833ca59e824c694a9f</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gui.prepost</Name>
