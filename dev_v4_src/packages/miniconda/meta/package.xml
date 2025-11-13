@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <Package>
 	<DisplayName>Miniconda 3</DisplayName>
-	<Description>Miniconda 3-py312_24.4.0</Description>
-	<Version>24.4.1</Version>
+	<Description>Miniconda 3-py312_24.4</Description>
+	<Version>24.4.1.8</Version>
 	<Default>false</Default>
-	<ReleaseDate>2024-07-03</ReleaseDate>
+	<ReleaseDate>2025-11-13</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
 </Package>
