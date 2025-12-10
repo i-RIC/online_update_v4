@@ -738,17 +738,17 @@
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (release)</DisplayName>
   <Description>iRIC Main GUI</Description>
-  <Version>4.2.0.6973</Version>
-  <ReleaseDate>2025-12-09</ReleaseDate>
+  <Version>4.2.0.6974</Version>
+  <ReleaseDate>2025-12-10</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="45996641" CompressedSize="6205338" OS="Any" />
+  <UpdateFile UncompressedSize="45996681" CompressedSize="6204058" OS="Any" />
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
    <License file="LICENSE" name="MIT License" />
   </Licenses>
-  <SHA1>7ee4c1990900fe8eded42ca75af74f03f33c4f0d</SHA1>
+  <SHA1>ef715b2ccb96a1005cf16a520a95921ebdf60644</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>miniconda</Name>
@@ -761,9 +761,9 @@
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="130222678" CompressedSize="91031339" OS="Any" />
+  <UpdateFile UncompressedSize="130222678" CompressedSize="91031350" OS="Any" />
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>100429ad8105e155995a44c362d6e29d96e32379</SHA1>
+  <SHA1>a4157ac27e3a7d645e65c6a280fc98b942328b68</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>sdk</Name>
@@ -775,8 +775,8 @@
   <SortingPriority>10</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="29366457" CompressedSize="3050124" OS="Any" />
+  <UpdateFile UncompressedSize="29366457" CompressedSize="3050126" OS="Any" />
   <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>995483226955af6417c2e100b61883546810d3a7</SHA1>
+  <SHA1>afa63475e1b9bd549fe672b61f19a43fd3d369e1</SHA1>
  </PackageUpdate>
 </Updates>
