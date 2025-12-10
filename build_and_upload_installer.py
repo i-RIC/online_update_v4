@@ -103,10 +103,15 @@ def main():
     version = os.environ.get('VERSION')
     release_date = os.environ.get('RELEASE_DATE')
 
+    print('Building offline installer')
     build_offline_installer(version)
+    print('Updating CSVs')
     update_versions_csv(version, release_date)
+    print('Make solver versions')
     make_solver_versions(version)
+    print('Make index.html')
     update_index_html()
+    print('Uploading to FTP server')
     upload_to_ftp(version)
 
 
