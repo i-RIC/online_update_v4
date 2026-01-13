@@ -722,20 +722,33 @@
   <SHA1>af09fa649b35538ed299f95cc47ea02dee10d653</SHA1>
  </PackageUpdate>
  <PackageUpdate>
+  <Name>solver.iRICsolvers_nays2dp</Name>
+  <DisplayName>Nays2d+</DisplayName>
+  <Description />
+  <Version>1.1.25122401</Version>
+  <Default>true</Default>
+  <ReleaseDate>2025-12-24</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="1874507" CompressedSize="393593" OS="Any" />
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>58f820ae1aeb304f21c40a4edd43911f2a486da3</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (release)</DisplayName>
   <Description>iRIC Main GUI</Description>
-  <Version>4.2.0.6975</Version>
-  <ReleaseDate>2025-12-10</ReleaseDate>
+  <Version>4.2.0.6976</Version>
+  <ReleaseDate>2026-01-13</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="45997249" CompressedSize="6206431" OS="Any" />
+  <UpdateFile UncompressedSize="45997301" CompressedSize="6204336" OS="Any" />
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE" />
+   <License file="LICENSE" name="MIT License" />
   </Licenses>
-  <SHA1>da74a4aaece3ffd5b9b4013c6566130f3a95c608</SHA1>
+  <SHA1>0464d56d204cc3c1aabbd057a13b592323d11609</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>miniconda</Name>
@@ -748,9 +761,9 @@
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="130222678" CompressedSize="91031343" OS="Any" />
+  <UpdateFile UncompressedSize="130222678" CompressedSize="91031324" OS="Any" />
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>552ee1e6c04e0125c3863131595d458f848ff4d6</SHA1>
+  <SHA1>e1fd3e3bd1fb2791bdfcac8fe0d2098e920d387b</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>sdk</Name>
@@ -762,21 +775,8 @@
   <SortingPriority>10</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="29366457" CompressedSize="3050141" OS="Any" />
+  <UpdateFile UncompressedSize="29366457" CompressedSize="3050121" OS="Any" />
   <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>0efe8a14dc5ca2379ea183d4992a290f36c2006e</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.iRICsolvers_nays2dp</Name>
-  <DisplayName>Nays2d+</DisplayName>
-  <Description />
-  <Version>1.1.25122401</Version>
-  <Default>true</Default>
-  <ReleaseDate>2025-12-24</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="1874507" CompressedSize="393593" OS="Any" />
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>58f820ae1aeb304f21c40a4edd43911f2a486da3</SHA1>
+  <SHA1>9a1cd4c86c177010482c80f7a3eb4c122f9e5b00</SHA1>
  </PackageUpdate>
 </Updates>
