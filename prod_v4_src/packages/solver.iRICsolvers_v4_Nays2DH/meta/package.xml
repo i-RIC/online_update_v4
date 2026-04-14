@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>Nays2DH iRIC.4x 1.0 64bit</DisplayName>
 	<Description></Description>
-	<Version>1.6.008</Version>
+	<Version>1.7.000</Version>
 	<Default>true</Default>
-	<ReleaseDate>2022-07-13</ReleaseDate>
+	<ReleaseDate>2026-04-15</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
