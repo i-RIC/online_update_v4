@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>DHABSIM 1.2</DisplayName>
 	<Description></Description>
-	<Version>1.2.230609</Version>
+	<Version>1.2.260428</Version>
 	<Default>true</Default>
-	<ReleaseDate>2023-06-09</ReleaseDate>
+	<ReleaseDate>2026-04-28</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>

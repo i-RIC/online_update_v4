@@ -2,9 +2,9 @@
 <SolverDefinition
 	name="DHABSIM"
 	caption="DHABSIM 1.2"
-	version="1.2.230609"
+	version="1.2.260428"
 	copyright="Sekine Lab., Yamaguchi University"
-	release="2023.06.09"
+	release="2026.04.28"
 	homepage="https://sk-lb.net/iric-dhabsim/"
 	executable="DHABSIM.exe"
 	iterationtype="time"
@@ -85,18 +85,29 @@
 
 	</CalculationCondition>
 
-	<GridRelatedCondition>
-		<Item name="Elevation" caption="Elevation">
-			<Definition position="node" valueType="real" />
-		</Item>
-		<Item name="BedCode" caption="BedCode">
-			<Definition position="node" valueType="real" />
-		</Item>
-		<Item name="VegetationCode" caption="VegetationCode">
-			<Definition position="node" valueType="integer" option="true" default="0">
-				<Enumeration value="0" caption="No vegetation"/>
-				<Enumeration value="1" caption="Vegetation"/>
-			</Definition>
-		</Item>
-	</GridRelatedCondition>
+	<GridTypes>
+		<GridType name="iRICZone" caption="Input" gridtype="structured2d,unstructured2d" primary="true">
+			<GridRelatedCondition>
+				<Item name="Elevation" caption="Elevation">
+					<Definition position="node" valueType="real" />
+				</Item>
+				<Item name="BedCode" caption="BedCode">
+					<Definition position="node" valueType="real" />
+				</Item>
+				<Item name="VegetationCode" caption="VegetationCode">
+					<Definition position="node" valueType="integer" option="true" default="0">
+						<Enumeration value="0" caption="No vegetation"/>
+						<Enumeration value="1" caption="Vegetation"/>
+					</Definition>
+				</Item>
+			</GridRelatedCondition>
+		</GridType>
+		<GridType name="EvaluationPoints" caption="Output" post="true" gridtype="structured2d">
+			<GridRelatedCondition>
+				<Output name="Diversity(EED)" caption="Diversity(EED)" >
+					<Definition position="node" valueType="real" />
+				</Output>
+			</GridRelatedCondition>
+		</GridType>
+	</GridTypes>
 </SolverDefinition>
