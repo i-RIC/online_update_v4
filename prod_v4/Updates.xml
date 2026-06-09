@@ -667,19 +667,6 @@
   <DownloadableArchives>iconengines.7z,imageformats.7z,licenses.7z,platforms.7z,pythonmodule.7z,resources.7z,share.7z,styles.7z,translations.7z,udunits.7z,content.7z</DownloadableArchives>
   <SHA1>c9e2ef09461a303ed0e1348d44881c9f4b56e4fa</SHA1>
  </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_RRI</Name>
-  <DisplayName>RRI on iRIC</DisplayName>
-  <Description/>
-  <Version>1.4.2.250726</Version>
-  <Default>true</Default>
-  <ReleaseDate>2025-03-28</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="3357920" CompressedSize="1026250" OS="Any"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>c7450f2d6236c21bc61ac9f08dc3b659fae0e5ff</SHA1>
- </PackageUpdate>
  <SHA1>0260d83f77597eea65f3d25d49d574d6c017e666</SHA1>
  <MetadataName>2025-10-15-1625_meta.7z</MetadataName>
  <PackageUpdate>
@@ -775,8 +762,21 @@
   <UpdateFile UncompressedSize="46163259" CompressedSize="6240784" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>b766b88b108386d47a257547fd328e690b3572b4</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_RRI</Name>
+  <DisplayName>RRI on iRIC</DisplayName>
+  <Description/>
+  <Version>1.4.2.260609</Version>
+  <Default>true</Default>
+  <ReleaseDate>2026-06-09</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="6585839" CompressedSize="1981810" OS="Any"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>75f70b7196f92c144440adf03637cbca25070255</SHA1>
  </PackageUpdate>
 </Updates>

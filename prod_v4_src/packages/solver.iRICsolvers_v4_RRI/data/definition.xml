@@ -2,9 +2,9 @@
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI on iRIC"
-					version="1.4.2.250726"
+					version="1.4.2.260609"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
-					release="2025.3.28"
+					release="2026.6.9"
 					homepage="http://i-ric.org"
 					executable="go.bat"
 					iterationtype="time"
@@ -1400,6 +1400,11 @@
       <Definition valueType="real" default="0.01"  max ="1000">
       </Definition>
     </Item>
+
+    <Item name="C_wood_kd" caption="Wood_Deposition_rate_Kd" >
+      <Definition valueType="real" default="1.0"  max ="1000">
+      </Definition>
+    </Item>
     
   </Tab>
 
@@ -1453,6 +1458,450 @@
         </Definition>
       </Item>
 
+    </GroupBox>
+
+         <!--
+  ***** Direct sediment supply *** added for RSR model 20251002*****
+  --> 
+    <GroupBox caption="Direct Sediment supply">
+      
+      <Item name="j_sedput" caption = "Direct Sediment supply">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0">
+          <Enumerations>
+            <Enumeration value="0" caption="Disabled"/>
+            <Enumeration value="1" caption="Enabled"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+
+      <Item name="j_woodput" caption = "Supply wood with sediment supply">
+        <Definition conditionType="constant" valueType="integer" option="true" default="0">
+          <Enumerations>
+            <Enumeration value="0" caption="Disabled"/>
+            <Enumeration value="1" caption="Enabled"/>
+          </Enumerations>
+        </Definition>
+      </Item>
+
+      <GridLayout>
+        <Label row="0" col="1" caption="Area 1" align="center"/>
+        <Label row="0" col="2" caption="Area 2" align="center" />
+        <Label row="0" col="3" caption="Area 3" align="center" />
+        <Label row="0" col="4" caption="Area 4" align="center" />
+        <Label row="0" col="5" caption="Area 5" align="center" />
+        <Label row="0" col="6" caption="Area 6" align="center"/>
+        <Label row="0" col="7" caption="Area 7" align="center" />
+        <Label row="0" col="8" caption="Area 8" align="center" />
+        <Label row="0" col="9" caption="Area 9" align="center" />
+        <Label row="0" col="10" caption="Area 10" align="center" />
+
+        <Label row="0" col="0" caption="" />
+        <Label row="1" col="0" caption="i" />
+        <Label row="2" col="0" caption="j" />
+        <Label row="3" col= "0" caption="supply volume(m3)"/>
+        <Label row="4" col= "0" caption="wood volume(m3)"/>
+
+        <Item row = "1" col = "1" name = "put_i_0">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "1" col = "2" name = "put_i_1">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "1" col = "3" name = "put_i_2">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "1" col = "4" name = "put_i_3">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+       
+        <Item row = "1" col = "5" name = "put_i_4">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item> 
+
+        <Item row = "1" col = "6" name = "put_i_5">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item> 
+
+        <Item row = "1" col = "7" name = "put_i_6">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item> 
+
+        <Item row = "1" col = "8" name = "put_i_7">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item> 
+
+        <Item row = "1" col = "9" name = "put_i_8">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "1" col = "10" name = "put_i_9">
+           <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>  
+
+        <Item row = "2" col = "1" name = "put_j_0">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "2" name = "put_j_1">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "3" name = "put_j_2">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "4" name = "put_j_3">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "5" name = "put_j_4">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "6" name = "put_j_5">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "7" name = "put_j_6">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "8" name = "put_j_7">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "9" name = "put_j_8">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "10" name = "put_j_9">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "1" name = "put_v_0">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "2" name = "put_v_1">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "3" name = "put_v_2">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "4" name = "put_v_3">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "5" name = "put_v_4">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "6" name = "put_v_5">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "7" name = "put_v_6">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "8" name = "put_v_7">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "9" name = "put_v_8">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "3" col = "10" name = "put_v_9">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_sedput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "1" name = "put_w_0">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "2" name = "put_w_1">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "3" name = "put_w_2">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "4" name = "put_w_3">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "5" name = "put_w_4">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "6" name = "put_w_5">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "7" name = "put_w_6">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "8" name = "put_w_7">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "9" name = "put_w_8">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "4" col = "10" name = "put_w_9">
+          <Definition valueType = "real" default="0." >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="j_woodput" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item> 
+
+      </GridLayout>
     </GroupBox>
 
   </Tab>
@@ -1571,6 +2020,221 @@
       </GridLayout>
     </GroupBox>
 
+    <GroupBox caption="Grid_data_out">
+      <GridLayout>
+        <Label row="0" col="0" caption="Grid_data_output" />
+        <Item  row="0" col="1" name="outfile_sdout" >
+          <Definition valueType="filename" default="./out/sedtar_">
+            <Condition type="isEqual" target="sd_out_switch" value="1"/>
+          </Definition>
+        </Item>
+        <Item row="0" col="2" name="sd_out_switch">
+          <Definition valueType="integer" default="0">
+            <Enumeration value="0" caption="No" />
+            <Enumeration value="1" caption="Yes" />
+          </Definition>
+        </Item>
+      </GridLayout>
+
+      <GridLayout>
+        <Label row="0" col="1" caption="Location 1" align="center"/>
+        <Label row="0" col="2" caption="Location 2" align="center" />
+        <Label row="0" col="3" caption="Location 3" align="center" />
+        <Label row="0" col="4" caption="Location 4" align="center" />
+        <Label row="0" col="5" caption="Location 5" align="center" />
+        <Label row="0" col="6" caption="Location 6" align="center"/>
+        <Label row="0" col="7" caption="Location 7" align="center" />
+        <Label row="0" col="8" caption="Location 8" align="center" />
+        <Label row="0" col="9" caption="Location 9" align="center" />
+        <Label row="0" col="10" caption="Location 10" align="center" />
+
+        <Label row="0" col="0" caption="" />
+        <Label row="1" col="0" caption="i" />
+        <Label row="2" col="0" caption="j" />
+
+        <Item row = "1" col = "1" name = "tar_i_0">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "2" name = "tar_i_1">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "3" name = "tar_i_2">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "4" name = "tar_i_3">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "5" name = "tar_i_4">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "6" name = "tar_i_5">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "7" name = "tar_i_6">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "8" name = "tar_i_7">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "9" name = "tar_i_8">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "1" col = "10" name = "tar_i_9">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+
+        <Item row = "2" col = "1" name = "tar_j_0">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "2" name = "tar_j_1">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "3" name = "tar_j_2">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "4" name = "tar_j_3">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "5" name = "tar_j_4">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "6" name = "tar_j_5">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "7" name = "tar_j_6">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "8" name = "tar_j_7">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "9" name = "tar_j_8">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+        <Item row = "2" col = "10" name = "tar_j_9">
+          <Definition valueType = "integer" default="0" >
+            <Dependency>
+              <Condition type = "and">
+                <Condition type = "isEqual" target="sd_out_switch" value = "1"/>
+              </Condition>  
+            </Dependency>
+          </Definition>
+        </Item>
+      </GridLayout>
+    </GroupBox>
 
   </Tab>
 

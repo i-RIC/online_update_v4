@@ -61,41 +61,51 @@ echo # Start RRI.exe
 echo %date%_%time%
 
 rem the check type of execution and run
-%exe_dir%\check_cgns.exe %1
+"%exe_dir%\check_cgns.exe" "%~1"
+if errorlevel 1 goto :error
 
-for /f %%a in (runtype.txt) do (
-	rem echo %%a
+set /p run_type=<runtype.txt
 
-	if %%a == 0 (
-		
-		echo --------------------------------------------------
-		echo # run demAdjust2.exe only
-		%exe_dir%\demAdjust2.exe %1
-
-	) else if %%a == 1 (
-
-
-		echo --------------------------------------------------
-		echo # run demAdjust2.exe
-		%exe_dir%\demAdjust2.exe %1
-
-
-		echo --------------------------------------------------
-		echo # run rri.exe
-		%exe_dir%\rri.exe %1
-
-
-	) else if %%a == 2 (
-
-		echo --------------------------------------------------
-		echo # run rri.exe only
-		rem Run rri.exe
-		%exe_dir%\rri.exe %1
-
-	)
-
+if "%run_type%" == "0" (
+	echo --------------------------------------------------
+	echo # recreate grid and grid attributes with demAdjust2.exe
+	"%exe_dir%\demAdjust2.exe" "%~1"
+	if errorlevel 1 goto :error
+	goto :success
 )
 
+if "%run_type%" == "1" (
+	echo --------------------------------------------------
+	echo # recreate grid and grid attributes with demAdjust2.exe
+	"%exe_dir%\demAdjust2.exe" "%~1"
+	if errorlevel 1 goto :error
+
+	echo --------------------------------------------------
+	echo # run rri.exe
+	"%exe_dir%\rri.exe" "%~1"
+	if errorlevel 1 goto :error
+	goto :success
+)
+
+if "%run_type%" == "2" (
+	echo --------------------------------------------------
+	echo # run rri.exe only
+	"%exe_dir%\rri.exe" "%~1"
+	if errorlevel 1 goto :error
+	goto :success
+)
+
+echo ERROR: Unknown run_type "%run_type%".
+goto :error
+
+:success
 echo --------------------------------------------------
 echo # End RRI.exe
 echo %date%_%time%
+exit /b 0
+
+:error
+echo --------------------------------------------------
+echo # RRI preprocessing or calculation failed.
+echo %date%_%time%
+exit /b 1
