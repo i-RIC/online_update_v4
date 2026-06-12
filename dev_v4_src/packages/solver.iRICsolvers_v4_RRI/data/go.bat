@@ -64,7 +64,13 @@ rem the check type of execution and run
 "%exe_dir%\check_cgns.exe" "%~1"
 if errorlevel 1 goto :error
 
-set /p run_type=<runtype.txt
+set "run_type="
+for /f "usebackq tokens=1" %%a in ("runtype.txt") do set "run_type=%%a"
+
+if not defined run_type (
+	echo ERROR: Failed to read run_type from runtype.txt.
+	goto :error
+)
 
 if "%run_type%" == "0" (
 	echo --------------------------------------------------

@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>RRI on iRIC</DisplayName>
 	<Description></Description>
-	<Version>1.4.2.260612</Version>
+	<Version>1.4.3.260612</Version>
 	<Default>true</Default>
 	<ReleaseDate>2026-06-12</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
