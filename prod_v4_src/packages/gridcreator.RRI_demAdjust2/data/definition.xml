@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GridGeneratorDefinition
+  xmlns="www.iric.net/GridGeneratorDefinition/1.0"
+  name="RRI_demAdjust2"
+  caption="RRI DEM and River Grid Creator"
+  version="1.0.0"
+  release="2026.06.13"
+  copyright="Takahiro Sayama; RRI modifications by project contributors"
+  executable="RRI_demAdjust2.exe"
+  gridtype="structured2d">
+
+  <GridGeneratingCondition>
+    <Tab name="topography" caption="Topographic Data">
+      <Item name="utm" caption="Coordinate System">
+        <Definition valueType="integer" default="0">
+          <Enumeration value="0" caption="Longitude / Latitude"/>
+          <Enumeration value="1" caption="Projected Coordinates (meter)"/>
+        </Definition>
+      </Item>
+
+      <Item name="demfile" caption="DEM File">
+        <Definition valueType="filename"/>
+      </Item>
+      <Item name="dirfile" caption="DIR File">
+        <Definition valueType="filename"/>
+      </Item>
+      <Item name="accfile" caption="ACC File">
+        <Definition valueType="filename"/>
+      </Item>
+    </Tab>
+
+    <Tab name="river" caption="River Geometry">
+      <Item name="riv_thresh" caption="River Cell ACC Threshold">
+        <Definition valueType="integer" default="100" min="0"/>
+      </Item>
+
+      <GroupBox caption="River Width">
+        <GridLayout withSpacer="true">
+          <Label row="0" col="0" caption="Cw"/>
+          <Item row="0" col="1" name="width_param_c">
+            <Definition valueType="real" default="5.0" min="0"/>
+          </Item>
+          <Label row="1" col="0" caption="Sw"/>
+          <Item row="1" col="1" name="width_param_s">
+            <Definition valueType="real" default="0.35"/>
+          </Item>
+        </GridLayout>
+      </GroupBox>
+
+      <GroupBox caption="River Depth">
+        <GridLayout withSpacer="true">
+          <Label row="0" col="0" caption="Cd"/>
+          <Item row="0" col="1" name="depth_param_c">
+            <Definition valueType="real" default="0.95" min="0"/>
+          </Item>
+          <Label row="1" col="0" caption="Sd"/>
+          <Item row="1" col="1" name="depth_param_s">
+            <Definition valueType="real" default="0.2"/>
+          </Item>
+        </GridLayout>
+      </GroupBox>
+
+      <GroupBox caption="Levee Height">
+        <Item name="height_param" caption="Height [m]">
+          <Definition valueType="real" default="2.0" min="0"/>
+        </Item>
+        <Item name="height_limit_param" caption="Minimum ACC for Height">
+          <Definition valueType="integer" default="1000" min="0"/>
+        </Item>
+      </GroupBox>
+    </Tab>
+  </GridGeneratingCondition>
+
+  <ErrorCodes>
+    <ErrorCode value="1" caption="Grid generation failed. Check the input raster files and parameters."/>
+  </ErrorCodes>
+</GridGeneratorDefinition>

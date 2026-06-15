@@ -1,0 +1,27 @@
+RRI DEM・河道格子生成プログラム
+
+DEM、DIR、ACC の ESRI ASCII Grid を読み込み、RRI 用の構造格子と
+以下の格子属性を生成します。
+
+  elevation_c, dir_c, acc_c, width_c, depth_c, height_c,
+  landuse_c, GSD_s, GSD_c
+
+川幅と河道深は次式で生成します。
+
+  width = Cw * (ACC * dx * dy * 1e-6) ** Sw
+  depth = Cd * (ACC * dx * dy * 1e-6) ** Sd
+
+使用方法:
+1. RRI の新規プロジェクトを開きます。
+2. 「格子」メニューから格子生成アルゴリズムを選択します。
+3. 「RRI DEM・河道格子生成」を選択します。
+4. DEM、DIR、ACC と河道形状パラメータを入力して格子を生成します。
+5. 格子生成後、RRI の RunType は「Run Only」にして計算します。
+
+注意:
+- DEM、DIR、ACC は行列数、原点、セルサイズが一致している必要があります。
+- 格子生成後に手動編集した landuse_c、GSD_s、GSD_c は、再生成すると 1 に戻ります。
+- 川幅を再生成する場合は、RRI の計算条件ではなく、この格子生成画面の
+  Cw と Sw を変更して格子を再生成してください。
+- RRI 計算条件画面に残っている Cw、Sw、Cd、Sd は従来方式との互換用です。
+  正式な格子生成方式では、格子生成画面の値が格子属性に反映されます。

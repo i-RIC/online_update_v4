@@ -1,0 +1,19 @@
+RRI DEM and River Grid Creator
+
+This grid generator reads DEM, DIR, and ACC ESRI ASCII Grid files and
+creates a structured RRI grid with the following cell attributes:
+
+  elevation_c, dir_c, acc_c, width_c, depth_c, height_c,
+  landuse_c, GSD_s, GSD_c
+
+River width and depth are generated from drainage area:
+
+  width = Cw * (ACC * dx * dy * 1e-6) ** Sw
+  depth = Cd * (ACC * dx * dy * 1e-6) ** Sd
+
+DEM, DIR, and ACC must have identical dimensions, origin, and cell size.
+Regeneration resets landuse_c, GSD_s, and GSD_c to 1.
+
+After generating the grid, set the RRI RunType to "Run Only".
+To regenerate river geometry, change Cw, Sw, Cd, and Sd in this grid
+generator dialog and generate the grid again.
