@@ -3,8 +3,8 @@
   xmlns="www.iric.net/GridGeneratorDefinition/1.0"
   name="RRI_demAdjust2"
   caption="RRI DEM and River Grid Creator"
-  version="1.0.0"
-  release="2026.06.13"
+  version="1.1.0"
+  release="2026.06.15"
   copyright="Takahiro Sayama; RRI modifications by project contributors"
   executable="RRI_demAdjust2.exe"
   gridtype="structured2d">
