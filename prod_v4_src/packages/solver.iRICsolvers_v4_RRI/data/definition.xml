@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI on iRIC"
-					version="1.4.4.260626"
+					version="1.4.5.260626"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
 					release="2026.6.26"
 					homepage="http://i-ric.org"
@@ -19,7 +19,7 @@
   <Tab name="options" caption="Base Conditions">
     <!-- <Label caption="RRI_Input_Format_Ver1_4_2 for iRIC" align="right"/> -->
     <Item name="run_type" caption="RunType" >
-      <Definition valueType="integer" default="0">
+      <Definition valueType="integer" default="2">
         <Enumeration value="0" caption="Make Geographic Condition Only" />
         <!-- <Enumeration value="1" caption="Make Geographic Condition and Run" /> -->
         <Enumeration value="2" caption="Run Only" />
@@ -42,7 +42,7 @@
       </Item>
     </GroupBox>
 
-    <GroupBox caption="Geographic Data file">
+    <GroupBox caption="Data File Settings (Legacy)">
       <Item name="demfile" caption="Dem File" >
         <Definition valueType="filename" default="./topo/elv_export.asc">
         </Definition>
@@ -59,7 +59,7 @@
       </Item>
     </GroupBox>
 
-    <GroupBox caption="River Shape Parameters">
+    <GroupBox caption="River Shape Parameters (Legacy)">
       <GridLayout withSpacer="true">
         <Label row="0" col="0" caption="Width : Cw, Sw"/>
         <Item row="0" col="1" name="width_param_c">
