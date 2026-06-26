@@ -762,22 +762,9 @@
   <UpdateFile CompressedSize="6240784" OS="Any" UncompressedSize="46163259"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License file="LICENSE" name="MIT License"/>
+   <License name="MIT License" file="LICENSE"/>
   </Licenses>
   <SHA1>b766b88b108386d47a257547fd328e690b3572b4</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>solver.iRICsolvers_v4_RRI</Name>
-  <DisplayName>RRI on iRIC</DisplayName>
-  <Description/>
-  <Version>1.4.3.260612</Version>
-  <Default>true</Default>
-  <ReleaseDate>2026-06-12</ReleaseDate>
-  <SortingPriority>50</SortingPriority>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="2003130" OS="Any" UncompressedSize="7330962"/>
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>d65b4287cd01d7f93f36ba94b60e06c1c4da20c4</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>gridcreator.RRI_demAdjust2</Name>
@@ -791,5 +778,18 @@
   <UpdateFile CompressedSize="455383" OS="Any" UncompressedSize="3313963"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>2bdc4f97fa3ae54c279b1d7f8aa4ce6fc2d5285e</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>solver.iRICsolvers_v4_RRI</Name>
+  <DisplayName>RRI on iRIC</DisplayName>
+  <Description/>
+  <Version>1.4.3.260612</Version>
+  <Default>true</Default>
+  <ReleaseDate>2026-06-12</ReleaseDate>
+  <SortingPriority>50</SortingPriority>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="3860880" OS="Any" UncompressedSize="9190132"/>
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>30a14e894527ccbba543ae8d76454d58719debcb</SHA1>
  </PackageUpdate>
 </Updates>
