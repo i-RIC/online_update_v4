@@ -783,13 +783,13 @@
   <Name>solver.iRICsolvers_v4_RRI</Name>
   <DisplayName>RRI on iRIC</DisplayName>
   <Description/>
-  <Version>1.4.3.260612</Version>
+  <Version>1.4.4.260626</Version>
   <Default>true</Default>
-  <ReleaseDate>2026-06-12</ReleaseDate>
+  <ReleaseDate>2026-06-26</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="3860880" OS="Any" UncompressedSize="9190132"/>
+  <UpdateFile CompressedSize="3860868" OS="Any" UncompressedSize="9190132"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>30a14e894527ccbba543ae8d76454d58719debcb</SHA1>
+  <SHA1>1aac881be99fa15564cc56b135ebe9c797313001</SHA1>
  </PackageUpdate>
 </Updates>

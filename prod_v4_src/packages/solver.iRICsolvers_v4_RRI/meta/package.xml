@@ -2,9 +2,9 @@
 <Package>
 	<DisplayName>RRI on iRIC</DisplayName>
 	<Description></Description>
-	<Version>1.4.3.260612</Version>
+	<Version>1.4.4.260626</Version>
 	<Default>true</Default>
-	<ReleaseDate>2026-06-12</ReleaseDate>
+	<ReleaseDate>2026-06-26</ReleaseDate>
 	<SortingPriority>50</SortingPriority>
 	<Script>installscript.qs</Script>
 </Package>
