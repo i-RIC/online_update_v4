@@ -762,7 +762,7 @@
   <UpdateFile CompressedSize="6240784" UncompressedSize="46163259" OS="Any"/>
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE"/>
+   <License file="LICENSE" name="MIT License"/>
   </Licenses>
   <SHA1>b766b88b108386d47a257547fd328e690b3572b4</SHA1>
  </PackageUpdate>
@@ -783,13 +783,13 @@
   <Name>solver.iRICsolvers_v4_RRI</Name>
   <DisplayName>RRI on iRIC</DisplayName>
   <Description/>
-  <Version>1.4.5.260626</Version>
+  <Version>1.4.5.260627</Version>
   <Default>true</Default>
-  <ReleaseDate>2026-06-26</ReleaseDate>
+  <ReleaseDate>2026-06-27</ReleaseDate>
   <SortingPriority>50</SortingPriority>
   <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="3860876" UncompressedSize="9190153" OS="Any"/>
+  <UpdateFile CompressedSize="3861897" UncompressedSize="9191506" OS="Any"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>61e59553043dfeeb45f89cc5efd1d35764842ff9</SHA1>
+  <SHA1>d55cedc8633038900a1a0a44034451b979ce1c9b</SHA1>
  </PackageUpdate>
 </Updates>

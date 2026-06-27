@@ -2,9 +2,9 @@
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI on iRIC"
-					version="1.4.5.260626"
+					version="1.4.5.260627"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
-					release="2026.6.26"
+					release="2026.6.27"
 					homepage="http://i-ric.org"
 					executable="go.bat"
 					iterationtype="time"
@@ -958,6 +958,10 @@
     <GroupBox caption="Parameters">
     <Item name="cohe" caption="cohesion (kN/m2)" >
       <Definition valueType="real" default="3.0"  max ="100">
+      </Definition>
+    </Item>
+    <Item name="phi" caption="Internal friction angle (deg)" >
+      <Definition valueType="real" default="35.0"  min="0" max ="90">
       </Definition>
     </Item>
     <Item name="pwc" caption="Critical volume water content for subsurface flow" >

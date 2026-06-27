@@ -573,6 +573,10 @@
             <translation>粘着力(kN/m2)</translation>
         </message>
         <message>
+            <source>Internal friction angle (deg)</source>
+            <translation>内部摩擦角(deg)</translation>
+        </message>
+        <message>
             <source>Critical volume water content for subsurface flow</source>
             <translation>限界含水比</translation>
         </message>
