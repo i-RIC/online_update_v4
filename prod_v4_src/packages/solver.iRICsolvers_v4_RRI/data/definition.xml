@@ -2,9 +2,9 @@
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI on iRIC"
-					version="1.4.5.260627"
+					version="1.4.5.260708"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
-					release="2026.6.27"
+					release="2026.7.8"
 					homepage="http://i-ric.org"
 					executable="go.bat"
 					iterationtype="time"
@@ -38,6 +38,10 @@
         <Definition valueType="integer" default="1">
           <Enumeration value="0" caption="4 (Recommend for RSR-model)" />
           <Enumeration value="1" caption="8" />
+        </Definition>
+      </Item>
+      <Item name="omp_num_threads" caption="OpenMP Threads (0: Auto)" >
+        <Definition valueType="integer" default="0" min="0" max="128">
         </Definition>
       </Item>
     </GroupBox>
@@ -623,17 +627,17 @@
   <Tab name="Advanced settings" caption="Settings for Advanced Users">
     <GroupBox caption="Variables used for Adaptive Stepsize to Control Runge-Kutta">
       <Item name="eps" caption="eps (small value for fine mesh computation)" >
-        <Definition valueType="real" default="0.01"  max ="10">
+        <Definition valueType="real" default="0.001"  max ="10">
         </Definition>
       </Item>
       
       <Item name="ddt_min_riv" caption="ddt_min_riv (small value for fine mesh computation)" >
-        <Definition valueType="real" default="0.1"  max ="10">
+        <Definition valueType="real" default="0.01"  max ="10">
         </Definition>
       </Item>
 
       <Item name="ddt_min_slo" caption="ddt_min_slo (small value for fine mesh computation)" >
-        <Definition valueType="real" default="1"  max ="100">
+        <Definition valueType="real" default="0.1"  max ="100">
         </Definition>
       </Item>  
     </GroupBox>  
@@ -2431,3 +2435,4 @@
   </BoundaryCondition>
 
 </SolverDefinition>
+
