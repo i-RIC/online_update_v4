@@ -796,5 +796,48 @@
             <source>div_rate</source>
             <translation></translation>
         </message>
-    </context>
+            <message>
+            <source>River channel lines</source>
+            <translation>河道線</translation>
+        </message>
+        <message>
+            <source>01 River water level line[m]</source>
+            <translation>河川水位</translation>
+        </message>
+        <message>
+            <source>01 River water level line [m]</source>
+            <translation>河川水位</translation>
+        </message>
+        <message>
+            <source>02 River discharge line[m3_s]</source>
+            <translation>河川流量</translation>
+        </message>
+        <message>
+            <source>02 River discharge line [m3/s]</source>
+            <translation>河川流量</translation>
+        </message>
+        <message>
+            <source>03 River bed change line[m]</source>
+            <translation>河床変動</translation>
+        </message>
+        <message>
+            <source>03 River bed change line [m]</source>
+            <translation>河床変動</translation>
+        </message>
+        <message>
+            <source>04 Bedload transport line[m3_s]</source>
+            <translation>掃流砂量</translation>
+        </message>
+        <message>
+            <source>04 Bedload transport line [m3/s]</source>
+            <translation>掃流砂量</translation>
+        </message>
+        <message>
+            <source>05 Suspended sediment line[m3_s]</source>
+            <translation>浮遊砂量</translation>
+        </message>
+        <message>
+            <source>05 Suspended sediment line [m3/s]</source>
+            <translation>浮遊砂量</translation>
+        </message></context>
 </TS>

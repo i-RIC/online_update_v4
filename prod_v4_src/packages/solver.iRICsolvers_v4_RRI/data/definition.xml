@@ -2,9 +2,9 @@
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI on iRIC"
-					version="1.4.5.260708"
+					version="1.4.5.260710"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
-					release="2026.7.8"
+					release="2026.7.10"
 					homepage="http://i-ric.org"
 					executable="go.bat"
 					iterationtype="time"
@@ -2246,8 +2246,22 @@
 
   </Tab>
 
-</CalculationCondition>  
-
+</CalculationCondition>
+  <Output name="01 River water level line[m]" caption="01 River water level line [m]">
+    <Definition valueType="real" position="polydata" />
+  </Output>
+  <Output name="02 River discharge line[m3_s]" caption="02 River discharge line [m3/s]">
+    <Definition valueType="real" position="polydata" />
+  </Output>
+  <Output name="03 River bed change line[m]" caption="03 River bed change line [m]">
+    <Definition valueType="real" position="polydata" />
+  </Output>
+  <Output name="04 Bedload transport line[m3_s]" caption="04 Bedload transport line [m3/s]">
+    <Definition valueType="real" position="polydata" />
+  </Output>
+  <Output name="05 Suspended sediment line[m3_s]" caption="05 Suspended sediment line [m3/s]">
+    <Definition valueType="real" position="polydata" />
+  </Output>
   <GridRelatedCondition  keepOrder="true">
     <Item name="elevation_c" caption="Elevation [m]">
       <Definition position="cell" valueType="real" default="max" />
