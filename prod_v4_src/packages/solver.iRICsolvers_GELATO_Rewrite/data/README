@@ -6,6 +6,9 @@ Check here for case studies:
 https://gelato-rewrite-documents.readthedocs.io/ja/v2.0_en/
 
 # Release notes
+ver 2.1.26070301 update by hoshino
+* Added console output showing the number of fish passing through user-defined cross sections.
+* Added output of fish positions at each time step to `fish_trajectory.csv` in the root folder.
 ver 2.1.25090201 update by hoshino
 * Improved the process to allow fish to more easily return to swimming areas when they enter areas below the water depth limit.
 ver 2.1.25082201 update by hoshino
