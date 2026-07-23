@@ -800,51 +800,6 @@
   <SHA1>1f8aa90829e7f0a69e49b1ff64ad2bdd85ffc457</SHA1>
  </PackageUpdate>
  <PackageUpdate>
-  <Name>gui.prepost</Name>
-  <DisplayName>iRIC v4 (develop)</DisplayName>
-  <Description>iRIC Main GUI</Description>
-  <Version>4.1.0.7159</Version>
-  <ReleaseDate>2026-05-29</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>true</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="6396195" OS="Any" UncompressedSize="47186696" />
-  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
-  <Licenses>
-   <License file="LICENSE" name="MIT License" />
-  </Licenses>
-  <SHA1>f4901495b9cc6e941e3e732a7a3c3411632a3326</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>miniconda</Name>
-  <DisplayName>Miniconda 3</DisplayName>
-  <Description>Miniconda 3-py312_24.4</Description>
-  <Dependencies />
-  <Version>24.4.1.8</Version>
-  <Default>false</Default>
-  <ReleaseDate>2025-11-13</ReleaseDate>
-  <SortingPriority>100</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="91229335" OS="Any" UncompressedSize="130659226" />
-  <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>810dc3ac1bd2f98734a3151aaf9dc2f87308a0d2</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>sdk</Name>
-  <DisplayName>iRIC Solver SDK</DisplayName>
-  <Description>Headers and libraries needed to develop iRIC solvers</Description>
-  <Version>4.0.58</Version>
-  <Default>true</Default>
-  <ReleaseDate>2024-10-29</ReleaseDate>
-  <SortingPriority>10</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile CompressedSize="3050696" OS="Any" UncompressedSize="29366457" />
-  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>aaa8105fb088b6ba07efdbca96f0b4789b4cd13e</SHA1>
- </PackageUpdate>
- <PackageUpdate>
   <Name>gridcreator.RRI_demAdjust2</Name>
   <DisplayName>RRI DEM and River Grid Creator</DisplayName>
   <Description />
@@ -882,5 +837,50 @@
   <UpdateFile CompressedSize="235268" OS="Any" UncompressedSize="1746868" />
   <DownloadableArchives>content.7z</DownloadableArchives>
   <SHA1>1e1161ab10c2418419bdf2d02965f58bbc9a7dbb</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>gui.prepost</Name>
+  <DisplayName>iRIC v4 (develop)</DisplayName>
+  <Description>iRIC Main GUI</Description>
+  <Version>4.1.0.7160</Version>
+  <ReleaseDate>2026-07-23</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>true</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="6392800" UncompressedSize="47123264" OS="Any" />
+  <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
+  <Licenses>
+   <License file="LICENSE" name="MIT License" />
+  </Licenses>
+  <SHA1>b1b03112e93a6436242680930c61e8aab509074f</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>miniconda</Name>
+  <DisplayName>Miniconda 3</DisplayName>
+  <Description>Miniconda 3-py312_24.4</Description>
+  <Dependencies />
+  <Version>24.4.1.8</Version>
+  <Default>false</Default>
+  <ReleaseDate>2025-11-13</ReleaseDate>
+  <SortingPriority>100</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="91229328" UncompressedSize="130659226" OS="Any" />
+  <DownloadableArchives>content.7z</DownloadableArchives>
+  <SHA1>83ecf563862431e7e142556d2a0576aa1c856ad6</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>sdk</Name>
+  <DisplayName>iRIC Solver SDK</DisplayName>
+  <Description>Headers and libraries needed to develop iRIC solvers</Description>
+  <Version>4.0.58</Version>
+  <Default>true</Default>
+  <ReleaseDate>2024-10-29</ReleaseDate>
+  <SortingPriority>10</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile CompressedSize="3050678" UncompressedSize="29366457" OS="Any" />
+  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
+  <SHA1>9740464eada6f45664250fb66cc1ac3b6696b05a</SHA1>
  </PackageUpdate>
 </Updates>
