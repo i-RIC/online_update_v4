@@ -2,9 +2,9 @@
 <SolverDefinition	xmlns="www.iric.net/SolverDefinition/1.0"
 					name="RRI"
 					caption="RRI on iRIC"
-					version="1.4.5.260710"
+					version="1.4.5.260828"
 					copyright="Takahiro Sayama modified by RiverLINK Co., Ltd.,  Mitsui Consultants Co., Ltd., and ICHARM, PWRI"
-					release="2026.7.10"
+					release="2026.8.28"
 					homepage="http://i-ric.org"
 					executable="go.bat"
 					iterationtype="time"
@@ -618,7 +618,7 @@
             <Enumeration value="1" caption="Yes" />
           </Definition>
         </Item>
-                
+
       </GridLayout>
     </GroupBox>
   </Tab>
@@ -717,6 +717,11 @@
       </Definition>
     </Item>
 
+    <Item name="t_bed_freeze" caption="Bed-freeze warm-up: no bed change, transport/GSD on (hour)" >
+      <Definition valueType="real" default="0." max ="10000">
+      </Definition>
+    </Item>
+
     <Item name="s" caption="Specific gravity of sediment" >
       <Definition valueType="real" default="2.65" max ="10">
       </Definition>
@@ -724,6 +729,7 @@
 
     <Item name="grav" caption="gravitational acceleration[m2/s]" >
       <Definition valueType="real" default="9.81"  max ="100">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
       </Definition>
     </Item>
 
@@ -734,11 +740,13 @@
 
     <Item name="kin_visc" caption="kinematic viscosity" >
       <Definition valueType="real" default="1.004E-6"  max ="1">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
       </Definition>
     </Item>
 
     <Item name="karmans" caption="karmans (von Karmans constant)" >
       <Definition valueType="real" default="0.4"  max ="1">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
       </Definition>
     </Item>  
 
@@ -761,7 +769,7 @@
       </Definition>
     </Item>
 
-    <Item name="iidt" caption="iidt (= dt_river/dt_sediment cal.)" >
+    <Item name="iidt" caption="iidt (sediment substeps; dt_sed=dt/iidt)" >
       <Definition valueType="integer" default="5000"  max ="100000">
       </Definition>
     </Item>
@@ -808,14 +816,17 @@
     </Item>
     <Item name="alpha_ss1" caption="Maximum wood concentrarion" >
       <Definition valueType="real" default="0.5"  max ="100">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
       </Definition>
     </Item>
     <Item name="alpha_ss2" caption="Maximum SS concentration" >
       <Definition valueType="real" default="0.1"  max ="100">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
       </Definition>
     </Item>
     <Item name="thresh_ss" caption="Maximum SS at slope" >
       <Definition valueType="real" default="0.3"  max ="100">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
       </Definition>
     </Item>
     <!--Item name="hr0" caption="Iinitial flow depth(m)" >
@@ -832,6 +843,66 @@
           <Enumeration value="0" caption="Disable"/>
           <Enumeration value="1" caption="Enable"/>
         </Enumerations>
+      </Definition>
+    </Item>
+    <Item name="pass_bedload_switch" caption="Pass bedload downstream when river channel capacity is reduced">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="0" caption="Disable"/>
+          <Enumeration value="1" caption="Enable"/>
+        </Enumerations>
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
+      </Definition>
+    </Item>
+    <Item name="pass_bedload_depth_thresh" caption="Remaining channel depth threshold for passing bedload downstream (m)">
+      <Definition valueType="real" default="0.05" min="0" max="100">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
+      </Definition>
+    </Item>
+    <Item name="channel_blockage_switch" caption="Reduce river conveyance according to bed aggradation">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="0" caption="Disable"/>
+          <Enumeration value="1" caption="Enable"/>
+        </Enumerations>
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
+      </Definition>
+    </Item>
+    <Item name="channel_blockage_leakage" caption="Residual conveyance ratio at complete blockage [-]">
+      <Definition valueType="real" default="0.0" min="0" max="1">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
+      </Definition>
+    </Item>
+    <Item name="channel_blockage_exponent" caption="Exponent for conveyance reduction by remaining channel depth ratio [-]">
+      <Definition valueType="real" default="1.6666667" min="0.1" max="10">
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
+      </Definition>
+    </Item>
+    <Item name="channel_capacity_qr_switch" caption="Limit river discharge by remaining channel capacity">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="0" caption="Disable"/>
+          <Enumeration value="1" caption="Enable"/>
+        </Enumerations>
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
+      </Definition>
+    </Item>
+    <Item name="river_overtop_neighbor_switch" caption="Distribute river overtopping water to adjacent non-river cells">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="0" caption="Disable"/>
+          <Enumeration value="1" caption="Enable"/>
+        </Enumerations>
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
+      </Definition>
+    </Item>
+    <Item name="river_slope_preexchange_switch" caption="Perform river-slope exchange before slope routing">
+      <Definition conditionType="constant" valueType="integer" option="true" default="0">
+        <Enumerations>
+          <Enumeration value="0" caption="Disable"/>
+          <Enumeration value="1" caption="Enable"/>
+        </Enumerations>
+        <Condition type="isEqual" target="sed_switch" value="-9999"/>
       </Definition>
     </Item>
     </GroupBox>
@@ -960,6 +1031,11 @@
     </Item>
 
     <GroupBox caption="Parameters">
+    <Item name="debris_rate_fac" caption="Debris deposition rate to channel (1=original; &lt;1 = slower, spreads a big landslide)" >
+      <Definition valueType="real" default="1." min="0.0001" max="1.">
+      </Definition>
+    </Item>
+
     <Item name="cohe" caption="cohesion (kN/m2)" >
       <Definition valueType="real" default="3.0"  max ="100">
       </Definition>
@@ -1489,6 +1565,19 @@
             <Enumeration value="1" caption="Enabled"/>
           </Enumerations>
         </Definition>
+      </Item>
+
+      <Item name="put_rate_fac" caption = "Supply release-rate factor (1=original; &lt;1 = slower, sustains toward peak)">
+        <Definition conditionType="constant" valueType="real" option="true" default="1.0" min="0.001" max="1.0">
+          <Dependency>
+            <Condition type="isEqual" target="j_sedput" value="1"/>
+            <Action type="enable"/>
+          </Dependency>
+        </Definition>
+      </Item>
+
+      <Item name="d_wash" caption = "Wash-load size threshold [m] (dsi&lt;=this =&gt; wash load; larger =&gt; suspended; set BELOW 0.075mm e.g. 5e-5 to make 0.075mm suspended)">
+        <Definition conditionType="constant" valueType="real" default="0.0001" min="0.0" max="0.01"/>
       </Item>
 
       <GridLayout>
@@ -2449,4 +2538,3 @@
   </BoundaryCondition>
 
 </SolverDefinition>
-

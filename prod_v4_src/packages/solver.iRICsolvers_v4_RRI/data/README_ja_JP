@@ -23,3 +23,9 @@ Model Features
 
 2023.01.31
 ・iRIC ver.4対応版のRRI on iRIC ver.1.4.2.230131リリース
+
+2026.08.24 配布版メモ
+・可視化、GUI表記、計算安定化に関する改良は残しています。
+・特定地点の氾濫診断用に追加した debug_inundation.csv、debug_sed_budget.csv、debug_inundation_spread.csv、debug_riv_shrink.csv、debug_progress.csv、debug_heartbeat.txt は通常計算では出力しません。
+・河道閉塞に関する拡張機能（掃流砂の素通し、河床上昇に応じた通水能力低下、残り河道容量による河道流量制限、越流水の隣接非河道セル分配、斜面流計算前の河道-斜面交換）は、一般用途との互換性を優先してデフォルトOFFにしています。
+・Egashira型の掃流砂式では、掃流砂を駆動するShields数を粒径階ごとのdsiではなく平均粒径dsmで評価するように変更しています。これは細粒分の過大な掃流砂輸送を抑えるための変更です。このため、閉塞拡張機能をOFFにしても、古い配布版と土砂輸送量や河床変動が完全には一致しない場合があります。

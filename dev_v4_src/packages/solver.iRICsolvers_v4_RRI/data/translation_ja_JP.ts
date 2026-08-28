@@ -373,6 +373,10 @@
             <translation>河床変動の開始時刻(hour)</translation>
         </message>
         <message>
+            <source>Bed-freeze warm-up: no bed change, transport/GSD on (hour)</source>
+            <translation>河床凍結の慣らし時間：流砂・粒度は更新、河床変動なし(hour)</translation>
+        </message>
+        <message>
             <source>Specific gravity of sediment</source>
             <translation>土粒子の比重</translation>
         </message>
@@ -413,8 +417,8 @@
             <translation>粒径(m)(均一粒径の場合)</translation>
         </message>
         <message>
-            <source>iidt (= dt_river/dt_sediment cal.)</source>
-            <translation>河床変動計算の時間刻み：iidt (= dt_river/dt_sediment cal.)</translation>
+            <source>iidt (sediment substeps; dt_sed=dt/iidt)</source>
+            <translation>土砂計算の分割数 iidt（dt_sed=dt/iidt）</translation>
         </message>
         <message>
             <source>Bedload transport formula</source>
@@ -493,6 +497,54 @@
             <translation>河道が満砂の時に土砂を溢れさせる</translation>
         </message>
         <message>
+            <source>Pass bedload downstream when river channel capacity is reduced</source>
+            <translation>河道容量が低下した時に掃流砂を下流へ素通しする</translation>
+        </message>
+        <message>
+            <source>Remaining channel depth threshold for passing bedload downstream (m)</source>
+            <translation>掃流砂を下流へ素通しする残り河道深の閾値(m)</translation>
+        </message>
+        <message>
+            <source>Reduce river conveyance according to bed aggradation</source>
+            <translation>河床上昇に応じて河道通水能力を低下させる</translation>
+        </message>
+        <message>
+            <source>Residual conveyance ratio at complete blockage [-]</source>
+            <translation>完全閉塞時の残留通水率 [-]</translation>
+        </message>
+        <message>
+            <source>Exponent for conveyance reduction by remaining channel depth ratio [-]</source>
+            <translation>残り河道深比による通水能力低下の指数 [-]</translation>
+        </message>
+        <message>
+            <source>Limit river discharge by remaining channel capacity</source>
+            <translation>残り河道容量で河道流量を制限する</translation>
+        </message>
+        <message>
+            <source>Distribute river overtopping water to adjacent non-river cells</source>
+            <translation>河道越流水を隣接する非河道セルへ配分する</translation>
+        </message>
+        <message>
+            <source>Perform river-slope exchange before slope routing</source>
+            <translation>斜面流計算の前にも河道-斜面交換を行う</translation>
+        </message>
+        <message>
+            <source>outfile_debug_inundation</source>
+            <translation>氾濫デバッグCSV出力ファイル</translation>
+        </message>
+        <message>
+            <source>Debug inundation target i (GUI)</source>
+            <translation>氾濫デバッグ対象 i (GUI)</translation>
+        </message>
+        <message>
+            <source>Debug inundation target j (GUI)</source>
+            <translation>氾濫デバッグ対象 j (GUI)</translation>
+        </message>
+        <message>
+            <source>Debug inundation output radius (cells)</source>
+            <translation>氾濫デバッグ出力半径（セル数）</translation>
+        </message>
+        <message>
             <source>+ Non-uniform GSDs for river and slope</source>
             <translation>+ 混合粒径土砂の粒度分布</translation>
         </message>
@@ -567,6 +619,10 @@
         <message>
             <source>Parameters</source>
             <translation>パラメータ</translation>
+        </message>
+        <message>
+            <source>Debris deposition rate to channel (1=original; &lt;1 = slower, spreads a big landslide)</source>
+            <translation>デブリの河道への堆積レート(1=従来; &lt;1で緩やか＝大崩壊を時間分散)</translation>
         </message>
         <message>
             <source>cohesion (kN/m2)</source>
