@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Unstructured grid TRIANGLE file importer</DisplayName>
 	<Description>Unstructured grid TRIANGLE file importer</Description>
-	<Version>1.0.1</Version>
+	<Version>1.0.2</Version>
 	<Default>true</Default>
 	<ReleaseDate>2023-11-09</ReleaseDate>
 	<SortingPriority>100</SortingPriority>

@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Structured grid Nays CSV file importer</DisplayName>
 	<Description>Structured grid Nays CSV file importer</Description>
-	<Version>1.2.1</Version>
+	<Version>1.2.2</Version>
 	<Default>true</Default>
 	<ReleaseDate>2024-09-17</ReleaseDate>
 	<SortingPriority>100</SortingPriority>

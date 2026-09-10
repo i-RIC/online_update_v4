@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Structured grid GDAL importer</DisplayName>
 	<Description>Structured grid GDAL importer to import from *.tif and *.asc</Description>
-	<Version>1.0.2</Version>
+	<Version>1.0.3</Version>
 	<Default>true</Default>
 	<ReleaseDate>2023-11-09</ReleaseDate>
 	<SortingPriority>100</SortingPriority>

@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Structured grid VTK importer</DisplayName>
 	<Description>Structured grid VTK file importer</Description>
-	<Version>1.0.3</Version>
+	<Version>1.0.4</Version>
 	<Default>true</Default>
 	<ReleaseDate>2024-07-02</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
