@@ -879,8 +879,8 @@
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile OS="Any" UncompressedSize="130866485" CompressedSize="91287679"/>
+  <UpdateFile OS="Any" UncompressedSize="130866395" CompressedSize="91287083"/>
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>910a188812ddba1e7e3aeab9421bcfd518d73fe8</SHA1>
+  <SHA1>dd92f45fbbf8a518221b0af7238994a84fe9845e</SHA1>
  </PackageUpdate>
 </Updates>

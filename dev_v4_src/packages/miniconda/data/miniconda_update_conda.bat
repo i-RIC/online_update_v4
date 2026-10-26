@@ -11,6 +11,5 @@ set CONDA_REMOTE_READ_TIMEOUT_SECS=120
 set CONDA_SSL_VERIFY=truststore
 
 call "%MC%\condabin\conda.bat" update -n base --override-channels -c conda-forge conda -y
-call "%MC%\condabin\conda.bat" update -n base --override-channels -c conda-forge --all -y
 rem Failure here is not fatal; the iric environment is created separately
 exit /b 0
