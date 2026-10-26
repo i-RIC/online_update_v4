@@ -2,7 +2,7 @@
 <Package>
 	<DisplayName>Unstructured grid VTK importer</DisplayName>
 	<Description>Unstructured grid VTK file importer</Description>
-	<Version>1.0.2</Version>
+	<Version>1.0.3</Version>
 	<Default>true</Default>
 	<ReleaseDate>2024-07-02</ReleaseDate>
 	<SortingPriority>100</SortingPriority>
