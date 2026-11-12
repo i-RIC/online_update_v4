@@ -751,31 +751,17 @@
   <Name>gui.prepost</Name>
   <DisplayName>iRIC v4 (release)</DisplayName>
   <Description>iRIC Main GUI</Description>
-  <Version>4.2.1.6985</Version>
-  <ReleaseDate>2026-10-26</ReleaseDate>
+  <Version>4.2.1.6986</Version>
+  <ReleaseDate>2026-11-12</ReleaseDate>
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>true</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="47022821" OS="Any" CompressedSize="6343736" />
+  <UpdateFile UncompressedSize="47028800" OS="Any" CompressedSize="6345180" />
   <DownloadableArchives>languages.7z,content.7z</DownloadableArchives>
   <Licenses>
-   <License name="MIT License" file="LICENSE" />
+   <License file="LICENSE" name="MIT License" />
   </Licenses>
-  <SHA1>764c2d8b41126774b1d2ac8340b84e9fba268caa</SHA1>
- </PackageUpdate>
- <PackageUpdate>
-  <Name>sdk</Name>
-  <DisplayName>iRIC Solver SDK</DisplayName>
-  <Description>Headers and libraries needed to develop iRIC solvers</Description>
-  <Version>4.0.59</Version>
-  <Default>true</Default>
-  <ReleaseDate>2024-10-29</ReleaseDate>
-  <SortingPriority>10</SortingPriority>
-  <ForcedInstallation>false</ForcedInstallation>
-  <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="29393673" OS="Any" CompressedSize="3061755" />
-  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
-  <SHA1>a0bfca58ee0c1668e94a3f810654d2e69404ef23</SHA1>
+  <SHA1>0c12fb18b215c2146c3302cdcccd10af36127005</SHA1>
  </PackageUpdate>
  <PackageUpdate>
   <Name>miniconda</Name>
@@ -788,8 +774,22 @@
   <SortingPriority>100</SortingPriority>
   <ForcedInstallation>false</ForcedInstallation>
   <Script>installscript.qs</Script>
-  <UpdateFile UncompressedSize="130401071" CompressedSize="91074205" OS="Any" />
+  <UpdateFile UncompressedSize="130401071" OS="Any" CompressedSize="91073941" />
   <DownloadableArchives>content.7z</DownloadableArchives>
-  <SHA1>4fc4c00ce8d3bc3bca57b6db7621c80b8925dcf2</SHA1>
+  <SHA1>80b882966820602214ef55c869fe82ecb6d25287</SHA1>
+ </PackageUpdate>
+ <PackageUpdate>
+  <Name>sdk</Name>
+  <DisplayName>iRIC Solver SDK</DisplayName>
+  <Description>Headers and libraries needed to develop iRIC solvers</Description>
+  <Version>4.0.59</Version>
+  <Default>true</Default>
+  <ReleaseDate>2024-10-29</ReleaseDate>
+  <SortingPriority>10</SortingPriority>
+  <ForcedInstallation>false</ForcedInstallation>
+  <Script>installscript.qs</Script>
+  <UpdateFile UncompressedSize="29393673" OS="Any" CompressedSize="3062108" />
+  <DownloadableArchives>c.7z,fortran.7z,python.7z</DownloadableArchives>
+  <SHA1>e62aac61d760f065559959385e29d3906e4ddd16</SHA1>
  </PackageUpdate>
 </Updates>
